@@ -11,8 +11,8 @@
 **Updated:** 2026-09-06
 **Catalog description:** A room that prints an accurate, test-checked account of what a workbench is and why each part is where it is.
 **Blockers:** none
-**Latest event:** TK-002 closed; the room now reads its own lifecycle out of the manifest and receipt.
-**Next gate:** TK-003 is blocked on owner direction; no unblocked slice remains.
+**Latest event:** TK-003 unblocked by owner direction and closed; the room is published and clonable.
+**Next gate:** None; every slice is closed and the capability is published.
 
 ## Outcome
 
@@ -58,9 +58,8 @@ Genesis produced this room from LLM Workbench v3.1.2 at commit
 tools receipt out of the room and prints how the room came to exist, followed
 by the five-step route to a newer harness version. Twelve cases now pass.
 
-Gap: the room has no remote, so it can be copied but not cloned, and nothing
-proves it survives the machine it sits on. TK-003 owns that and is blocked on
-owner direction.
+The room is published at `https://github.com/KaydenClark/Example_Workbench`, so
+it is reachable by clone and no longer depends on one machine.
 
 ## Desired Behavior
 
@@ -113,7 +112,7 @@ Tickets are temporary tracer bullets within this stable capability record.
 |---|---|---|---|---|
 | TK-001 | Print the annotated map and make drift a test failure | done | none | `node tests/tour.test.mjs` 9/9; two drift cases confirmed red at exit 1 |
 | TK-002 | Explain the room's lifecycle: how it was created and how it reaches a newer harness version | done | none | `node tour.mjs --lifecycle`; `node tests/tour.test.mjs` 12/12 |
-| TK-003 | Publish the room so it can be cloned rather than copied | blocked | owner direction on whether a remote repository is created | pending |
+| TK-003 | Publish the room so it can be cloned rather than copied | done | none | `git clone https://github.com/KaydenClark/Example_Workbench` |
 
 ### TK-002 - Done
 
@@ -132,12 +131,15 @@ hand stamp of `workbenchVersion`, then a hand re-stamp of the documents that
 name a version. The last two steps are hand edits because no command performs
 them - established by rehearsal, not assumption (see the evidence log).
 
-### TK-003 - Blocked
+### TK-003 - Done
 
 **Stance:** Builder
 
-Creating a remote repository is an owner decision and an outward-facing act.
-Blocked until the owner says whether this room is published, and where.
+The owner directed publication on 2026-09-06 and created
+`KaydenClark/Example_Workbench` as a public repository. The room was pushed
+there. Before the first push its one absolute home path was removed from
+`BLUEPRINT.md`, on the same rule the checkpoint promoter enforces: a home path
+is not published, even in a room that holds no secrets.
 
 ## Acceptance Criteria
 
@@ -148,7 +150,7 @@ Blocked until the owner says whether this room is published, and where.
 - [x] `workbench-layout.mjs validate --project .` reports the room current.
 - [x] A reader can learn from the room itself how it was created and how it
       would reach a newer harness version (TK-002).
-- [ ] The room is reachable by clone rather than by copy (TK-003).
+- [x] The room is reachable by clone rather than by copy (TK-003).
 
 ## Testing Seams
 
@@ -190,18 +192,27 @@ node workbench/tools/spec-workbench.mjs doctor
 
 | 2026-09-06 | TK-002 | The room now reads its own lifecycle out of the manifest and receipt | `node tour.mjs --lifecycle` prints lifecycle `genesis`, source release `v3.1.2` at `18ffc0d295722e8437a13399b3a1b67369248314`, stamp `v3.1.2`, and a receipt attesting 11 managed files; `node tests/tour.test.mjs` passes 12/12. Three new cases: the lifecycle account is compared field by field against the manifest and receipt it claims to read; the recorded commit is asserted to be a full 40-character SHA and not the placeholders `unrecorded` or `unknown`; every `.mjs` the route names is asserted present in this room's tools lane, and `workbench-tools.mjs` asserted absent, since it is a release tool rather than a room tool. The five-step route was established by rehearsing the v3.1.1 to v3.1.2 upgrade on a disposable copy of a real v3.1.1 room, not by reading the docs: `update --explicit-update` rewrote 8 of 11 tools and the receipt; `record-source --version v3.1.2` set `provenance.source` but left `workbenchVersion` at v3.1.1, which `doctor` then reported as `unverified-provenance` (attention); stamping `workbenchVersion` by hand cleared it; `seed-documents` wrote nothing and the four seeded wiki documents kept their v3.1.1 stamps as `stale-stamp` (attention), and the six root controls kept theirs unreported | Spec TK-002 closed; `RUNBOOK.md` and `README.md` name `--lifecycle` | The room still has no remote - TK-003, blocked on owner direction |
 | 2026-09-06 | TK-002 | Recorded what the genesis readiness gate does after Genesis is over | `workbench-layout.mjs validate --project . --genesis` returned `{"status":"valid"}` at the Genesis commit `b19c1e9`, with every readiness box satisfied. Re-run after TK-002 closed, it returns `invalid` with reason `at least one ticket must be ready with blockers none` - because TK-002 is `done` and TK-003 is `blocked`. That is the gate behaving correctly: `GENESIS.md` says "Read this once, run it once", and the gate scores an actionable *first* packet, not a room mid-life. The steady-state checks are the right ones after bootstrap: `validate --project .` reports `valid`, `doctor` exits 0 with no blocking finding, `next --json` returns `null` because the only open ticket is blocked | Logged in `workbench/feedback/WORKBENCH_FEEDBACK.md` as a harness legibility observation, since nothing in the gate's output says it is one-time | None. The gate is correct; only its one-time nature is undocumented in its own failure message |
+| 2026-09-06 | TK-003 | Owner directed publication; the room is public and clonable | Owner created `KaydenClark/Example_Workbench` as a public repository and directed that the room live there rather than nested inside the harness repository. `BLUEPRINT.md`'s `Source root` field carried the one absolute home path in the room; it was replaced before the first push, and a repository-wide grep confirms no `/Users/` path remains outside the managed runtime, which carries none either. All three branches pushed; `main` carries the finished room so a clone shows what the room is rather than only how it started | Spec TK-003 closed and its acceptance box checked; the no-remote limitation is retired and replaced with the pinned-provenance one that is actually true now | None for this slice. The room is a v3.1.2 room and stays one until someone runs the upgrade route it documents |
 
 ## Completion Result
 
-Pending. TK-003 is the only remaining slice and is blocked on owner direction;
-no unblocked work remains in this spec.
+All three slices are closed. `node tour.mjs` names every place in the room with
+what it owns and why; `node tour.mjs --lifecycle` reads the room's own
+provenance and receipt and states the upgrade route measured by rehearsal; and
+`node tests/tour.test.mjs` passes twelve cases that fail whenever the room and
+its own account of itself disagree. The room is published and clonable.
+
+What it does not establish: that genesis produces the same result on another
+platform or from another agent. One room on one machine cannot prove
+portability; the harness's own portability suites own that claim.
 
 ## Remaining Limitations Or Follow-Up Specs
 
-- **The room has no remote.** It exists on one machine, so it can be copied but
-  not cloned, and nothing proves it survives the loss of that machine. TK-003
-  owns this and is blocked on owner direction.
-- **The tour describes structure, not lifecycle.** TK-002 owns this.
+- **The room's provenance pins one commit of the harness.** `provenance.source`
+  names LLM Workbench `18ffc0d`. When the harness releases again, this room is
+  a v3.1.2 room until someone runs the upgrade route it documents. That is
+  correct rather than stale, but it means the room does not automatically
+  demonstrate the newest release.
 - **No separate-context review ran on TK-002.** This room's `AGENTS.md` requires
   an independent reviewer before a branch combines into `integration`, and no
   second context was assigned to this room. The branch was merged anyway, and

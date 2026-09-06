@@ -4,7 +4,7 @@
 
 **Last reviewed:** 2026-09-06
 **Status:** active
-**Source root:** `/Users/kayden/Example_Workbench`
+**Source root:** the repository root (this room is the whole project)
 
 ## Product Map
 
