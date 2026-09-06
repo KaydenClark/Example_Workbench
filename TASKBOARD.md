@@ -15,7 +15,7 @@ Commands live in `RUNBOOK.md`.
 <!-- hot-specs:start -->
 | Spec | Current slice | Owner | Blocker | Latest meaningful event | Next gate |
 |---|---|---|---|---|---|
-| [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | TK-003: Publish the room so it can be cloned rather than copied (blocked) | Kayden Clark | owner direction on whether a remote repository is created | TK-002 closed; the room now reads its own lifecycle out of the manifest and receipt. | TK-003 is blocked on owner direction; no unblocked slice remains. |
+| [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | Acceptance / owner gate | Kayden Clark | none | TK-003 unblocked by owner direction and closed; the room is published and clonable. | None; every slice is closed and the capability is published. |
 <!-- hot-specs:end -->
 
 Completed specs disappear from this projection immediately. Their requirements,
