@@ -1,0 +1,443 @@
+# Example Workbench - Runbook
+
+> Generated from LLM Workbench v3.1.2. See Upgrading The Harness
+> below.
+
+**Last reviewed:** 2026-09-06
+**Runtime owner:** Kayden Clark (owner); any agent may run every command here.
+**Environment:** local only
+
+This file explains how to operate, verify, recover, and evaluate the project. It
+should be boring, exact, and executable.
+
+## Ordinary Entry
+
+Follow `AGENTS.md` -> this section -> `LEXICON.md` -> Task Routing. Inspect the
+root, branch, upstream and dirty state; run the project-local spec doctor and
+load the explicitly assigned spec. For owner-directed pickup, use `next --json`
+and `show` to resolve that assignment. The spec and ticket set the normal
+stance. Investigate within the task; do not invent a next task when blocked.
+Load remaining Runbook sections only for the operation being performed.
+
+For a setup-only Round One assignment, a fresh agent follows that route, checks
+the manifest, relevant Wiki and ADRs, and runs read-only configuration checks.
+Return the result in chat only: no feedback report, handoff, checkpoint,
+self-created task, or other prose artifact. Round One precedes feedback testing.
+
+## Prerequisites
+
+Required tools:
+
+- Node.js 20 or newer (`node --version`). Nothing else.
+
+Required accounts/services:
+
+- None. The room runs entirely offline.
+
+Required local files:
+
+- None. Everything the room needs is committed.
+
+## Environment Configuration
+
+None. This room reads no environment variables and holds no configuration
+outside the files committed to it. That is deliberate: the smallest room that
+demonstrates the structure should not also demonstrate secret handling.
+
+The rules still bind if that ever changes:
+
+- Do not commit real credential files, tokens, local databases, logs, or
+  private data.
+- Keep secrets local-only.
+- Prefer a visible degraded state over fake data when a source is unavailable.
+
+## Install
+
+```bash
+node --version   # v20 or newer. The room has no dependencies.
+```
+
+Expected result:
+
+- `node --version` prints v20 or newer. There is no install step to succeed or fail.
+
+## Run Locally
+
+```bash
+node tour.mjs
+```
+
+Open:
+
+- `node tour.mjs` — the room's one-command demo.
+
+Expected result:
+
+- The annotated map prints: three zones, every root control, every declared lane and collection, and the product.
+
+## Test And Build
+
+Fast check:
+
+```bash
+node tests/tour.test.mjs
+```
+
+Full verification:
+
+```bash
+node tests/tour.test.mjs
+node --check tour.mjs
+node workbench/tools/workbench-layout.mjs validate --project .
+node workbench/tools/spec-workbench.mjs doctor
+```
+
+Expected result:
+
+- `tests/tour.test.mjs` passes with zero failures, `validate` reports `current`,
+  and `doctor` exits 0.
+
+### Test Coverage Policy
+
+Treat tests as the project specification, not as a comfort signal. The suite
+should be strong enough that if someone accidentally deletes a meaningful line,
+branch, route, data contract, workflow step, validation rule, or bug fix, at
+least one test or documented manual check fails.
+
+Coverage rules:
+
+- Prefer red/green TDD: write or update the failing test first, confirm the
+  expected failure, then implement the smallest fix.
+- Run every relevant existing test before judging the suite.
+- Keep tests that prove behavior a user, API consumer, operator, or future
+  maintainer depends on.
+- Improve tests that assert the wrong level, hide real failures, rely on stale
+  fixtures, overuse snapshots, or pass without checking meaningful behavior.
+- Remove tests that are stale, duplicated without adding a boundary, or pure
+  bloat.
+- If behavior cannot be tested in the current harness, record the exact reason
+  and use the strongest concrete manual check available.
+
+## Workbench Lifecycle, Diagnostics, And Decision Records
+
+The project runs its own installed runtime tools from the manifest-declared
+tools lane:
+
+```bash
+node workbench/tools/spec-workbench.mjs next --json
+node workbench/tools/spec-workbench.mjs show S-###
+node workbench/tools/spec-workbench.mjs claim S-### --agent NAME
+node workbench/tools/spec-workbench.mjs close S-### --proof "..." --docs "..." --remaining-gap "..."
+node workbench/tools/spec-workbench.mjs render
+node workbench/tools/spec-workbench.mjs doctor
+node workbench/tools/adr.mjs new --title "Decision title"
+node workbench/tools/adr.mjs validate
+node workbench/tools/adr.mjs register
+```
+
+`doctor` prints every registered finding with its severity and blocking
+effect and exits non-zero only for `all` or `selection` findings; a
+`selected-slice` finding is excluded by `next` and refused by `claim`, and an
+`attention` finding stays visible without blocking. `doctor --home USER_HOME`
+(default: the user home, only ever read) also checks each installed core skill's
+managed marker `.workbench-skill.json` (schema 2: `source`, `release`,
+`commit`, `contentHash`) against the manifest: `stale-skill` names a release
+other than the manifest's, `skill-generation-unknown` names a skill with no
+schema 2 marker; both are attention, and the explicit upgrade is the repair. `doctor` also reports
+`integration-branch-undeclared` and `integration-branch-missing` (scope
+`git`, effect `none`) until `workbench/manifest.json` `git.integrationBranch`
+names a branch that resolves locally or on a remote; the Genesis readiness
+gate fails closed on the same two conditions. When that branch resolves and
+the spec `next` would select is already complete there, `doctor` reports
+`complete-on-integration` (attention) without hiding the work. Decision records live in
+`workbench/docs/adr/`; an accepted record names the control that carries its
+rule in `canonicalized_in`, and `register` derives `REGISTER.md`.
+
+`permission-scope-drift` is reported when `.claude/settings.json` exists and
+withholds a manifest-declared authorship lane (no covering `Edit` `allow` rule,
+a `deny` or `ask` rule covers it, or a restrictive pattern is uncertain), or
+grants `workbench/tools/` in `allow` without a covering `ask` holding the whole
+lane; an intersecting tools deny also remains visible. It names each lane,
+never blocks, and never edits the file. Claude Code applies `Edit` rules to every built-in
+file-editing tool. Resolve the finding by adding the
+`Edit(./workbench/<lane>/**)` rules, holding `workbench/tools/**` in `ask`,
+simplifying an uncertain restriction, or recording the deliberate restriction
+in `AGENTS.md`. The Genesis readiness check fails closed on the same finding;
+a room without the file is unaffected.
+
+The wiki lane raises `room-brain-unrouted` (attention) when a root control does
+not route back to the room brain: `AGENTS.md` must reference `workbench/wiki/`
+and `README.md` must reference `MEMORY.md`; the finding names the control that
+lacks the route, and a room whose manifest declares a different wiki lane path
+sees it until its controls name that lane. It raises `stale-stamp` (attention)
+when a wiki contract file or the room brain carries a `Generated from LLM
+Workbench` stamp naming a version other than `workbench/manifest.json`; refresh
+the stamp when the harness is upgraded (`validate --genesis` fails the same
+files with `version-mismatch`).
+
+## Evaluation And Benchmarking
+
+Use this section to prove whether the workbench or project process is improving.
+The goal is evidence, not taste.
+
+### Benchmark-Driven Improvement
+
+Before changing agent rules, control docs, evaluation criteria, or the working
+process, capture the available guardrail or benchmark baseline. Put the intended
+score movement or outcome hypothesis in the owning spec, then record the
+before/after score and remaining recommendations after the change.
+
+Use 100/100 as a deliberately hard north star, not the release gate. Regression
+checks are the minimum ship gate. Never weaken a criterion to manufacture
+progress, and do not treat a static coverage score as outcome evidence. If this
+project has no executable benchmark yet, add one or state that the change cannot
+yet be called better.
+
+### Claims To Test
+
+The harness or process is only worth calling better when it can support at least
+one of these claims:
+
+1. Better than no project instructions.
+2. Better than a representative generic instruction file.
+3. Better than the prior version on the same task suite.
+
+### Evaluation Design
+
+Use controlled conditions:
+
+| Condition | What the agent gets | Purpose |
+|---|---|---|
+| `c0_none` | no project instructions | baseline |
+| `c1_generic` | a generic `AGENTS.md` / `CLAUDE.md` style file | common alternative |
+| `c2_current` | current project or template docs | current candidate |
+| `c3_candidate` | proposed branch or changed docs | improvement test |
+
+Score task outcomes, not how good the docs feel. Useful dimensions:
+
+| Dimension | What it measures |
+|---|---|
+| Correctness | hidden or independent acceptance check passes |
+| Scope adherence | changed files stay inside the task allowlist |
+| Verification honesty | final claims match independently rerun checks |
+| Docs upkeep | stale docs were updated or explicitly marked unchanged |
+
+Run multiple trials per condition when using stochastic agents. Report effect
+size and confidence interval when possible. Do not claim broad proof from one
+run.
+
+### Workbench Evaluation Commands
+
+For this template repo, the static evaluator checks control-surface coverage:
+
+```bash
+node tools/test-evaluate-workbench.mjs
+node tools/evaluate-workbench.mjs --path . --include-controls
+```
+
+The runnable trial framework lives in `evals/`:
+
+```bash
+python3 evals/results/_make_selftest.py
+python3 evals/score.py evals/results/_pipeline_selftest.jsonl --baseline c0_none
+```
+
+Real comparison runs may spend API budget. Size the run first and record the
+model, conditions, task suite, trial count, and result path before making claims.
+
+### Harness Feedback Loop
+
+This project's `WORKBENCH_FEEDBACK.md` is the return channel to the upstream
+harness. Lessons logged there feed harness changes, which must clear the same
+bar as any other "better" claim: a proposed template change is `c3_candidate`
+above, tested against the current docs on the same task suite before it ships.
+Feedback flows out; validated improvements flow back in as a harness upgrade
+(Upgrading The Harness, above). Taste alone never closes the loop; evidence does.
+
+## Data Operations
+
+None. The room has no seed data, migrations, imports, or databases. Its only
+persistent state is the files in the repository.
+
+## Deployment Or Startup
+
+None. There is nothing to deploy and no long-running process. The room is read
+where it sits and run with `node tour.mjs`.
+
+## Version-Control Procedures
+
+Git authority and policy live in `AGENTS.md` -> Git Rules. Keep executable
+commands and expected results here:
+
+```bash
+git status --short --branch
+git switch -c claude/s001-<slug> integration
+git diff --check && git diff integration...HEAD --stat
+gh pr create --base integration --head claude/s001-<slug>
+```
+
+Expected result: a clean working tree, a branch based on `integration`, and a PR
+whose diff contains only the slice it claims.
+
+Closeout, once the integration review has passed. A pushed branch is
+recoverable, not delivered; finish the merge and clean up after yourself:
+
+Run merge and containment verification as a fail-fast sequence. Pin the reviewed
+commit and reject a changed candidate. Merge must not delete branches before
+containment is verified. A linked worktree holding the target must not block
+verification. Only run cleanup when the owner has not deferred it; verify each
+local and remote tip is contained, tolerate absent branches, and use an atomic
+expected-tip guard on remote deletion so concurrent pushes are preserved.
+
+```bash
+(
+set -eu
+gh pr merge <number> --merge
+git fetch origin && git merge-base --is-ancestor <reviewed-sha> origin/integration && echo contained
+)
+```
+
+After successful verification, if cleanup is authorized:
+
+```bash
+git branch -d claude/s001-<slug> && git push origin --delete claude/s001-<slug>
+git worktree prune
+```
+
+Expected result: `integration` contains the reviewed commit, the merged branch is
+deleted locally and remotely, and no unmerged work was force-deleted.
+
+When cleanup is owner-deferred, the declared integration branch contains the
+reviewed work and the branches remain available for later cleanup. Disposable
+review clones and linked worktrees live outside the canonical checkout, under
+the host temporary directory; `git worktree prune` drops the registrations of
+removed ones, and a finished review checkout is removed once its review is
+recorded. None is a durable owner.
+
+## Upgrading The Harness
+
+These control docs were generated from a specific LLM Workbench version, recorded
+in the `Generated from LLM Workbench v3.1.2` stamp at the top of each
+doc. That stamp lets you tell when the project is running an older harness than
+the current one.
+
+To upgrade:
+
+1. Check the clean LLM Workbench release checkout's releases/changelog for what changed since
+   `v3.1.2`.
+2. Re-copy only the changed template sections; keep this project's filled-in
+   specifics. Never let bracketed placeholders leak back into filled docs.
+3. Update managed runtime tools only with that checkout's
+   `node tools/workbench-tools.mjs update --project PATH --home HOME --explicit-update`;
+   keep its receipt and backup as the component recovery point.
+4. Update each doc's version stamp to the new version. Do not rewrite the room
+   manifest's historical adoption source to impersonate the newly installed
+   component generation.
+5. Re-run the full verification suite and record the upgrade in its owning spec.
+
+The runtime tools in `workbench/tools/` are Workbench-managed: their receipt
+(`.workbench-tools.json`) records the exact source release, commit, and file
+hashes. Verify them with `node /PATH/TO/LLM_WORKBENCH/tools/workbench-tools.mjs verify --project .`
+and replace them only through `update --explicit-update`, which backs up the
+previous files and records a rollback path. Never hand-edit a managed tool.
+
+This project's own `node workbench/tools/spec-workbench.mjs doctor` runs the
+same receipt hash check from the tools this project carries, so a hand-edited
+managed tool fails the check here with no release checkout present. It fails at
+the `all` effect, which also makes `next` and `claim` refuse until the runtime
+is repaired. The check runs only when `workbench/tools/` carries a receipt; a
+receipt that cannot be read, records no file hashes, names a file outside that
+lane, or does not account for every managed tool is reported as
+`tools-receipt-missing` rather than switching the check off. That last one
+matters because the drift report names the file it found: deleting that key
+would otherwise switch the check off for exactly the hand-edited tool. The
+authoritative list of what is managed ships inside the installed tools
+themselves, so a receipt is checked against that list and not against whatever
+the lane happens to hold - a managed tool deleted along with its key is still
+named. Dotted entries are skipped.
+
+The two coverage conditions have different repairs. A managed tool the receipt
+does not account for is refreshed with `update --explicit-update` from the
+release checkout, which rewrites the lost key and restores a deleted managed
+file. A file the managed runtime does not include has to be moved out of the
+lane instead: `update` cannot adopt it and reports `current`, and `install`
+refuses a lane that already carries a receipt.
+
+Without a release checkout `doctor` cannot say whether the receipt went stale
+or the bytes were changed - it reports every drifted file as
+`source-unavailable` - so run `verify` from the release checkout to classify
+it. A deleted receipt is the readiness gate's finding, not this check's. A
+deleted managed tool that another managed tool imports stops `doctor` from
+loading at all, so what appears is a loader stack trace rather than a finding.
+
+The source checkout must have a concrete `origin` and 40-character `HEAD`, and
+its managed source lane must be clean; otherwise install/update refuses before
+creating a receipt or backup.
+
+Managed-tool updates and rollbacks reject symlinked lane ancestors, linked or
+nonregular managed files, and unsafe backup entries before copying or creating
+backups. Resolve the path collision while preserving its target, then retry the
+explicit operation. Ordinary drift in a regular managed file still receives a
+backup and can be restored.
+
+Layout initialization and schema migration preserve existing session ignore
+rules and reject linked destination paths before writes. ADR creation, register
+rendering and checkpoint promotion also reject unsafe destination chains and
+use private temporary files; checkpoint promotion refuses a `--from` source
+outside the repository root, or one reached through a symbolic link, with
+`invalid-note` and writes nothing. Legacy Wiki adoption moves existing
+knowledge before seeding only the missing contract files.
+
+Treat a harness upgrade like any other change: smallest correct diff, verified,
+with proof. If a downstream lesson should flow *back* to the harness, capture it
+per the project's `WORKBENCH_FEEDBACK` convention.
+
+## Manual Harness Feedback Reports
+
+Run this workflow after a setup-only Round One check succeeds. It assesses the
+assigned target; it never authorizes a repair or invokes automated repair.
+
+1. Resolve `lanes.feedback`, `lanes.specs` and the relevant collections through
+   `workbench/manifest.json`. Pin the target revision and the assigned question.
+2. Inspect only relevant controls, source and named proof. Test consequential
+   claims, distinguish observation from inference, and disclose evidence limits.
+3. Write `REPORT-topic-date.md` in the declared feedback lane using its
+   `REPORT_FORMAT.md`. Include Target And Scope, Evidence And Limitations,
+   Findings, Challenged Or Rejected Findings, Next Action And Open Questions,
+   and Review Boundary. No findings is valid. Reports never live loose or in
+   the Wiki. If the format is absent in an older installation, these sections
+   are sufficient; explicit upgrades may copy it from the source templates.
+4. Put accepted follow-up work in its existing linked spec; proposed repairs
+   remain pending owner authorization. A report is not a work assignment.
+5. At a meaningful continuation boundary, a fresh session should find the report,
+   its linked spec, and the next executable action or owner gate using repository
+   state only. No universal handoff or new self-created task is required.
+6. Before integration, the candidate's separate-context review challenges the
+   report's consequential claims and recommendations along with the change.
+
+## Troubleshooting
+
+| Symptom | Likely cause | Check | Fix |
+|---|---|---|---|
+| `node tour.mjs` prints nothing | Node older than v20 (no top-level ESM support in the shipped form) | `node --version` | Install Node 20+ |
+| `every lane the manifest declares is explained` fails | A lane or collection was added to `workbench/manifest.json` and never described | `node tests/tour.test.mjs` | Add the place to `PLACES` in `tour.mjs`, with what it owns and why |
+| `the tools lane holds only what the receipt accounts for` fails | A file was added to `workbench/tools/`, which the managed runtime does not ship | `ls workbench/tools/` | Move it out of the lane. Leaving it there makes `next` and `claim` refuse with exit 1 |
+| `doctor` reports `unverified-provenance` | The manifest's recorded source release no longer matches its version stamp | `node workbench/tools/spec-workbench.mjs doctor` | Re-stamp with `workbench-layout.mjs record-source` from a clean release checkout |
+| `validate` reports `upgrade-required` | The manifest is schema 1 (a v3.0 five-lane room) | `node workbench/tools/workbench-layout.mjs validate --project .` | Run `workbench-layout.mjs migrate --project .` once |
+
+## Recovery And Rollback
+
+If a change fails:
+
+1. Identify the touched files and failing command.
+2. Revert only the smallest change needed, preserving user work.
+3. Rerun the failing verification command.
+4. Update the owning spec with the result and remaining gap, then render.
+
+Do not delete data, reset databases, rewrite history, or rotate secrets unless
+the user explicitly approves that action.
+
+## Operational Proof
+
+If a command changed durable project state, append evidence to the owning spec.
+For routine read-only runs, a final response note is enough.
