@@ -22,6 +22,7 @@ what happened, and propose a change if you have one.
 | Date | Doc / section | What happened | Impact | Proposed change | Status |
 |---|---|---|---|---|---|
 | 2026-09-06 | templates/GENESIS.md -> Phase 6 | Genesis names `templates/wiki/MEMORY.project.md` as the room brain source but the readiness gate checks `workbench/wiki/MEMORY.md`; the rename is only implied by the sentence "copy ... to `workbench/wiki/MEMORY.md`". It is correct, just easy to miss when skimming the phase for commands. | low - cost one re-read, no wrong output | Consider showing the copy as a literal `cp` line beside the two `node` commands already shown in that phase. | new |
+| 2026-09-06 | workbench-layout.mjs -> validate --genesis | Re-running the readiness gate after the first ticket closed returns `invalid` with `at least one ticket must be ready with blockers none`. The gate is correct - it scores an actionable first packet and `GENESIS.md` says run it once - but its failure message reads like a room defect, and an agent arriving later is likely to "fix" a healthy room to satisfy it. | medium - invites a wrong repair to a correct room | Have the gate say it is a one-time bootstrap check when it fails this predicate, and name `validate --project PATH` plus `doctor` as the steady-state checks. | new |
 
 Status values: `new` (just logged) -> `sent` (carried back to LLM Workbench) ->
 `landed` (a harness change shipped) or `declined` (kept as-is, with a reason).

@@ -8,8 +8,9 @@ what a room is - for anyone meeting the harness for the first time, and for
 anyone who needs a safe target to rehearse a genesis or an upgrade against.
 
 ```bash
-node tour.mjs           # what every part of a room is for, and why
-node tests/tour.test.mjs   # proof that the answer still matches this room
+node tour.mjs               # what every part of a room is for, and why
+node tour.mjs --lifecycle   # how this room came to exist, and how it upgrades
+node tests/tour.test.mjs    # proof that both answers still match this room
 ```
 
 The structure of a room is documented upstream in `templates/`, which is

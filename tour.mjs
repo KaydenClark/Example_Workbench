@@ -175,6 +175,54 @@ export const PLACES = [
   },
 ];
 
+// How this room came to exist, and how it reaches a newer harness version.
+// Every fact here is read from the room — the manifest's provenance block and
+// the tools receipt — so the account cannot drift from what the room actually
+// records. Only the route itself is prose, and `tests/tour.test.mjs` checks
+// that the commands it names exist in this room's own tools lane.
+export function lifecycle(root = ROOM_ROOT) {
+  const manifest = readManifest(root);
+  const receiptPath = join(root, manifest.lanes.tools, '.workbench-tools.json');
+  const receipt = JSON.parse(readFileSync(receiptPath, 'utf8'));
+  return {
+    how: manifest.provenance.lifecycle,
+    source: manifest.provenance.source,
+    stamped: manifest.workbenchVersion,
+    attests: {
+      release: receipt.source.release,
+      commit: receipt.source.commit,
+      files: Object.keys(receipt.files).length,
+    },
+    route: ROUTE,
+  };
+}
+
+// The maintenance route for a room already on v3. Stated carefully because the
+// obvious guess is wrong: `workbench-upgrade.mjs upgrade` is the one-time v2 to
+// v3 migration and refuses a room that already has a support root.
+export const ROUTE = [
+  {
+    step: 'Check the tools lane first',
+    detail: 'List `workbench/tools/` and compare it against the receipt. A file the managed runtime does not ship makes `next` and `claim` refuse with exit 1 after the update, and work selection stops until it is moved out.',
+  },
+  {
+    step: 'Update the managed runtime',
+    detail: 'From a clean release checkout: `workbench-tools.mjs update --project PATH --explicit-update`. It backs up the old lane and rewrites the receipt.',
+  },
+  {
+    step: 'Re-record the source',
+    detail: 'From the same checkout: `workbench-layout.mjs record-source --project PATH --version vX.Y.Z`. This sets `provenance.source`, not the room’s own version stamp.',
+  },
+  {
+    step: 'Stamp the room’s version by hand',
+    detail: 'Set `workbenchVersion` in `workbench/manifest.json`. No command does this, and until it is done `doctor` reports `unverified-provenance` as attention.',
+  },
+  {
+    step: 'Re-stamp the documents that name a version',
+    detail: 'The seeded wiki documents and the root controls each carry a `Generated from LLM Workbench vX.Y.Z` line. `seed-documents` refreshes lane documents only, so these are a hand edit; `doctor` reports the wiki ones as `stale-stamp` and does not check the root controls at all.',
+  },
+];
+
 const ZONE_BLURBS = {
   'Root controls':
     'Seven files, always at the root, always the same seven. An agent reads these\n  on entry and nothing else is required to know how to behave here.',
@@ -229,10 +277,39 @@ function field(label, text, width = 78) {
   return out;
 }
 
+function renderLifecycle(l) {
+  const lines = [''];
+  lines.push('  How this room came to exist');
+  lines.push('');
+  lines.push(`    lifecycle   ${l.how}`);
+  lines.push(`    created from ${l.source.repository}`);
+  lines.push(`    release     ${l.source.release} at ${l.source.commit}`);
+  lines.push(`    stamped     ${l.stamped}`);
+  lines.push('');
+  lines.push(`  The tools receipt attests ${l.attests.files} managed files from release`);
+  lines.push(`  ${l.attests.release} at ${l.attests.commit}. That receipt is what makes an`);
+  lines.push('  upgrade checkable instead of hopeful.');
+  lines.push('');
+  lines.push('  Reaching a newer harness version');
+  lines.push('');
+  lines.push('  `workbench-upgrade.mjs upgrade` is NOT this route — it is the one-time v2 to');
+  lines.push('  v3 migration and refuses a room that already has a support root. For a room');
+  lines.push('  already on v3 the route is:');
+  lines.push('');
+  l.route.forEach((r, i) => {
+    lines.push(`  ${i + 1}. ${r.step}`);
+    lines.push(...field('', r.detail));
+    lines.push('');
+  });
+  return lines.join('\n');
+}
+
 if (process.argv[1] && process.argv[1].endsWith('tour.mjs')) {
   const manifest = readManifest();
   if (process.argv.includes('--json')) {
-    process.stdout.write(JSON.stringify({ places: PLACES }, null, 2) + '\n');
+    process.stdout.write(JSON.stringify({ places: PLACES, lifecycle: lifecycle() }, null, 2) + '\n');
+  } else if (process.argv.includes('--lifecycle')) {
+    process.stdout.write(renderLifecycle(lifecycle()) + '\n');
   } else {
     process.stdout.write(render(manifest) + '\n');
   }

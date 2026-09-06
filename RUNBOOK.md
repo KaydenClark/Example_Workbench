@@ -64,12 +64,14 @@ Expected result:
 ## Run Locally
 
 ```bash
-node tour.mjs
+node tour.mjs              # the annotated map: every place, what it owns, why
+node tour.mjs --lifecycle  # how this room came to exist, and how it reaches a newer version
+node tour.mjs --json       # both, as data
 ```
 
 Open:
 
-- `node tour.mjs` — the room's one-command demo.
+- Nothing to open. The output is the product.
 
 Expected result:
 
