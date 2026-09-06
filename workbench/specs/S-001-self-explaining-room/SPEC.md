@@ -202,6 +202,12 @@ no unblocked work remains in this spec.
   not cloned, and nothing proves it survives the loss of that machine. TK-003
   owns this and is blocked on owner direction.
 - **The tour describes structure, not lifecycle.** TK-002 owns this.
+- **No separate-context review ran on TK-002.** This room's `AGENTS.md` requires
+  an independent reviewer before a branch combines into `integration`, and no
+  second context was assigned to this room. The branch was merged anyway, and
+  that deviation is recorded here rather than left unstated. It is the same
+  class of gap the upstream harness hit during v3.1.2, which is why naming it
+  matters more than tidying it away.
 - **One room cannot prove portability.** This room was created on macOS by
   Claude. Nothing here establishes that genesis produces the same result on
   another platform or from another agent; the upstream portability suites own
