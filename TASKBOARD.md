@@ -15,7 +15,7 @@ Commands live in `RUNBOOK.md`.
 <!-- hot-specs:start -->
 | Spec | Current slice | Owner | Blocker | Latest meaningful event | Next gate |
 |---|---|---|---|---|---|
-| [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | TK-002: Explain the room's lifecycle: how it was created and how it reaches a newer harness version (ready) | Kayden Clark | none | Genesis ran; the tour and its drift tests are green. | TK-002 - explain how a room comes to exist and how it changes version. |
+| [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | TK-003: Publish the room so it can be cloned rather than copied (blocked) | Kayden Clark | owner direction on whether a remote repository is created | TK-002 closed; the room now reads its own lifecycle out of the manifest and receipt. | TK-003 is blocked on owner direction; no unblocked slice remains. |
 <!-- hot-specs:end -->
 
 Completed specs disappear from this projection immediately. Their requirements,
