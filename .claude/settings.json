@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./credentials/**)",
+      "Read(./**/*.pem)",
+      "Read(./**/*.key)",
+      "Edit(./.env)",
+      "Edit(./.env.*)",
+      "Edit(./secrets/**)",
+      "Edit(./credentials/**)",
+      "Write(./secrets/**)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(rm -rf:*)"
+    ],
+    "allow": [
+      "Edit(./tour.mjs)",
+      "Edit(./tests/**)",
+      "Edit(./AGENTS.md)",
+      "Edit(./BLUEPRINT.md)",
+      "Edit(./TASKBOARD.md)",
+      "Edit(./RUNBOOK.md)",
+      "Edit(./README.md)",
+      "Edit(./HARNESS_FEEDBACK.md)",
+      "Bash(node tests/tour.test.mjs)",
+      "Bash(node --check tour.mjs)",
+      "Bash(node tour.mjs:*)"
+    ]
+  }
+}

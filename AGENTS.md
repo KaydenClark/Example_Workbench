@@ -1,5 +1,8 @@
 # Example Workbench - Agent Instructions
 
+> Generated from LLM Workbench v2.1. To pull later harness
+> improvements into this project, see `RUNBOOK.md` -> Upgrading The Harness.
+
 This file controls how agents behave in this project. It should answer four
 questions quickly:
 
@@ -38,23 +41,28 @@ The agent must not read secrets, credentials, tokens, local databases, raw
 personal data, or unrelated projects unless the current task requires it and the
 source is explicitly in scope.
 
-This room stores no secrets, credentials, tokens, or private data and must
+This room stores no secrets, credentials, tokens, or local data, and must
 acquire none. If one is ever found committed, stop and surface it immediately.
 
 ## Edit Scope
 
 The agent may edit:
 
-- `tour.mjs` - the room's product, the printed map;
-- `tests/` - the proof that the map matches the room;
-- `AGENTS.md`, `BLUEPRINT.md`, `TASKBOARD.md`, `RUNBOOK.md`, `README.md`, and
-  `CLAUDE.md` - the control docs of this room, kept current with any change;
+- `tour.mjs` - the product, a single ESM file at the room root;
+- `tests/` - the tour's test;
+- `AGENTS.md`, `BLUEPRINT.md`, `TASKBOARD.md`, `RUNBOOK.md`, `README.md`,
+  `HARNESS_FEEDBACK.md` (append-only), `CLAUDE.md`, and `.claude/` - the docs
+  and permission file that must stay current with the room;
 - dependency manifests and lockfiles only when a dependency change is necessary
-  and explained. This room has none: Node.js 20+ is the whole stack.
+  and explained. This room has none by design (zero dependencies, no
+  `package.json`); adding one is exactly such a change and must be explained.
 
 The agent must not edit:
 
-- anything outside this repository, and `.git/` inside it;
+- anything outside this repository, and any other branch of it: `main` and
+  every other `version/` branch of `KaydenClark/Example_Workbench` carries a
+  room of its own generation with its own control docs, and a change to one
+  of those is a change to a different room;
 - the read-only LLM Workbench checkout the evaluator runs from (see
   `RUNBOOK.md` -> Evaluation And Benchmarking); it is reference material, not
   part of this room;
@@ -147,6 +155,13 @@ Use command results, browser checks, API probes, screenshots, run reports, or
 documented manual checks. Do not claim code or docs are verified unless the
 check actually ran.
 
+Milestone tasks are not accepted on passing tests alone. A milestone task must
+also produce a demo artifact the owner can check in under a minute - a
+screenshot, a short recording, a preview URL, or a one-command demo - recorded
+in the `TASKBOARD.md` proof log's Demo column. Tests prove the code runs; the
+demo proves the product does what the owner asked. In this room the demo is
+`node tour.mjs`.
+
 ## Long Session Control
 
 Long sessions drift. Counter it deliberately:
@@ -158,6 +173,23 @@ Long sessions drift. Counter it deliberately:
 - Append proof rows; do not rewrite existing proof history.
 - If the same verification fails twice and the next step is not clearly safe,
   stop, record the blocker, and surface the decision needed.
+
+**Reclaiming stale claims.** A `claimed` or `in-progress` task whose `Last
+update` is older than one working day with no committed progress is stale and
+may be reclaimed. To reclaim: confirm no branch or commit is advancing it, note
+the reclaim in the task's `Current note` with the date, then either take it
+over or move it back to `ready`. Never silently discard a prior agent's
+committed work - if a branch exists, continue from it or record why you are
+not.
+
+## Harness Feedback
+
+These control docs came from a reusable harness (LLM Workbench). When a harness
+rule itself is unclear, wrong, missing, or slows the work down, do not silently
+work around it: log it in `HARNESS_FEEDBACK.md` (append-only) with the doc,
+section, and a proposed change. That is the return channel that lets the harness
+improve. Keep it separate from `TASKBOARD.md`, which tracks this project's own
+work; if a harness gap is also blocking you now, log both and link them.
 
 ## Visual And Asset Work
 
@@ -172,8 +204,6 @@ When visual work needs assets:
 - avoid emoji as interface icons when a real icon, symbol, or text label can do
   the job.
 
-This room has no visual surface; the product is terminal text.
-
 ## When To Ask, Proceed, Or Stop
 
 - Proceed without asking on low-risk, reversible decisions inside scope.
@@ -181,6 +211,19 @@ This room has no visual surface; the product is terminal text.
   model, public contract, safety boundary, or destructive risk.
 - Stop and surface rather than retrying indefinitely after repeated verification
   failure or unclear scope expansion.
+- Branch and PR flow: this room is one commit on branch `version/04-v2.1` of
+  `KaydenClark/Example_Workbench`, whose remote, `main`, and `integration`
+  branch already exist; none was created for this room. Branch per task from
+  `main`; the default PR target is `integration`, not `main` (see `RUNBOOK.md`
+  -> Version Control). Agents may merge task branches into `integration` when
+  safe; only the owner merges `integration` -> `main`. Never merge into `main`,
+  and never merge a PR the user asked to keep open for review.
+
+Escalations to the owner are phrased as product tradeoffs, not tool- or
+code-level failures. Give the options, a recommendation, and the cost of each
+path, and record the open decision in `TASKBOARD.md` -> Pending Decisions. The
+owner should be able to choose without reading code; translate any technical
+blocker into the product or timeline choice it forces.
 
 ## Day-One Checklist
 
@@ -222,3 +265,6 @@ Keep the response concise. Flag uncertainty instead of hiding it.
 - Do not treat prior session notes or taskboard history as current truth without
   verifying source state.
 - Do not rewrite existing `TASKBOARD.md` proof rows; append only.
+- Do not upgrade this room to a later harness version in place; it is a frozen
+  historical example, and later generations live on later `version/` branches
+  of the same repository.

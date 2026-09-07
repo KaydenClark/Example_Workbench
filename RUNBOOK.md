@@ -1,5 +1,8 @@
 # Example Workbench - Runbook
 
+> Generated from LLM Workbench v2.1. See Upgrading The Harness
+> below.
+
 **Last reviewed:** 2026-09-06
 **Runtime owner:** Kayden Clark
 **Environment:** local
@@ -17,8 +20,8 @@ Required tools:
 
 Required accounts/services:
 
-- GitHub, only for `https://github.com/KaydenClark/Example_Workbench`; the
-  room itself calls no service
+- GitHub, only to push or open pull requests against
+  `KaydenClark/Example_Workbench`; running the room needs no account
 
 Required local files:
 
@@ -39,13 +42,13 @@ variables to set. The rules still apply:
 ```bash
 git clone https://github.com/KaydenClark/Example_Workbench.git
 cd Example_Workbench
-git checkout version/03-v2.0-taskboard
+git checkout version/04-v2.1
 ```
 
 Expected result:
 
-- nothing to install. You are at the repository root and `node tour.mjs` runs
-  directly.
+- nothing to install. The repository root is the room, and `node tour.mjs`
+  runs directly from it.
 
 ## Run Locally
 
@@ -59,9 +62,8 @@ Open:
 
 Expected result:
 
-- the heading `Example Workbench (v2.0 TASKBOARD, 2026-07-01) - room map`
-  followed by eight places, each with an `owns` line and a `why` line, and
-  exit code 0
+- the heading `Example Workbench (v2.1, 2026-07-06) - room map` followed by
+  eleven places, each with an `owns` line and a `why` line
 
 ## Test And Build
 
@@ -82,9 +84,11 @@ grep -rnE '\[[[:upper:]][[:upper:][:digit:]_ -]+\]' . --include=*.md --include=*
 Expected result:
 
 - `node --check` exits 0 with no output;
-- the test run reports `# fail 0` and exits 0 (8 tests at the last verified
+- the test run reports `# fail 0` and exits 0 (9 tests at the last verified
   run, recorded in `TASKBOARD.md`);
-- the grep prints nothing: no template placeholder is left in any control.
+- the grep prints nothing: no bracketed uppercase template token is left in
+  any control. The pattern is written with POSIX classes so the command does
+  not match its own text when this file is scanned.
 
 ### Test Coverage Policy
 
@@ -147,21 +151,20 @@ run.
 
 ### Workbench Evaluation Commands
 
-This room is a downstream project, not the template repository, so the v2.0
-static evaluator runs from a checkout of LLM Workbench against this root.
-Check out commit `80db4a10007b2fb4617abd1bd861389ba5317a21` (the merge of the
-dogfood-taskboard pull request, 2026-07-01) so the rubric is the one this room
-was filled against.
+This room is a downstream project, not the template repository, so the v2.1
+static evaluator runs from a checkout of LLM Workbench against this directory.
+Check out commit `dd1ed326a1d55e1f2303aa233cc4d1bf6a0a4270` (the v2.1
+promotion to `main`) so the rubric is the one this room was filled against.
 
 ```bash
 node /PATH/TO/LLM_WORKBENCH/tools/evaluate-workbench.mjs --path . --include-controls
 ```
 
-Expected result: a Markdown score table in which this room scores 92/100 and
-beats both control candidates. The eight missing points are the whole Team
-coordination area, which requires `team templates/` files this single-agent
-room deliberately does not carry (`BLUEPRINT.md` -> Design Decisions). Last
-verified 2026-09-06, recorded in `TASKBOARD.md`.
+Expected result: a Markdown score table in which this room scores 105/113,
+every area full except Team coordination (0/8, because the optional
+`team templates/` were deliberately not copied), and both synthetic control
+candidates score far below it (last verified 2026-09-06, recorded in
+`TASKBOARD.md`).
 
 The runnable trial framework (`evals/`, `python3 evals/score.py ...`) lives in
 the harness repository, not here; this room has no task suite of its own and
@@ -169,6 +172,15 @@ runs no trials.
 
 Real comparison runs may spend API budget. Size the run first and record the
 model, conditions, task suite, trial count, and result path before making claims.
+
+### Harness Feedback Loop
+
+This project's `HARNESS_FEEDBACK.md` is the return channel to the upstream
+harness. Lessons logged there feed harness changes, which must clear the same
+bar as any other "better" claim: a proposed template change is `c3_candidate`
+above, tested against the current docs on the same task suite before it ships.
+Feedback flows out; validated improvements flow back in as a harness upgrade
+(Upgrading The Harness, above). Taste alone never closes the loop; evidence does.
 
 ## Data Operations
 
@@ -180,37 +192,75 @@ dropped as the template allows.
 
 This section applies only to projects with deployment, LaunchAgent, cron,
 scheduler, or service startup behavior. This room has none; it runs from the
-repository root. The section was dropped as the template allows.
+directory. The section was dropped as the template allows.
 
 ## Version Control
 
 Conventions for commits and pull requests in this project.
 
-- Branch from the default branch `main`; do not commit directly to it or to
-  the staging branch `integration`. Branch names: one branch per task,
-  `claude/short-description` or `codex/short-description`. This room is one
-  commit on the version branch `version/03-v2.0-taskboard`; the repository
-  already has its remote and its `integration` branch, so neither is created
-  here.
+This room is one commit on branch `version/04-v2.1` of
+`KaydenClark/Example_Workbench`. That repository already has a remote, a
+default branch `main`, and a staging branch `integration`, so none of them was
+created for this room; the harness asks for an integration bridge and the
+repository already had one.
+
+- Branch from `main`; do not commit directly to it or to the integration
+  bridge below. Branch names: `claude/short-description`,
+  `codex/short-description`, or `backup/description` for local-state snapshots.
 - Commit messages: imperative subject <= 72 chars, the why in the body. One
   logical change per commit.
 - Run `git status` before committing.
 - Never commit secrets, `.env` files, local databases, logs, build output, or
   generated artifacts.
-- Open a pull request when the task is complete and verified. The default
-  target is `integration`; only the owner merges `integration` into `main`.
-  The PR description states what changed, why, risks, and how it was verified.
+- **Default PR target is `integration`, not `main`.** When asked to commit and
+  open a PR without a named target: create a new task branch, then open the PR
+  into the integration branch. If the user names a target branch, use that
+  instead.
+- `integration` is a staging bridge between task work and `main`. **Only the
+  owner merges the integration branch -> `main`.** Below that line, the agent
+  may merge and organize task branches into the integration branch when it is
+  reasonable and safe; the agent never merges into `main`.
+- Open a pull request when the task is complete and verified, even for a change
+  you will merge into the integration branch yourself, so it has a reviewable
+  record. The PR description states what changed, why, risks, and how it was
+  verified.
 - Do not rewrite published history or force-push shared branches unless the user
   explicitly approves.
+
+## Upgrading The Harness
+
+These control docs were generated from a specific LLM Workbench version, recorded
+in the `Generated from LLM Workbench v2.1` stamp at the top of each doc. That
+stamp lets you tell when the project is running an older harness than the
+current one.
+
+This room is deliberately behind. It exists to show the v2.1 contract, so do
+not run the steps below on it; each later generation is a later `version/`
+branch of this repository, and the current contract is on `main`. The
+procedure is kept here because it is part of what v2.1 prescribed.
+
+To upgrade:
+
+1. Check the LLM Workbench repo's releases/changelog for what changed since
+   `v2.1`.
+2. Re-copy only the changed template sections; keep this project's filled-in
+   specifics. Never let bracketed placeholders leak back into filled docs.
+3. Update each doc's version stamp to the new version.
+4. Re-run the full verification suite (below) and record the upgrade as a
+   proof-log row in `TASKBOARD.md`.
+
+Treat a harness upgrade like any other change: smallest correct diff, verified,
+with proof. If a downstream lesson should flow *back* to the harness, capture it
+per the project's `HARNESS_FEEDBACK` convention.
 
 ## Troubleshooting
 
 | Symptom | Likely cause | Check | Fix |
 |---|---|---|---|
-| `Cannot find module .../tour.mjs` | command run from outside the repository root | `ls tour.mjs` | `cd` to the root and rerun |
+| `Cannot find module .../tour.mjs` | command run from outside the repository root | `ls tour.mjs` in the current directory | `cd` to the repository root and rerun |
 | test fails with `the tour names X, which does not exist` | a file was moved or renamed without updating `PLACES` | `ls` the named path | restore the file or update its `path` in `tour.mjs` |
-| test fails with `... the tour never explains it` | a Markdown file was added at the root | `ls *.md` | add a `PLACES` entry with real `owns` and `why` text |
-| test fails with `still holds template placeholders` | a bracketed template token was pasted in | the grep in Test And Build | replace the token with real content |
+| test fails with `... is not described by the tour` | a Markdown file was added at the root | `ls *.md` | add a `PLACES` entry with real `owns` and `why` text |
+| test fails with `placeholder leaked` | a bracketed template token was pasted in | the grep in Test And Build | replace the token with real content |
 | evaluator prints `ENOENT ... scandir` | the checkout path or `--path` is wrong | `ls /PATH/TO/LLM_WORKBENCH/tools/evaluate-workbench.mjs` | fix the path; the tool takes `--path`, not a bare argument |
 
 ## Recovery And Rollback
