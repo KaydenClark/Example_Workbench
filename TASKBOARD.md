@@ -1,13 +1,13 @@
 # Example Workbench - Hot Taskboard
 
-> Generated from LLM Workbench v3.0.0.
+> Generated from LLM Workbench v3.1.0.
 
-**Current focus:** A newcomer learns what every part of a v3.0.0 room is for by running one command, and a test proves the answer still matches the room.
+**Current focus:** A newcomer learns what every part of a v3.1.0 room is for by running one command, and a test proves the answer still matches the room.
 **Owner:** Kayden Clark (executive); assigned agent (execution)
 **Last updated:** 2026-09-06
 
 This is an active execution projection, not a requirements store or proof
-archive. Use `node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs next --path . --json` to select work and load only its linked spec.
+archive. Use `node workbench/tools/spec-workbench.mjs next --json` to select work and load only its linked spec.
 Commands live in `RUNBOOK.md`.
 
 ## Active Specs
@@ -15,7 +15,7 @@ Commands live in `RUNBOOK.md`.
 <!-- hot-specs:start -->
 | Spec | Current slice | Owner | Blocker | Latest meaningful event | Next gate |
 |---|---|---|---|---|---|
-| [S-001](workbench/specs/S-001-room-explains-itself/SPEC.md) | TK-002: Read the manifest's version and provenance back out so the printed map says which harness made the room (ready) | Kayden Clark | none | TK-001 closed: the map prints and its test passes. | Complete TK-002. |
+| [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | TK-002: Read the room's own provenance and receipt back out (ready) | Kayden Clark | none | TK-001 closed: the map prints and its test passes. | TK-002 claimed and closed with proof. |
 <!-- hot-specs:end -->
 
 Completed specs disappear from this projection immediately. Their requirements,

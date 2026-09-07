@@ -1,53 +1,66 @@
+---
+type: memory
+status: active
+sensitivity: normal
+knowledge_role: canonical
+provenance:
+  - Genesis or Adoption of this room
+source_paths:
+  - workbench/wiki
+last_verified: 2026-09-06
+---
+
 # Example Workbench Memory
 
-> Generated from LLM Workbench v3.0.0. This is the room brain: the
-> canonical, human-editable memory for this room. Start here and follow the
-> smallest relevant link instead of browsing folders or searching.
+> Generated from LLM Workbench v3.1.0. This is the room brain: the
+> canonical, human-editable memory router for this project, kept at
+> `workbench/wiki/MEMORY.md`. Start here and follow the smallest relevant
+> link instead of browsing folders or searching.
 
-This brain holds durable room memory only - context, decisions history
+This router holds durable room memory only: context, decision-history
 pointers, and routing. It never duplicates live task state; it routes to it.
 
-## Authority Order
+## Source Precedence
 
 1. Verified runtime and this room's live controls: `AGENTS.md`, `BLUEPRINT.md`,
-   stable specs, `TASKBOARD.md`, and `RUNBOOK.md`.
+   the assigned stable spec, `TASKBOARD.md`, and `RUNBOOK.md`.
 2. Maintained notes routed from this file.
-3. Archived or generated material.
+3. `archive/` and generated material.
 
-When sources disagree, verify the higher-authority source and update the stale
-note.
+When sources disagree, verify the higher-authority source and repair the stale
+note (`AGENTS.md` -> State Resolution). The wiki is a map, not a Governance
+Plane: it routes to Canon, Grounding, and verified Actuality and authorizes
+nothing.
 
-## Live Controls
+## Leaving The Wiki
 
-- [[AGENTS]] - how agents work in this room
-- [[BLUEPRINT]] - what this room is: product map, architecture, non-goals
-- [[TASKBOARD]] - active work projection (current slice, owner, next gate)
-- [[RUNBOOK]] - install, run, test, and recovery commands
-- `workbench/specs/` - stable capability records and proof; the one spec is
-  `S-001-room-explains-itself`
-
-This room is a standalone vault, so the bare link form is unambiguous here.
-Inside a shared deployment vault, qualify these links with the room path (e.g.
-`[[Projects/Example Workbench/AGENTS|AGENTS]]`) - every room has an `AGENTS.md`,
-so the bare form is ambiguous there.
+| Go to | For |
+|---|---|
+| [AGENTS.md](../../AGENTS.md) | Authority, scope, safety, and the work loop |
+| [BLUEPRINT.md](../../BLUEPRINT.md) | Product map, architecture, and the spec catalog |
+| [LEXICON.md](../../LEXICON.md) | Shared terms, the Governance Core, and design-concept routing |
+| [TASKBOARD.md](../../TASKBOARD.md) | Current execution state |
+| `workbench/specs/` | Stable capability records, acceptance, evidence, and proof |
+| [RUNBOOK.md](../../RUNBOOK.md) | Exact operating and verification commands |
+| [SCHEMA.md](SCHEMA.md) | Wiki CRUD, metadata, sensitivity, and freshness rules |
+| [design-concepts/](design-concepts/README.md) | Owner-directed articles explaining durable design models |
+| [guidebooks/](guidebooks/) | Ordered procedures that outgrew the Runbook |
 
 ## Routing
 
 | Question | Read first |
 |---|---|
+| What is every part of this room for, and why is it kept apart? | `node tour.mjs`, then [S-001](../specs/S-001-self-explaining-room/SPEC.md) |
+| Where did this room come from, and which harness release made it? | `provenance` in [manifest.json](../manifest.json) and the tools receipt in `workbench/tools/` |
+| Is the explanation still true of the room? | `node tests/tour.test.mjs`; drift is a test failure, not a backlog item |
+
+The rows above route to live controls and to the room's own executable
+description; the room is young and has no flat notes yet.
 
 Add a row only when a durable note exists to route to. A young room may have an
-empty table; that is fine. This room has no durable notes yet: the live
-controls and `tour.mjs` answer every current question, and the table stays
-empty until a note exists. Grow flat notes beside this router, and only nest a
-dedicated `Archive/` folder.
+empty table; that is fine. Grow flat notes beside this router and inside the
+declared collections; only `archive/` may nest.
 
 ## Up-Link
 
-- Deployment wiki note: none. This room is one commit on the
-  `version/07-v3.0.0` branch of `KaydenClark/Example_Workbench`, not a room
-  inside a deployment vault, so there is no root wiki note to pair with.
-
-The deployment root Wiki keeps a pointer note for this room that links here;
-keep the pair resolvable in both directions if this room is ever placed inside
-one.
+Standalone room; no deployment wiki.

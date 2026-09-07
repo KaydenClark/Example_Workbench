@@ -1,31 +1,27 @@
-> Historical example: LLM Workbench v3.0.0 portable workbench root, 2026-08-31, source commit d80d14c531c4bece9e2978d11e92e5a5d7bd77a5, dated 2026-08-31. Built with that generation's own tooling on 2026-09-06. Branch version/07-v3.0.0 of KaydenClark/Example_Workbench.
-
 # Example Workbench
 
-> Generated from LLM Workbench v3.0.0. See `RUNBOOK.md` ->
+> Historical example: LLM Workbench v3.1.0 managed runtime and governance core, 2026-09-04, source commit 4ce74f8de1da30a3bffd9286e32c3b63e417a08b, dated 2026-09-04. Built with that generation's own tooling on 2026-09-06. Branch version/08-v3.1.0 of KaydenClark/Example_Workbench.
+
+> Generated from LLM Workbench v3.1.0. See `RUNBOOK.md` ->
 > Upgrading The Harness.
 
-The smallest complete v3.0.0 LLM Workbench room, whose product is an
-explanation of what a room is at this generation, for anyone meeting the
-harness for the first time.
+A room that explains itself: one command prints what every control file and
+support location in a v3.1.0 room is for and why it is kept apart from the
+others, for anyone meeting the harness for the first time.
+
+The v3.1.0 generation is the first public v3 release. It added the managed
+runtime tools installed with a receipt, the ADR tool, diagnostics with
+registered blocking effects, the Governance Core in the controls, and the full
+wiki template set. This room is the smallest complete installation of that
+contract: seven filled root controls, a schema 2 support root declared by a
+manifest, eleven receipt-backed runtime tools, one stable spec, and a room
+brain. It is a finished historical snapshot, kept for comparison with the
+other generations, not a project under development.
 
 ```bash
-node tour.mjs             # what every part of a v3.0.0 room is for, and why
-node tests/tour.test.mjs  # proof that the answer still matches this room
+node tour.mjs             # what every part of this room is for, and why
+node tests/tour.test.mjs  # proof that the answer still matches the room
 ```
-
-This is the generation that introduced the portable support root: everything
-the harness manages moved from a root `specs/` folder and root `MEMORY.md` and
-`WORKBENCH_FEEDBACK.md` files into a lowercase `workbench/` directory whose
-five lanes (`specs`, `wiki`, `grilling`, `handoffs`, `feedback`) are declared
-by `workbench/manifest.json` rather than assumed by path. The manifest also
-records the harness version, Genesis provenance, and the closed 12-skill
-policy, and `workbench-layout.mjs validate --genesis` refuses a room that does
-not match it. The room was created by the real Genesis path (`init` wrote the
-manifest and lanes; `render` and `doctor` project and check the spec), and
-every claim it makes about its own layout is asserted by a test. The optional
-team templates, research templates, and `ADOPTION.md` were not applicable to a
-green-field single-agent room and were not copied.
 
 ## How This Project Is Run
 
@@ -40,31 +36,37 @@ before changing anything:
   consult it when shared language could be ambiguous.
 - [`TASKBOARD.md`](TASKBOARD.md) - active spec projection: current slice, owner,
   blocker, latest event, and next gate.
-- [`workbench/specs/S-###-slug/SPEC.md`](workbench/specs/S-001-room-explains-itself/SPEC.md) - on-demand capability truth,
+- [`workbench/specs/S-001-self-explaining-room/SPEC.md`](workbench/specs/S-001-self-explaining-room/SPEC.md) - on-demand capability truth,
   acceptance, decisions, verification, append-only evidence, and completion.
 - [`RUNBOOK.md`](RUNBOOK.md) - how to set up, run, test, build, and recover this
   project, plus the verification commands that gate "done".
-- [`workbench/wiki/MEMORY.md`](workbench/wiki/MEMORY.md) - the room brain: canonical, human-editable durable
-  memory for this project. It routes to the live controls above and to flat
-  memory notes; it never duplicates live task state.
+- [`workbench/wiki/MEMORY.md`](workbench/wiki/MEMORY.md) - the room brain:
+  canonical, human-editable durable memory for this project. It routes to the
+  live controls above, to flat memory notes, and to the owner-directed
+  `design-concepts/` collection; it never duplicates live task state.
 
-- [`workbench/feedback/WORKBENCH_FEEDBACK.md`](workbench/feedback/WORKBENCH_FEEDBACK.md) - Workbench Feedback, the return channel to the
-  reusable harness these docs came from: log where the harness rules themselves
-  are unclear, wrong, or slow the work down, so they can be improved upstream.
+- [`workbench/feedback/WORKBENCH_FEEDBACK.md`](workbench/feedback/WORKBENCH_FEEDBACK.md) -
+  Workbench Feedback, the return channel to the reusable harness these docs
+  came from: log where the harness rules themselves are unclear, wrong, or slow
+  the work down, so they can be improved upstream. It lives in the feedback
+  lane so the root keeps exactly seven controls.
 
-This project was bootstrapped from a single founding prompt with the v3.0.0
-`GENESIS.md`; as its Phase 7 prescribes, the one-time protocol was deleted
-after handoff rather than kept, and the Genesis result is recorded in the first
-spec's evidence log. `ADOPTION.md`, the migration protocol for an existing
-project, did not apply. Either runs once at start; after handoff, AGENTS plus
-the progressive spec flow above govern.
+This project was bootstrapped from a single founding prompt with the one-time
+`GENESIS.md` protocol of LLM Workbench v3.1.0. That protocol says to delete or
+archive itself after handoff, so it is not kept here; the founding prompt and
+the Genesis result are preserved in the first spec's evidence log. `ADOPTION.md`
+did not apply because nothing existed before Genesis. The optional team
+templates and research templates were not copied: the room has one agent at
+a time and no research folders. `.claude/settings.json` was copied and filled
+(see `.claude/README.md`). After
+handoff, AGENTS plus the progressive spec flow above govern.
 
 ## Getting Started
 
 ```bash
-node --version            # v20 or newer; there is nothing to install
-node tour.mjs             # run: print the room map
-node tests/tour.test.mjs  # test: check the map against the room
+node --version            # v20 or newer; the room has no dependencies to install
+node tour.mjs             # print the room map
+node tests/tour.test.mjs  # check the map against the room
 ```
 
 Full setup, environment, and troubleshooting steps live in
@@ -77,9 +79,10 @@ Claude, or any other agent that reads repository instructions - no framework or
 preprocessing required.
 
 For **Claude Code**, keep the one-line `CLAUDE.md` containing exactly
-`@AGENTS.md` so the rules load automatically; do not replace it with a generated
-`/init` file. Other agents should be pointed at `AGENTS.md` as their entry
-point.
+`@AGENTS.md` so the rules load automatically; the Genesis readiness gate
+(`validate --genesis`) rejects any other bridge, so do not replace it with a
+generated `/init` file. Other agents should be pointed at `AGENTS.md` as their
+entry point.
 
 Every completed ticket must leave proof in its final response and owning spec's
 append-only evidence log. Milestone specs additionally require a short demo
@@ -93,5 +96,5 @@ See [`TASKBOARD.md`](TASKBOARD.md) for active execution state and
 
 ## License
 
-Same license as the LLM Workbench harness it was generated from (MIT). This
-room is meant to be copied, read, and discarded.
+MIT, the same license as the LLM Workbench harness this room was generated
+from. The room is meant to be read, copied, and compared.

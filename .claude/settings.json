@@ -16,27 +16,18 @@
     ],
     "ask": [
       "Bash(git push:*)",
-      "Bash(rm -rf:*)",
-      "Edit(./workbench/manifest.json)",
-      "Edit(./AGENTS.md)",
-      "Edit(./BLUEPRINT.md)",
-      "Edit(./LEXICON.md)",
-      "Edit(./TASKBOARD.md)",
-      "Edit(./RUNBOOK.md)",
-      "Edit(./README.md)",
-      "Edit(./CLAUDE.md)"
+      "Bash(rm -rf:*)"
     ],
     "allow": [
       "Edit(./tour.mjs)",
       "Edit(./tests/**)",
-      "Edit(./workbench/specs/**)",
-      "Edit(./workbench/wiki/**)",
-      "Edit(./workbench/grilling/**)",
-      "Edit(./workbench/handoffs/**)",
-      "Edit(./workbench/feedback/**)",
+      "Edit(./AGENTS.md)",
+      "Edit(./BLUEPRINT.md)",
+      "Edit(./TASKBOARD.md)",
+      "Edit(./RUNBOOK.md)",
+      "Edit(./README.md)",
       "Bash(node tests/tour.test.mjs)",
-      "Bash(node --check tour.mjs)",
-      "Bash(node tour.mjs)"
+      "Bash(node --check tour.mjs)"
     ]
   }
 }

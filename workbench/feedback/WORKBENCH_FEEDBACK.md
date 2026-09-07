@@ -1,7 +1,8 @@
 # Example Workbench - Workbench Feedback
 
-> Generated from LLM Workbench v3.0.0. See `RUNBOOK.md` ->
-> Upgrading The Harness.
+> Generated from LLM Workbench v3.1.0. Lives at
+> `workbench/feedback/WORKBENCH_FEEDBACK.md`; see `RUNBOOK.md` -> Upgrading
+> The Harness.
 
 This is the return channel from this project back to the LLM Workbench harness.
 When the control docs themselves (`AGENTS.md`, `BLUEPRINT.md`, `LEXICON.md`,
@@ -20,7 +21,8 @@ what happened, and propose a change if you have one.
 
 | Date | Doc / section | What happened | Impact | Proposed change | Status |
 |---|---|---|---|---|---|
-| 2026-09-06 | templates/README.md -> How This Project Is Run; templates/AGENTS.md -> Edit Scope; templates/Wiki/README.md -> Instantiation | The v3.0.0 templates still link `MEMORY.md` and `WORKBENCH_FEEDBACK.md` at the room root and name `specs/`, while GENESIS Phase 6 and `workbench-layout.mjs init` put them in the manifest-declared `workbench/` lanes. Genesis had to choose; it chose the lanes. | low - a few minutes deciding which of two harness sources wins | Point the README, AGENTS, and Wiki templates at `workbench/specs/`, `workbench/wiki/MEMORY.md`, and `workbench/feedback/WORKBENCH_FEEDBACK.md` so the copy-ready templates match the layout `init` creates | new |
+| 2026-09-06 | GENESIS.md -> What A Finished Bootstrap Must Prove; `workbench-layout.mjs validate --genesis` | The readiness gate reports one failing control per run (`RUNBOOK.md must be an ordinary file`) and stops, so a bootstrap that is missing several controls learns about them one gate run at a time. | low - four extra runs during this Genesis, no wrong result | Report every missing or unfilled root control in one `validate --genesis` result, the way the first-spec check already lists stray `entries` | new |
+| 2026-09-06 | README.md template -> How This Project Is Run | The template says the Genesis protocol "is preserved in `GENESIS.md`", while `GENESIS.md` Phase 7 says to delete or archive that file after handoff. A room that follows Phase 7 has to rewrite the README sentence by hand. | low | Word the README paragraph for both outcomes, for example "was run once at start; keep or archive it per Phase 7" | new |
 
 Status values: `new` (just logged) -> `sent` (carried back to LLM Workbench) ->
 `landed` (a harness change shipped) or `declined` (kept as-is, with a reason).
