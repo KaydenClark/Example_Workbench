@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
-import { validateManifest } from './workbench-layout.mjs';
+import { insideWorkTree, managedRuntimeDrift, permissionScopeDrift, permissionScopeMessage, readAtRef, readManagedSkillMarker, resolveBranchRefs, validateManifest } from './workbench-layout.mjs';
 import { isMainModule } from './workbench-paths.mjs';
 import { escapeMarkdownTableCell, parseMarkdownTableRow } from './markdown-table.mjs';
 import { parseSpecPacket } from './spec-packet.mjs';
-import { blocksSelection, finding } from './diagnostics.mjs';
-import { collectionPath, lanePath, readManifest } from './workbench-paths.mjs';
+import { blocksSelection, describe, finding } from './diagnostics.mjs';
+import { collectionPath, declaredGit, lanePath, readManifest } from './workbench-paths.mjs';
 import { validateAdrs } from './adr.mjs';
 import { validateWiki } from './wiki.mjs';
 
@@ -18,7 +19,29 @@ const HOT_START = '<!-- hot-specs:start -->';
 const HOT_END = '<!-- hot-specs:end -->';
 
 export function nextWork(rootDir) {
-  const specs = loadSpecs(rootDir);
+  refuseBlockedRuntime(rootDir);
+  return selectCandidate(loadSpecs(rootDir));
+}
+
+// An `all` effect is a refusal, not only a doctor exit code: the effect table
+// says `next` and `claim` refuse to read the layout. Every other `all` finding
+// is raised by `validateManifest`, which `loadSpecs` already runs, so this is
+// the one `all` condition selection would otherwise walk past - and walking
+// past it means dispatching a ticket to an agent whose runtime nobody
+// verified. `doctor` still reports the finding instead of throwing, because
+// reporting it is what `doctor` is for.
+function refuseBlockedRuntime(rootDir) {
+  const root = path.resolve(rootDir);
+  const manifest = readManifest(root);
+  if (!manifest || manifest.schemaVersion !== 2) return;
+  const runtime = managedRuntimeDrift(root, { lane: manifest.lanes?.tools });
+  if (!runtime || describe(runtime.code).blocks !== 'all') return;
+  const error = new Error(`${runtime.code}: ${runtime.message}`);
+  error.code = runtime.code;
+  throw error;
+}
+
+function selectCandidate(specs) {
   const completed = new Set(specs.filter((spec) => ['complete', 'superseded'].includes(spec.status)).map((spec) => spec.id));
   const candidates = [];
   for (const spec of specs) {
@@ -54,6 +77,7 @@ export function showSpec(rootDir, id) {
 }
 
 export function claimWork(rootDir, id, options) {
+  refuseBlockedRuntime(rootDir);
   requireValue(options?.agent, '--agent is required');
   const date = validDate(options?.date ?? today());
   const specs = loadSpecs(rootDir);
@@ -189,12 +213,78 @@ export function doctor(rootDir, options = {}) {
   checkRender(root, 'BLUEPRINT.md', CATALOG_START, CATALOG_END, renderCatalog(specs), issues);
   checkRender(root, 'TASKBOARD.md', HOT_START, HOT_END, renderHotBoard(specs), issues);
   issues.push(...collectionFindings(root));
+  issues.push(...skillFindings(root, options.home));
+  issues.push(...gitFindings(root, specs));
   return issues;
 }
 
+// Installed core skills: for each skill the manifest requires, read its
+// managed marker in every declared discovery root under the user home
+// (`--home`, default the user home). A schema 2 marker whose release differs
+// from the manifest is stale; a present skill without a Workbench-managed
+// schema 2 marker (missing, schema 1, or another source) is of unknown
+// generation. A missing skill is Adoption preflight's finding. The home is
+// only ever read.
+function skillFindings(root, home) {
+  const manifest = readManifest(root);
+  if (!manifest || manifest.schemaVersion !== 2) return [];
+  const required = Array.isArray(manifest.skillPolicy?.required) ? manifest.skillPolicy.required : [];
+  const discovery = Array.isArray(manifest.skillPolicy?.discovery) ? manifest.skillPolicy.discovery : [];
+  const homeDir = path.resolve(home ?? os.homedir());
+  const findings = [];
+  for (const discoveryRoot of discovery) {
+    for (const skill of required) {
+      const installed = path.join(homeDir, discoveryRoot, skill);
+      if (!isDirectory(installed)) continue;
+      const marker = readManagedSkillMarker(installed);
+      if (marker?.schemaVersion !== 2 || typeof marker.release !== 'string') {
+        findings.push(finding('skill-generation-unknown', `${discoveryRoot}/${skill} has no schema 2 marker; which Workbench generation it came from is unknown`, { skill, root: discoveryRoot }));
+      } else if (marker.release !== manifest.workbenchVersion) {
+        findings.push(finding('stale-skill', `${discoveryRoot}/${skill} records release ${marker.release}; the manifest runs ${manifest.workbenchVersion}`, { skill, root: discoveryRoot, release: marker.release, expected: manifest.workbenchVersion }));
+      }
+    }
+  }
+  return findings;
+}
+
+function isDirectory(target) {
+  try { return fs.statSync(target).isDirectory(); } catch { return false; }
+}
+
+// The declared integration branch is the review gate's merge target. Its
+// absence is an error every doctor run shows and none blocks: a room can
+// create the branch in one command, and selection must not wait on it.
+function gitFindings(root, specs) {
+  const manifest = readManifest(root);
+  if (!manifest || manifest.schemaVersion !== 2) return [];
+  const declared = declaredGit(root);
+  if (!declared) return [finding('integration-branch-undeclared', 'workbench/manifest.json declares no git.integrationBranch; declare the branch the independent review gate merges into')];
+  if (!insideWorkTree(root)) {
+    return [finding('integration-branch-missing', `the project is not inside a Git work tree, so declared integration branch ${declared.integrationBranch} cannot resolve; initialize the repository first`, { branch: declared.integrationBranch })];
+  }
+  const refs = resolveBranchRefs(root, declared.integrationBranch);
+  if (refs.length === 0) {
+    return [finding('integration-branch-missing', `declared integration branch ${declared.integrationBranch} resolves neither as a local head nor on a remote; create it from ${declared.defaultBranch}`, { branch: declared.integrationBranch })];
+  }
+  // A checkout behind its integration branch is told that the work next would
+  // dispatch is already finished there. It still dispatches: a checkout may be
+  // pinned deliberately, so the finding informs and never blocks.
+  const selected = selectCandidate(specs);
+  const spec = selected && specs.find((item) => item.id === selected.specId);
+  for (const { ref, name } of spec ? refs : []) {
+    const status = readAtRef(root, ref, spec.relativePath)?.match(/^\*\*Status:\*\*\s*(\S+)/m)?.[1];
+    if (['complete', 'superseded'].includes(status)) {
+      return [finding('complete-on-integration', `${spec.id} is ${status} at ${name}; this checkout still carries it ${spec.status}, so fetch or rebase before dispatching ${selected.ticketId}`, { specId: spec.id, ref: name })];
+    }
+  }
+  return [];
+}
+
 // Schema 2 projects also carry decision records; their findings ride along so
-// one doctor run reports the whole support root. None blocks selection: the
-// registered effect of every ADR code is `none`.
+// one doctor run reports the whole support root. The ADR, wiki, and permission
+// codes are all registered `none` and block nothing. The managed-runtime codes
+// are registered `all`, and this is their only emitter, so `refuseBlockedRuntime`
+// enforces that effect for `next` and `claim` separately.
 function collectionFindings(root) {
   const manifest = readManifest(root);
   if (!manifest || manifest.schemaVersion !== 2) return [];
@@ -209,6 +299,15 @@ function collectionFindings(root) {
   } catch (error) {
     findings.push(finding('invalid-note', `wiki validation failed: ${error.message}`));
   }
+  // The runtime a room executes is checked against the receipt that installed
+  // it, from the room itself; a lane with no receipt is not a managed runtime
+  // and is the Genesis readiness gate's business, not doctor's.
+  const runtime = managedRuntimeDrift(root, { lane: manifest.lanes?.tools });
+  if (runtime) findings.push(finding(runtime.code, runtime.message, { lane: runtime.lane, ...(runtime.drift ? { drift: runtime.drift } : {}) }));
+  // The permission file is the mechanical half of the prose Edit Scope; a
+  // declared lane it withholds is named, never rewritten, and never blocks.
+  const drift = permissionScopeDrift(root, manifest.lanes);
+  if (drift) findings.push(finding('permission-scope-drift', permissionScopeMessage(drift), { control: drift.control, lanes: drift.lanes }));
   return findings;
 }
 
@@ -438,6 +537,36 @@ function today() {
   return new Date().toISOString().slice(0, 10);
 }
 
+// The plain report is grouped by the consequence the registry assigns each
+// finding, so a room whose findings block nothing does not read as failed.
+// Presentation only: the effect is the registry's (workbench/tools/diagnostics.mjs),
+// severity follows the effect in the line rather than leading it, and --json
+// is untouched. Every registered effect must appear in exactly one group.
+// Exported so a test can bind this to the diagnostics EFFECTS vocabulary.
+// Every effect must land in exactly one group; an effect added to EFFECTS with
+// no group here makes formatDoctorReport throw and prints no findings at all,
+// which is a total doctor outage rather than a missing line.
+export const DOCTOR_GROUPS = Object.freeze([
+  Object.freeze({ name: 'blocking', effects: Object.freeze(['all', 'selection']), consequence: 'doctor exits 1 until repaired' }),
+  Object.freeze({ name: 'selected slice', effects: Object.freeze(['selected-slice']), consequence: 'next excludes the slice and claim refuses it' }),
+  Object.freeze({ name: 'informational', effects: Object.freeze(['none']), consequence: 'reported only; nothing is blocked' })
+]);
+
+export function formatDoctorReport(findings) {
+  if (findings.length === 0) return 'ok - spec workbench doctor passed';
+  const ungrouped = findings.filter((item) => !DOCTOR_GROUPS.some((group) => group.effects.includes(item.blocks)));
+  if (ungrouped.length > 0) throw new Error(`Unreportable diagnostic effect: ${[...new Set(ungrouped.map((item) => item.blocks))].join(', ')}`);
+  const lines = [];
+  for (const group of DOCTOR_GROUPS) {
+    const members = findings.filter((item) => group.effects.includes(item.blocks));
+    if (members.length === 0) continue;
+    lines.push(`${group.name} (${members.length}) - ${group.consequence}`);
+    for (const item of members) lines.push(`  ${item.code} [blocks ${item.blocks}, ${item.severity}]: ${item.message}`);
+  }
+  if (!blocksSelection(findings)) lines.push('ok - no blocking finding; attention and slice findings above stay visible');
+  return lines.join('\n');
+}
+
 export function parseCliArgs(argv) {
   const command = argv[0];
   let index = 1;
@@ -475,11 +604,7 @@ async function main() {
   }
   if (options.json) console.log(JSON.stringify(result, null, 2));
   else if (command === 'show') console.log(result.body);
-  else if (command === 'doctor') {
-    const lines = result.map((item) => `${item.code} [${item.severity}, blocks ${item.blocks}]: ${item.message}`);
-    if (lines.length === 0) console.log('ok - spec workbench doctor passed');
-    else console.log(`${lines.join('\n')}${blocksSelection(result) ? '' : '\nok - no blocking finding; attention and slice findings above stay visible'}`);
-  }
+  else if (command === 'doctor') console.log(formatDoctorReport(result));
   else console.log(result === null ? 'No eligible work.' : JSON.stringify(result, null, 2));
 }
 

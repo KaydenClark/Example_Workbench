@@ -12,7 +12,7 @@ last_verified: 2026-09-06
 
 # Example Workbench Memory
 
-> Generated from LLM Workbench v3.1.1. This is the room brain: the
+> Generated from LLM Workbench v3.1.2. This is the room brain: the
 > canonical, human-editable memory router for this project, kept at
 > `workbench/wiki/MEMORY.md`. Start here and follow the smallest relevant
 > link instead of browsing folders or searching.
@@ -50,10 +50,10 @@ nothing.
 
 | Question | Read first |
 |---|---|
-| What is a room, and what goes in each place? | `node tour.mjs`, then [S-001](../specs/S-001-self-explaining-room/SPEC.md) |
-| Where did this room come from? | `provenance` in [manifest.json](../manifest.json): genesis from LLM Workbench v3.1.1 at `09f0875` |
-| How do I know the explanation is still true? | `node tests/tour.test.mjs`; drift is a test failure, not a backlog item |
-| Which stance does a ticket here carry? | The `**Stance:**` line of the ticket in [S-001](../specs/S-001-self-explaining-room/SPEC.md); the terms are in [LEXICON.md](../../LEXICON.md) -> Stance Terms |
+| What is a workbench, and what goes in each place? | `node tour.mjs`, then [S-001](../specs/S-001-self-explaining-room/SPEC.md) |
+| Where did this room come from? | `provenance` in [manifest.json](../manifest.json) - genesis from LLM Workbench v3.1.2 at `18ffc0d` |
+| How do I know the explanation is still true? | `node tests/tour.test.mjs` - drift is a test failure, not a backlog item |
+| How did the harness get here, and how do I stand in an earlier generation? | [VERSION_HISTORY.md](../docs/VERSION_HISTORY.md), then `git checkout version/NN-...`; recorded by [S-002](../specs/S-002-version-history-replay/SPEC.md) |
 
 This room is young and deliberately small; it has no flat notes yet. The rows
 above route to live controls and to the room's own executable description,

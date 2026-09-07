@@ -1,23 +1,32 @@
-> Historical example: LLM Workbench v3.1.1 boundaries and portable stances, 2026-09-04, source commit 09f0875edce730eebac56902fa561ec3301b0543, dated 2026-09-04. Built with that generation's own tooling on 2026-09-06. Branch version/09-v3.1.1 of KaydenClark/Example_Workbench.
-
 # Example Workbench
 
-> Generated from LLM Workbench v3.1.1. See `RUNBOOK.md` ->
+> Generated from LLM Workbench v3.1.2. See `RUNBOOK.md` ->
 > Upgrading The Harness.
 
-The smallest complete v3.1.1 room, whose product is an explanation of what a
-room is: for anyone meeting the harness for the first time, and for anyone who
-wants to read one harness generation beside the next.
+The smallest complete LLM Workbench room, whose product is an explanation of
+what a room is - for anyone meeting the harness for the first time, and for
+anyone who needs a safe target to rehearse a genesis or an upgrade against.
 
-This generation added the reduced entry route (AGENTS -> RUNBOOK -> LEXICON),
-concrete edit-scope boundaries, the four portable stances (Builder, Auditor,
-Reviewer, Reconciler), the feedback-lane `REPORT_FORMAT.md`, branch completion
-and merged-branch cleanup rules, and the worktree-safe closeout. The room is a
-working installation of exactly that: `node tour.mjs` prints every place in it
-with what it owns and why, and `node tests/tour.test.mjs` fails when the room
-and that account disagree. The optional multi-agent team templates,
-`ADOPTION.md`, and the research templates were not applicable to a fresh
-single-agent room and were not copied.
+```bash
+node tour.mjs               # what every part of a room is for, and why
+node tour.mjs --lifecycle   # how this room came to exist, and how it upgrades
+node tests/tour.test.mjs    # proof that both answers still match this room
+```
+
+The structure of a room is documented upstream in `templates/`, which is
+generic and bracketed by design: you see the shape of the answer, never a
+filled example, and nothing checks that the templates still describe what the
+tools actually produce. This room is that filled example. It was created by the
+real genesis path, so it cannot describe a shape the tools do not produce, and
+every claim it makes about its own layout is asserted by a test - add a lane to
+`workbench/manifest.json` without describing it and the suite goes red.
+
+One boundary worth naming up front, because it is the part people get wrong:
+everything the harness manages lives under `workbench/`, declared by a manifest
+rather than assumed by path. A root `tools/` directory, if a project has one,
+belongs to the application and is never touched by the harness. The room you
+are reading has no application `tools/` at all - its product is `tour.mjs` at
+the root.
 
 ## How This Project Is Run
 
@@ -32,7 +41,7 @@ before changing anything:
   consult it when shared language could be ambiguous.
 - [`TASKBOARD.md`](TASKBOARD.md) - active spec projection: current slice, owner,
   blocker, latest event, and next gate.
-- [`workbench/specs/S-001-self-explaining-room/SPEC.md`](workbench/specs/S-001-self-explaining-room/SPEC.md) - on-demand capability truth,
+- [`workbench/specs/S-###-slug/SPEC.md`](workbench/specs/S-###-slug/SPEC.md) - on-demand capability truth,
   acceptance, decisions, verification, append-only evidence, and completion.
 - [`RUNBOOK.md`](RUNBOOK.md) - how to set up, run, test, build, and recover this
   project, plus the verification commands that gate "done".
@@ -46,20 +55,24 @@ before changing anything:
   came from: log where the harness rules themselves are unclear, wrong, or slow
   the work down, so they can be improved upstream. It lives in the feedback
   lane so the root keeps exactly seven controls.
+- [`workbench/docs/VERSION_HISTORY.md`](workbench/docs/VERSION_HISTORY.md) -
+  how the harness got here. This repository's history replays every LLM
+  Workbench generation as one commit and one `version/` branch each, from the
+  three-file GAME_PLAN room to this v3.1.2 room, so any generation can be
+  checked out, run, and diffed against its neighbours.
 
-This project was bootstrapped from a single founding prompt by the one-time
-`GENESIS.md` protocol. Phase 7 of that protocol says to delete or archive the
-file once handoff is complete, and it was deleted; the run is recorded in the
-first spec's evidence log. The harness was not adopted into an existing project,
-so `ADOPTION.md` does not apply. Either runs once at start; after handoff,
-AGENTS plus the progressive spec flow above govern.
+If this project was bootstrapped from a single founding prompt, the one-time
+protocol that produced these docs is preserved in [`GENESIS.md`](GENESIS.md).
+If instead the harness was adopted into an existing project, that one-time
+migration protocol is [`ADOPTION.md`](ADOPTION.md). Either runs once at start;
+after handoff, AGENTS plus the progressive spec flow above govern.
 
 ## Getting Started
 
 ```bash
-node --version               # nothing to install; Node.js 20+ is the only requirement
-node tour.mjs                # the room map: every place, what it owns, why
-node tests/tour.test.mjs     # proof that the map still matches the room
+# nothing to install - Node.js 20+ is the only requirement      # e.g. npm install / pip install -e . / make setup
+node tour.mjs          # e.g. npm run dev / python -m app
+node tests/tour.test.mjs         # e.g. npm test / pytest
 ```
 
 Full setup, environment, and troubleshooting steps live in
@@ -89,4 +102,5 @@ See [`TASKBOARD.md`](TASKBOARD.md) for active execution state and
 
 ## License
 
-MIT, the same license as the LLM Workbench harness this room was generated from.
+Same license as the LLM Workbench harness it was generated from. This room is
+meant to be copied, read, and discarded.

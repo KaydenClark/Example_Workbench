@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Keeps the tour honest: each claim `tour.mjs` makes about this room's layout
-// becomes something that can fail.
+// Keeps the tour honest. The tour is documentation that claims things about
+// this room's layout; these cases turn each claim into something that can fail.
 
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -8,56 +8,116 @@ import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-import { GENERATION, PLACES, ROOM_ROOT, render } from '../tour.mjs';
+import { PLACES, ROOM_ROOT, ROUTE, lifecycle, readManifest } from '../tour.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const manifest = JSON.parse(fs.readFileSync(path.join(root, 'workbench/manifest.json'), 'utf8'));
+const manifest = readManifest(root);
 const described = new Set(PLACES.map((place) => place.path));
-const CONTROLS = ['AGENTS.md', 'BLUEPRINT.md', 'LEXICON.md', 'RUNBOOK.md', 'TASKBOARD.md', 'CLAUDE.md', 'README.md'];
 
-test('the tour describes the room it ships inside', () => {
-  assert.equal(ROOM_ROOT, root);
-  assert.equal(described.size, PLACES.length, 'a path is described twice');
+test('the tour and the room agree on where the room is', () => {
+  assert.equal(ROOM_ROOT, root, 'the tour must describe the room it ships inside');
 });
 
 test('every place the tour names exists in this room', () => {
   for (const place of PLACES) {
-    assert.ok(fs.existsSync(path.join(root, place.path)), `the tour names ${place.path}, which does not exist`);
+    const target = path.join(root, place.path);
+    assert.ok(fs.existsSync(target), `the tour names ${place.path}, which does not exist`);
   }
 });
 
-test('every place says what it owns and why it is kept apart', () => {
+test('every place says what it owns and why it is separate', () => {
   for (const place of PLACES) {
     assert.ok(place.owns && place.owns.trim().length > 20, `${place.path} does not say what it owns`);
     assert.ok(place.why && place.why.trim().length > 40, `${place.path} does not say why it is kept apart`);
+    assert.ok(['Root controls', 'The support root', 'The product'].includes(place.zone),
+      `${place.path} sits in no known zone`);
   }
 });
 
-test('the seven root controls and every root markdown file are described', () => {
-  for (const control of CONTROLS) {
+test('every lane the manifest declares is explained', () => {
+  for (const [lane, lanePath] of Object.entries(manifest.lanes)) {
+    assert.ok(described.has(lanePath), `the manifest declares lane "${lane}" at ${lanePath}, which the tour never explains`);
+    const entry = PLACES.find((place) => place.path === lanePath);
+    assert.equal(entry.lane, lane, `${lanePath} is lane "${lane}" but the tour labels it ${JSON.stringify(entry.lane)}`);
+  }
+});
+
+test('every collection the manifest declares is explained', () => {
+  for (const [collection, collectionPath] of Object.entries(manifest.collections)) {
+    assert.ok(described.has(collectionPath),
+      `the manifest declares collection "${collection}" at ${collectionPath}, which the tour never explains`);
+    const entry = PLACES.find((place) => place.path === collectionPath);
+    assert.equal(entry.collection, collection,
+      `${collectionPath} is collection "${collection}" but the tour labels it ${JSON.stringify(entry.collection)}`);
+  }
+});
+
+test('the seven root controls are present and all seven are explained', () => {
+  const controls = ['AGENTS.md', 'BLUEPRINT.md', 'LEXICON.md', 'RUNBOOK.md', 'TASKBOARD.md', 'CLAUDE.md', 'README.md'];
+  for (const control of controls) {
     assert.ok(fs.existsSync(path.join(root, control)), `root control ${control} is missing`);
-    assert.ok(described.has(control), `root control ${control} is not described by the tour`);
+    assert.ok(described.has(control), `root control ${control} is not explained by the tour`);
   }
-  for (const name of fs.readdirSync(root).filter((entry) => entry.endsWith('.md'))) {
-    assert.ok(described.has(name), `${name} sits at the room root but the tour never describes it`);
-  }
+  const rootZone = PLACES.filter((place) => place.zone === 'Root controls').map((place) => place.path).sort();
+  assert.deepEqual(rootZone, [...controls].sort(),
+    'the root-controls zone must be exactly the seven controls — no more, no fewer');
+});
+
+test('the Claude bridge carries no rules of its own', () => {
   assert.equal(fs.readFileSync(path.join(root, 'CLAUDE.md'), 'utf8').trim(), '@AGENTS.md');
 });
 
-test('every lane and collection the manifest declares is described', () => {
-  for (const [name, lanePath] of [...Object.entries(manifest.lanes), ...Object.entries(manifest.collections)]) {
-    assert.ok(described.has(lanePath), `the manifest declares ${name} at ${lanePath}, which the tour never describes`);
-  }
+test('the installed runtime carries a receipt matching the manifest', () => {
+  const receiptPath = path.join(root, manifest.lanes.tools, '.workbench-tools.json');
+  assert.ok(fs.existsSync(receiptPath), 'the tools lane has no receipt, so its provenance is unprovable');
+  const receipt = JSON.parse(fs.readFileSync(receiptPath, 'utf8'));
+  assert.equal(receipt.source.release, manifest.workbenchVersion,
+    'the receipt names a different release than the manifest, so the room does not know what it is running');
 });
 
-test('the installed runtime carries a receipt naming the manifest version', () => {
+test('the tools lane holds only what the receipt accounts for', () => {
+  // This is the check that bites a real room during an upgrade: an unmanaged
+  // file in the tools lane makes `next` and `claim` refuse with exit 1.
+  const lane = path.join(root, manifest.lanes.tools);
+  const receipt = JSON.parse(fs.readFileSync(path.join(lane, '.workbench-tools.json'), 'utf8'));
+  const allowed = new Set([...Object.keys(receipt.files), '.workbench-tools.json', '.gitkeep']);
+  const unmanaged = fs.readdirSync(lane).filter((name) => !allowed.has(name));
+  assert.deepEqual(unmanaged, [],
+    `the tools lane holds ${unmanaged.join(', ')}, which the managed runtime does not ship; move it out before upgrading`);
+});
+
+test('the lifecycle account is read from the room, not written by hand', () => {
+  const l = lifecycle(root);
   const receipt = JSON.parse(fs.readFileSync(path.join(root, manifest.lanes.tools, '.workbench-tools.json'), 'utf8'));
-  assert.equal(receipt.source.release, manifest.workbenchVersion);
-  assert.equal(receipt.source.commit, manifest.provenance.source.commit);
+  assert.equal(l.how, manifest.provenance.lifecycle);
+  assert.deepEqual(l.source, manifest.provenance.source);
+  assert.equal(l.stamped, manifest.workbenchVersion);
+  assert.equal(l.attests.release, receipt.source.release);
+  assert.equal(l.attests.commit, receipt.source.commit);
+  assert.equal(l.attests.files, Object.keys(receipt.files).length);
 });
 
-test('the map prints under the generation heading', () => {
-  const [heading] = render().split('\n');
-  assert.equal(heading, `Example Workbench (${GENERATION}) - room map`);
-  assert.ok(!GENERATION.includes('('), 'the label contains no parentheses');
+test('the room records a full source commit, not a placeholder', () => {
+  const { source } = manifest.provenance;
+  assert.match(source.commit, /^[0-9a-f]{40}$/, 'provenance must carry a full 40-character commit');
+  assert.match(source.release, /^v\d+\.\d+\.\d+$/);
+  assert.ok(!['unrecorded', 'unknown'].includes(source.release), 'a placeholder release is never a provenance');
+});
+
+test('every step of the stated upgrade route names a real tool in this room', () => {
+  // The route is the one piece of the tour that is prose rather than read from
+  // the room. This case stops it naming a tool the room does not carry.
+  const lane = path.join(root, manifest.lanes.tools);
+  const present = new Set(fs.readdirSync(lane));
+  const named = new Set();
+  for (const step of ROUTE) {
+    assert.ok(step.step && step.detail, 'every route step needs a name and a detail');
+    for (const m of step.detail.matchAll(/([a-z-]+\.mjs)/g)) named.add(m[1]);
+  }
+  assert.ok(named.has('workbench-layout.mjs'), 'the route must name the tool that records provenance');
+  assert.ok(present.has('workbench-layout.mjs'), 'workbench-layout.mjs is not installed in this room');
+  // workbench-tools.mjs ships in the release, not the room; assert we do not
+  // claim it is here.
+  assert.ok(!present.has('workbench-tools.mjs'),
+    'workbench-tools.mjs is a release tool, not a room tool; if it appears here the route text is wrong');
 });

@@ -1,13 +1,17 @@
 {
   "schemaVersion": 2,
-  "workbenchVersion": "v3.1.1",
+  "workbenchVersion": "v3.1.2",
   "provenance": {
     "lifecycle": "genesis",
     "source": {
-      "repository": "https://github.com/KaydenClark/LLM_Workbench",
-      "release": "v3.1.1",
-      "commit": "09f0875edce730eebac56902fa561ec3301b0543"
+      "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
+      "release": "v3.1.2",
+      "commit": "18ffc0d295722e8437a13399b3a1b67369248314"
     }
+  },
+  "git": {
+    "defaultBranch": "main",
+    "integrationBranch": "integration"
   },
   "lanes": {
     "docs": "workbench/docs",

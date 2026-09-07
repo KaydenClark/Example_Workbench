@@ -3,3 +3,5 @@ grilling/*
 !grilling/.gitkeep
 handoffs/*
 !handoffs/.gitkeep
+# Legacy notepad path a stale installed skill may still write; never tracked.
+grilling diary/

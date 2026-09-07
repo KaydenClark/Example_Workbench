@@ -1,116 +1,316 @@
 #!/usr/bin/env node
-// Example Workbench at harness v3.1.1: print the annotated map of this room.
-// Every entry names a real path here, the truth it owns, and why that truth is
-// kept apart from the others. `tests/tour.test.mjs` asserts each claim.
+// The Example Workbench's one-command demo: print the annotated map of a room.
+//
+// Every entry below names a real path in this room and says what truth it owns
+// and why that truth is kept apart from every other. `tests/tour.test.mjs`
+// asserts that each path exists and that every lane and collection the manifest
+// declares appears here, so the map cannot quietly drift from the room.
 
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
+import { dirname, join } from 'node:path';
 
-export const GENERATION = 'v3.1.1 boundaries and portable stances, 2026-09-04';
 export const ROOM_ROOT = dirname(fileURLToPath(import.meta.url));
 
+export function readManifest(root = ROOM_ROOT) {
+  return JSON.parse(readFileSync(join(root, 'workbench/manifest.json'), 'utf8'));
+}
+
+// zone: which part of the room. lane/collection: the manifest key this place
+// realizes, when it realizes one. owns: the truth kept here. why: the reason it
+// is not kept somewhere else.
 export const PLACES = [
-  { path: 'AGENTS.md',
-    owns: 'How agents work here: authority order, the reduced entry route, read and edit scope, stances, verification, Git rules, and branch completion.',
-    why: 'It is the only always-loaded file. This generation cut the entry route to AGENTS -> RUNBOOK -> LEXICON so an agent knows its fences and its assigned stance before it reads anything about what to build.' },
-  { path: 'BLUEPRINT.md',
-    owns: 'The compact product map, cross-cutting architecture and invariants, non-goals, the generated spec catalog, and the entry and delivery boundaries.',
-    why: 'Product direction changes slowly and task state changes hourly. The Blueprint helps participants recover the design concept; it loads for architecture, not for default orientation.' },
-  { path: 'LEXICON.md',
-    owns: 'The canonical lookup table for shared terms, the task-routing section, the Stance Terms, and the Governance Core.',
-    why: 'Two agents silently using one word for two things is the cheapest way to make contradictory work. Builder, Auditor, Reviewer and Reconciler are defined once here so a ticket can name one without re-explaining it.' },
-  { path: 'RUNBOOK.md',
-    owns: 'Ordinary entry, setup, run, test, verification, the worktree-safe closeout, harness upgrade, feedback-report procedure, troubleshooting, and recovery.',
-    why: 'Commands go stale faster than prose and are the easiest thing to check. Kept apart so every line is one that was actually run and seen to pass, including the fail-fast merge and cleanup block.' },
-  { path: 'TASKBOARD.md',
-    owns: 'The hot projection of active specs only: current slice, owner, blocker, latest event, next gate.',
-    why: 'Its generated region is rewritten by render and never hand-edited, so the board cannot disagree with the specs it summarizes. Completed specs disappear from it immediately.' },
-  { path: 'README.md',
-    owns: 'Human orientation: what the room is, the two commands, and where the controls live.',
-    why: 'Every other root file is written for an agent operating under a contract. One door is for people, and it points at the controls instead of restating them.' },
-  { path: 'CLAUDE.md',
-    owns: 'The Claude Code bridge: exactly `@AGENTS.md`.',
-    why: 'One rule set for every agent. A bridge that carried rules of its own would drift from AGENTS.md, so the readiness gate rejects any other content.' },
-  { path: 'workbench/manifest.json',
-    owns: 'The declaration of this room: schema 2, harness version, genesis provenance with its source commit, six lanes, seven collections, the wiki profile, and the closed 16-skill policy including the four stances.',
-    why: 'Tools resolve support paths through a declaration instead of assuming them. The validator refuses a room whose lanes or skill policy do not match, and v3.1.1 manifests must list the stance skills.' },
-  { path: 'workbench/specs',
-    owns: 'The specs lane: one stable directory per durable capability record.',
-    why: 'A spec is durable and a ticket is temporary. Recording capability truth at a stable path, never moved between status folders, keeps the reason a thing exists after the sprint that made it.' },
-  { path: 'workbench/specs/S-001-self-explaining-room/SPEC.md',
-    owns: 'This room\'s one capability: requirements, decisions, acceptance, verification, append-only evidence, and the stance each ticket carries.',
-    why: 'Normal stance is set in the SPEC and TASK, not chosen by the arriving agent. Putting the stance on the ticket is what makes a stance an assignment rather than a mood.' },
-  { path: 'workbench/docs',
-    owns: 'The docs lane: long-form supporting documentation that is neither a root control nor a capability spec.',
-    why: 'The root is capped at seven controls on purpose. Material that would bloat one of them lands here instead of being wedged into a file whose job is something else.' },
-  { path: 'workbench/docs/adr',
-    owns: 'Architecture decision records: rationale, alternatives considered, and what supersedes what.',
-    why: 'A decision and the code implementing it have different lifetimes. An ADR keeps the argument after the code changes; its rule binds only where canonicalized_in points.' },
-  { path: 'workbench/wiki',
-    owns: 'The wiki lane: the room brain, its seeded contract files, and flat durable notes as the room grows.',
-    why: 'Some knowledge belongs to the room but to no single spec. It is routed from one place rather than copied into several, and it never holds live task state.' },
-  { path: 'workbench/wiki/MEMORY.md',
-    owns: 'The room brain: the canonical, human-editable router to live controls and durable notes.',
-    why: 'A room is not bootstrapped without a brain. A reader starts here and follows the smallest relevant link instead of browsing folders or searching.' },
-  { path: 'workbench/wiki/design-concepts',
-    owns: 'Owner-directed articles explaining one durable cross-cutting design model each.',
-    why: 'Design intent is the first thing lost when only the implementation is written down. These are commissioned by the owner, not accumulated by agents.' },
-  { path: 'workbench/wiki/guidebooks',
-    owns: 'Ordered procedures that outgrew the Runbook.',
-    why: 'A procedure useful twice belongs somewhere findable, but the Runbook is reserved for this project\'s own verified commands.' },
-  { path: 'workbench/wiki/archive',
+  {
+    zone: 'Root controls',
+    path: 'AGENTS.md',
+    owns: 'How agents work here: authority order, read and edit scope, the work loop, verification, and Git rules.',
+    why: 'An agent arriving cold has to know what it may do before it reads anything about what to build. This is the only file that is always loaded, so no task can begin outside its fences.',
+  },
+  {
+    zone: 'Root controls',
+    path: 'BLUEPRINT.md',
+    owns: 'What the project is, its cross-cutting architecture and invariants, and the catalog of capability specs.',
+    why: 'Product direction changes far more slowly than task state. Keeping it separate means a spec can complete, or a ticket be abandoned, without editing the description of the product.',
+  },
+  {
+    zone: 'Root controls',
+    path: 'LEXICON.md',
+    owns: 'The accepted meaning of every shared project term.',
+    why: 'Two agents using one word for two things is the cheapest way to produce contradictory work. Definitions get one address so a disagreement about meaning has somewhere to be resolved.',
+  },
+  {
+    zone: 'Root controls',
+    path: 'RUNBOOK.md',
+    owns: 'The commands: setup, run, test, verify, recover, upgrade.',
+    why: 'Procedures are the truth most likely to go stale and the easiest to check. Kept apart from prose so that every line is a command someone actually ran and saw pass.',
+  },
+  {
+    zone: 'Root controls',
+    path: 'TASKBOARD.md',
+    owns: 'A generated projection of active work: current slice, owner, blocker, latest event, next gate.',
+    why: 'It is regenerated by `render` and never hand-edited. Deriving hot state instead of authoring it is what stops the board from disagreeing with the specs it summarizes.',
+  },
+  {
+    zone: 'Root controls',
+    path: 'README.md',
+    owns: 'Orientation for a human arriving at the repository.',
+    why: 'Everything else here is written for an agent operating under a contract. One door is for people.',
+  },
+  {
+    zone: 'Root controls',
+    path: 'CLAUDE.md',
+    owns: 'The Claude Code bridge. Exactly `@AGENTS.md`, and nothing else.',
+    why: 'One rule set, two readers. If the bridge carried rules of its own they would drift from AGENTS.md, so the readiness gate rejects any other content.',
+  },
+
+  {
+    zone: 'The support root',
+    path: 'workbench/manifest.json',
+    owns: 'The declaration of this room: schema version, harness version, provenance, lane and collection paths, wiki profile, skill policy, and the git branches.',
+    why: 'Every tool resolves paths through the manifest instead of hardcoding them. A room can therefore move a lane without a code change, and a tool can refuse to run in a room whose shape it does not understand.',
+  },
+  {
+    zone: 'The support root',
+    lane: 'specs',
+    path: 'workbench/specs',
+    owns: 'Capability truth: requirements, decisions, acceptance criteria, append-only evidence, and the completion result.',
+    why: 'A spec is durable; a ticket inside it is temporary. Keeping the record with the capability rather than in a tracker means the reason a thing is the way it is outlives the sprint that made it.',
+  },
+  {
+    zone: 'The support root',
+    lane: 'docs',
+    path: 'workbench/docs',
+    owns: 'Long-form supporting documentation that is neither a root control nor a capability spec.',
+    why: 'The root is capped at seven controls on purpose. Material that would bloat one of them lands here instead of being wedged into a file whose job is something else.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'adr',
+    path: 'workbench/docs/adr',
+    owns: 'Architecture decision records: the rationale, the alternatives considered, and what supersedes what.',
+    why: 'A decision and the code implementing it have different lifetimes. The ADR keeps the argument after the code changes, and records what was rejected so it is not re-litigated every time someone new arrives.',
+  },
+  {
+    zone: 'The support root',
+    lane: 'wiki',
+    path: 'workbench/wiki',
+    owns: 'The room brain: durable knowledge routed by `MEMORY.md` under the rules in `SCHEMA.md`.',
+    why: 'Some knowledge belongs to the room but to no single capability. It lives here rather than being copied into several specs, and it never holds live task state.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'design-concepts',
+    path: 'workbench/wiki/design-concepts',
+    owns: 'Owner-directed articles about how a design is meant to work.',
+    why: 'Design intent is the first thing lost when only the implementation is written down. These are commissioned deliberately, not accumulated.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'guidebooks',
+    path: 'workbench/wiki/guidebooks',
+    owns: 'How-to knowledge that outlives any one task.',
+    why: 'A procedure that is useful twice belongs somewhere findable. It is not the Runbook, which is reserved for this project’s own verified commands.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'archive',
+    path: 'workbench/wiki/archive',
     owns: 'Superseded notes, kept for provenance.',
-    why: 'Deleting a wrong note destroys the record that anyone believed it. Archiving keeps the trail out of the live brain; it is the only collection allowed to nest.' },
-  { path: 'workbench/sessions',
-    owns: 'The sessions lane: live working records and the one durable collection promoted from them.',
-    why: 'Most session text is scratch and some must never be committed. The lane\'s .gitignore keeps live records untracked so durability is a deliberate act, not the default.' },
-  { path: 'workbench/sessions/grilling',
-    owns: 'Live notepads while a decision is still being argued. Untracked.',
-    why: 'A notepad is a working record, never evidence. Keeping it out of version control stops half-formed reasoning from being cited as a settled decision.' },
-  { path: 'workbench/sessions/handoffs',
-    owns: 'Compactions addressed to the next session. Untracked.',
-    why: 'A handoff is addressed to a session, not the repository. Cold continuation uses existing owners, so no universal handoff artifact is required or committed.' },
-  { path: 'workbench/sessions/checkpoints',
-    owns: 'Privacy-checked records promoted deliberately from the live collections. Tracked.',
-    why: 'Promotion refuses secret-like content, absolute home paths, and email addresses, naming the line instead of writing a redacted copy. That gate is why session records are safe to keep at all.' },
-  { path: 'workbench/feedback',
-    owns: 'The feedback lane: the return channel to the harness and the assigned feedback reports.',
-    why: 'When a rule is wrong the room needs somewhere to say so that is not the rule itself. Putting it in a lane keeps the root at exactly seven controls.' },
-  { path: 'workbench/feedback/WORKBENCH_FEEDBACK.md',
-    owns: 'The append-only log of where the v3.1.1 harness itself was unclear, wrong, or slow.',
-    why: 'Lessons flow back upstream and are validated against evals before shipping as better. Taste alone never closes the loop; evidence does.' },
-  { path: 'workbench/feedback/REPORT_FORMAT.md',
-    owns: 'The shape of an assigned harness feedback report: target, evidence, findings, rejected findings, next action, review boundary.',
-    why: 'New in this generation. A report assesses a target without repairing it or granting authority, so its format lives beside the log it feeds and not in the Runbook.' },
-  { path: 'workbench/tools',
-    owns: 'The managed runtime: eleven tools installed from the release with a receipt naming the source release, commit, and a hash per file.',
-    why: 'The room runs its own copies, so it is not coupled to a harness checkout elsewhere on disk. The receipt is what makes an upgrade checkable, and it is why this lane changes only through an explicit update.' },
-  { path: 'tour.mjs',
-    owns: 'This room\'s one-command demo: the map you are reading.',
-    why: 'Every milestone owes a demo artifact checkable in under a minute. This room\'s product is its own explanation, so the demo is the explanation printing itself.' },
-  { path: 'tests/tour.test.mjs',
+    why: 'Deleting a wrong note destroys the record that anyone believed it. Archiving keeps the trail without leaving the mistake in the live brain.',
+  },
+  {
+    zone: 'The support root',
+    lane: 'sessions',
+    path: 'workbench/sessions',
+    owns: 'Session records: live working notes, handoffs between contexts, and promoted checkpoints.',
+    why: 'Most session text is scratch, and some of it contains things that must never be committed. This lane exists so that durability is a deliberate act rather than the default.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'grilling',
+    path: 'workbench/sessions/grilling',
+    owns: 'Live interview notepads while a decision is still being argued. Untracked.',
+    why: 'A notepad is a working record, never evidence. Keeping it out of version control stops half-formed reasoning from being cited as a settled decision.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'handoffs',
+    path: 'workbench/sessions/handoffs',
+    owns: 'Compactions written so another context can continue the work. Untracked.',
+    why: 'A handoff is addressed to the next session, not to the repository. It goes stale within hours, so committing it would publish something that is wrong by the time anyone reads it.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'checkpoints',
+    path: 'workbench/sessions/checkpoints',
+    owns: 'The one durable session collection: records promoted deliberately, after a privacy check.',
+    why: 'Promotion refuses secret-like content, absolute home paths, and email addresses, and names the offending line rather than writing a redacted copy. That gate is the whole reason session records are safe to have at all.',
+  },
+  {
+    zone: 'The support root',
+    lane: 'feedback',
+    path: 'workbench/feedback',
+    owns: 'The return channel to the harness these controls came from.',
+    why: 'When a rule is wrong, the room needs somewhere to say so that is not the rule itself. It sits in a lane rather than at the root so the root keeps exactly seven controls.',
+  },
+  {
+    zone: 'The support root',
+    lane: 'tools',
+    path: 'workbench/tools',
+    owns: 'The harness runtime, installed as copies with a receipt (`.workbench-tools.json`) recording the source release, commit, and a hash per file.',
+    why: 'The room runs its own copies, so it is not coupled to a checkout of the harness sitting elsewhere on disk. The receipt is what makes an upgrade checkable instead of hopeful — and it is why the lane changes only through an explicit update. A stray file here stops work selection until it is moved.',
+  },
+
+  {
+    zone: 'The product',
+    path: 'tour.mjs',
+    owns: 'This room’s one-command demo: the map you are reading.',
+    why: 'Every room owes a demo artifact checkable in under a minute. This room’s product is its own explanation, so the demo is the explanation printing itself.',
+  },
+  {
+    zone: 'The product',
+    path: 'tests/tour.test.mjs',
     owns: 'The check that keeps the map honest.',
-    why: 'It asserts every named path exists, every root control and manifest lane and collection is described, and every entry says what it owns and why. Add a lane without describing it and the suite goes red.' },
+    why: 'It asserts every path named here exists, and that every lane and collection the manifest declares is explained. Add a lane without describing it and this test goes red — which is the difference between documentation and a promise.',
+  },
 ];
 
+// How this room came to exist, and how it reaches a newer harness version.
+// Every fact here is read from the room — the manifest's provenance block and
+// the tools receipt — so the account cannot drift from what the room actually
+// records. Only the route itself is prose, and `tests/tour.test.mjs` checks
+// that the commands it names exist in this room's own tools lane.
+export function lifecycle(root = ROOM_ROOT) {
+  const manifest = readManifest(root);
+  const receiptPath = join(root, manifest.lanes.tools, '.workbench-tools.json');
+  const receipt = JSON.parse(readFileSync(receiptPath, 'utf8'));
+  return {
+    how: manifest.provenance.lifecycle,
+    source: manifest.provenance.source,
+    stamped: manifest.workbenchVersion,
+    attests: {
+      release: receipt.source.release,
+      commit: receipt.source.commit,
+      files: Object.keys(receipt.files).length,
+    },
+    route: ROUTE,
+  };
+}
+
+// The maintenance route for a room already on v3. Stated carefully because the
+// obvious guess is wrong: `workbench-upgrade.mjs upgrade` is the one-time v2 to
+// v3 migration and refuses a room that already has a support root.
+export const ROUTE = [
+  {
+    step: 'Check the tools lane first',
+    detail: 'List `workbench/tools/` and compare it against the receipt. A file the managed runtime does not ship makes `next` and `claim` refuse with exit 1 after the update, and work selection stops until it is moved out.',
+  },
+  {
+    step: 'Update the managed runtime',
+    detail: 'From a clean release checkout: `workbench-tools.mjs update --project PATH --explicit-update`. It backs up the old lane and rewrites the receipt.',
+  },
+  {
+    step: 'Re-record the source',
+    detail: 'From the same checkout: `workbench-layout.mjs record-source --project PATH --version vX.Y.Z`. This sets `provenance.source`, not the room’s own version stamp.',
+  },
+  {
+    step: 'Stamp the room’s version by hand',
+    detail: 'Set `workbenchVersion` in `workbench/manifest.json`. No command does this, and until it is done `doctor` reports `unverified-provenance` as attention.',
+  },
+  {
+    step: 'Re-stamp the documents that name a version',
+    detail: 'The seeded wiki documents and the root controls each carry a `Generated from LLM Workbench vX.Y.Z` line. `seed-documents` refreshes lane documents only, so these are a hand edit; `doctor` reports the wiki ones as `stale-stamp` and does not check the root controls at all.',
+  },
+];
+
+const ZONE_BLURBS = {
+  'Root controls':
+    'Seven files, always at the root, always the same seven. An agent reads these\n  on entry and nothing else is required to know how to behave here.',
+  'The support root':
+    'Everything the harness manages lives under `workbench/`, declared by a manifest\n  rather than assumed by path. This is what makes a room portable and upgradable.',
+  'The product':
+    'What this room actually builds. Every room has one; here it happens to be an\n  explanation of rooms.',
+};
+
+function render(manifest) {
+  const lines = [];
+  const name = manifest.name || 'Example Workbench';
+  lines.push('');
+  lines.push(`  ${name} — what a workbench is, and why each part is where it is`);
+  lines.push(`  harness ${manifest.workbenchVersion}  ·  schema ${manifest.schemaVersion}  ·  provenance ${manifest.provenance.lifecycle}`);
+  lines.push('');
+
+  for (const zone of ['Root controls', 'The support root', 'The product']) {
+    lines.push(`── ${zone} ${'─'.repeat(Math.max(0, 68 - zone.length))}`);
+    lines.push('');
+    lines.push(`  ${ZONE_BLURBS[zone]}`);
+    lines.push('');
+    for (const place of PLACES.filter((p) => p.zone === zone)) {
+      const tag = place.lane ? `  [lane: ${place.lane}]` : place.collection ? `  [collection: ${place.collection}]` : '';
+      lines.push(`  ${place.path}${tag}`);
+      lines.push(...field('owns', place.owns));
+      lines.push(...field('why', place.why));
+      lines.push('');
+    }
+  }
+  lines.push('  Run `node tests/tour.test.mjs` to check this map against the room itself.');
+  lines.push('');
+  return lines.join('\n');
+}
+
+// A labelled paragraph with a hanging indent, so continuation lines line up
+// under the text rather than under the label.
 function field(label, text, width = 78) {
   const head = `    ${label.padEnd(6)}`;
   const hang = ' '.repeat(head.length);
   const out = [];
   let line = '';
   for (const word of text.split(/\s+/)) {
-    if (line && (hang + line + ' ' + word).length > width) { out.push((out.length ? hang : head) + line); line = word; }
-    else line = line ? `${line} ${word}` : word;
+    if (line && (hang + line + ' ' + word).length > width) {
+      out.push((out.length ? hang : head) + line);
+      line = word;
+    } else {
+      line = line ? `${line} ${word}` : word;
+    }
   }
   if (line) out.push((out.length ? hang : head) + line);
   return out;
 }
 
-export function render() {
-  const lines = [`Example Workbench (${GENERATION}) - room map`, ''];
-  for (const place of PLACES) lines.push(`  ${place.path}`, ...field('owns', place.owns), ...field('why', place.why), '');
-  lines.push('  Run `node tests/tour.test.mjs` to check this map against the room itself.');
+function renderLifecycle(l) {
+  const lines = [''];
+  lines.push('  How this room came to exist');
+  lines.push('');
+  lines.push(`    lifecycle   ${l.how}`);
+  lines.push(`    created from ${l.source.repository}`);
+  lines.push(`    release     ${l.source.release} at ${l.source.commit}`);
+  lines.push(`    stamped     ${l.stamped}`);
+  lines.push('');
+  lines.push(`  The tools receipt attests ${l.attests.files} managed files from release`);
+  lines.push(`  ${l.attests.release} at ${l.attests.commit}. That receipt is what makes an`);
+  lines.push('  upgrade checkable instead of hopeful.');
+  lines.push('');
+  lines.push('  Reaching a newer harness version');
+  lines.push('');
+  lines.push('  `workbench-upgrade.mjs upgrade` is NOT this route — it is the one-time v2 to');
+  lines.push('  v3 migration and refuses a room that already has a support root. For a room');
+  lines.push('  already on v3 the route is:');
+  lines.push('');
+  l.route.forEach((r, i) => {
+    lines.push(`  ${i + 1}. ${r.step}`);
+    lines.push(...field('', r.detail));
+    lines.push('');
+  });
   return lines.join('\n');
 }
 
-if (process.argv[1] && process.argv[1].endsWith('tour.mjs')) process.stdout.write(`${render()}\n`);
+if (process.argv[1] && process.argv[1].endsWith('tour.mjs')) {
+  const manifest = readManifest();
+  if (process.argv.includes('--json')) {
+    process.stdout.write(JSON.stringify({ places: PLACES, lifecycle: lifecycle() }, null, 2) + '\n');
+  } else if (process.argv.includes('--lifecycle')) {
+    process.stdout.write(renderLifecycle(lifecycle()) + '\n');
+  } else {
+    process.stdout.write(render(manifest) + '\n');
+  }
+}

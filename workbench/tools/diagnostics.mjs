@@ -8,7 +8,7 @@
 // is a tool change with a test.
 
 export const SEVERITIES = Object.freeze(['error', 'attention']);
-export const SCOPES = Object.freeze(['manifest', 'specs', 'adr', 'wiki', 'sessions', 'feedback', 'tools', 'controls']);
+export const SCOPES = Object.freeze(['manifest', 'specs', 'adr', 'wiki', 'sessions', 'feedback', 'tools', 'controls', 'skills', 'git']);
 export const EFFECTS = Object.freeze(['all', 'selection', 'selected-slice', 'none']);
 
 const registry = Object.freeze({
@@ -24,6 +24,7 @@ const registry = Object.freeze({
   'sessions-not-ignored': entry('error', 'sessions', 'all', 'live session collections are not ignored by default'),
   'tools-receipt-missing': entry('error', 'tools', 'all', 'the tools lane has no Workbench receipt'),
   'tools-receipt-drift': entry('error', 'tools', 'all', 'an installed runtime tool differs from its receipt hash'),
+  'invalid-source-identity': entry('error', 'tools', 'all', 'the Workbench source checkout, release, repository, commit, or managed bytes could not be verified'),
   // spec lifecycle: identity and state consistency selection depends on
   'malformed-spec': entry('error', 'specs', 'selection', 'a spec packet cannot be parsed'),
   'duplicate-id': entry('error', 'specs', 'selection', 'two packets claim one spec ID'),
@@ -37,6 +38,7 @@ const registry = Object.freeze({
   'blocked-slice': entry('error', 'specs', 'selected-slice', 'the selected ticket names an unmet dependency'),
   // attention: visible, never blocking
   'stale-claim': entry('attention', 'specs', 'none', 'an in-progress claim is older than one working day; verify activity before reclaiming'),
+  'complete-on-integration': entry('attention', 'specs', 'none', 'the spec next would select is already complete or superseded at the declared integration ref; the checkout is behind it'),
   'broken-link': entry('attention', 'specs', 'none', 'a spec links to a missing local target'),
   'stale-register': entry('attention', 'adr', 'none', 'the derived ADR register is stale; run adr register'),
   'invalid-adr': entry('error', 'adr', 'none', 'an ADR is missing required frontmatter or names an unknown canonicalization target'),
@@ -45,12 +47,33 @@ const registry = Object.freeze({
   'invalid-note': entry('error', 'wiki', 'none', 'a wiki note violates the schema'),
   'copied-task-state': entry('error', 'wiki', 'none', 'a wiki note copies live task state'),
   'secret-like-content': entry('error', 'wiki', 'none', 'a note or checkpoint contains secret-like material'),
+  'room-brain-unrouted': entry('attention', 'wiki', 'none', 'a root control does not route to the room brain'),
+  'stale-stamp': entry('attention', 'wiki', 'none', 'a wiki contract file or the room brain is stamped with a version other than the manifest'),
+  // git: the review gate's merge target is a declared fact; its absence is
+  // visible in every doctor run and blocks only the Genesis readiness gate
+  'integration-branch-undeclared': entry('error', 'git', 'none', 'the manifest declares no git.integrationBranch; declare the branch the independent review gate merges into'),
+  'integration-branch-missing': entry('error', 'git', 'none', 'the declared integration branch resolves neither as a local head nor on a remote'),
   'unfilled-control': entry('error', 'controls', 'all', 'a root control is empty, a stub, or carries template placeholders'),
   'unsafe-control': entry('error', 'controls', 'all', 'a root control is not an ordinary file'),
   'version-mismatch': entry('error', 'controls', 'all', 'a control version stamp disagrees with the manifest'),
   'missing-first-spec': entry('error', 'specs', 'all', 'Genesis produced no first spec'),
   'invalid-first-spec': entry('error', 'specs', 'all', 'the first spec is not an actionable packet'),
-  'project-local-skills': entry('error', 'controls', 'all', 'a project-local skills tree shadows user-scoped discovery')
+  'project-local-skills': entry('error', 'controls', 'all', 'a project-local skills tree shadows user-scoped discovery'),
+  // installed skills: doctor reads the user home and never writes to it
+  'stale-skill': entry('attention', 'skills', 'none', 'an installed core skill records a release other than the manifest workbenchVersion'),
+  'skill-generation-unknown': entry('attention', 'skills', 'none', 'an installed core skill has no schema 2 marker, so its generation is unknown'),
+  // The permission file is the mechanical half of the prose Edit Scope. A
+  // withheld lane is reported by name and never blocks: a room may deny a
+  // lane deliberately and record why. The Genesis readiness gate still
+  // fails closed on it.
+  'permission-scope-drift': entry('error', 'controls', 'none', 'the permission file withholds a manifest-declared authorship lane or grants the tools lane'),
+  // Installed state the harness itself wrote. Neither blocks: a room repairs
+  // both with a command it runs itself, and a byte-managed effect would turn a
+  // deliberate local adjustment into a blocking failure. `stale-seed` is scoped
+  // to the feedback lane because that is the whole covered set today; widening
+  // the set to another lane is a registry change with its own test.
+  'stale-seed': entry('attention', 'feedback', 'none', 'a seeded lane document records a release other than the manifest workbenchVersion'),
+  'unverified-provenance': entry('attention', 'manifest', 'none', 'the manifest records no verifiable source identity, or one that disagrees with its own workbenchVersion')
 });
 
 function entry(severity, scope, blocks, summary) {

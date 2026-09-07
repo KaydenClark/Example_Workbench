@@ -13,13 +13,18 @@ export const STATUSES = Object.freeze(['proposed', 'accepted', 'superseded', 're
 export const REGISTER_NAME = 'REGISTER.md';
 const ID_PATTERN = /^(\d{4})-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$/;
 
+// A record is authored once and checked out on many hosts. Git for Windows
+// rewrites Markdown to CRLF by default, so anchoring on a bare LF would report
+// every ADR and Wiki note as frontmatter-less on those clones. Normalize the
+// line terminator for parsing; the parsed body is read, never written back.
 export function parseFrontmatter(content) {
-  if (!content.startsWith('---\n')) return { data: null, body: content };
-  const end = content.indexOf('\n---\n', 4);
-  if (end < 0) return { data: null, body: content };
+  const text = content.replace(/\r\n?/g, '\n');
+  if (!text.startsWith('---\n')) return { data: null, body: text };
+  const end = text.indexOf('\n---\n', 4);
+  if (end < 0) return { data: null, body: text };
   const data = {};
   let key = null;
-  for (const line of content.slice(4, end).split('\n')) {
+  for (const line of text.slice(4, end).split('\n')) {
     const item = line.match(/^\s+-\s+(.+)$/);
     if (item && key) {
       if (!Array.isArray(data[key])) data[key] = [];
@@ -31,7 +36,48 @@ export function parseFrontmatter(content) {
     key = field[1];
     data[key] = field[2].trim() === '' ? [] : field[2].trim();
   }
-  return { data, body: content.slice(end + 5) };
+  return { data, body: text.slice(end + 5) };
+}
+
+// A record is written once and checked out on many hosts. S-037 made parsing
+// line-ending agnostic; a writer must be terminator-aware for the same reason,
+// so a record on a CRLF clone never gains an LF-terminated key. Both helpers
+// mirror `locateClosingFence`/`nativeEol` in `tools/workbench-adoption.mjs`,
+// which already faced this on the adoption path.
+export function locateClosingFence(content) {
+  const open = content.match(/^---(\r\n|\n|\r)/);
+  if (!open) return null;
+  const close = content.slice(open[0].length).match(/(\r\n|\n|\r)---(?=\r\n|\n|\r|$)/);
+  if (!close) return null;
+  return { index: open[0].length + close.index, eol: close[1] };
+}
+
+export function nativeEol(content) {
+  const match = content.match(/\r\n|\n|\r/);
+  return match ? match[0] : '\n';
+}
+
+// Insert only the frontmatter keys a record is missing. A record with no
+// frontmatter gains a new block above an untouched body; a record with partial
+// frontmatter gains the missing lines immediately above its closing fence.
+// Nothing already declared is read, reordered, or rewritten, so the failure
+// mode of an automatic repair - silent content loss - cannot occur.
+export function insertFrontmatterKeys(content, fields, label) {
+  const parsed = parseFrontmatter(content);
+  if (!parsed.data) {
+    const eol = nativeEol(content);
+    const block = ['---', ...fields.flatMap(([, lines]) => lines), '---', ''].join(eol);
+    return { content: `${block}${eol}${content}`, inserted: fields.map(([name]) => name) };
+  }
+  const missing = fields.filter(([name]) => parsed.data[name] === undefined);
+  if (missing.length === 0) return { content, inserted: [] };
+  const fence = locateClosingFence(content);
+  // parseFrontmatter found frontmatter in the terminator-normalized text, so a
+  // closing fence exists here too. If it does not, the two have disagreed and
+  // splicing at a guessed offset would corrupt the record.
+  if (!fence) throw new Error(`${label} parsed as having frontmatter but carries no locatable closing fence.`);
+  const lines = missing.flatMap(([, value]) => value);
+  return { content: `${content.slice(0, fence.index)}${fence.eol}${lines.join(fence.eol)}${content.slice(fence.index)}`, inserted: missing.map(([name]) => name) };
 }
 
 export function listAdrs(root) {
@@ -104,6 +150,27 @@ export function validateAdrs(root) {
     }
   }
   return findings;
+}
+
+// Bring existing records into shape without editing a body. `status` defaults
+// to `proposed` because an inserted `accepted` would assert an acceptance
+// nobody made, and an accepted record still needs a `canonicalized_in` owner
+// only its author can name - normalize reports that record as unchanged and
+// `validate` keeps failing it.
+export function normalizeAdrs(root, options = {}) {
+  const date = options.date ?? new Date().toISOString().slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('--date must be YYYY-MM-DD');
+  const fields = [['status', ['status: proposed']], ['date', [`date: ${date}`]]];
+  const changed = [];
+  for (const adr of listAdrs(root)) {
+    const content = fs.readFileSync(adr.filePath, 'utf8');
+    const result = insertFrontmatterKeys(content, fields, adr.relativePath);
+    if (result.inserted.length === 0) continue;
+    assertSafeWritePath(root, adr.filePath);
+    writeSafeFile(root, adr.filePath, result.content);
+    changed.push({ record: adr.relativePath, inserted: result.inserted });
+  }
+  return { changed };
 }
 
 export function renderRegister(adrs) {
@@ -206,10 +273,12 @@ if (isMainModule(import.meta.url)) {
       if (findings.some((item) => item.severity === 'error')) process.exitCode = 1;
     } else if (command === 'register') {
       console.log(JSON.stringify(writeRegister(root)));
+    } else if (command === 'normalize') {
+      console.log(JSON.stringify(normalizeAdrs(root, { date: options.date })));
     } else if (command === 'new') {
       console.log(JSON.stringify(newAdr(root, options)));
     } else {
-      throw new Error('Usage: adr.mjs validate [--json] | register | new --title "Decision title" [--date YYYY-MM-DD]');
+      throw new Error('Usage: adr.mjs validate [--json] | normalize [--date YYYY-MM-DD] [--json] | register | new --title "Decision title" [--date YYYY-MM-DD]');
     }
   } catch (error) {
     console.error(`error: ${error.message}`);

@@ -12,17 +12,17 @@
       "Edit(./.env.*)",
       "Edit(./secrets/**)",
       "Edit(./credentials/**)",
-      "Write(./secrets/**)"
+      "Edit(./[BUILD_OUTPUT_DIR]/**)"
     ],
     "ask": [
       "Bash(git push:*)",
       "Bash(rm -rf:*)",
-      "Edit(./workbench/tools/**)",
-      "Edit(./workbench/manifest.json)"
+      "Edit(./[SCHEMA_OR_MIGRATIONS_DIR]/**)",
+      "Edit(./workbench/tools/**)"
     ],
     "allow": [
-      "Edit(./tour.mjs)",
-      "Edit(./tests/**)",
+      "Edit(./[PRIMARY_SOURCE_DIR]/**)",
+      "Edit(./[TEST_DIR]/**)",
       "Edit(./AGENTS.md)",
       "Edit(./BLUEPRINT.md)",
       "Edit(./LEXICON.md)",
@@ -34,8 +34,8 @@
       "Edit(./workbench/wiki/**)",
       "Edit(./workbench/feedback/**)",
       "Edit(./workbench/sessions/**)",
-      "Bash(node tests/tour.test.mjs)",
-      "Bash(node --check tour.mjs)",
+      "Bash([TEST_COMMAND])",
+      "Bash([BUILD_COMMAND])",
       "Bash(node workbench/tools/spec-workbench.mjs:*)",
       "Bash(node workbench/tools/adr.mjs:*)",
       "Bash(node workbench/tools/sessions.mjs:*)",

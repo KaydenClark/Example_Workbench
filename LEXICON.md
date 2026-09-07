@@ -1,6 +1,6 @@
 # Example Workbench - Lexicon
 
-> Generated from LLM Workbench v3.1.1.
+> Generated from LLM Workbench v3.1.2.
 
 **Last reviewed:** 2026-09-06
 **Status:** active
@@ -75,12 +75,14 @@ binding behavior lives in `AGENTS.md`, cross-cutting architecture in
 | **Design Concept article** | An owner-authorized, encyclopedic wiki article in `wiki/design-concepts/` explaining one durable cross-cutting design model, ending with `Evidence and Sources` and carrying `History`. | It documents a design concept; it is not the Blueprint, an ADR, a procedure, or task state, and agents suggest or repair it but do not create it. |
 | **Wiki profile** | The manifest's declared wiki shape: `project` (one room's memory router and collections) or `deployment` (adds owner, machine, and project pointer collections). | A profile declares routing shape; it grants no authority and copies no live task state. |
 | **Managed runtime tool** | A file in `workbench/tools/` installed from the Workbench release and listed in the tools receipt with its source release, commit, and hash. | It is updated only by explicit update with backup and rollback; an application's root `tools/` is application-owned. |
+| **Declared integration branch** | The branch, named by exact case in `workbench/manifest.json` `git.integrationBranch`, into which the independent review gate merges task branches; `git.defaultBranch` names the branch it is created from. | A declaration, not a prose convention: controls resolve it from the manifest, `doctor` reports it undeclared or missing without blocking selection, and only generation, adoption, and upgrade completion fail closed on it. |
 
 ## Project Terms
 
 | Term | Definition | Distinction / aliases to avoid |
 |---|---|---|
-| **Room** | One repository with the Workbench installed in it: seven root controls, a `workbench/` support root declared by a manifest, and an installed managed runtime. | A room is an installation, not the harness. `LLM_Workbench` is the harness; `Example Workbench` is a room. Avoid "workbench" alone when you mean one installation. |
-| **Tour** | The ordered list of places in `tour.mjs`, each naming a real path with what it owns and why it is kept apart. | The tour is data that happens to print. It is not prose about the room and not a README section; the test reads the same list the terminal does. |
-| **Place** | One entry in the tour: a path, the truth it owns, and the reason that truth is not kept somewhere else. | A place is not merely a directory. A directory nobody can say a "why" for does not belong in the room. |
+| **Room** | One repository with the Workbench installed in it: seven root controls, a `workbench/` support root declared by a manifest, and an installed managed runtime. | A room is an installation, not the harness. `LLM_Workbench` is the harness; `Example Workbench` and `Audit Workbench` are rooms. Avoid "workbench" alone when you mean one installation. |
+| **Tour** | The ordered list of places in `tour.mjs`, each naming a real path with what it owns and why it is kept apart. | The tour is data that happens to print. It is not prose about the room and not a README section; the tests read the same list the terminal does. |
+| **Place** | One entry in the tour: a path, its zone, the truth it owns, and the reason that truth is not kept somewhere else. | A place is not merely a directory. A directory nobody can say a "why" for does not belong in the room. |
+| **Zone** | One of the three groupings a place belongs to: `Root controls`, `The support root`, `The product`. | Zones organize the explanation. They are not lanes, and the manifest does not know about them. |
 | **Drift** | The condition where the room's structure and the tour's description of it disagree. | Drift is a test failure here, not a documentation backlog item. `node tests/tour.test.mjs` is what makes that true. |
