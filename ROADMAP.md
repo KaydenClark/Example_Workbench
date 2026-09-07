@@ -1,35 +1,37 @@
-# Example Workbench - Roadmap
+# Example Workbench (v1.1 anti-drift) - Roadmap
 
-**Current phase:** explained  
+**Current phase:** room filled and self-describing  
 **Owner:** Kayden Clark
 
 This is the active work plan. Keep it forward-looking and proof-oriented. Do not use it as a dumping ground for old session history.
 
 ## Current State
 
-The room's one capability, make the room explain itself, is done. `node tour.mjs` prints the map of the five v1 controls, the README, the tour, and its test; `node tests/tour.test.mjs` passes and proves every path exists and every prescribed control is described. All five controls are filled from the v1 templates with no placeholders left. For the most recent baseline result, see the top row of the Verification Log.
+The room is complete for its one capability. `tour.mjs` prints the room map for every control file at this generation (seven root controls plus the product and its test), and `tests/tour.test.mjs` passes against the room as it stands. For the most recent baseline result, see the top row of the Verification Log.
 
 Important drift or uncertainty:
 
-- The room is frozen at LLM Workbench source commit `a2cdd4548d895461c3d27a6da34740d8c76ccdd5`. That generation shipped no tooling, so `tests/tour.test.mjs` is the only automated check; whether each control still matches its v1 template is checked by reading.
+- This room is one commit on the `version/02-v1.1-anti-drift` branch of `KaydenClark/Example_Workbench`, whose `main` holds a v3.1.2 room. The two are different harness generations; nothing on `main` instructs this room, and this room is not upgraded to match it.
+- `AGENTS.md` -> What Not To Do refers to `TASKBOARD.md` and `team templates/` for manager/subagent runs; neither exists in this room because it is single-agent. The rule is kept verbatim and marked not applicable in place.
 
 ## Current Goal
 
-Keep the room a faithful, verified example of a filled v1 room.
+Make the room explain itself: one command prints what every file is for, and one command proves that explanation still matches the room.
 
 Done when:
 
-- `node tour.mjs` prints the map under the heading `Example Workbench (v1 ROADMAP, first public release, 2026-06-22) - room map`.
-- `node tests/tour.test.mjs` passes from inside the room directory.
-- No bracketed template placeholder remains in any control or the README.
-
-All three hold as of 2026-09-06.
+- `node tour.mjs` prints every control file and support location under the heading `Example Workbench (v1.1 anti-drift and version control, 2026-06-25) - room map`.
+- `node tests/tour.test.mjs` passes: every named path exists, every root `.md` file and every prescribed control is described, every `owns` and `why` is non-trivial, and no template placeholder remains.
+- Every control the v1.1 templates ship is copied and filled, with the anti-drift, version-control, and write-safety additions from commit fb406e1 present and filled rather than generic.
 
 ## Next Tasks
 
-1. **Build the next generation's room** - the LLM Workbench commit after `a2cdd4548d895461c3d27a6da34740d8c76ccdd5` gets its own `version/NN-slug` branch, filled the same way from that generation's templates. That work happens on its own branch and does not change this one. Proof: on that branch, `node tour.mjs` prints its own map and `node tests/tour.test.mjs` passes.
+Work top to bottom. Tick a box only once its proof exists (a Verification Log row or a named manual check). This list is the live progress ledger, keep it accurate across the session, especially after a context summary.
 
-No further tasks are queued. The template's slots for a second and third task are left empty on purpose rather than filled with invented work.
+- [x] **Fill the v1.1 controls** - `AGENTS.md`, `BLUEPRINT.md`, `ROADMAP.md`, `RUNBOOK.md`, `VISUAL_DESIGN.md`, `README.md`, and the `CLAUDE.md` bridge filled with no placeholder left. Proof: the placeholder grep in `RUNBOOK.md` -> Test And Build returns nothing (Verification Log, 2026-09-06).
+- [x] **Write the tour** - `tour.mjs` exports `PLACES` and prints the room map. Proof: `node tour.mjs` (Verification Log, 2026-09-06).
+- [x] **Prove the tour** - `tests/tour.test.mjs` asserts every claim in the map against the room. Proof: `node tests/tour.test.mjs` (Verification Log, 2026-09-06).
+- [ ] **Compare against the neighbouring generations** - once the `version/01-*` and `version/03-*` branches exist, add one paragraph to `README.md` naming what changed between this room and the ones before and after it. Proof: manual check that each named difference points at a real section on the neighbouring branch.
 
 ## Blocked Or Deferred
 
@@ -37,22 +39,22 @@ Do not start these until their prerequisite is met.
 
 | Item | Blocked on | Why it matters |
 |---|---|---|
-| none | | |
+| Compare against the neighbouring generations | The neighbouring `version/NN-slug` branches being built and pushed | The comparison is the reason the version branches exist; written early it would describe rooms that are not there yet |
 
 ## Backlog
 
 Keep this short. Promote items into `Next Tasks` only when they are ready to work.
 
-- none
+- None. The room is frozen at the v1.1 template set; new harness behavior belongs on a later generation's branch, not here.
 
 ## Release Checks
 
-Verification commands live in `RUNBOOK.md` → Test And Build. Do not duplicate them here.
+Verification commands live in `RUNBOOK.md` -> Test And Build. Do not duplicate them here.
 
 Project-specific release and checkpoint checks (not in RUNBOOK):
 
-- Placeholder scan: `grep -rnE '\[[[:upper:]][[:upper:][:digit:]_ -]+\]' . --include=*.md --include=*.json` from the repository root returns nothing.
-- Docs updated: the `Last reviewed` dates in `BLUEPRINT.md` and `RUNBOOK.md` match the last content change.
+- Placeholder scan over `.md` and `.json` files returns nothing (the exact command is in `RUNBOOK.md` -> Test And Build, full verification).
+- The provenance line at the top of `README.md` still names source commit `8572dd17f8ee97603225be6cdff924c0d767521b` dated 2026-06-25 and branch `version/02-v1.1-anti-drift`.
 
 ## Documentation Check
 
@@ -78,4 +80,4 @@ Append a row when a task changes durable project state. Use actual results, not 
 
 | Date | Task | Proof | Result | Remaining gap |
 |---|---|---|---|---|
-| 2026-09-06 | Build the room from the v1 templates and add the self-describing tour | `node tour.mjs` printed the room map; `node tests/tour.test.mjs` ran 7 tests, 7 pass, 0 fail | pass | none; docs written in the same task |
+| 2026-09-06 | Fill the v1.1 controls, write the tour, prove the tour | `node tour.mjs` printed 9 places under the expected heading; `node tests/tour.test.mjs` reported 7 tests, 7 pass, 0 fail; placeholder grep returned nothing | pass | Docs written in the same task; the neighbouring-generation comparison in `README.md` waits on the neighbouring version branches |

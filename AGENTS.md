@@ -1,4 +1,4 @@
-# Example Workbench - Agent Instructions
+# Example Workbench (v1.1 anti-drift) - Agent Instructions
 
 This file controls how agents behave in this project. It should answer four questions quickly:
 
@@ -33,20 +33,18 @@ The agent may read:
 
 The agent must not read secrets or private local data unless the task requires it and the file is inside the approved project scope.
 
-This room is the `version/01-v1-roadmap` branch of `KaydenClark/Example_Workbench`. Other branches of the same repository carry later harness generations and the current room; reading them is allowed for comparison, but they are not instruction sources for this branch. This room stores no secrets, credentials, or private data and must acquire none.
-
 ## Edit Scope
 
 The agent may edit:
 
-- `tour.mjs`
-- `tests/`
-- `AGENTS.md`, `BLUEPRINT.md`, `ROADMAP.md`, `RUNBOOK.md`, `VISUAL_DESIGN.md`, `README.md`
-- dependency manifests and lockfiles only when a dependency change is necessary and explained. This room has none, by design.
+- `tour.mjs` (the product: the room map and the `PLACES` table)
+- `tests/` (`tests/tour.test.mjs`, the proof that the map matches the room)
+- `README.md`, `AGENTS.md`, `BLUEPRINT.md`, `ROADMAP.md`, `RUNBOOK.md`, `VISUAL_DESIGN.md`, and the one-line `CLAUDE.md` bridge, whenever a change would otherwise leave them stale
+- dependency manifests and lockfiles only when a dependency change is necessary and explained. This room has none: it runs on Node.js 20+ with zero dependencies, and adding a `package.json` counts as a dependency change that must be explained.
 
 The agent must not edit:
 
-- `.git/`, other branches of this repository, and anything outside this repository;
+- `.git/`, anything outside this repository, and the other branches of `KaydenClark/Example_Workbench` (`main` holds the current v3.1.2 room and each `version/NN-slug` branch holds another harness generation; this room is the `version/02-v1.1-anti-drift` branch and stays on the v1.1 template set); the read-only LLM Workbench source checkout this room was filled from;
 - secrets, credentials, OAuth tokens, local databases, raw personal data, generated build output, dependency folders, or unrelated projects;
 - architecture, product direction, or persistence model unless the user asks for that or the current approach is blocking correctness.
 
@@ -110,14 +108,14 @@ For behavior changes, use red/green/refactor:
 3. Run the test and confirm it fails for the expected reason.
 4. Implement the smallest change.
 5. Run the targeted test.
-6. Run the full verification suite from `RUNBOOK.md` → Test And Build.
+6. Run the full verification suite from `RUNBOOK.md` -> Test And Build.
 
 If tests are impractical, run a concrete manual check instead and **name the specific reason** in your response (e.g., "no test harness for this UI interaction," "credential unavailable in this session").
 
 Every completed task leaves proof in two places:
 
 - Final response: what changed, why, risks, how verified.
-- `ROADMAP.md` Verification Log: **mandatory** — append one row when state changed. This is the only required durable write.
+- `ROADMAP.md` Verification Log: **mandatory**, append one row when state changed. This is the only required durable write.
 
 Documentation updates are mandatory when the change would otherwise make docs
 stale. If documentation was checked and did not need edits, say so in the final
@@ -128,6 +126,20 @@ Use command results, browser checks, API probes, screenshots, or documented manu
 
 Never claim work is complete unless verification ran. If it could not run, say exactly why and record the gap in `ROADMAP.md`.
 
+## Staying On Track
+
+Long sessions drift: early instructions lose ground to whatever was said most recently, and after a context summary the original goal can quietly change shape. Counter it deliberately.
+
+- Re-read `ROADMAP.md` (Current Goal + Next Tasks) at the start of each task, and again after any context compaction or summary. Reconcile your plan against it before continuing.
+- Keep the `ROADMAP.md` Next Tasks checkboxes current as you go. Tick a box only once its proof exists. The checklist is your durable progress ledger, trust it over memory.
+- For a large or open-ended exploration, delegate it to a subagent so the main thread stays anchored to the goal instead of filling with search output.
+
+## When To Ask, Proceed, Or Stop
+
+- **Proceed** without asking on low-risk, reversible decisions inside scope. Record the decision in the relevant doc.
+- **Ask one focused question first** when a missing answer would change the architecture, data model, a public contract, or a safety boundary, or when acting could destroy data or leave the repo broken.
+- **Stop and surface** rather than retrying forever: if the same change fails verification twice, report what you tried, the failure, and where you are stuck. Do not loop on the same fix.
+
 ## Day-One Checklist
 
 Load only what the task requires:
@@ -135,7 +147,7 @@ Load only what the task requires:
 - **Quick fix or single-file change:** Read `ROADMAP.md` (Current State + Current Goal).
 - **Feature, refactor, or unknown-scope bug:** Read `BLUEPRINT.md` and `ROADMAP.md`.
 - **Onboarding, setup, or architecture work:** Read all three (`BLUEPRINT.md`, `ROADMAP.md`, `RUNBOOK.md`).
-- **Any task that involves running verification:** Also open `RUNBOOK.md` → Test And Build for commands.
+- **Any task that involves running verification:** Also open `RUNBOOK.md` -> Test And Build for commands.
 - **Any task that creates or changes a UI/visual surface:** Read `VISUAL_DESIGN.md` from this project, or the nearest project-local visual guide, unless the project has a stronger brand guide.
 
 Then for every task:
@@ -165,5 +177,5 @@ Keep the response concise. Flag uncertainty instead of hiding it.
 - Do not add paid services unless the user explicitly approves them.
 - Do not leave unexplained TODOs or placeholder logic.
 - Do not treat prior session notes or ROADMAP history as current truth without verifying source state.
-- Do not rewrite existing rows in `ROADMAP.md`; only append new rows. If two tasks run concurrently, each appends its own row independently.
+- Do not rewrite existing rows in `ROADMAP.md`; only append new rows. A shared file written by two agents at once is itself an overlap: re-read the log immediately before appending, append only your own row, and if the file changed since you read it, rebase your row onto the latest version. In a manager/subagent run, subagents log proof to `TASKBOARD.md` and the manager transcribes the final integrated result here; see `team templates/` in the upstream LLM Workbench harness. This room is single-agent and did not copy the team templates, so no `TASKBOARD.md` exists here.
 - Do not skip the TDD test-skip reason; name it explicitly in the response rather than claiming "not practical" without justification.

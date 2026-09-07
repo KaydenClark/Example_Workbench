@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Keeps the tour honest: each claim the map makes about this room can fail here.
+// Keeps the tour honest. The tour claims things about this room's layout and
+// about what the v1.1 generation added; each case turns a claim into a check.
 
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,13 +8,11 @@ import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-import { GENERATION, PLACES, ROOM_ROOT, render } from '../tour.mjs';
+import { CONTROLS, HEADING, PLACES, ROOM_ROOT, render } from '../tour.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const described = new Set(PLACES.map((place) => place.path));
-
-// The five controls the v1 README lists as the harness.
-const CONTROLS = ['AGENTS.md', 'BLUEPRINT.md', 'ROADMAP.md', 'RUNBOOK.md', 'VISUAL_DESIGN.md'];
+const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
 test('the tour and the room agree on where the room is', () => {
   assert.equal(ROOM_ROOT, root, 'the tour must describe the room it ships inside');
@@ -25,38 +24,46 @@ test('every place the tour names exists in this room', () => {
   }
 });
 
+test('every root Markdown file and every prescribed control is described', () => {
+  for (const file of fs.readdirSync(root).filter((name) => name.endsWith('.md'))) {
+    assert.ok(described.has(file), `${file} is not described by the tour`);
+  }
+  for (const control of CONTROLS) {
+    assert.ok(fs.existsSync(path.join(root, control)), `prescribed control ${control} is missing`);
+    assert.ok(described.has(control), `prescribed control ${control} is not described by the tour`);
+  }
+});
+
 test('every place says what it owns and why it is kept apart', () => {
   for (const place of PLACES) {
     assert.ok(place.owns && place.owns.trim().length > 20, `${place.path} does not say what it owns`);
-    assert.ok(place.why && place.why.trim().length > 40, `${place.path} does not say why it is separate`);
-    assert.ok(!/\[[A-Z][A-Z0-9_ -]+\]/.test(place.owns + place.why), `${place.path} still carries a template placeholder`);
+    assert.ok(place.why && place.why.trim().length > 40, `${place.path} does not say why it is kept apart`);
   }
 });
 
-test('every control this generation prescribes is present and described', () => {
-  for (const control of CONTROLS) {
-    assert.ok(fs.existsSync(path.join(root, control)), `control ${control} is missing`);
-    assert.ok(described.has(control), `control ${control} is not explained by the tour`);
-  }
+test('the printed map opens with the generation heading', () => {
+  assert.equal(HEADING, 'Example Workbench (v1.1 anti-drift and version control, 2026-06-25) - room map');
+  assert.equal(render().trim().split('\n')[0], HEADING);
 });
 
-test('every Markdown file at the room root is described', () => {
-  const docs = fs.readdirSync(root).filter((name) => name.endsWith('.md'));
-  assert.ok(docs.length >= CONTROLS.length + 1, 'the room root should hold the controls plus a README');
-  for (const doc of docs) {
-    assert.ok(described.has(doc), `${doc} sits at the room root but the tour never explains it`);
-  }
+test('the v1.1 additions are present in the filled controls, not left generic', () => {
+  assert.equal(read('CLAUDE.md').trim(), '@AGENTS.md', 'the Claude bridge must be exactly the import');
+  const agents = read('AGENTS.md');
+  assert.match(agents, /^## Staying On Track$/m, 'AGENTS.md lost the anti-drift protocol');
+  assert.match(agents, /^## When To Ask, Proceed, Or Stop$/m, 'AGENTS.md lost the stop-after-two-failures rule');
+  assert.match(agents, /re-read the log immediately before appending/, 'AGENTS.md lost the write-safety rule');
+  const roadmap = read('ROADMAP.md');
+  assert.ok(/^- \[x\] \*\*/m.test(roadmap), 'ROADMAP.md Next Tasks must be a checkbox ledger with the tour ticked');
+  assert.ok(/^- \[ \] \*\*/m.test(roadmap), 'ROADMAP.md must name one honest next step');
+  const runbook = read('RUNBOOK.md');
+  assert.match(runbook, /^## Version Control$/m, 'RUNBOOK.md lost the Version Control section');
+  assert.match(runbook, /`integration`/, 'the Version Control section must name the repository staging branch');
+  assert.match(read('VISUAL_DESIGN.md'), /^## Accessibility$/m, 'VISUAL_DESIGN.md lost the Accessibility section');
 });
 
-test('the product and its test describe themselves', () => {
-  assert.ok(described.has('tour.mjs'));
-  assert.ok(described.has('tests/tour.test.mjs'));
-});
-
-test('the rendered map carries the generation heading and every path', () => {
-  const out = render();
-  assert.ok(out.includes(`Example Workbench (${GENERATION}) - room map`), 'heading missing');
-  for (const place of PLACES) {
-    assert.ok(out.includes(`  ${place.path}\n`), `rendered map omits ${place.path}`);
+test('no template placeholder survived in the controls', () => {
+  for (const file of fs.readdirSync(root).filter((name) => /\.(md|json)$/.test(name))) {
+    const hit = read(file).match(/\[[A-Z][A-Z0-9_ -]+\]/);
+    assert.equal(hit, null, `${file} still carries the placeholder ${hit && hit[0]}`);
   }
 });
