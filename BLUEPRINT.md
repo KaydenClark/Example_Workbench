@@ -1,109 +1,124 @@
-# Example Workbench - Blueprint
+# Example Workbench (v0 GAME_PLAN) - Blueprint
 
-> Generated from LLM Workbench v3.1.2.
+**Created:** 2026-09-06  
+**Status:** blank project starting spec
 
-**Last reviewed:** 2026-09-06
-**Status:** active
-**Source root:** the repository root (this room is the whole project)
+This is the stable target for the project. Keep it short enough that a new agent can read it at the start of every session.
 
-## Product Map
+## What This Project Is
 
-The Example Workbench is the smallest complete room: a working LLM Workbench
-installation whose product is an explanation of what a room is. It serves two
-readers. Someone meeting the harness for the first time can run one command and
-see every part of a room named, with what it owns and why it is kept apart from
-everything else. Someone maintaining the harness gets a real target to test
-genesis and upgrade against, instead of rehearsing on a repository that carries
-actual work. The problem it solves is that a structure documented only in
-templates is a claim nobody has checked; here the documentation is executable
-and fails when the room drifts from it.
+A self-describing tour of the smallest room the first LLM Workbench generation could produce. It is used by anyone meeting the harness for the first time and by the owner tracing how the harness contract grew: `node tour.mjs` prints every control file the room has, what truth that file keeps, and why it is kept apart from the others, and `node tests/tour.test.mjs` proves the printed map still matches the files on disk. It solves the problem that templates show the shape of an answer but never a filled example.
 
 Core promise:
 
-> Run `node tour.mjs` and you will know what every directory in a workbench is
-> for, and why. Run `node tests/tour.test.mjs` and you will know the answer is
-> still true.
-
-## Goals And Pillars
-
-- **Explanation that cannot rot:** every claim the room makes about its own
-  layout is asserted by a test. Documentation that can go stale silently is not
-  documentation, it is a rumour with formatting.
-- **Smallest complete room:** the room stays as small as it can be while still
-  being a genuine installation — real manifest, real lanes, real installed
-  runtime, real spec. A simplified imitation would teach the wrong shape.
-- **A safe rehearsal target:** genesis and upgrade get exercised here, on a room
-  whose loss would cost nothing, before they are pointed at a room that matters.
-
-## Cross-Cutting Architecture And Invariants
-
-| Layer / concern | Choice | Invariant / source |
-|---|---|---|
-| Runtime | Node.js 20+ | No dependencies, ever. A room that needs an install step cannot be the first thing a newcomer runs. |
-| Product surface | CLI (`node tour.mjs`) | One command, no arguments, output that fits a terminal. |
-| Data/storage | none | The repository is the only state. Nothing to seed, migrate, or back up. |
-| Testing | `node:test` (built in) | Matches the upstream harness suites, and adds nothing to install. |
-| Deployment/runtime | none — the room is read and run in place | Nothing to deploy means nothing that can be stale in production. |
-
-Rules that span multiple capabilities:
-
-- **The tour is the single source of truth for what goes where.** Prose in any
-  other file explains a part; only `tour.mjs` enumerates all of them, and only
-  it is checked against the manifest.
-- **Every lane and collection the manifest declares must be explained.** Adding
-  one without describing it is a test failure, not a documentation debt.
-- **The room holds no secrets and acquires none.** It exists to be copied,
-  read, and thrown away, so nothing in it may ever be sensitive.
-- **`workbench/tools/` changes only through an explicit update.** The room does
-  not hand-edit its own managed runtime; that is what makes its receipt mean
-  something.
-
-Source and tests say what is implemented; this file and the assigned spec say
-what is accepted (`AGENTS.md` -> State Resolution). Put capability-specific
-requirements and decisions in its stable spec, not here. Consequential
-architectural decisions with real alternatives get a record in
-`workbench/docs/adr/`; the rule they establish still lives in the owning
-control, because the Workbench Contract is the set of claims those controls
-and the assigned spec carry, not a file.
-Put accepted project-wide definitions in `LEXICON.md`; the Blueprint helps
-participants recover the design concept but is not itself the design concept or
-the project glossary.
+> Run one command in this directory and the room explains itself; run a second and the explanation is checked against the room, so it cannot quietly go stale.
 
 ## Non-Goals
 
-- **Not a template.** `templates/` upstream stays generic and bracketed; this
-  room is deliberately filled. Copying it wholesale gives you this room's
-  content, not a blank one.
-- **Not a tutorial for building software.** It explains the shape of a room,
-  not how to design a product inside one.
-- **Not a test harness for the upstream tools.** Those have their own suites.
-  This room is a rehearsal target, not a replacement for them.
+- Do not reproduce later harness generations here (lexicon, runbook, taskboard, specs, manifest, tooling). Those live on the later `version/` branches of this repository.
+- Do not add a build step, dependencies, or a package manager. Node.js 20+ alone runs everything.
+- Do not give this room a remote, branch policy, or version stamp of its own; it is one commit on the `version/00-v0-game-plan` branch and the repository's policy applies.
 
-## Spec Catalog
+## MVP
 
-The generated catalog links every durable capability record, including completed
-history. Human-authored product prose stays outside the markers.
+The first useful version must let a user:
 
-<!-- spec-catalog:start -->
-| Spec | Description | Status |
+- print the room map with `node tour.mjs` from inside this directory
+- read, for each control file, the truth it owns and why it is separate
+- check the map against the room with `node tests/tour.test.mjs`
+
+MVP is complete when:
+
+- `node tour.mjs` prints the heading `Example Workbench (v0 GAME_PLAN (pre-release, 2026-06-18)) - room map` followed by every place in `PLACES`
+- `node tests/tour.test.mjs` passes: every named path exists, every `.md` file at the room root is described, the four controls this generation prescribes are described, and every `owns` and `why` is non-trivial
+- no bracketed template placeholder remains in any Markdown file in the room
+
+## Architecture Decision
+
+| Layer | Choice | Rationale |
 |---|---|---|
-| [S-001 - Self-Explaining Room](workbench/specs/S-001-self-explaining-room/SPEC.md) | A room that prints an accurate, test-checked account of what a workbench is and why each part is where it is. | active |
-<!-- spec-catalog:end -->
+| Runtime | Node.js 20+, ESM | Already required by the parent repository; ships `node:test`, so nothing is installed |
+| Frontend | none | The product is terminal output; a screen would be a landing page, which this contract forbids building instead of the tool |
+| Backend | none | Everything is read from the local filesystem at run time |
+| Database/storage | none | The only data is the `PLACES` array in `tour.mjs`; the files it describes are the store |
+| Auth | none | A read-only local tool has nobody to authenticate |
+| Testing | `node:test` with `node:assert/strict` | Built into the runtime; one file, one command, no framework to keep current |
 
-## Cross-Cutting Health
+Constraints:
+
+- Use free/local tooling unless approved otherwise.
+- Prefer the smallest stack that can support the MVP.
+- Add complexity only when the current workflow proves it needs it.
+
+## Initial Directory Plan
+
+```text
+./
+├── tour.mjs       <- the product: exports PLACES and prints the room map
+├── tests/         <- tests/tour.test.mjs, the check that keeps the map honest
+├── README.md      <- setup and run commands
+├── AGENTS.md      <- agent operating rules
+├── BLUEPRINT.md   <- stable product/architecture reference
+└── GAME_PLAN.md   <- active execution plan
+```
+
+## Core Workflows
+
+### Print the room map
+
+User goal: learn what each file in this room is for without opening it.
+
+Expected flow:
+
+1. Run `node tour.mjs` from the repository root.
+2. The tour resolves the room root from `import.meta.url` and reads `PLACES`.
+3. It prints the heading, then one block per place: path, `owns`, `why`.
+
+Empty/error states:
+
+- `PLACES` is never empty; the test fails if it names fewer than the four prescribed controls, so an empty map cannot ship.
+- A path in `PLACES` that does not exist on disk is reported by the test with the missing path in the assertion message, not by the tour at print time.
+
+### Check the map against the room
+
+User goal: trust that the printed map is still true.
+
+Expected flow:
+
+1. Run `node tests/tour.test.mjs` from the repository root.
+2. The test imports `PLACES` and `ROOM_ROOT` from `../tour.mjs` and lists the room root.
+3. Every assertion names the offending path when it fails.
+
+Empty/error states:
+
+- A new `.md` file at the room root that the tour does not describe fails the test by name.
+- A place with a one-word `owns` or `why` fails the test by path.
+
+## Data Model
+
+| Entity | Fields | Notes |
+|---|---|---|
+| `Place` | `path`, `owns`, `why` | One entry per control file or support location; `path` is relative to the room root; `owns` is the truth kept there; `why` is why it is not kept elsewhere, taken from this generation's own template wording |
+
+## Verification Bar
+
+The project is not considered working until:
 
 - `node tests/tour.test.mjs` passes;
-- `node workbench/tools/workbench-layout.mjs validate --project .` passes when relevant;
-- the primary workflow succeeds end to end;
-- secrets and private data stay out of committed output;
-- spec doctor/render checks report no lifecycle, link, or projection drift.
+- the app/service starts locally;
+- the primary MVP workflow has been manually verified;
+- empty and error states do not crash.
 
-## Workbench Entry And Delivery Boundaries
+Commands, once implemented:
 
-The seven-control Contract enters through AGENTS -> RUNBOOK -> LEXICON, then
-assigned work and task-relevant owners. This Blueprint loads for architecture
-and cross-cutting direction. SPEC and TASK assign portable stances; stances
-change method without transferring authority or spawning agents. Independent
-review is required before branches combine at integration. Required steps need
-immediate delivery value; uncertain practices remain optional and reviewable.
-A setup-only Round One proof reports in chat before feedback-report testing.
+```bash
+node --version            # nothing to install; Node.js 20+ is the only requirement
+node tests/tour.test.mjs
+node tour.mjs
+```
+
+## Open Decisions
+
+Only list decisions that truly block implementation.
+
+- None. Nothing blocks implementation; the room is built and verified.
