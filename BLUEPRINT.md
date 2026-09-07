@@ -1,130 +1,167 @@
-# Example Workbench (v1.1 anti-drift) - Blueprint
+# Example Workbench - Blueprint
 
-**Last reviewed:** 2026-09-06 <- update whenever any section content changes  
-**Status:** active  
-**Source root:** the repository root (a clone of `KaydenClark/Example_Workbench` with branch `version/02-v1.1-anti-drift` checked out)
+**Last reviewed:** 2026-09-06
+**Status:** active
+**Source root:** `.` - the clone of `https://github.com/KaydenClark/Example_Workbench` at branch `version/03-v2.0-taskboard` (no absolute path is stable across clones)
 
-This is the stable reference for what the project is. Keep it factual, source-backed, and short. **Delete any section with no real content rather than leaving placeholders**, a placeholder looks like data and isn't.
+This is the stable reference for what the project is. Keep it factual,
+source-backed, and short. Delete sections that do not apply instead of leaving
+placeholders that look like facts.
 
 ## What This Project Is
 
-A historical Example Workbench room: a filled copy of the LLM Workbench v1.1 templates (source commit 8572dd1, 2026-06-25) whose product is a self-describing tour. `tour.mjs` prints the map of this room, one entry per control file, saying what truth each file owns and why that truth is kept apart from the others. It is used by the owner of `KaydenClark/Example_Workbench` to see how the harness contract looked at this generation, next to the v3.1.2 room on `main`, and to back-track to it if needed.
+Example Workbench is the smallest complete LLM Workbench room, whose product is
+an explanation of what a room is. This copy is the room as the harness shaped
+it at the v2.0 TASKBOARD generation (2026-07-01): four filled control docs
+copied from `templates/`, a one-line Claude Code bridge, and a tour script that
+prints a map of the room and a test that proves the map is true. It is read by
+anyone meeting the harness for the first time and by the owner, who keeps one
+`version/` branch per harness generation to see how the contract progressed.
 
 Core promise:
 
-> Run one command from this directory and the room explains every file it contains; run one more and the room proves that explanation is still true.
+> Run one command and the room tells you what every file is for and why it is
+> kept apart from the others; run a second command and the room proves it.
 
 Primary users:
 
-- The owner, checking out the `version/NN-slug` branches side by side to see how the harness contract progressed.
-- An agent arriving cold in this room, who needs a filled example of the v1.1 controls rather than the bracketed templates.
+- The owner, comparing how each harness generation asked a project to organize
+  itself.
+- Coding agents (Claude, Codex, or any agent that reads repository
+  instructions) rehearsing the v2.0 control contract against a safe target.
 
 ## Non-Goals
 
 This project is not trying to:
 
-- be a real application; the tour is the whole product and it will not grow a UI, a server, or a data store.
-- track the newer harness; this room is frozen at the v1.1 template set and is not upgraded in place, later generations get their own `version/NN-slug` branch.
-- coordinate more than one agent; the team templates were not copied because the room is single-agent.
+- be a real application; the tour prints text and exits;
+- track the current harness - it deliberately stays at the v2.0 TASKBOARD
+  generation; later generations are later `version/` branches of the same
+  repository, and the current room is on `main`;
+- add dependencies, a build step, or any tooling beyond Node.js 20+.
 
 ## Current Product Shape
 
 When the project is working, a user can:
 
-- run `node tour.mjs` from the repository root and read the room map under the heading `Example Workbench (v1.1 anti-drift and version control, 2026-06-25) - room map`.
-- run `node tests/tour.test.mjs` and see every claim in the map checked against the room: every path exists, every control is described, every entry says what it owns and why.
-- import `PLACES` from `tour.mjs` to reuse the map programmatically.
+- run `node tour.mjs` and read, for every control file and the product itself,
+  what truth it owns and why it is separate;
+- run `node tests/tour.test.mjs` and see that every named path exists, every
+  root Markdown file is described, and no template placeholder leaked;
+- read the four controls as a filled example of this generation's templates.
 
 The most important quality bar is:
 
-- correctness: the map must never describe a file that does not exist or omit a control the generation prescribes.
+- correctness of the map: nothing the tour says about the room may be false.
+
+## Direction And Build Order
+
+Use this section for stable product direction and sequencing logic. Put the
+current executable task queue in `TASKBOARD.md`, not here.
+
+Current phase:
+
+- Done and frozen: the one capability ("make the room explain itself") is
+  built and proven; the room now changes only to stay true to itself.
+
+Build order:
+
+1. Fill the four v2.0 templates for this product - the controls are the
+   deliverable, so they come before any code.
+2. Write the tour and its test - the product exists once the map prints and
+   the proof passes.
+3. Keep the map honest - any later edit to the room is accepted only if the
+   test still passes.
 
 ## Architecture
 
 | Layer | Choice | Source / Notes |
 |---|---|---|
-| Runtime | Node.js 20+ (ESM) | `tour.mjs` uses `import.meta.url` to find the room root; verified on Node v22 |
-| Frontend | none | output is plain terminal text |
-| Backend | none | - |
-| Database/storage | none | the map is a constant in `tour.mjs`; nothing is written at run time |
-| Auth | none | - |
-| Testing | `node:test` and `node:assert/strict` | `tests/tour.test.mjs`, zero dependencies |
-| Deployment/runtime | none | run in place from a clone of the repository with this branch checked out |
+| Runtime | Node.js 20+ | ESM, `node:` built-ins only, zero dependencies |
+| Frontend | none | terminal text output |
+| Backend | none | |
+| Database/storage | none | the room's state is its Markdown files |
+| Auth | none | |
+| Testing | `node:test` + `node:assert/strict` | `tests/tour.test.mjs` |
+| Deployment/runtime | none | run in place from a clone of the repository |
 
 Architecture constraints:
 
-- Zero dependencies: no `package.json`, no `node_modules`, only the Node standard library.
-- Both commands must work from the repository root regardless of where the repository is cloned.
-- `tour.mjs` and `tests/tour.test.mjs` stay small (roughly 40-90 lines each); if the map needs more, that is a sign the room has outgrown this generation.
+- `tour.mjs` locates the room through `import.meta.url`, never through the
+  working directory, so it works wherever the repository is cloned.
+- No dependency manifest, no install step, no build step.
+- The map (`PLACES`) is the only source of the tour's claims; the test reads
+  the same export, so map and proof cannot disagree about what was claimed.
 
 ## Directory Map
 
 ```text
 Example_Workbench/
-├── tour.mjs            <- the product: PLACES table and the printed room map
-├── tests/              <- tests/tour.test.mjs, proof that the map matches the room
-├── CLAUDE.md           <- one line, @AGENTS.md, so Claude Code loads the rules
-├── README.md           <- human orientation and provenance line
-├── AGENTS.md           <- agent behavior and edit/read scope
-├── BLUEPRINT.md        <- stable project definition
-├── ROADMAP.md          <- active work plan and proof log
-├── RUNBOOK.md          <- setup, operation, verification, recovery
-└── VISUAL_DESIGN.md    <- default palette and accessibility rules (dormant here)
+├── tests/         <- tour.test.mjs, the proof the map matches the room
+├── tour.mjs       <- the product: prints the room map
+├── CLAUDE.md      <- one line, @AGENTS.md, so Claude Code loads the rules
+├── README.md      <- provenance line, the two commands, what the room is
+├── AGENTS.md      <- agent behavior and read/edit scope
+├── BLUEPRINT.md   <- stable project definition and direction
+├── TASKBOARD.md   <- live task queue, blockers, proof log
+└── RUNBOOK.md     <- setup, operation, verification, recovery
 ```
 
 ## Main Contracts
 
-Use only the sections that apply. Delete irrelevant sections. Routes / Screens and API Endpoints were deleted from this room: the product has no screens and no network surface.
+Use only the sections that apply. Delete irrelevant sections.
+
+Routes / Screens, API Endpoints, and Data Model are removed: this room has no
+UI, no network surface, and no stored data. Commands are the whole contract.
 
 ### Commands
 
 | Command | Purpose | Required for done? |
 |---|---|---|
-| `node tour.mjs` | Print the room map, the demo artifact | yes |
-| `node tests/tour.test.mjs` | Prove the map matches the room | yes |
-| `node --check tour.mjs` | Syntax check without running | no |
-
-### Data Model
-
-| Entity | Key fields | Stored where | Notes |
-|---|---|---|---|
-| `Place` | `path`, `owns`, `why` | `PLACES` array in `tour.mjs` | one per control file or support location; `path` is relative to the room root |
+| `node tour.mjs` | print the room map under the generation heading | yes |
+| `node tests/tour.test.mjs` | prove every claim in the map against the room | yes |
 
 ## Core Logic And Invariants
 
-The only logic is the map itself: `PLACES` in `tour.mjs` lists every control file and support location the room has at this generation, and `tests/tour.test.mjs` turns each listed claim into an assertion.
+The only logic is the `PLACES` list in `tour.mjs`: one entry per file, each
+with `path`, `owns`, and `why`. `render()` turns it into text; the test turns
+each entry into an assertion.
 
 Rules:
 
-- Every `path` in `PLACES` exists in the room.
-- Every Markdown file at the room root, and every control the v1.1 templates prescribe, has a `PLACES` entry.
-- Every entry has a non-trivial `owns` and `why`; a `why` shorter than a sentence is a placeholder.
-- No template placeholder (an upper-case name in square brackets) survives in any control file.
+- Every `PLACES` path exists in the room.
+- Every `.md` file at the room root has a `PLACES` entry.
+- Every `owns` and `why` is real prose, not a stub.
+- `CLAUDE.md` is exactly `@AGENTS.md`.
 
 Do not duplicate this logic in:
 
-- `README.md` or `BLUEPRINT.md` prose; they may summarize the map but the list of places lives only in `tour.mjs`.
+- the test file: it imports `PLACES` and `render` rather than keeping its own
+  list of files, so adding a file needs one edit, not two.
 
 ## Trust, Privacy, And Safety Boundaries
 
 Sensitive data:
 
-- none; this room stores no credentials, tokens, or private data and must acquire none.
+- none; the room holds no secrets, tokens, personal data, or local databases.
 
 Rules:
 
-- Nothing in this room reads the environment, the network, or files outside the room root.
-- Absolute home paths and email addresses must not be written into the controls beyond the declared source root above.
-- Any change that adds a dependency, a network call, or a write outside the room requires explicit user approval.
+- nothing here needs to stay local or be encrypted; the whole room is meant to
+  be read and copied;
+- never commit secrets, `.env` files, or logs into this room, even by accident
+  while working on another branch of the repository;
+- any edit outside this repository, and any rewrite of this branch's
+  published history, requires explicit owner approval.
 
 ## Known Risks
 
-List only stable architectural risks that future agents must stay aware of. Immediate blockers belong in `ROADMAP.md` -> Blocked Or Deferred instead.
+List stable architectural or product risks that future agents must stay aware
+of. Immediate blockers belong in `TASKBOARD.md` -> Blocked.
 
 | Risk | Impact | Mitigation / owner |
 |---|---|---|
-| The room is edited to match a newer harness generation | The historical record stops being historical | Later generations get their own `version/NN-slug` branch; this one stays on the v1.1 template set (owner) |
-| A control is added without a `PLACES` entry | The map lies by omission | `tests/tour.test.mjs` fails on any undescribed root `.md` file |
+| Nothing runs the test automatically (no CI, no hook), so a rename or an added root file could go unnoticed | the map silently lies until someone runs the test | run `node tests/tour.test.mjs` after any edit here; owner decides whether to add CI |
 
 ## Design Decisions
 
@@ -132,18 +169,20 @@ Record only decisions that future agents must preserve.
 
 | Decision | Rationale | Date / Source |
 |---|---|---|
-| Fill the templates by hand rather than with tooling | The v1.1 generation ships no room tooling; its README says to copy and replace placeholders | 2026-09-06 / upstream `README.md` -> How To Use It |
-| Keep `VISUAL_DESIGN.md` even though the product is terminal text | The v1.1 README lists it as a shipped control and `AGENTS.md` routes UI work to it; marked dormant in place rather than deleted | 2026-09-06 / `VISUAL_DESIGN.md` -> Project Application |
-| Do not copy `team templates/` | The room is single-agent; the manager/subagent write-safety rule in `AGENTS.md` stays as written and is noted as not applicable | 2026-09-06 / `README.md` |
+| Fill the v2.0 templates as they were; do not backport later sections (Lexicon, specs, wiki, support root) | the room's value is showing exactly what this generation asked for | 2026-09-06 / brief for the history rooms |
+| `CLAUDE.md` is the one-line bridge the generation README prescribes, not the annotated dogfood version | the dogfood notes are about the harness repository, not about a room built from its templates | 2026-09-06 / LLM Workbench README at 80db4a1 |
+| Optional `team templates/`, `research templates/`, and eval tooling are not copied | the room is a single-agent, single-capability project; the evaluator's collaboration criterion therefore stays unmet on purpose | 2026-09-06 / brief for the history rooms |
 
 ## Health Criteria
 
 The project is healthy when:
 
 - `node tests/tour.test.mjs` passes;
-- `node --check tour.mjs` passes when relevant;
-- the primary user workflow succeeds end-to-end: `node tour.mjs` prints the map under the expected heading;
-- empty, error, and degraded states do not crash: a missing path fails the test with the path named, never a stack trace from the tour;
+- `node tour.mjs` prints the map and exits 0 (there is no build, type, or lint
+  step);
+- the primary user workflow succeeds end-to-end;
+- empty, error, and degraded states do not crash;
 - secrets and local data are not exposed in committed or built output.
 
-Verification commands live in `RUNBOOK.md`. Proof of past runs lives in the `ROADMAP.md` Verification Log.
+Verification commands live in `RUNBOOK.md`. Current task status and proof
+history live in `TASKBOARD.md`.
