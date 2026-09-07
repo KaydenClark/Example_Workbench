@@ -29,7 +29,8 @@
       "Edit(./TASKBOARD.md)",
       "Edit(./RUNBOOK.md)",
       "Edit(./README.md)",
-      "Edit(./HARNESS_FEEDBACK.md)",
+      "Edit(./MEMORY.md)",
+      "Edit(./WORKBENCH_FEEDBACK.md)",
       "Bash(node tests/tour.test.mjs)",
       "Bash(node --check tour.mjs)",
       "Bash(node tour.mjs:*)"

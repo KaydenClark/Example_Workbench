@@ -16,15 +16,11 @@ Required tools:
 
 - Node.js 20 or later (the room was built and verified on Node 22; zero npm
   dependencies, nothing to install)
-- git, and the `gh` CLI for pull requests in this repository
-- a read-only checkout of `KaydenClark/LLM_Workbench` at commit
-  `08ab78e5a59a68d2b04028fe71a2be488d5ae10e`, only for the spec tool and the
-  evaluator (see Spec Lifecycle and Workbench Evaluation Commands below)
+- git, and the `gh` CLI for pull requests in `KaydenClark/Example_Workbench`
 
 Required accounts/services:
 
-- GitHub, only for pushing branches and opening pull requests; the room itself
-  needs no account
+- GitHub, only for the repository itself; the room needs no account to run
 
 Required local files:
 
@@ -33,7 +29,8 @@ Required local files:
 ## Environment Configuration
 
 There is no environment configuration and no `.env`; nothing to copy and no
-variables to set. The rules still apply:
+variables to set, so the copy command and variable table from the template were
+dropped. The rules still apply:
 
 - Do not commit real `.env` files, tokens, local databases, logs, or private
   data.
@@ -43,7 +40,9 @@ variables to set. The rules still apply:
 ## Install
 
 ```bash
-git checkout version/05-v2.3
+git clone https://github.com/KaydenClark/Example_Workbench.git
+cd Example_Workbench
+git switch version/06-v2.3-late
 ```
 
 Expected result:
@@ -62,7 +61,8 @@ Open:
 
 Expected result:
 
-- the heading `Example Workbench (v2.3 spec-centered progressive disclosure, 2026-07-16) - room map`
+- the heading
+  `Example Workbench (v2.3 late integration with room brain, 2026-08-27) - room map`
   followed by fourteen places, each with an `owns` line and a `why` line
 
 ## Test And Build
@@ -78,46 +78,47 @@ Full verification:
 ```bash
 node --check tour.mjs
 node tests/tour.test.mjs
-grep -rnE '\[[[:upper:]][[:upper:][:digit:]_ -]+\]' . --include=*.md --include=*.json
+grep -rnE '\[[A-Z][A-Z0-9_ -]+\]' . --include=*.md --include=*.json | grep -vE '\[\[|\]\('
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs doctor --path .
 ```
 
 Expected result:
 
 - `node --check` exits 0 with no output;
-- the test run reports `# fail 0` and exits 0 (10 tests at the last verified
-  run, recorded in the spec evidence log);
-- the grep prints nothing: no template placeholder is left in any control;
-- doctor prints `ok - spec workbench doctor passed` and exits 0.
+- the test run reports `# fail 0` and exits 0 (7 tests at the last verified
+  run, recorded in `specs/S-001-self-explaining-room/SPEC.md`);
+- the grep prints nothing: `[[wikilinks]]` in `MEMORY.md` and Markdown links
+  are filtered out by the second `grep`, and no template placeholder is left in
+  any control;
+- doctor prints `ok - spec workbench doctor passed`.
 
 ### Spec Lifecycle And Retrieval
 
-The spec tool is not copied into this room. Run it from a checkout of LLM
-Workbench at commit `08ab78e5a59a68d2b04028fe71a2be488d5ae10e` (the v2.3
-promotion to `main`), from inside this room, with `--path .` naming the room
-root. `/PATH/TO/LLM_WORKBENCH` is that checkout.
+This room does not carry `spec-workbench.mjs`; the generation's README offers
+copying it as optional and this room keeps its product to two files. Run the
+tool from a checkout of LLM Workbench with `--path .` from the room root. Check
+out commit `9e6c71b81f38d0696ac01834076a20d428207bde` (2026-08-27, the late
+v2.3 contract this room was filled against) so the lifecycle rules and rendered
+regions are the ones this room was verified with.
 
 ```bash
-node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs next --path . --json
+node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs next --json --path .
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs show S-001 --path .
-node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs claim S-001 --path . --agent NAME
-node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs close S-001 --path . \
-  --proof "named verification" \
-  --docs "docs updated, or Docs checked; no update needed plus reason" \
-  --remaining-gap "gap or none"
+node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs claim S-001 --agent NAME --path .
+node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs close S-001 \
+  --proof "NAMED VERIFICATION" \
+  --docs "DOCS UPDATED, or Docs checked; no update needed plus the reason" \
+  --remaining-gap "GAP, or none" --path .
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs complete S-001 --path .
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs render --path .
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs doctor --path .
 ```
 
-`next` returns one eligible ready ticket (TK-002 at the last verified run).
-`show` loads one stable work packet. `render` rewrites only the marked catalog
-region in `BLUEPRINT.md` and the hot region in `TASKBOARD.md`; the last run
-printed `{"specs":1,"active":1}`. `doctor` reports duplicate IDs, invalid or
-contradictory states, stale claims, missing evidence, broken links, and
-generated-region drift; the last run passed. `complete` requires every slice
-done, acceptance boxes checked, a completion result, and evidence present, so
-it refuses S-001 while TK-002 is open.
+`next` returns one eligible ready ticket. `show` loads one stable work packet.
+`render` updates only the marked Blueprint catalog and hot Taskboard regions.
+`complete` requires every slice done, acceptance boxes checked, completion result
+recorded, and evidence present; render then removes the spec from the hot board.
+`--path` is accepted by every command although the usage line does not list it.
 
 ### Test Coverage Policy
 
@@ -193,26 +194,30 @@ run.
 
 ### Workbench Evaluation Commands
 
-This room is a downstream project, not the template repository, so the v2.3
-static evaluator runs from the same LLM Workbench checkout as the spec tool
-(commit `08ab78e5a59a68d2b04028fe71a2be488d5ae10e`), against this directory:
+This room is a downstream project, not the template repository, so the static
+evaluator runs from the same LLM Workbench checkout as the spec tool (commit
+`9e6c71b81f38d0696ac01834076a20d428207bde`, see Spec Lifecycle And Retrieval)
+against this directory:
 
 ```bash
 node /PATH/TO/LLM_WORKBENCH/tools/evaluate-workbench.mjs --path . --include-controls
 ```
 
-Expected result: a Markdown score table for this room and the two control
-candidates; the score at the last verified run is recorded in the spec evidence
-log. The runnable trial framework (`evals/`, `python3 evals/score.py ...`)
-lives in the harness repository, not here; this room has no task suite of its
-own and runs no trials.
+Expected result: a Markdown score table in which this room scores 106.6/113,
+missing only the Team coordination area (`team templates/` was deliberately not
+copied, see `README.md`), and beats both control candidates (last verified
+2026-09-06, recorded in `specs/S-001-self-explaining-room/SPEC.md`).
+
+The runnable trial framework (`evals/`, `python3 evals/score.py ...`) lives in
+the harness repository, not here; this room has no task suite of its own and
+runs no trials.
 
 Real comparison runs may spend API budget. Size the run first and record the
 model, conditions, task suite, trial count, and result path before making claims.
 
 ### Harness Feedback Loop
 
-This project's `HARNESS_FEEDBACK.md` is the return channel to the upstream
+This project's `WORKBENCH_FEEDBACK.md` is the return channel to the upstream
 harness. Lessons logged there feed harness changes, which must clear the same
 bar as any other "better" claim: a proposed template change is `c3_candidate`
 above, tested against the current docs on the same task suite before it ships.
@@ -229,25 +234,25 @@ dropped as the template allows.
 
 This section applies only to projects with deployment, LaunchAgent, cron,
 scheduler, or service startup behavior. This room has none; it runs from the
-checkout. The section was dropped as the template allows.
+directory. The section was dropped as the template allows.
 
 ## Version-Control Procedures
 
 Git authority and policy live in `AGENTS.md` -> Git Rules. Keep executable
-commands and expected results here:
+commands and expected results here. This room is one commit on the branch
+`version/06-v2.3-late` of `KaydenClark/Example_Workbench`; the repository's
+`main` and `integration` already exist, and task work branches from `main`:
 
 ```bash
 git status --short --branch
 git switch -c claude/short-description main
-git diff --stat integration...HEAD
+git diff --stat main...HEAD
 gh pr create --base integration --fill
 ```
 
-Expected result: a clean tree on the task branch, a diff that touches only this
-room's files, and a pull request into `integration`. Only the owner merges
-`integration` into `main`. This room is one commit on `version/05-v2.3`; the
-repository's remote, `main`, and `integration` already exist and none was
-created for it.
+Expected result: a clean tree on a task branch, a diff that touches only files
+inside this room's edit scope, and a reviewable PR whose target is
+`integration`; only the owner merges `integration` into `main`.
 
 ## Upgrading The Harness
 
@@ -256,10 +261,10 @@ in the `Generated from LLM Workbench v2.3` stamp at the top of each
 doc. That stamp lets you tell when the project is running an older harness than
 the current one.
 
-This room is deliberately behind. It exists to show the v2.3 contract, so do
-not run the steps below on it; later generations are later `version/` branches
-of this repository, and the current contract is on `main`. The procedure is
-kept here because it is part of what v2.3 prescribed.
+This room is deliberately behind. It exists to show the late-v2.3 contract, so
+do not run the steps below on it; a later generation is a later version branch
+of the same repository. The procedure is kept here because it is part of what
+v2.3 prescribed.
 
 To upgrade:
 
@@ -272,19 +277,19 @@ To upgrade:
 
 Treat a harness upgrade like any other change: smallest correct diff, verified,
 with proof. If a downstream lesson should flow *back* to the harness, capture it
-per the project's `HARNESS_FEEDBACK` convention.
+per the project's `WORKBENCH_FEEDBACK` convention.
 
 ## Troubleshooting
 
 | Symptom | Likely cause | Check | Fix |
 |---|---|---|---|
-| `Cannot find module .../tour.mjs` | command run from outside the room | `pwd` is the repository root on `version/05-v2.3` | `cd` to the repository root and rerun |
+| `Cannot find module .../tour.mjs` | command run from outside the room | `ls tour.mjs` | `cd` to the room root and rerun |
 | test fails with `the tour names X, which does not exist` | a file was moved or renamed without updating `PLACES` | `ls` the named path | restore the file or update its `path` in `tour.mjs` |
-| test fails with `... sits at the root but the tour never explains it` | a Markdown file was added at the root | `ls *.md` | add a `PLACES` entry with real `owns` and `why` text |
-| test fails with `placeholder leaked` | a bracketed template token was pasted in | the grep in Test And Build | replace the token with real content |
-| `error: Cannot find module .../markdown-table.mjs` | `spec-workbench.mjs` was copied alone | `ls /PATH/TO/LLM_WORKBENCH/tools/markdown-table.mjs` | run the tool from the checkout, do not copy it |
-| doctor prints `render-drift` | a spec field changed after the last render | `git diff BLUEPRINT.md TASKBOARD.md` | run `render --path .` and rerun doctor |
-| doctor prints `broken-link` | a relative link in the spec points outside the room or at a missing file | open the named link | fix the link; links resolve from the spec's own folder |
+| test fails with `... but the tour never explains it` | a Markdown file was added at the root | `ls *.md` | add a `PLACES` entry with real `owns` and `why` text |
+| test fails with `prescribed control ... is missing` | a control this generation requires was deleted | `PRESCRIBED` in `tour.mjs` | restore the control from the generation's template |
+| the placeholder grep prints a line | a bracketed template token was pasted in | read the printed line | replace the token with real content |
+| doctor prints `render-drift` | a spec field changed after the last render | `render --path .` then `git diff` | commit the rendered regions; never hand-edit them |
+| doctor or render prints `ENOENT ... specs` | `--path` is missing or points elsewhere | `pwd` is the room root | add `--path .` to the command |
 
 ## Recovery And Rollback
 

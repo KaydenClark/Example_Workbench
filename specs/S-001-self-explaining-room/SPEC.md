@@ -1,74 +1,78 @@
 # S-001 - Self-Explaining Room
 
-> Generated from LLM Workbench v2.3. Copy this file to the stable
+> Generated from LLM Workbench v2.3. This file lives at the stable
 > path `specs/S-001-self-explaining-room/SPEC.md`; never move it between status folders.
 
 **Spec ID:** S-001
 **Status:** active
-**Priority:** 1
+**Priority:** 0
 **Owner:** Kayden Clark
 **Updated:** 2026-09-06
-**Catalog description:** Make the room explain itself: `tour.mjs` prints every place, what it owns, and why it is separate, and a test proves the map matches the directory.
+**Catalog description:** Make the room explain itself: a tour that prints every control and a test that proves the map matches the directory.
 **Blockers:** none
-**Latest event:** TK-001 closed with proof; render and doctor green against this room.
-**Next gate:** Complete TK-002, or leave it ready as the one honest next step.
+**Latest event:** TK-001 closed with proof.
+**Next gate:** Complete TK-002.
 
 ## Outcome
 
-A person who checks out this branch and runs `node tour.mjs` sees every control
-file and support location the v2.3 harness prescribes, the truth each one
-keeps, and why it is kept apart from the others, printed under the heading
-`Example Workbench (v2.3 spec-centered progressive disclosure, 2026-07-16) - room map`.
-`node tests/tour.test.mjs` proves that map still matches the directory.
+A person or agent arriving at this room cold runs `node tour.mjs` and gets every
+control file and support location the room has at this generation, the truth
+each one keeps, and why it is kept apart from the others. Running
+`node tests/tour.test.mjs` proves that map matches the directory it sits in.
 
 ## Why It Matters
 
-The harness's `templates/` are generic and bracketed by design, so a reader sees
-the shape of a room but never a filled one that a test keeps honest. This room
-is the filled example for the generation that made specs the unit of work, and
-the tour is how it explains that contract in its own words.
+The harness documents a room's structure upstream in `templates/`, which is
+bracketed by design: it shows the shape of the answer, never a filled example.
+This room is the filled example for the late-v2.3 contract. The owner reads one
+such room per generation to see how the contract progressed; the tour makes the
+comparison readable without opening every control by hand.
 
 ## Current Verified State
 
-- `tour.mjs` exports `LABEL`, `ROOM_ROOT`, `PLACES` (14 places), and `render()`,
-  and prints the map when run directly.
-- `tests/tour.test.mjs` runs 10 cases under `node:test`: room root, every place
-  exists, every root `.md` described, every prescribed control present and
-  described, non-trivial `owns`/`why`, the Claude bridge is one line, the
-  generated regions exist, `GENESIS.md` was removed, no placeholder leaked, and
-  the heading prints with every place.
-- The catalog in `BLUEPRINT.md` and the hot board in `TASKBOARD.md` are rendered
-  by `spec-workbench.mjs render --path .` from a checkout of LLM Workbench at
-  commit `08ab78e5a59a68d2b04028fe71a2be488d5ae10e`; `doctor --path .` passes.
-- Gap: the map is printed prose only; there is no machine-readable output to diff
-  one generation's map against another's (TK-002).
+- `tour.mjs` exports `GENERATION`, `ROOM_ROOT`, `PRESCRIBED` (the eleven
+  controls this generation prescribes), `PLACES` (fourteen places), and
+  `render()`, and prints the map when run directly.
+- `tests/tour.test.mjs` holds seven `node:test` cases: root agreement, every
+  path exists, every root Markdown file described, every prescribed control
+  present and described, every `owns`/`why` non-trivial and distinct, the
+  Claude bridge is exactly `@AGENTS.md`, and the rendered map carries the
+  heading and every place.
+- Gap at capture: the controls the map names did not yet exist, so three of the
+  seven cases failed (see the red row in the evidence log).
 
 ## Desired Behavior
 
-- `node tour.mjs` prints the heading above followed by every place with an
-  `owns` line and a `why` line, and exits 0.
-- `node tests/tour.test.mjs` passes from inside the room directory and turns red
-  when a place is removed, a root Markdown file is added without an entry, a
-  prescribed control is missing, or a template placeholder leaks.
-- Both commands need only Node.js 20+ and resolve the room root from
-  `import.meta.url`, so they work wherever the repository is cloned.
+- `node tour.mjs`, run from the room root, prints the heading
+  `Example Workbench (v2.3 late integration with room brain, 2026-08-27) - room map`
+  followed by every place with an `owns` line and a `why` line.
+- `node tests/tour.test.mjs`, run from the room root, exits 0 with zero
+  failures, and fails by name when a place is missing, a root document or
+  prescribed control is undescribed, or an entry is trivial.
+- Both commands need Node.js 20+ and nothing else.
 
 ## Decisions And Contracts
 
-- The generation label is `v2.3 spec-centered progressive disclosure, 2026-07-16`
-  and contains no parentheses; it is a constant in `tour.mjs` and asserted by the test.
-- `PLACES` entries carry exactly `path`, `owns`, and `why`; `why` is written from
-  the v2.3 template wording and README, not from a later generation.
-- The spec tool is not copied into the room. It runs from a read-only checkout
-  of LLM Workbench at the source commit, with `--path .`, as `RUNBOOK.md` records.
-- This spec's path is stable. When the room changes generation it is a new
-  branch, not an edit to this record.
+- The heading label contains no parentheses so the printed heading has exactly
+  one pair: `Example Workbench (<label>) - room map`.
+- The test reads `PLACES` and `PRESCRIBED` from `tour.mjs` instead of carrying
+  a list of its own, so the product and its proof cannot disagree about what the
+  room contains.
+- Zero dependencies and no `package.json`; adding one is a review-required
+  change under `AGENTS.md` -> Edit Scope.
+- Founding prompt, preserved verbatim: "The room's product is a self-describing
+  tour, the same idea as the root room's `tour.mjs`, scaled to what that
+  generation had".
+- Genesis was followed from LLM Workbench commit
+  `9e6c71b81f38d0696ac01834076a20d428207bde` and `GENESIS.md` was deleted at
+  Phase 7 rather than archived, so the room root holds only the controls this
+  generation prescribes.
 
 ## Non-Goals
 
-- Upgrading this room in place to a later harness version.
-- A second planning or proof store outside this spec and the rendered board.
-- Any dependency, `package.json`, or network access.
+- Reading the room's layout from a manifest; this generation has none.
+- Upgrading the room to a later harness stamp.
+- Any output format beyond the printed map and the one JSON slice below.
 
 ## Dependencies And Blockers
 
@@ -77,51 +81,53 @@ the tour is how it explains that contract in its own words.
 ## Vertical Implementation Slices
 
 Tickets are temporary tracer bullets within this stable capability record.
+The layers a slice must cross in this room, mapped from its own source per the
+`tracer-bullet` skill: argument handling in `tour.mjs` -> the `PLACES` data ->
+rendered terminal output -> a `node:test` case at the public seam. Each slice
+states an observable outcome and pierces all four; none is a single-layer shard.
 
 | Ticket | Slice | Status | Blockers | Proof |
 |---|---|---|---|---|
-| TK-001 | Print the room map from `tour.mjs` and prove it with `tests/tour.test.mjs` | done | none | `node tests/tour.test.mjs`: 10 tests, 10 pass, 0 fail, exit 0; `node tour.mjs` prints 14 places under the v2.3 heading |
-| TK-002 | Add `--json` output to `tour.mjs` printing `PLACES` as JSON, so one generation's map can be diffed against another's mechanically | ready | TK-001 | pending |
+| TK-001 | A reader runs `node tour.mjs` and gets every control with what it owns and why; `node tests/tour.test.mjs` proves each place exists and each root document and prescribed control is described | done | none | node tests/tour.test.mjs -> 7 tests, 7 pass, 0 fail, exit 0; node --check tour.mjs -> exit 0; node tour.mjs prints fourteen places under the generation heading |
+| TK-002 | A reader runs `node tour.mjs --json` and gets the same map as JSON that a test parses back, so generation rooms on sibling branches can be diffed mechanically | ready | none | pending |
 
 ## Acceptance Criteria
 
-- [x] `node tour.mjs` prints the heading `Example Workbench (v2.3 spec-centered progressive disclosure, 2026-07-16) - room map` and every place with `owns` and `why`.
-- [x] `node tests/tour.test.mjs` passes from inside the room and covers every claim listed under Current Verified State.
-- [x] `spec-workbench.mjs render --path .` and `doctor --path .` are green against this room.
-- [ ] `node tour.mjs --json` prints `PLACES` as JSON and a test case parses it (TK-002).
+- [x] `node tour.mjs` prints the generation heading and all fourteen places.
+- [x] `node tests/tour.test.mjs` exits 0 with zero failures from the room root.
+- [x] Every control this generation prescribes exists and is described.
+- [x] No bracketed template placeholder remains in any `.md` or `.json` file.
+- [ ] `node tour.mjs --json` prints `PLACES` as JSON and a test parses it (TK-002).
 
 ## Testing Seams
 
-- `tour.mjs` exports (`LABEL`, `ROOM_ROOT`, `PLACES`, `render`): the test imports
-  them directly instead of scraping stdout.
-- The room directory itself: `fs.existsSync` and `fs.readdirSync` against
-  `ROOM_ROOT`, so the test fails on a real missing or undescribed file.
-- The generated regions in `BLUEPRINT.md` and `TASKBOARD.md`: the markers must
-  exist for `render` and `doctor` to have a target.
+- `PLACES` and `PRESCRIBED` exported from `tour.mjs`, checked against the
+  filesystem by `tests/tour.test.mjs`.
+- `render()` exported from `tour.mjs`, checked for the heading and every place.
 
 ## Verification Procedure
 
 ```bash
 node tests/tour.test.mjs
-node --check tour.mjs && node tests/tour.test.mjs && node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs doctor --path .
+node --check tour.mjs && node tests/tour.test.mjs
+node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs doctor --path .
 ```
 
 ## Documentation Impact
 
-- `README.md` Getting Started names the two commands; `RUNBOOK.md` Run Locally,
-  Test And Build, and Spec Lifecycle name the exact commands and expected
-  results; `BLUEPRINT.md` catalog and `TASKBOARD.md` hot board are rendered.
-- TK-002 will touch `README.md` Getting Started and `RUNBOOK.md` Run Locally.
+- `README.md` Getting Started, `RUNBOOK.md` Run Locally and Test And Build, and
+  `BLUEPRINT.md` Cross-Cutting Health name the two commands; `MEMORY.md` routes
+  to them. TK-002 will need to add the `--json` flag to the same four places.
 
 ## Append-Only Evidence And Execution Log
 
 | Date | Ticket | Event | Verification | Docs | Remaining gap |
 |---|---|---|---|---|---|
-| 2026-09-06 | intake | Genesis ran: Phases 0-7 of `templates/GENESIS.md` from LLM Workbench commit `08ab78e5a59a68d2b04028fe71a2be488d5ae10e`, filling the v2.3 templates by hand | `grep -rnE '\[[[:upper:]][[:upper:][:digit:]_ -]+\]' . --include=*.md --include=*.json` returned no hits; `GENESIS.md` deleted at Phase 7 | `AGENTS.md`, `BLUEPRINT.md`, `LEXICON.md`, `TASKBOARD.md`, `RUNBOOK.md`, `README.md`, `HARNESS_FEEDBACK.md`, `CLAUDE.md`, `.claude/` written; `ADOPTION.md` and the team and research templates not applicable | TK-001 |
-| 2026-09-06 | TK-001 red | Test written before the product | `node tests/tour.test.mjs` -> `ERR_MODULE_NOT_FOUND: Cannot find module .../tour.mjs` | none | implement `tour.mjs` |
-| 2026-09-06 | TK-001 | Ticket closed | `node tests/tour.test.mjs`: 10 tests, 10 pass, 0 fail, exit 0; `node --check tour.mjs`: exit 0; `node tour.mjs` prints 14 places under `Example Workbench (v2.3 spec-centered progressive disclosure, 2026-07-16) - room map` | `README.md`, `RUNBOOK.md`, `BLUEPRINT.md` updated | TK-002 |
-| 2026-09-06 | spec | Projections rendered and diagnosed from the harness checkout at the source commit | `node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs render --path .` -> `{"specs":1,"active":1}`; `doctor --path .` -> `ok - spec workbench doctor passed`, exit 0 | `BLUEPRINT.md` catalog and `TASKBOARD.md` hot board regions rendered | TK-002 |
-| 2026-09-06 | spec | Static evaluator run from the same harness checkout | `node /PATH/TO/LLM_WORKBENCH/tools/evaluate-workbench.mjs --path . --include-controls` -> 105/113 for this room against 0/113 and 2/113 for the two control candidates; the 8 missing points are team coordination (no team templates were copied, by design) and one safety-boundary rubric item | Docs checked; no update needed: `RUNBOOK.md` -> Workbench Evaluation Commands already points here for the score | TK-002 |
+| 2026-09-06 | GENESIS | Followed `templates/GENESIS.md` Phases 0-7 from LLM Workbench commit `9e6c71b81f38d0696ac01834076a20d428207bde`: filled `AGENTS.md`, `BLUEPRINT.md`, `LEXICON.md`, `TASKBOARD.md`, `RUNBOOK.md`, `README.md`, `WORKBENCH_FEEDBACK.md`, `CLAUDE.md`, `.claude/`, this spec, and `MEMORY.md` from `templates/Wiki/MEMORY.project.md`; deleted `GENESIS.md` at Phase 7 | the placeholder grep in `RUNBOOK.md` -> Test And Build printed nothing | all controls written | TK-001 |
+| 2026-09-06 | TK-001 red | Ran the test before the controls existed | `node tests/tour.test.mjs` -> 7 tests, 4 pass, 3 fail: `AGENTS.md` and the other named controls missing, prescribed controls missing, `CLAUDE.md` missing | none | write the controls |
+| 2026-09-06 | TK-001 green | Controls written; heading label corrected to carry no parentheses | `node tests/tour.test.mjs` -> 7 tests, 7 pass, 0 fail, exit 0; `node --check tour.mjs` -> exit 0; `node tour.mjs` prints fourteen places under the generation heading | `README.md`, `RUNBOOK.md`, `BLUEPRINT.md`, `MEMORY.md` written | close the ticket |
+| 2026-09-06 | TK-001 | Ticket closed | node tests/tour.test.mjs -> 7 tests, 7 pass, 0 fail, exit 0; node --check tour.mjs -> exit 0; node tour.mjs prints fourteen places under the generation heading | README.md, RUNBOOK.md, BLUEPRINT.md, MEMORY.md name the two commands | TK-002 (JSON output) is the one open slice |
+| 2026-09-06 | spec | Rendered and diagnosed with the generation's own tooling from LLM Workbench commit `9e6c71b81f38d0696ac01834076a20d428207bde` | `spec-workbench.mjs render --path .` -> 1 spec, 1 active; `doctor --path .` -> `ok - spec workbench doctor passed`; `next --json --path .` -> TK-002; `evaluate-workbench.mjs --path . --include-controls` -> 106.6/113, only Team coordination missing (no `team templates/` by design) | Docs checked; no update needed, the run changed only the rendered regions | TK-002 |
 
 ## Completion Result
 
@@ -129,9 +135,10 @@ Pending.
 
 ## Remaining Limitations Or Follow-Up Specs
 
-- TK-002 (`--json` output) is the one open slice; it is worth doing when someone
-  wants to diff this branch's map against another generation branch. No other
-  work is planned for this room.
+- TK-002 (JSON output) is the one open slice; it is worth doing once more than
+  one generation room exists to diff against, which is why it was not cut first.
+- The room is frozen at v2.3. A later contract is a later version branch, not a
+  superseding spec here.
 
 ## Supersession
 

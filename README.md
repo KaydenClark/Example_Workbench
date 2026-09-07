@@ -1,22 +1,22 @@
-> Historical example: LLM Workbench v2.3 spec-centered progressive disclosure, 2026-07-16, source commit 08ab78e5a59a68d2b04028fe71a2be488d5ae10e, dated 2026-07-16. Built by hand from templates on 2026-09-06. Branch version/05-v2.3 of KaydenClark/Example_Workbench.
+> Historical example: LLM Workbench v2.3 late integration with room brain, 2026-08-27, source commit 9e6c71b81f38d0696ac01834076a20d428207bde, dated 2026-08-27. Built by hand from templates on 2026-09-06. Branch version/06-v2.3-late of KaydenClark/Example_Workbench.
 
 # Example Workbench
 
 > Generated from LLM Workbench v2.3. See `RUNBOOK.md` ->
 > Upgrading The Harness.
 
-A self-describing tour of a v2.3 LLM Workbench room: `node tour.mjs` prints
-every control file and support location this room has, the truth each one
+A self-describing tour of an LLM Workbench room at the late-v2.3 contract:
+`node tour.mjs` prints every control file this room has, the truth each one
 keeps, and why it is kept apart from the others, for anyone who wants to see
-what the harness contract looked like when specs became the unit of work.
+what the harness looked like once the room brain, the tracer-bullet discipline,
+and `WORKBENCH_FEEDBACK.md` had landed but before the version was bumped.
 
-This room is one commit on the `version/05-v2.3` branch of
-`KaydenClark/Example_Workbench`; every harness generation has a branch like it,
-so the owner can read how the contract progressed and check out any generation.
-`main` holds the current room. This branch is frozen at v2.3 and is complete:
-both commands below pass, the spec tool's `render` and `doctor` are green, and
-no work is open beyond one honest next ticket. It is an example to read and
-copy, not a place to do project work.
+This room is one generation of `KaydenClark/Example_Workbench`, one per
+version branch, so the owner can read how the contract progressed and
+back-track to any generation. The repository's `main` holds the current room
+(v3.1.2); this branch is frozen at v2.3 and is complete: both commands below
+pass and no task beyond one honest next step is open. It is an example to read
+and copy, not a place to do project work.
 
 ## How This Project Is Run
 
@@ -35,26 +35,29 @@ before changing anything:
   acceptance, decisions, verification, append-only evidence, and completion.
 - [`RUNBOOK.md`](RUNBOOK.md) - how to set up, run, test, build, and recover this
   project, plus the verification commands that gate "done".
+- [`MEMORY.md`](MEMORY.md) - the room brain: canonical, human-editable durable
+  memory for this project. It routes to the live controls above and to flat
+  memory notes; it never duplicates live task state.
 
-- [`HARNESS_FEEDBACK.md`](HARNESS_FEEDBACK.md) - the return channel to the
+- [`WORKBENCH_FEEDBACK.md`](WORKBENCH_FEEDBACK.md) - Workbench Feedback, the return channel to the
   reusable harness these docs came from: log where the harness rules themselves
   are unclear, wrong, or slow the work down, so they can be improved upstream.
 
 This room was bootstrapped by following `templates/GENESIS.md` from the source
 commit named at the top of this file. Phase 7 of that protocol says to delete
-the file or move it to an archive note once the controls govern; it was
-deleted, and the first evidence row in the spec above records that Genesis ran
-and what it produced. `ADOPTION.md` was not applicable: there was no existing
-project to migrate. The optional `team templates/` and `research templates/`
-sets were not copied either; they are for multi-agent runs and research
-folders, and this room has neither. After handoff, AGENTS plus the progressive
-spec flow above govern.
+the file or move it to an archive note once AGENTS plus the progressive spec
+flow govern; it was deleted, and the first evidence row in the S-001 spec
+records that Genesis ran and what it produced. `ADOPTION.md` was not
+applicable: there was no existing project to migrate. The optional
+`team templates/` and `research templates/` sets were not copied either; they
+are for multi-agent runs and research folders, and this room has neither.
+`tools/spec-workbench.mjs` was not copied in: the generation's README offers it
+as optional, and `RUNBOOK.md` runs it from a harness checkout instead.
 
 ## Getting Started
 
 ```bash
-# nothing to install; Node.js 20+ is the only requirement
-node tour.mjs              # print the room map: every place, what it owns, why it is separate
+node tour.mjs              # nothing to install; print the room map
 node tests/tour.test.mjs   # prove the map still matches this directory
 ```
 
@@ -85,6 +88,6 @@ See [`TASKBOARD.md`](TASKBOARD.md) for active execution state and
 
 ## License
 
-Same license as the LLM Workbench harness this room was generated from (MIT).
-The room carries no `LICENSE` file of its own; it is meant to be read, copied,
-and discarded.
+MIT, the same license as the LLM Workbench harness this room was generated
+from. The room carries no `LICENSE` file of its own; it is meant to be read,
+copied, and discarded.
