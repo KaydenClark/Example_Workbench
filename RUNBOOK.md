@@ -1,11 +1,11 @@
 # Example Workbench - Runbook
 
-> Generated from LLM Workbench v2.3. See Upgrading The Harness
+> Generated from LLM Workbench v3.0.0. See Upgrading The Harness
 > below.
 
 **Last reviewed:** 2026-09-06
-**Runtime owner:** Kayden Clark
-**Environment:** local
+**Runtime owner:** Kayden Clark (owner); any agent may run every command here.
+**Environment:** local only
 
 This file explains how to operate, verify, recover, and evaluate the project. It
 should be boring, exact, and executable.
@@ -14,23 +14,34 @@ should be boring, exact, and executable.
 
 Required tools:
 
-- Node.js 20 or later (the room was built and verified on Node 22; zero npm
-  dependencies, nothing to install)
-- git, and the `gh` CLI for pull requests in `KaydenClark/Example_Workbench`
+- Node.js 20 or newer (`node --version`). Nothing else.
+- A checkout of `KaydenClark/LLM_Workbench` for the harness commands below
+  (see Workbench Tooling At This Generation).
 
 Required accounts/services:
 
-- GitHub, only for the repository itself; the room needs no account to run
+- None. The room runs entirely offline.
 
 Required local files:
 
-- none. Every file the room needs is committed.
+- None. Everything the room needs is committed.
 
 ## Environment Configuration
 
-There is no environment configuration and no `.env`; nothing to copy and no
-variables to set, so the copy command and variable table from the template were
-dropped. The rules still apply:
+None. This room reads no environment variables and holds no configuration
+outside the files committed to it. There is no example file to copy:
+
+```bash
+node --version   # the only environment check; v20 or newer
+```
+
+Required variables:
+
+| Variable | Purpose | Secret? | Example / Notes |
+|---|---|---|---|
+| none | The room reads no environment variables. | no | Nothing to set. |
+
+Rules:
 
 - Do not commit real `.env` files, tokens, local databases, logs, or private
   data.
@@ -40,14 +51,12 @@ dropped. The rules still apply:
 ## Install
 
 ```bash
-git clone https://github.com/KaydenClark/Example_Workbench.git
-cd Example_Workbench
-git switch version/06-v2.3-late
+node --version   # v20 or newer. The room has no dependencies.
 ```
 
 Expected result:
 
-- nothing to install. You are inside the room and `node tour.mjs` runs directly.
+- `node --version` prints v20 or newer. There is no install step to succeed or fail.
 
 ## Run Locally
 
@@ -57,13 +66,13 @@ node tour.mjs
 
 Open:
 
-- the terminal output; there is no URL or service
+- Nothing to open. The output is the product.
 
 Expected result:
 
-- the heading
-  `Example Workbench (v2.3 late integration with room brain, 2026-08-27) - room map`
-  followed by fourteen places, each with an `owns` line and a `why` line
+- The heading `Example Workbench (v3.0.0 portable workbench root, 2026-08-31) - room map`
+  followed by every root control, the scope file, the manifest, every declared
+  lane, the spec, the room brain, the feedback log, and the two product files.
 
 ## Test And Build
 
@@ -76,49 +85,46 @@ node tests/tour.test.mjs
 Full verification:
 
 ```bash
-node --check tour.mjs
 node tests/tour.test.mjs
-grep -rnE '\[[A-Z][A-Z0-9_ -]+\]' . --include=*.md --include=*.json | grep -vE '\[\[|\]\('
+node --check tour.mjs
+node /PATH/TO/LLM_WORKBENCH/tools/workbench-layout.mjs validate --project . --genesis
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs doctor --path .
 ```
 
 Expected result:
 
-- `node --check` exits 0 with no output;
-- the test run reports `# fail 0` and exits 0 (7 tests at the last verified
-  run, recorded in `specs/S-001-self-explaining-room/SPEC.md`);
-- the grep prints nothing: `[[wikilinks]]` in `MEMORY.md` and Markdown links
-  are filtered out by the second `grep`, and no template placeholder is left in
-  any control;
-- doctor prints `ok - spec workbench doctor passed`.
+- `tests/tour.test.mjs` reports `# pass 8` and `# fail 0`; `node --check`
+  prints nothing; `validate --genesis` prints `{"status":"valid",...}`; and
+  `doctor` prints `ok - spec workbench doctor passed` and exits 0.
 
-### Spec Lifecycle And Retrieval
+### Workbench Tooling At This Generation
 
-This room does not carry `spec-workbench.mjs`; the generation's README offers
-copying it as optional and this room keeps its product to two files. Run the
-tool from a checkout of LLM Workbench with `--path .` from the room root. Check
-out commit `9e6c71b81f38d0696ac01834076a20d428207bde` (2026-08-27, the late
-v2.3 contract this room was filled against) so the lifecycle rules and rendered
-regions are the ones this room was verified with.
+At v3.0.0 the spec tool and layout helper ship with the harness, not with the
+room. `/PATH/TO/LLM_WORKBENCH` is a checkout of
+`https://github.com/KaydenClark/LLM_Workbench` at commit
+`d80d14c531c4bece9e2978d11e92e5a5d7bd77a5` (v3.0.0, 2026-08-31); check out
+that commit before running any command that names the path, because later
+harness versions move these tools into the room's own `workbench/tools/` lane
+and change their arguments. Every command runs from inside this room; `--path .`
+points `spec-workbench.mjs` at the room and `--project .` does the same for
+`workbench-layout.mjs`. Without `--path` the spec tool reads the current
+directory, which is the room when you run it from here.
 
 ```bash
-node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs next --json --path .
+node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs next --path . --json
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs show S-001 --path .
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs claim S-001 --agent NAME --path .
-node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs close S-001 \
-  --proof "NAMED VERIFICATION" \
-  --docs "DOCS UPDATED, or Docs checked; no update needed plus the reason" \
-  --remaining-gap "GAP, or none" --path .
-node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs complete S-001 --path .
+node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs close S-001 --proof "..." --docs "..." --remaining-gap "..." --path .
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs render --path .
 node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs doctor --path .
+node /PATH/TO/LLM_WORKBENCH/tools/workbench-layout.mjs validate --project . --genesis
 ```
 
-`next` returns one eligible ready ticket. `show` loads one stable work packet.
-`render` updates only the marked Blueprint catalog and hot Taskboard regions.
-`complete` requires every slice done, acceptance boxes checked, completion result
-recorded, and evidence present; render then removes the spec from the hot board.
-`--path` is accepted by every command although the usage line does not list it.
+`render` rewrites only the marked catalog region of `BLUEPRINT.md` and the hot
+region of `TASKBOARD.md`; `doctor` reports render drift, broken links, unstable
+paths, stale claims, and done tickets without proof. The `init` command that
+created `workbench/manifest.json` and the five lanes was run once at Genesis and
+refuses to run again where a manifest exists.
 
 ### Test Coverage Policy
 
@@ -194,26 +200,25 @@ run.
 
 ### Workbench Evaluation Commands
 
-This room is a downstream project, not the template repository, so the static
-evaluator runs from the same LLM Workbench checkout as the spec tool (commit
-`9e6c71b81f38d0696ac01834076a20d428207bde`, see Spec Lifecycle And Retrieval)
-against this directory:
+For this template repo, the static evaluator checks control-surface coverage:
 
 ```bash
-node /PATH/TO/LLM_WORKBENCH/tools/evaluate-workbench.mjs --path . --include-controls
+node tools/test-evaluate-workbench.mjs
+node tools/evaluate-workbench.mjs --path . --include-controls
 ```
 
-Expected result: a Markdown score table in which this room scores 106.6/113,
-missing only the Team coordination area (`team templates/` was deliberately not
-copied, see `README.md`), and beats both control candidates (last verified
-2026-09-06, recorded in `specs/S-001-self-explaining-room/SPEC.md`).
+The runnable trial framework lives in `evals/`:
 
-The runnable trial framework (`evals/`, `python3 evals/score.py ...`) lives in
-the harness repository, not here; this room has no task suite of its own and
-runs no trials.
+```bash
+python3 evals/results/_make_selftest.py
+python3 evals/score.py evals/results/_pipeline_selftest.jsonl --baseline c0_none
+```
 
 Real comparison runs may spend API budget. Size the run first and record the
 model, conditions, task suite, trial count, and result path before making claims.
+
+This room has no `tools/` or `evals/` of its own; those commands run in the
+harness checkout, against this room, when the owner wants a score.
 
 ### Harness Feedback Loop
 
@@ -226,50 +231,43 @@ Feedback flows out; validated improvements flow back in as a harness upgrade
 
 ## Data Operations
 
-This section applies only to projects with seed data, migrations, imports,
-local databases, or generated feeds. This room has none, so the section was
-dropped as the template allows.
+None. The room has no seed data, migrations, imports, local databases, or
+generated feeds; the template's seed, migration, and backup blocks are dropped
+as the template allows. Its only persistent state is the files in the repository.
 
 ## Deployment Or Startup
 
-This section applies only to projects with deployment, LaunchAgent, cron,
-scheduler, or service startup behavior. This room has none; it runs from the
-directory. The section was dropped as the template allows.
+None. There is nothing to deploy and no long-running process; the template's
+start, stop, and log blocks are dropped as the template allows. The room is
+read where it is cloned and run with `node tour.mjs`.
 
 ## Version-Control Procedures
 
 Git authority and policy live in `AGENTS.md` -> Git Rules. Keep executable
-commands and expected results here. This room is one commit on the branch
-`version/06-v2.3-late` of `KaydenClark/Example_Workbench`; the repository's
-`main` and `integration` already exist, and task work branches from `main`:
+commands and expected results here:
 
 ```bash
 git status --short --branch
-git switch -c claude/short-description main
-git diff --stat main...HEAD
-gh pr create --base integration --fill
+git switch -c claude/s001-<slug> integration
+git diff --check && git diff integration...HEAD --stat
+gh pr create --base integration --head claude/s001-<slug>
 ```
 
-Expected result: a clean tree on a task branch, a diff that touches only files
-inside this room's edit scope, and a reviewable PR whose target is
-`integration`; only the owner merges `integration` into `main`.
+Expected result: a clean working tree, a branch based on `integration`, and a
+PR whose diff contains only the slice it claims. This room itself is one commit
+on `version/07-v3.0.0`; the repository already has `main` and `integration`.
 
 ## Upgrading The Harness
 
 These control docs were generated from a specific LLM Workbench version, recorded
-in the `Generated from LLM Workbench v2.3` stamp at the top of each
+in the `Generated from LLM Workbench v3.0.0` stamp at the top of each
 doc. That stamp lets you tell when the project is running an older harness than
 the current one.
-
-This room is deliberately behind. It exists to show the late-v2.3 contract, so
-do not run the steps below on it; a later generation is a later version branch
-of the same repository. The procedure is kept here because it is part of what
-v2.3 prescribed.
 
 To upgrade:
 
 1. Check the LLM Workbench repo's releases/changelog for what changed since
-   `v2.3`.
+   `v3.0.0`.
 2. Re-copy only the changed template sections; keep this project's filled-in
    specifics. Never let bracketed placeholders leak back into filled docs.
 3. Update each doc's version stamp to the new version.
@@ -283,13 +281,12 @@ per the project's `WORKBENCH_FEEDBACK` convention.
 
 | Symptom | Likely cause | Check | Fix |
 |---|---|---|---|
-| `Cannot find module .../tour.mjs` | command run from outside the room | `ls tour.mjs` | `cd` to the room root and rerun |
-| test fails with `the tour names X, which does not exist` | a file was moved or renamed without updating `PLACES` | `ls` the named path | restore the file or update its `path` in `tour.mjs` |
-| test fails with `... but the tour never explains it` | a Markdown file was added at the root | `ls *.md` | add a `PLACES` entry with real `owns` and `why` text |
-| test fails with `prescribed control ... is missing` | a control this generation requires was deleted | `PRESCRIBED` in `tour.mjs` | restore the control from the generation's template |
-| the placeholder grep prints a line | a bracketed template token was pasted in | read the printed line | replace the token with real content |
-| doctor prints `render-drift` | a spec field changed after the last render | `render --path .` then `git diff` | commit the rendered regions; never hand-edit them |
-| doctor or render prints `ENOENT ... specs` | `--path` is missing or points elsewhere | `pwd` is the room root | add `--path .` to the command |
+| `every control this generation prescribes is present and described` fails | A prescribed control was removed, or a place was dropped from `PLACES` | `node tests/tour.test.mjs` | Restore the file or add the place to `PLACES` in `tour.mjs`, with what it owns and why |
+| `every lane the manifest declares is a real directory and is described` fails | A lane in `workbench/manifest.json` has no directory or no place | `cat workbench/manifest.json` | Create the lane directory or describe it in `tour.mjs` |
+| `doctor` reports `render-drift` | The catalog or hot board was hand-edited, or the spec changed after the last render | `node /PATH/TO/LLM_WORKBENCH/tools/spec-workbench.mjs doctor --path .` | Run `render --path .` and never edit inside the markers |
+| `doctor` reports `broken-link` or `unstable-path` | The spec links to a path that moved, or its folder does not start `workbench/specs/S-001-` | `show S-001 --path .` | Fix the link; never move a spec folder |
+| `validate` reports `invalid-lane` or `invalid-skill-policy` | `workbench/manifest.json` was hand-edited away from the v3.0.0 shape | `node /PATH/TO/LLM_WORKBENCH/tools/workbench-layout.mjs validate --project .` | Restore the five lanes and the closed 12-skill policy exactly as `init` wrote them |
+| `error: Usage: spec-workbench.mjs ...` | The command name or an unknown option was passed | re-read Workbench Tooling At This Generation | Use only `next`, `show`, `claim`, `close`, `complete`, `render`, `doctor` with `--path .` |
 
 ## Recovery And Rollback
 

@@ -11,6 +11,7 @@ import { GENERATION, PLACES, PRESCRIBED, ROOM_ROOT, render } from '../tour.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const described = new Set(PLACES.map((place) => place.path));
+const manifest = JSON.parse(fs.readFileSync(path.join(root, 'workbench/manifest.json'), 'utf8'));
 
 test('the tour and the room agree on where the room is', () => {
   assert.equal(ROOM_ROOT, root, 'the tour must describe the room it ships inside');
@@ -35,6 +36,15 @@ test('every control this generation prescribes is present and described', () => 
   }
 });
 
+test('every lane the manifest declares is a real directory and is described', () => {
+  for (const [lane, lanePath] of Object.entries(manifest.lanes)) {
+    assert.ok(fs.statSync(path.join(root, lanePath)).isDirectory(), `lane ${lane} at ${lanePath} is not a directory`);
+    assert.ok(described.has(lanePath), `the manifest declares lane "${lane}" at ${lanePath}, which the tour never explains`);
+  }
+  assert.equal(manifest.workbenchVersion, 'v3.0.0', 'this room is the v3.0.0 generation');
+  assert.equal(manifest.provenance.lifecycle, 'genesis', 'this room was made by the genesis path');
+});
+
 test('every place says what it owns and why it is kept apart', () => {
   for (const place of PLACES) {
     assert.ok(place.owns && place.owns.trim().length > 20, `${place.path} does not say what it owns`);
@@ -50,5 +60,6 @@ test('the Claude bridge carries no rules of its own', () => {
 test('the rendered map carries the generation heading and every place', () => {
   const out = render();
   assert.ok(out.includes(`Example Workbench (${GENERATION}) - room map`), 'heading missing from rendered map');
+  assert.ok(!GENERATION.includes('('), 'the generation label carries no parentheses');
   for (const place of PLACES) assert.ok(out.includes(`  ${place.path}\n`), `${place.path} missing from rendered map`);
 });

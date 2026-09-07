@@ -1,58 +1,61 @@
 # Example Workbench - Blueprint
 
-> Generated from LLM Workbench v2.3.
+> Generated from LLM Workbench v3.0.0.
 
 **Last reviewed:** 2026-09-06
 **Status:** active
-**Source root:** `the repository root of KaydenClark/Example_Workbench, branch version/06-v2.3-late` (recorded relative to the clone rather than as an absolute path, so this file carries no machine-specific home path)
+**Source root:** `https://github.com/KaydenClark/Example_Workbench`, branch `version/07-v3.0.0`
 
 ## Product Map
 
-A self-describing tour of an LLM Workbench room at the late-v2.3 contract, the
-one that added the room brain. `tour.mjs` names every control file and support
-location the room has at this generation, the truth each one keeps, and why it
-is kept apart from the others; `tests/tour.test.mjs` proves that map matches
-the directory. It serves the owner of `KaydenClark/Example_Workbench`, who reads
-one generation room per branch to see how the harness contract progressed, and
-anyone meeting this contract cold who wants a filled example instead of a
-bracketed template.
+The Example Workbench at this generation is the smallest complete v3.0.0 room:
+seven filled root controls, a lowercase `workbench/` support root declared by a
+manifest with five lanes, a room brain, a feedback channel, and one stable
+spec. Its product is an explanation of that shape. It serves a newcomer who
+wants to see what every part of a room is for and why it is kept apart, and the
+owner, who keeps one room per harness generation so the contract's progress can
+be read side by side. The problem it solves is that the templates document a
+shape nobody has checked; here the explanation runs, and a test fails when the
+room drifts from it.
+
+Founding prompt, preserved verbatim from the owner's brief: "make the room
+explain itself".
 
 Core promise:
 
-> Run `node tour.mjs` and you get every control this room has, what truth it
-> keeps, and why it is kept apart; run `node tests/tour.test.mjs` and you get
-> proof that the map still matches the directory it sits in.
+> Run `node tour.mjs` and you will know what every control file and support
+> location in a v3.0.0 room is for, and why. Run `node tests/tour.test.mjs`
+> and you will know that answer is still true of this room.
 
 ## Goals And Pillars
 
-- **The map is the product:** every control the generation prescribes appears in
-  `PLACES` with a real `owns` and a real `why`, written from the generation's
-  own template wording.
-- **The map cannot lie:** a test asserts every named path exists, every root
-  document and prescribed control is described, and no entry is trivial.
-- **Frozen at v2.3:** the room shows what this generation looked like; later
-  generations are other version branches of the same repository, never an
-  in-place upgrade of this one.
+- **Explanation that cannot rot:** every path the tour names must exist, and
+  every control this generation prescribes and every lane the manifest
+  declares must be explained, or the test goes red.
+- **Faithful to its generation:** the room was made with the v3.0.0 tooling
+  (`workbench-layout.mjs init` and `validate --genesis`, `spec-workbench.mjs
+  render` and `doctor`) and its templates, not by imitating their output.
+- **Small on purpose:** one product file, one test file, one spec. Nothing is
+  added that the harness of this generation did not prescribe.
 
 ## Cross-Cutting Architecture And Invariants
 
 | Layer / concern | Choice | Invariant / source |
 |---|---|---|
-| Runtime | Node.js 20+, ESM | zero dependencies and no `package.json`; `tour.mjs` locates the room from `import.meta.url`, so the clone path does not matter |
-| Product surface | CLI: `node tour.mjs` prints the map to stdout | the heading is `Example Workbench (v2.3 late integration with room brain, 2026-08-27) - room map`; `tour.mjs` -> `render()` |
-| Data/storage | none; the map is the `PLACES` constant exported by `tour.mjs` | one entry per place with `path`, `owns`, `why`; `PRESCRIBED` lists the controls the generation requires |
-| Testing | `node:test` + `node:assert/strict` in `tests/tour.test.mjs` | reads `PLACES` from the product instead of carrying a list of its own |
-| Deployment/runtime | none; run from inside the room directory | both commands run from the room root and touch nothing outside it |
+| Runtime | Node.js 20+ | No dependencies. A room that needs an install step is not the first thing a newcomer should run. |
+| Product surface | CLI (`node tour.mjs`) | One command, no arguments, output that fits a terminal. |
+| Data/storage | none | The files in the room are the only state; nothing to seed, migrate, or back up. |
+| Testing | `node:test` and `node:assert/strict` (built in) | Same runner the harness suites use; nothing to install. |
+| Deployment/runtime | none | The room is read and run where it is cloned. |
 
 Rules that span multiple capabilities:
 
-- Every `path` in `PLACES` exists relative to the room root, and every Markdown
-  file at the room root has an entry.
-- Privacy and safety boundary: no secret, credential, token, absolute home
-  path, or personal data of any kind lives in this room; there is nothing to
-  protect because nothing is stored, and nothing may be added.
-- `README.md`, this file, and `MEMORY.md` point at the tour rather than
-  restating its `why` text, so the explanation has one address.
+- `PLACES` in `tour.mjs` is the only enumeration of the room's structure;
+  every other file may explain one part but never lists them all.
+- The room holds no secrets and acquires none. It exists to be read, copied,
+  and compared with the rooms on its sibling version branches.
+- Support paths are resolved through `workbench/manifest.json`; no file in the
+  room assumes a lane path the manifest does not declare.
 
 Source and tests remain implementation truth. Put capability-specific
 requirements and decisions in its stable spec, not here.
@@ -62,11 +65,11 @@ the project glossary.
 
 ## Non-Goals
 
-- Reproducing the current root room's layout (`workbench/`, a manifest, managed
-  tool lanes); those arrived in later generations and live on later branches.
-- Being upgraded in place to a later harness version; that would destroy the
-  thing this room documents.
-- Hosting real project work beyond the one capability in the catalog below.
+- Not a template: `templates/` upstream stays generic and bracketed; this room
+  is deliberately filled.
+- Not a test harness for the upstream tools; the harness owns those suites.
+- Not the current room. The repository's `main` is the live room on a later
+  harness; this branch stays a v3.0.0 room so the generation can be read back.
 
 ## Spec Catalog
 
@@ -76,14 +79,13 @@ history. Human-authored product prose stays outside the markers.
 <!-- spec-catalog:start -->
 | Spec | Description | Status |
 |---|---|---|
-| [S-001 - Self-Explaining Room](specs/S-001-self-explaining-room/SPEC.md) | Make the room explain itself: a tour that prints every control and a test that proves the map matches the directory. | active |
+| [S-001 - Room Explains Itself](workbench/specs/S-001-room-explains-itself/SPEC.md) | A room that prints a test-checked map of every control file and support location it has, with what each owns and why it is kept apart. | active |
 <!-- spec-catalog:end -->
 
 ## Cross-Cutting Health
 
 - `node tests/tour.test.mjs` passes;
-- `node --check tour.mjs` passes when relevant;
-- the primary workflow succeeds end to end: `node tour.mjs` prints the map under
-  the generation heading with every place present;
+- `node /PATH/TO/LLM_WORKBENCH/tools/workbench-layout.mjs validate --project . --genesis` passes when relevant;
+- the primary workflow succeeds end to end;
 - secrets and private data stay out of committed output;
 - spec doctor/render checks report no lifecycle, link, or projection drift.

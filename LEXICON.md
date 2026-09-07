@@ -1,6 +1,6 @@
 # Example Workbench - Lexicon
 
-> Generated from LLM Workbench v2.3.
+> Generated from LLM Workbench v3.0.0.
 
 **Last reviewed:** 2026-09-06
 **Status:** active
@@ -33,8 +33,9 @@ could be ambiguous.
 
 | Term | Definition | Distinction / aliases to avoid |
 |---|---|---|
-| **Room** | One filled instance of the LLM Workbench control surfaces: the root controls, `MEMORY.md`, `specs/`, and whatever product they govern, at one harness generation. | Not the harness itself (`templates/` upstream is the blank product) and not a deployment, which may hold many rooms. |
-| **Generation** | One LLM Workbench source commit whose templates a room was filled from; named by its version stamp and commit date. | Not a release: this room's generation is still stamped v2.3 although the contract grew after the v2.3 release. Do not call it v2.4. |
-| **Tour** | This room's product: `tour.mjs`, which prints the room map, and `tests/tour.test.mjs`, which proves the map. | Not documentation about the tour; `README.md` and `BLUEPRINT.md` point at it and do not restate it. |
-| **Place** | One entry of `PLACES` in `tour.mjs`: a `path` in the room, the truth it `owns`, and `why` that truth is kept apart from the others. | Not every file in the room; only control files and support locations are places. `tests/tour.test.mjs` is a place because it is one of the two commands. |
-| **Room brain** | `MEMORY.md`, the wikilink router that starts every reader at one file and routes to the live controls and durable notes. | Not a copy of task state; it routes to `TASKBOARD.md` and specs and never duplicates them. Not the deployment-root brain (`MEMORY.root.md`), which this standalone room does not have. |
+| **Room** | One repository with the Workbench installed in it: seven root controls and a lowercase `workbench/` support root declared by `workbench/manifest.json`. | A room is an installation, not the harness. `LLM_Workbench` is the harness; this repository is a room. Avoid "workbench" alone when you mean one installation. |
+| **Support lane** | One of the five manifest-declared directories under `workbench/` at this generation: `specs`, `wiki`, `grilling`, `handoffs`, `feedback`. | A lane is a declared slot the tools resolve through the manifest, not a folder someone assumed. The layout validator refuses a manifest whose lanes differ. |
+| **Tour** | The ordered list `PLACES` in `tour.mjs`: every control file and support location this room has, each with what it owns and why it is kept apart. | Data that happens to print. It is not a README section; `tests/tour.test.mjs` reads the same list the terminal does. |
+| **Place** | One entry in the tour: a path, the truth it owns, and the reason that truth is not kept anywhere else. | A path with no "why" does not belong in the room. |
+| **Drift** | The condition where the room's structure and the tour's description of it disagree: a named path missing, a prescribed control or declared lane undescribed. | A test failure here, not a documentation backlog item. |
+| **Generation** | One release of the harness contract, kept as one filled room on a `version/NN-slug` branch of this repository. This room is the v3.0.0 generation. | A generation is a snapshot for comparison, not a room to keep upgrading; `main` is the live room. |
