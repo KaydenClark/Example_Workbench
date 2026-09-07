@@ -1,74 +1,169 @@
-# Example Workbench (v0 GAME_PLAN) - Agent Instructions
+# Example Workbench - Agent Instructions
 
-You are building a new project from a blank or near-blank starting point. The user owns product direction; the agent owns practical implementation choices unless a decision is high-risk or blocked.
+This file controls how agents behave in this project. It should answer four questions quickly:
 
-Read `BLUEPRINT.md` first for the intended product shape, then `GAME_PLAN.md` for the first build sequence.
+1. What can the agent read?
+2. What can the agent edit?
+3. What is the agent's job?
+4. Where is the proof that the job is done?
 
-## Working Documents
+## Authority Order
 
-- **BLUEPRINT.md** - stable target. Keep it short and durable: purpose, users, architecture, core workflows, data model, and verification bar.
-- **GAME_PLAN.md** - active execution plan. Keep it current as tasks complete or priorities change.
-- **README.md** - setup, run, and validation commands once the project exists.
+When instructions conflict, use this order:
 
-## Your Role
+1. Current user request.
+2. This `AGENTS.md`.
+3. Source code and tests (trust them over docs when they conflict).
+4. `BLUEPRINT.md`.
+5. `ROADMAP.md`.
+6. `RUNBOOK.md`.
+7. `README.md` and older handoff notes.
 
-Build the smallest useful version first.
+If docs and code disagree, trust verified code, flag the drift, and update the stale doc when the task touches that area.
+
+## Read Scope
+
+The agent may read:
+
+- this project root;
+- source, tests, configs, scripts, docs, and logs needed for the requested task;
+- dependency manifests and lockfiles;
+- generated output only when debugging build/runtime behavior;
+- external paths only when the user request or project docs explicitly reference them.
+
+The agent must not read secrets or private local data unless the task requires it and the file is inside the approved project scope.
+
+This room is the `version/01-v1-roadmap` branch of `KaydenClark/Example_Workbench`. Other branches of the same repository carry later harness generations and the current room; reading them is allowed for comparison, but they are not instruction sources for this branch. This room stores no secrets, credentials, or private data and must acquire none.
+
+## Edit Scope
+
+The agent may edit:
+
+- `tour.mjs`
+- `tests/`
+- `AGENTS.md`, `BLUEPRINT.md`, `ROADMAP.md`, `RUNBOOK.md`, `VISUAL_DESIGN.md`, `README.md`
+- dependency manifests and lockfiles only when a dependency change is necessary and explained. This room has none, by design.
+
+The agent must not edit:
+
+- `.git/`, other branches of this repository, and anything outside this repository;
+- secrets, credentials, OAuth tokens, local databases, raw personal data, generated build output, dependency folders, or unrelated projects;
+- architecture, product direction, or persistence model unless the user asks for that or the current approach is blocking correctness.
+
+If the correct change requires leaving this scope, stop and explain the smallest needed scope expansion.
+
+## Agent Job
+
+Maintain and improve this project without changing its purpose.
 
 Default responsibilities:
-- choose a practical free stack unless the user specifies one;
-- create the initial source structure;
-- add the first tests before or with the first behavior;
-- keep setup reproducible;
-- document only decisions future agents need.
 
-## Operating Rules
+- restate the current goal in one sentence;
+- read the relevant docs and code before editing;
+- make the smallest correct change;
+- preserve existing architecture, naming, and style;
+- validate inputs at boundaries;
+- use explicit error handling and visible empty/error states;
+- append to the `ROADMAP.md` Verification Log when state changes (mandatory);
+- update any project docs that would become stale because of the change;
+- write exploratory or scratch work only in the final response or comments; never commit it;
+- leave the project easier for the next agent to verify.
 
-- State the assumed MVP in one sentence before building.
-- Ask at most one clarifying question only if a missing answer blocks correct execution.
-- Make low-risk technical decisions independently and record them in `BLUEPRINT.md`.
-- Prefer boring, well-supported tools.
-- Avoid paid services unless the user explicitly approves them.
-- Do not build a landing page when the user asked for an app or tool; build the actual usable first screen.
+## Documentation Ownership
 
-## TDD Required
+Documentation is part of the work, not a follow-up role. Unless the current task
+explicitly assigns a separate documentation owner, the agent making the change
+owns the documentation for that change.
 
-Every feature starts with a verification target:
+In a single-agent run:
+
+- the working agent is the documentation owner;
+- update the docs before reporting the task done;
+- if no docs need changes, say `Docs checked; no update needed` in the final response with a short reason.
+
+In a manager/subagent run:
+
+- each subagent reports whether its lane changed any documented behavior, command, file, route, data shape, or workflow;
+- the manager owns final documentation integration before the run is marked done;
+- no task is complete until documentation impact is either updated or explicitly marked `Docs checked; no update needed`.
+
+Use this routing when deciding what to update:
+
+| Change type | Documentation to check |
+|---|---|
+| Purpose, product behavior, architecture, data model, routes, invariants, safety boundary | `BLUEPRINT.md` |
+| Current state, active goal, next tasks, blockers, proof of completed work | `ROADMAP.md` |
+| Install, run, test, build, deploy, recovery, environment, operations | `RUNBOOK.md` |
+| User-facing setup, usage, demo, handoff, public instructions | `README.md` |
+| Agent rules, scope, authority, verification policy | `AGENTS.md` |
+
+Do not leave stale docs because the task "was code-only." If the change alters
+what a future agent or user would believe from the docs, update the docs in the
+same task.
+
+## Verification And Proof
+
+For behavior changes, use red/green/refactor:
 
 1. Define the expected behavior.
-2. Write a failing test when the stack supports it.
-3. Implement the smallest working version.
-4. Run the test or equivalent manual verification.
-5. Record any unverified gaps in the final response.
+2. Add or update a failing test when the stack supports it.
+3. Run the test and confirm it fails for the expected reason.
+4. Implement the smallest change.
+5. Run the targeted test.
+6. Run the full verification suite from `RUNBOOK.md` → Test And Build.
 
-Initial baseline commands, once available:
+If tests are impractical, run a concrete manual check instead and **name the specific reason** in your response (e.g., "no test harness for this UI interaction," "credential unavailable in this session").
 
-```bash
-node --version            # nothing to install; Node.js 20+ is the only requirement
-node tests/tour.test.mjs
-node tour.mjs
-```
+Every completed task leaves proof in two places:
 
-## Code Standards
+- Final response: what changed, why, risks, how verified.
+- `ROADMAP.md` Verification Log: **mandatory** — append one row when state changed. This is the only required durable write.
 
-- Validate user input before storing or processing it.
-- Use explicit error and empty states.
-- Keep state ownership simple.
-- Avoid abstractions until repeated code proves the need.
-- Use real project-specific seed/example data when possible.
-- Do not leave unexplained TODOs.
+Documentation updates are mandatory when the change would otherwise make docs
+stale. If documentation was checked and did not need edits, say so in the final
+response and, for durable state changes, in the `ROADMAP.md` Verification Log
+remaining-gap field.
 
-## First Session Checklist
+Use command results, browser checks, API probes, screenshots, or documented manual checks. Do not use stale counts or unsupported claims.
 
-1. Create or confirm `BLUEPRINT.md`.
-2. Create or confirm `GAME_PLAN.md`.
-3. Scaffold the smallest runnable app/service.
-4. Add initial verification.
-5. Confirm the app/service starts.
-6. Update `README.md` with exact setup and run commands.
-7. Record next tasks in `GAME_PLAN.md`.
+Never claim work is complete unless verification ran. If it could not run, say exactly why and record the gap in `ROADMAP.md`.
+
+## Day-One Checklist
+
+Load only what the task requires:
+
+- **Quick fix or single-file change:** Read `ROADMAP.md` (Current State + Current Goal).
+- **Feature, refactor, or unknown-scope bug:** Read `BLUEPRINT.md` and `ROADMAP.md`.
+- **Onboarding, setup, or architecture work:** Read all three (`BLUEPRINT.md`, `ROADMAP.md`, `RUNBOOK.md`).
+- **Any task that involves running verification:** Also open `RUNBOOK.md` → Test And Build for commands.
+- **Any task that creates or changes a UI/visual surface:** Read `VISUAL_DESIGN.md` from this project, or the nearest project-local visual guide, unless the project has a stronger brand guide.
+
+Then for every task:
+
+1. Inspect the files relevant to the task.
+2. Check version-control status.
+3. Run the baseline verification when practical.
+4. Implement with tests or a named manual check.
+5. Append to `ROADMAP.md` Verification Log if state changed.
+
+## Output Format
+
+For all task completions, report:
+
+1. What changed.
+2. Why it changed.
+3. Risks or side effects.
+4. How it was verified.
+
+Keep the response concise. Flag uncertainty instead of hiding it.
 
 ## What Not To Do
 
-- Do not over-design the architecture before the first usable workflow exists.
-- Do not add auth, persistence, deployment, or background jobs unless they are part of the MVP.
-- Do not claim the project works until it has been run or tested.
+- Do not invent APIs, files, functions, behavior, or test results.
+- Do not rewrite working systems just to make them cleaner.
+- Do not broaden scope without a concrete reason.
+- Do not add paid services unless the user explicitly approves them.
+- Do not leave unexplained TODOs or placeholder logic.
+- Do not treat prior session notes or ROADMAP history as current truth without verifying source state.
+- Do not rewrite existing rows in `ROADMAP.md`; only append new rows. If two tasks run concurrently, each appends its own row independently.
+- Do not skip the TDD test-skip reason; name it explicitly in the response rather than claiming "not practical" without justification.
