@@ -12,7 +12,7 @@ last_verified: 2026-09-06
 
 # Example Workbench Memory
 
-> Generated from LLM Workbench v3.1.0. This is the room brain: the
+> Generated from LLM Workbench v3.1.1. This is the room brain: the
 > canonical, human-editable memory router for this project, kept at
 > `workbench/wiki/MEMORY.md`. Start here and follow the smallest relevant
 > link instead of browsing folders or searching.
@@ -50,12 +50,14 @@ nothing.
 
 | Question | Read first |
 |---|---|
-| What is every part of this room for, and why is it kept apart? | `node tour.mjs`, then [S-001](../specs/S-001-self-explaining-room/SPEC.md) |
-| Where did this room come from, and which harness release made it? | `provenance` in [manifest.json](../manifest.json) and the tools receipt in `workbench/tools/` |
-| Is the explanation still true of the room? | `node tests/tour.test.mjs`; drift is a test failure, not a backlog item |
+| What is a room, and what goes in each place? | `node tour.mjs`, then [S-001](../specs/S-001-self-explaining-room/SPEC.md) |
+| Where did this room come from? | `provenance` in [manifest.json](../manifest.json): genesis from LLM Workbench v3.1.1 at `09f0875` |
+| How do I know the explanation is still true? | `node tests/tour.test.mjs`; drift is a test failure, not a backlog item |
+| Which stance does a ticket here carry? | The `**Stance:**` line of the ticket in [S-001](../specs/S-001-self-explaining-room/SPEC.md); the terms are in [LEXICON.md](../../LEXICON.md) -> Stance Terms |
 
-The rows above route to live controls and to the room's own executable
-description; the room is young and has no flat notes yet.
+This room is young and deliberately small; it has no flat notes yet. The rows
+above route to live controls and to the room's own executable description,
+which is where its durable knowledge actually lives.
 
 Add a row only when a durable note exists to route to. A young room may have an
 empty table; that is fine. Grow flat notes beside this router and inside the

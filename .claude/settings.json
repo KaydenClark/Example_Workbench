@@ -16,18 +16,31 @@
     ],
     "ask": [
       "Bash(git push:*)",
-      "Bash(rm -rf:*)"
+      "Bash(rm -rf:*)",
+      "Edit(./workbench/tools/**)",
+      "Edit(./workbench/manifest.json)"
     ],
     "allow": [
       "Edit(./tour.mjs)",
       "Edit(./tests/**)",
       "Edit(./AGENTS.md)",
       "Edit(./BLUEPRINT.md)",
+      "Edit(./LEXICON.md)",
       "Edit(./TASKBOARD.md)",
       "Edit(./RUNBOOK.md)",
       "Edit(./README.md)",
+      "Edit(./workbench/specs/**)",
+      "Edit(./workbench/docs/**)",
+      "Edit(./workbench/wiki/**)",
+      "Edit(./workbench/feedback/**)",
+      "Edit(./workbench/sessions/**)",
       "Bash(node tests/tour.test.mjs)",
-      "Bash(node --check tour.mjs)"
+      "Bash(node --check tour.mjs)",
+      "Bash(node workbench/tools/spec-workbench.mjs:*)",
+      "Bash(node workbench/tools/adr.mjs:*)",
+      "Bash(node workbench/tools/sessions.mjs:*)",
+      "Bash(node workbench/tools/wiki.mjs:*)",
+      "Bash(node workbench/tools/workbench-layout.mjs:*)"
     ]
   }
 }

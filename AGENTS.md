@@ -1,11 +1,12 @@
 # Example Workbench - Agent Operating System
 
-> Generated from LLM Workbench v3.1.0.
+> Generated from LLM Workbench v3.1.1.
 
-This always-loaded file owns how agents work. Product detail loads from
-`BLUEPRINT.md` only when needed; shared definitions load from `LEXICON.md` when
-project language matters; executable work comes from the assigned stable
-`workbench/specs/S-###-slug/SPEC.md`; commands live in `RUNBOOK.md`.
+This always-loaded file owns how agents work. Ordinary entry follows
+`AGENTS.md` -> `RUNBOOK.md` -> `LEXICON.md`. Read the Runbook's entry procedure
+and the Lexicon's routing section, then only the owners relevant to the assigned
+task. The assigned `workbench/specs/S-###-slug/SPEC.md` is mandatory after selection. `BLUEPRINT.md` loads
+for architecture or cross-cutting product direction, not default orientation.
 
 ## Authority Order
 
@@ -45,19 +46,45 @@ manufacturing authority. Diagnostics block only by their registered effect:
 work, `claim` refuses a slice blocker, and `attention` findings stay visible
 without blocking.
 
+## Assigned Work And Stances
+
+Work autonomously within the assigned task and established authority. Investigate
+missing information through the Contract, relevant ADRs, specs, Wiki and live
+project evidence. Resolve supported decisions within scope. If no confident
+next action can be established, record the blocker in the existing work owner
+and stop; do not create a next task for yourself or manufacture a queue item.
+
+Normal stance is set in the assigned SPEC and TASK (the ticket in that spec),
+not selected or recorded by the arriving agent. Builder, Auditor, Reviewer and
+Reconciler are portable behavior skills. A stance never grants, removes, or
+transfers authority; loading it never spawns an agent. Each defines Purpose,
+Method / Posture, Obligations, and Completion / Exit Condition. Changing stance
+alone creates no handoff. Troubleshooting stance policy is outside this contract.
+
+A required step must name its immediate delivery value and leave a checkable
+artifact, decision, or risk reduction. If its value is uncertain, retain it as
+an optional practice visible for owner review; do not make it mandatory or
+silently discard it. Verification and safety still apply to the work they check.
+
+Cold continuation uses existing owners: the Contract, assigned packet and linked
+context, exact achieved output or commit, current state, named verification,
+and next executable action or blocker. Update those owners as work proceeds;
+promote a checkpoint only when session reasoning is material. No universal
+handoff artifact is required. A read-only setup check may return only in chat.
+
 ## Read Scope
 
-- Allowed: `the whole room: this directory and everything below it`
-- Forbidden without explicit approval: `none; the room stores no credentials, tokens, or private data and must acquire none`
+- Allowed: `the whole repository`
+- Forbidden without explicit approval: `none. This room stores no credentials, tokens, or private data, and must acquire none`
 
 Stop and surface committed secrets, credentials, or tokens.
 
 ## Edit Scope
 
-- Writable: `` `tour.mjs` and `tests/` ``, root controls, and the `workbench/` support
+- Writable: `tour.mjs`, `tests/`, root controls, and the `workbench/` support
   lanes (`workbench/tools/` only through the explicit Workbench update)
-- Forbidden: `` `workbench/tools/` by hand (managed runtime; changes only through an explicit update), `.git/`, and anything outside this repository ``
-- Review required: `` `git push`, any change to `workbench/manifest.json`, and any explicit update of `workbench/tools/` ``
+- Forbidden: `workbench/tools/` (managed runtime; changes only through an explicit update), `.git/`, anything outside this repository
+- Review required: `git push`, any change to the seven root controls, any change to `workbench/manifest.json`
 
 Keep `templates/` generic when this project ships templates. Spec paths are
 stable; never move them between status folders.
@@ -74,8 +101,7 @@ stable; never move them between status folders.
    completed specs from the hot Taskboard immediately.
 
 Do not read the full Blueprint, Taskboard, completed specs, or proof archive for
-normal selection. Read the Lexicon when a shared term is unclear or a selected
-skill depends on project vocabulary. A spec is a durable capability; a ticket is a temporary slice.
+normal selection. Use the Lexicon routing section to find task-relevant owners. A spec is a durable capability; a ticket is a temporary slice.
 Later change creates a linked superseding spec rather than rewriting history.
 
 ## Engineering And Verification
@@ -121,22 +147,43 @@ evidence; never duplicate completed proof in the Taskboard.
 - Preserve unrelated dirty work.
 - Ask before destructive actions, deleting data, rewriting history, paid services, or scope expansion.
 - Never commit secrets, private data, `.env`, logs, or databases.
-- Escalate product tradeoffs with options, recommendation, and cost—not
+- Escalate product tradeoffs with options, recommendation, and cost, not
   code-level failures.
 
 ## Git Rules
 
-- Branch per spec/ticket from `main`; never commit to protected
+- Branch per spec/ticket from `integration` (the PR target; `main` is the default branch); never commit to protected
   branches.
 - Default PR target: `integration`; owner-only final merge:
   `integration into main`.
 - Never force-push shared history or merge review-held PRs without approval.
 - Bump versions only after behavior and proof are green.
 
-This room is the `version/08-v3.1.0` branch of `KaydenClark/Example_Workbench`,
-which already has `main`, `integration`, and a branch per task; Genesis created
-no remote and no integration branch for it. The branch is one commit kept for
-comparison with the other generations, so it is read and run, not upgraded.
+Before branches combine into `integration` (or the configured integration
+branch), a separate-context reviewer must check the immutable candidate against
+its controls, assigned spec, and named evidence. This gate challenges code,
+consequential report claims, and recommendations. Earlier review and audit are
+supports, not mandatory independent ceremonies per ticket. A new candidate
+requires a fresh review; self-review alone cannot satisfy the integration gate.
+
+### Branch Completion
+
+A task is not finished at the push. A pushed branch is recoverable, not
+delivered. When the integration review passes, open the PR into `integration`
+with `gh`, merge it, and confirm `integration` contains the work. Do not stall
+on an approved candidate or leave a passed PR waiting for the owner; only
+`integration` into `main` is owner-only. "Never merge a PR left open for
+review" means a PR whose review is still pending, not one that already passed.
+
+Delete the branch once `integration` contains it and nothing is lost, unless
+its owner defers cleanup. Prove containment of the immutable reviewed commit
+before any deletion, then check the actual local and remote branch tips too.
+Use `git branch -d` for local deletion and an expected-tip guard for remote
+deletion. A tracking upstream alone is not proof of integration containment;
+never force it with
+`-D` to clear a branch. Stacked branches whose commits are already ancestors of
+the merged tip need no separate merge. A branch still holding unmerged work is
+removed only with owner approval.
 
 ## Session Records And Checkpoints
 

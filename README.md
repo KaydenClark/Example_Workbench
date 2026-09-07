@@ -1,27 +1,23 @@
+> Historical example: LLM Workbench v3.1.1 boundaries and portable stances, 2026-09-04, source commit 09f0875edce730eebac56902fa561ec3301b0543, dated 2026-09-04. Built with that generation's own tooling on 2026-09-06. Branch version/09-v3.1.1 of KaydenClark/Example_Workbench.
+
 # Example Workbench
 
-> Historical example: LLM Workbench v3.1.0 managed runtime and governance core, 2026-09-04, source commit 4ce74f8de1da30a3bffd9286e32c3b63e417a08b, dated 2026-09-04. Built with that generation's own tooling on 2026-09-06. Branch version/08-v3.1.0 of KaydenClark/Example_Workbench.
-
-> Generated from LLM Workbench v3.1.0. See `RUNBOOK.md` ->
+> Generated from LLM Workbench v3.1.1. See `RUNBOOK.md` ->
 > Upgrading The Harness.
 
-A room that explains itself: one command prints what every control file and
-support location in a v3.1.0 room is for and why it is kept apart from the
-others, for anyone meeting the harness for the first time.
+The smallest complete v3.1.1 room, whose product is an explanation of what a
+room is: for anyone meeting the harness for the first time, and for anyone who
+wants to read one harness generation beside the next.
 
-The v3.1.0 generation is the first public v3 release. It added the managed
-runtime tools installed with a receipt, the ADR tool, diagnostics with
-registered blocking effects, the Governance Core in the controls, and the full
-wiki template set. This room is the smallest complete installation of that
-contract: seven filled root controls, a schema 2 support root declared by a
-manifest, eleven receipt-backed runtime tools, one stable spec, and a room
-brain. It is a finished historical snapshot, kept for comparison with the
-other generations, not a project under development.
-
-```bash
-node tour.mjs             # what every part of this room is for, and why
-node tests/tour.test.mjs  # proof that the answer still matches the room
-```
+This generation added the reduced entry route (AGENTS -> RUNBOOK -> LEXICON),
+concrete edit-scope boundaries, the four portable stances (Builder, Auditor,
+Reviewer, Reconciler), the feedback-lane `REPORT_FORMAT.md`, branch completion
+and merged-branch cleanup rules, and the worktree-safe closeout. The room is a
+working installation of exactly that: `node tour.mjs` prints every place in it
+with what it owns and why, and `node tests/tour.test.mjs` fails when the room
+and that account disagree. The optional multi-agent team templates,
+`ADOPTION.md`, and the research templates were not applicable to a fresh
+single-agent room and were not copied.
 
 ## How This Project Is Run
 
@@ -51,22 +47,19 @@ before changing anything:
   the work down, so they can be improved upstream. It lives in the feedback
   lane so the root keeps exactly seven controls.
 
-This project was bootstrapped from a single founding prompt with the one-time
-`GENESIS.md` protocol of LLM Workbench v3.1.0. That protocol says to delete or
-archive itself after handoff, so it is not kept here; the founding prompt and
-the Genesis result are preserved in the first spec's evidence log. `ADOPTION.md`
-did not apply because nothing existed before Genesis. The optional team
-templates and research templates were not copied: the room has one agent at
-a time and no research folders. `.claude/settings.json` was copied and filled
-(see `.claude/README.md`). After
-handoff, AGENTS plus the progressive spec flow above govern.
+This project was bootstrapped from a single founding prompt by the one-time
+`GENESIS.md` protocol. Phase 7 of that protocol says to delete or archive the
+file once handoff is complete, and it was deleted; the run is recorded in the
+first spec's evidence log. The harness was not adopted into an existing project,
+so `ADOPTION.md` does not apply. Either runs once at start; after handoff,
+AGENTS plus the progressive spec flow above govern.
 
 ## Getting Started
 
 ```bash
-node --version            # v20 or newer; the room has no dependencies to install
-node tour.mjs             # print the room map
-node tests/tour.test.mjs  # check the map against the room
+node --version               # nothing to install; Node.js 20+ is the only requirement
+node tour.mjs                # the room map: every place, what it owns, why
+node tests/tour.test.mjs     # proof that the map still matches the room
 ```
 
 Full setup, environment, and troubleshooting steps live in
@@ -96,5 +89,4 @@ See [`TASKBOARD.md`](TASKBOARD.md) for active execution state and
 
 ## License
 
-MIT, the same license as the LLM Workbench harness this room was generated
-from. The room is meant to be read, copied, and compared.
+MIT, the same license as the LLM Workbench harness this room was generated from.

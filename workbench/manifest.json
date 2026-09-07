@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "workbenchVersion": "v3.1.0",
+  "workbenchVersion": "v3.1.1",
   "provenance": {
     "lifecycle": "genesis",
     "source": {
       "repository": "https://github.com/KaydenClark/LLM_Workbench",
-      "release": "v3.1.0",
-      "commit": "4ce74f8de1da30a3bffd9286e32c3b63e417a08b"
+      "release": "v3.1.1",
+      "commit": "09f0875edce730eebac56902fa561ec3301b0543"
     }
   },
   "lanes": {
@@ -42,7 +42,11 @@
       "to-spec",
       "to-tickets",
       "tracer-bullet",
-      "update-harness"
+      "update-harness",
+      "builder",
+      "auditor",
+      "reviewer",
+      "reconciler"
     ],
     "discovery": [
       ".agents/skills",

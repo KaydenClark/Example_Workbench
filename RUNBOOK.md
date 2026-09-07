@@ -1,21 +1,35 @@
 # Example Workbench - Runbook
 
-> Generated from LLM Workbench v3.1.0. See Upgrading The Harness
+> Generated from LLM Workbench v3.1.1. See Upgrading The Harness
 > below.
 
 **Last reviewed:** 2026-09-06
-**Runtime owner:** Kayden Clark (owner); any agent may run every command here
+**Runtime owner:** Kayden Clark (owner); any agent may run every command here.
 **Environment:** local only
 
 This file explains how to operate, verify, recover, and evaluate the project. It
 should be boring, exact, and executable.
 
+## Ordinary Entry
+
+Follow `AGENTS.md` -> this section -> `LEXICON.md` -> Task Routing. Inspect the
+root, branch, upstream and dirty state; run the project-local spec doctor and
+load the explicitly assigned spec. For owner-directed pickup, use `next --json`
+and `show` to resolve that assignment. The spec and ticket set the normal
+stance. Investigate within the task; do not invent a next task when blocked.
+Load remaining Runbook sections only for the operation being performed.
+
+For a setup-only Round One assignment, a fresh agent follows that route, checks
+the manifest, relevant Wiki and ADRs, and runs read-only configuration checks.
+Return the result in chat only: no feedback report, handoff, checkpoint,
+self-created task, or other prose artifact. Round One precedes feedback testing.
+
 ## Prerequisites
 
 Required tools:
 
-- Node.js 20 or newer (`node --version`)
-- git, only to clone the repository; nothing here calls it
+- Node.js 20 or newer (`node --version`). Nothing else.
+- git, and the `gh` CLI, only for the version-control procedures below.
 
 Required accounts/services:
 
@@ -27,14 +41,10 @@ Required local files:
 
 ## Environment Configuration
 
-None. The room reads no environment variables and has no `.env`, so there is
-nothing to copy and the variable table below is empty on purpose.
-
-| Variable | Purpose | Secret? | Example / Notes |
-|---|---|---|---|
-| none | The room is configured only by the files committed to it. | no | - |
-
-Rules:
+None. This room reads no environment variables and holds no configuration
+outside the files committed to it. The template's copy-env command and variable
+table are dropped here because there is nothing to fill them with; the rules
+still bind if that ever changes:
 
 - Do not commit real `.env` files, tokens, local databases, logs, or private
   data.
@@ -49,7 +59,7 @@ node --version
 
 Expected result:
 
-- `v20` or newer prints. There is no dependency to install and no lockfile.
+- `v20` or newer is printed. There is no install step; the room has no dependencies.
 
 ## Run Locally
 
@@ -59,11 +69,12 @@ node tour.mjs
 
 Open:
 
-- Nothing to open. The terminal output is the product.
+- Nothing to open. The output is the product.
 
 Expected result:
 
-- The heading `Example Workbench (v3.1.0 managed runtime and governance core, 2026-09-04) - room map`, then every root control, the manifest, every declared lane and collection, the spec, the room brain, the feedback channel, the tools receipt, and the two product files, each with `owns` and `why`.
+- The heading `Example Workbench (v3.1.1 boundaries and portable stances, 2026-09-04) - room map`
+  followed by every place in the room, each with what it owns and why.
 
 ## Test And Build
 
@@ -76,26 +87,28 @@ node tests/tour.test.mjs
 Full verification:
 
 ```bash
-node tests/tour.test.mjs
 node --check tour.mjs
+node tests/tour.test.mjs
 node workbench/tools/workbench-layout.mjs validate --project .
 node workbench/tools/spec-workbench.mjs render
 node workbench/tools/spec-workbench.mjs doctor
+```
+
+The Genesis readiness gate runs from a release checkout of the harness, not
+from the room's own tools lane:
+
+```bash
 node /PATH/TO/LLM_WORKBENCH/workbench/tools/workbench-layout.mjs validate --project . --genesis
 ```
 
-`/PATH/TO/LLM_WORKBENCH` is a checkout of `KaydenClark/LLM_Workbench` at
-release v3.1.0, commit `4ce74f8de1da30a3bffd9286e32c3b63e417a08b`; the room's
-own installed copy accepts `--genesis` too, and both were run.
+`/PATH/TO/LLM_WORKBENCH` is a checkout of `KaydenClark/LLM_Workbench` at commit
+`09f0875edce730eebac56902fa561ec3301b0543` (v3.1.1), the release this room was
+generated from.
 
 Expected result:
 
-- `tests/tour.test.mjs` reports every case passing and exits 0;
-- `validate` prints `{"status":"valid",...}` from both the room's copy and the
-  release checkout, and the `--genesis` run stays valid while one ticket is
-  `ready` and one acceptance box is unchecked;
-- `render` reports the two generated regions unchanged;
-- `doctor` prints `ok - no blocking finding` and exits 0.
+- `tests/tour.test.mjs` passes with zero failures, both `validate` runs report
+  `"status":"valid"`, `render` reports the projections, and `doctor` exits 0.
 
 ### Test Coverage Policy
 
@@ -125,9 +138,9 @@ tools lane:
 
 ```bash
 node workbench/tools/spec-workbench.mjs next --json
-node workbench/tools/spec-workbench.mjs show S-001
-node workbench/tools/spec-workbench.mjs claim S-001 --agent NAME
-node workbench/tools/spec-workbench.mjs close S-001 --proof "..." --docs "..." --remaining-gap "..."
+node workbench/tools/spec-workbench.mjs show S-###
+node workbench/tools/spec-workbench.mjs claim S-### --agent NAME
+node workbench/tools/spec-workbench.mjs close S-### --proof "..." --docs "..." --remaining-gap "..."
 node workbench/tools/spec-workbench.mjs render
 node workbench/tools/spec-workbench.mjs doctor
 node workbench/tools/adr.mjs new --title "Decision title"
@@ -195,12 +208,18 @@ run.
 
 ### Workbench Evaluation Commands
 
-This room has no executable benchmark of its own; `tests/tour.test.mjs` is a
-regression gate, not an outcome score. The static evaluator and the trial
-framework live in the harness checkout, not in the room:
+For this template repo, the static evaluator checks control-surface coverage:
 
 ```bash
-node /PATH/TO/LLM_WORKBENCH/tools/evaluate-workbench.mjs --path . --include-controls
+node tools/test-evaluate-workbench.mjs
+node tools/evaluate-workbench.mjs --path . --include-controls
+```
+
+The runnable trial framework lives in `evals/`:
+
+```bash
+python3 evals/results/_make_selftest.py
+python3 evals/score.py evals/results/_pipeline_selftest.jsonl --baseline c0_none
 ```
 
 Real comparison runs may spend API budget. Size the run first and record the
@@ -217,15 +236,17 @@ Feedback flows out; validated improvements flow back in as a harness upgrade
 
 ## Data Operations
 
-Not applicable. The room has no seed data, migrations, imports, local
-databases, or generated feeds, so the template's seed, migration, and
-backup commands are omitted here as the template allows.
+None. The template says to use this section only when the project has seed
+data, migrations, imports, local databases, or generated feeds; this room has
+none, so its command blocks are dropped. The room's only persistent state is
+the files in the repository.
 
 ## Deployment Or Startup
 
-Not applicable. There is nothing to deploy and no long-running process; the
-room is read where it sits and run with `node tour.mjs`, so the template's
-start, stop, and log commands are omitted here as the template allows.
+None. The template says to use this section only when the project has
+deployment, scheduler, or service startup behavior; this room has none, so its
+command blocks are dropped. The room is read where it sits and run with
+`node tour.mjs`.
 
 ## Version-Control Procedures
 
@@ -234,26 +255,60 @@ commands and expected results here:
 
 ```bash
 git status --short --branch
-git switch -c claude/s001-<slug> main
-git diff --check && git diff main...HEAD --stat
-gh pr create --base integration --head claude/s001-<slug>
+git switch -c claude/s001-<slug> integration
+git diff --check && git diff integration...HEAD --stat
+gh pr create --base integration --head claude/s001-<slug> --fill
 ```
 
-Expected result: a clean working tree, a task branch cut from `main`, and a PR
-into `integration` whose diff contains only the slice it claims. This branch
-itself is a historical generation and receives no task branches.
+Expected result: a clean working tree, a branch based on `integration`, and a
+PR whose diff contains only the slice it claims. The repository
+`KaydenClark/Example_Workbench` already has its remote, `main`, and
+`integration`; Genesis created none of them. This room is one commit on the
+`version/09-v3.1.1` branch of that repository.
+
+Closeout, once the integration review has passed. A pushed branch is
+recoverable, not delivered; finish the merge and clean up after yourself:
+
+Run merge and containment verification as a fail-fast sequence. Pin the reviewed
+commit and reject a changed candidate. Merge must not delete branches before
+containment is verified. A linked worktree holding the target must not block
+verification. Only run cleanup when the owner has not deferred it; verify each
+local and remote tip is contained, tolerate absent branches, and use an atomic
+expected-tip guard on remote deletion so concurrent pushes are preserved.
+
+```bash
+(
+set -eu
+gh pr merge <number> --merge --match-head-commit <reviewed-sha>
+git fetch origin '+refs/heads/integration:refs/remotes/origin/integration'
+git merge-base --is-ancestor <reviewed-sha> origin/integration && echo "integration contains the reviewed work"
+)
+```
+
+After successful verification, if cleanup is authorized:
+
+```bash
+git branch -d claude/s001-<slug>
+git push origin --delete claude/s001-<slug> --force-with-lease=refs/heads/claude/s001-<slug>:<remote-tip>
+```
+
+Expected result: `integration` contains the reviewed commit; the merged branch
+is deleted locally and remotely; unmerged work is never force-deleted.
+
+When cleanup is owner-deferred, integration contains the reviewed work and the
+branches remain available for later cleanup.
 
 ## Upgrading The Harness
 
 These control docs were generated from a specific LLM Workbench version, recorded
-in the `Generated from LLM Workbench v3.1.0` stamp at the top of each
+in the `Generated from LLM Workbench v3.1.1` stamp at the top of each
 doc. That stamp lets you tell when the project is running an older harness than
 the current one.
 
 To upgrade:
 
 1. Check the LLM Workbench repo's releases/changelog for what changed since
-   `v3.1.0`.
+   `v3.1.1`.
 2. Re-copy only the changed template sections; keep this project's filled-in
    specifics. Never let bracketed placeholders leak back into filled docs.
 3. Update each doc's version stamp to the new version.
@@ -265,18 +320,53 @@ hashes. Verify them with `node /PATH/TO/LLM_WORKBENCH/tools/workbench-tools.mjs 
 and replace them only through `update --explicit-update`, which backs up the
 previous files and records a rollback path. Never hand-edit a managed tool.
 
+Managed-tool updates and rollbacks reject symlinked lane ancestors, linked or
+nonregular managed files, and unsafe backup entries before copying or creating
+backups. Resolve the path collision while preserving its target, then retry the
+explicit operation. Ordinary drift in a regular managed file still receives a
+backup and can be restored.
+
+Layout initialization and schema migration preserve existing session ignore
+rules and reject linked destination paths before writes. ADR creation, register
+rendering and checkpoint promotion also reject unsafe destination chains and
+use private temporary files. Legacy Wiki adoption moves existing knowledge
+before seeding only the missing contract files.
+
 Treat a harness upgrade like any other change: smallest correct diff, verified,
 with proof. If a downstream lesson should flow *back* to the harness, capture it
 per the project's `WORKBENCH_FEEDBACK` convention.
+
+## Manual Harness Feedback Reports
+
+Run this workflow after a setup-only Round One check succeeds. It assesses the
+assigned target; it never authorizes a repair or invokes automated repair.
+
+1. Resolve `lanes.feedback`, `lanes.specs` and the relevant collections through
+   `workbench/manifest.json`. Pin the target revision and the assigned question.
+2. Inspect only relevant controls, source and named proof. Test consequential
+   claims, distinguish observation from inference, and disclose evidence limits.
+3. Write `REPORT-topic-date.md` in the declared feedback lane using its
+   `REPORT_FORMAT.md`. Include Target And Scope, Evidence And Limitations,
+   Findings, Challenged Or Rejected Findings, Next Action And Open Questions,
+   and Review Boundary. No findings is valid. Reports never live loose or in
+   the Wiki. If the format is absent in an older installation, these sections
+   are sufficient; explicit upgrades may copy it from the source templates.
+4. Put accepted follow-up work in its existing linked spec; proposed repairs
+   remain pending owner authorization. A report is not a work assignment.
+5. At a meaningful continuation boundary, a fresh session should find the report,
+   its linked spec, and the next executable action or owner gate using repository
+   state only. No universal handoff or new self-created task is required.
+6. Before integration, the candidate's separate-context review challenges the
+   report's consequential claims and recommendations along with the change.
 
 ## Troubleshooting
 
 | Symptom | Likely cause | Check | Fix |
 |---|---|---|---|
-| `every lane the manifest declares is described` or the collection case fails | A lane or collection was added to `workbench/manifest.json` and never described | `node tests/tour.test.mjs` | Add the place to `PLACES` in `tour.mjs` with what it owns and why |
-| `every Markdown document at the room root is described` fails | A new `.md` file was put at the root | `ls *.md` | Describe it in `PLACES`, or move it into a support lane; the root keeps seven controls |
-| `validate --genesis` returns `unfilled-control` or `version-mismatch` | A control lost its `Generated from LLM Workbench v3.1.0` stamp or a placeholder leaked back | `grep -rnE '\[[A-Z][A-Z0-9_ -]+\]' --include=*.md .` | Restore the stamp or fill the placeholder |
-| `doctor` reports `tools-receipt-drift` or `tools-receipt-missing` | A managed tool was hand-edited or the receipt was removed | `node /PATH/TO/LLM_WORKBENCH/tools/workbench-tools.mjs verify --project .` | Restore through `update --explicit-update` or `rollback`; never hand-edit the lane |
+| `node tests/tour.test.mjs` fails with `... does not exist` | A place was renamed or removed without updating `tour.mjs` | `node tour.mjs` and compare with `ls` | Fix the path in `PLACES` or restore the file |
+| `every lane and collection the manifest declares is described` fails | A lane or collection was added to `workbench/manifest.json` and never described | `node tests/tour.test.mjs` | Add the place to `PLACES` in `tour.mjs`, with what it owns and why |
+| `validate --genesis` reports `invalid-first-spec` | The first spec lost its `ready` ticket, unchecked acceptance box, or `v3.1.1` stamp | read the JSON `reason` field | Repair the named predicate; the gate is one-time, so a room mid-life uses `validate --project .` and `doctor` instead |
+| `doctor` reports `unverified-provenance` | The manifest's recorded source release no longer matches its version stamp | `node workbench/tools/spec-workbench.mjs doctor` | Re-record the source from a clean release checkout and re-stamp by hand |
 
 ## Recovery And Rollback
 

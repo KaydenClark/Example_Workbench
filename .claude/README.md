@@ -6,8 +6,9 @@ the agent to remember. Other agents still read `AGENTS.md`; this is the belt to
 that suspenders.
 
 The rules below are filled from the same scope as `AGENTS.md` in this room:
-`tour.mjs` and `tests/` are the writable product roots, the root controls are
-the docs kept current, and there is no build output or migrations directory. Each of the three permission buckets maps to one declarative scope
+`tour.mjs` and `tests/` are the writable product roots, the root controls and
+the `workbench/` authorship lanes are the docs kept current, and there is no
+build output or migrations directory. Each of the three permission buckets maps to one declarative scope
 idea:
 
 | Scope idea (from `AGENTS.md`) | Permission bucket | Effect |

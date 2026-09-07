@@ -1,6 +1,6 @@
 # Example Workbench - Lexicon
 
-> Generated from LLM Workbench v3.1.0.
+> Generated from LLM Workbench v3.1.1.
 
 **Last reviewed:** 2026-09-06
 **Status:** active
@@ -8,6 +8,15 @@
 This is the canonical lookup table for terms whose meaning is shared across the
 project. Read it when a request, spec, test, or skill uses project language that
 could be ambiguous.
+
+## Task Routing
+
+The ordinary entry route is `AGENTS.md` -> `RUNBOOK.md` -> `LEXICON.md`.
+Continue to the assigned `SPEC.md` resolved through `workbench/manifest.json`.
+Use `BLUEPRINT.md` for architecture and cross-cutting direction; use the
+manifest-declared Wiki `MEMORY.md` for task-relevant durable knowledge and the
+ADR `REGISTER.md` for decision rationale. Read only the relevant linked owners.
+`TASKBOARD.md` is a dashboard, not a prerequisite reading archive.
 
 ## Ownership Rules
 
@@ -28,6 +37,17 @@ could be ambiguous.
 | **Lexicon** | The canonical lookup table for definitions shared across the project. | It owns meanings, not requirements, implementation decisions, or work status. |
 | **Spec** | A stable capability record containing scoped intent, requirements, decisions, implementation slices, acceptance, verification, evidence, and completion. | It combines the useful product and engineering roles often split between a PRD and technical spec. |
 | **Ticket** | A temporary, one-context tracer-bullet slice inside a spec that produces independently verifiable progress. | It is execution structure, not durable capability history. |
+
+## Stance Terms
+
+| Term | Definition | Distinction |
+|---|---|---|
+| **Stance** | The method and obligations for performing one assigned task within already established authority. | It is neither an identity nor an authority grant; switching stance creates no handoff. |
+| **Builder** | The stance that delivers a scoped, verified result and maintains its documentation. | Implementation includes relevant review and verification. |
+| **Auditor** | The stance that checks claims against named evidence and reports a bounded verdict. | An audit does not authorize repairs or release. |
+| **Reviewer** | The stance that challenges a candidate's correctness, impact and evidence. | At integration it runs in a separate context; it does not quietly repair the candidate. |
+| **Reconciler** | The stance that reconciles achieved work with the state and owners needed for continuation. | It neither manufactures completion nor duplicates truth in a universal handoff. |
+| **TASK** | The assigned ticket within a stable SPEC, carrying its normal stance assignment. | No additional task file or queue is introduced. |
 
 ## Governance Core
 
@@ -60,8 +80,7 @@ binding behavior lives in `AGENTS.md`, cross-cutting architecture in
 
 | Term | Definition | Distinction / aliases to avoid |
 |---|---|---|
-| **Room** | One repository (or, here, one version branch of the repository) with the Workbench installed in it: seven root controls, a `workbench/` support root declared by a manifest, and an installed managed runtime with its receipt. | A room is an installation, not the harness. `LLM_Workbench` is the harness; this directory is a room. Avoid "workbench" alone when you mean one installation. |
-| **Tour** | The ordered list `PLACES` in `tour.mjs`: every control file and support location this room has, each with what it owns and why it is kept apart. | Data that happens to print. It is not a README section; `tests/tour.test.mjs` reads the same list the terminal does. |
-| **Place** | One entry in the tour: a path, the truth it owns, and the reason that truth is not kept anywhere else. | A path with no "why" does not belong in the room. |
-| **Drift** | The condition where the room's structure and the tour's description of it disagree: a named path missing, a declared lane or collection undescribed. | A test failure here, not a documentation backlog item. |
-| **Generation** | One release of the harness contract, kept as one filled room on a `version/NN-slug` branch of the repository. This room is the v3.1.0 generation. | A generation is a snapshot for comparison, not a room to keep upgrading; `main` is the live room. |
+| **Room** | One repository with the Workbench installed in it: seven root controls, a `workbench/` support root declared by a manifest, and an installed managed runtime. | A room is an installation, not the harness. `LLM_Workbench` is the harness; `Example Workbench` is a room. Avoid "workbench" alone when you mean one installation. |
+| **Tour** | The ordered list of places in `tour.mjs`, each naming a real path with what it owns and why it is kept apart. | The tour is data that happens to print. It is not prose about the room and not a README section; the test reads the same list the terminal does. |
+| **Place** | One entry in the tour: a path, the truth it owns, and the reason that truth is not kept somewhere else. | A place is not merely a directory. A directory nobody can say a "why" for does not belong in the room. |
+| **Drift** | The condition where the room's structure and the tour's description of it disagree. | Drift is a test failure here, not a documentation backlog item. `node tests/tour.test.mjs` is what makes that true. |
