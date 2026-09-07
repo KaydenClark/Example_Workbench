@@ -16,13 +16,16 @@
     ],
     "ask": [
       "Bash(git push:*)",
-      "Bash(rm -rf:*)"
+      "Bash(rm -rf:*)",
+      "Edit(./.claude/**)"
     ],
     "allow": [
       "Edit(./tour.mjs)",
       "Edit(./tests/**)",
+      "Edit(./specs/**)",
       "Edit(./AGENTS.md)",
       "Edit(./BLUEPRINT.md)",
+      "Edit(./LEXICON.md)",
       "Edit(./TASKBOARD.md)",
       "Edit(./RUNBOOK.md)",
       "Edit(./README.md)",
