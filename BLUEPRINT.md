@@ -88,6 +88,7 @@ history. Human-authored product prose stays outside the markers.
 | Spec | Description | Status |
 |---|---|---|
 | [S-001 - Self-Explaining Room](workbench/specs/S-001-self-explaining-room/SPEC.md) | A room that prints an accurate, test-checked account of what a workbench is and why each part is where it is. | active |
+| [S-002 - Version History Replay](workbench/specs/S-002-version-history-replay/SPEC.md) | The repository's history replays every LLM Workbench generation as one commit and one branch each, so the contract's progression can be read, diffed, and backed out of. | complete |
 <!-- spec-catalog:end -->
 
 ## Cross-Cutting Health

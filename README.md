@@ -55,6 +55,11 @@ before changing anything:
   came from: log where the harness rules themselves are unclear, wrong, or slow
   the work down, so they can be improved upstream. It lives in the feedback
   lane so the root keeps exactly seven controls.
+- [`workbench/docs/VERSION_HISTORY.md`](workbench/docs/VERSION_HISTORY.md) -
+  how the harness got here. This repository's history replays every LLM
+  Workbench generation as one commit and one `version/` branch each, from the
+  three-file GAME_PLAN room to this v3.1.2 room, so any generation can be
+  checked out, run, and diffed against its neighbours.
 
 If this project was bootstrapped from a single founding prompt, the one-time
 protocol that produced these docs is preserved in [`GENESIS.md`](GENESIS.md).
