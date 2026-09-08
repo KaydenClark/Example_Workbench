@@ -893,3 +893,7 @@ operation; zero may include unverified checks and is not blanket compatibility.
 Native discovery/invocation always needs a separate provider trace. Record the
 provider, model if reported, configuration, OS, exact source and operations;
 explicit skill-path invocation alone does not prove automatic discovery.
+
+Keep an empty tracked `.gitkeep` in required empty collections, including
+`workbench/sessions/recovery/`, so a clean Git clone contains the tour paths.
+Recovery contents remain ignored; the marker contains no operational data.
