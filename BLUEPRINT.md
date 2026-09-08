@@ -41,7 +41,7 @@ Core promise:
 |---|---|---|
 | Runtime | Node.js 20+ | No dependencies, ever. A room that needs an install step cannot be the first thing a newcomer runs. |
 | Product surface | CLI (`node tour.mjs`) | One command, no arguments, output that fits a terminal. |
-| Data/storage | none | The repository is the only state. Nothing to seed, migrate, or back up. |
+| Application data/storage | none | The reference product has no application data. The Workbench still has tracked and ignored support state: seeded documents and schema examples are tracked; live notes and recovery receipts are ignored; supported lifecycle operations may seed, migrate, back up, or synchronize only that scoped state. |
 | Testing | `node:test` (built in) | Matches the upstream harness suites, and adds nothing to install. |
 | Deployment/runtime | none — the room is read and run in place | Nothing to deploy means nothing that can be stale in production. |
 

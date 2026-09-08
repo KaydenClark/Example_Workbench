@@ -131,6 +131,13 @@ test('the v3.2 tour describes live notepads, recovery and frozen checkpoint hist
   assert.doesNotMatch(historical.owns, /records promoted deliberately/i);
 });
 
+test('the Blueprint distinguishes product data from Workbench support state', () => {
+  const blueprint = fs.readFileSync(path.join(root, 'BLUEPRINT.md'), 'utf8');
+  assert.doesNotMatch(blueprint, /Nothing to seed, migrate, or back up\./);
+  assert.match(blueprint, /application data/i);
+  assert.match(blueprint, /tracked and ignored support state/i);
+});
+
 test('the v3.2 room has a stable identity distinct from its artifact identifiers', () => {
   assert.equal(manifest.workbenchVersion, 'v3.2.0');
   assert.match(manifest.workbenchId, /^WB-[0-9A-Za-z]{22}$/);
