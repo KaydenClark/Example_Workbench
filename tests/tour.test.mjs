@@ -121,3 +121,39 @@ test('every step of the stated upgrade route names a real tool in this room', ()
   assert.ok(!present.has('workbench-tools.mjs'),
     'workbench-tools.mjs is a release tool, not a room tool; if it appears here the route text is wrong');
 });
+
+test('the v3.2 tour describes live notepads, recovery and frozen checkpoint history', () => {
+  for (const name of ['notepads', 'notepad-templates', 'recovery']) {
+    assert.ok(PLACES.some(place => place.collection === name), `${name} must be explained to a reader`);
+  }
+  const historical = PLACES.find(place => place.collection === 'checkpoints');
+  assert.match(historical.owns, /frozen|historical/i);
+  assert.doesNotMatch(historical.owns, /records promoted deliberately/i);
+});
+
+test('the Blueprint distinguishes product data from Workbench support state', () => {
+  const blueprint = fs.readFileSync(path.join(root, 'BLUEPRINT.md'), 'utf8');
+  assert.doesNotMatch(blueprint, /Nothing to seed, migrate, or back up\./);
+  assert.match(blueprint, /application data/i);
+  assert.match(blueprint, /tracked and ignored support state/i);
+});
+
+test('configured-host guidance pins the expected producer identity before execution', () => {
+  const runbook = fs.readFileSync(path.join(root, 'RUNBOOK.md'), 'utf8');
+  assert.match(runbook, /`sourceCommit` \(the expected full 40-character producer commit\)/);
+  assert.match(runbook, /`sourceRepository` \(the expected producer `origin` URL\)/);
+  assert.match(runbook, /clean manifest, managed-tool, and ADR inputs/);
+});
+
+test('the v3.2 room has a stable identity distinct from its artifact identifiers', () => {
+  assert.equal(manifest.workbenchVersion, 'v3.2.0');
+  assert.match(manifest.workbenchId, /^WB-[0-9A-Za-z]{22}$/);
+  assert.ok(manifest.collections['notepad-templates'].startsWith(manifest.collections.notepads + '/'));
+});
+
+test('the maintenance route preserves historical provenance and names a backup home', () => {
+  assert.ok(ROUTE.some(step => /preserve historical/i.test(step.step)));
+  assert.ok(ROUTE.some(step => /workbench-tools\.mjs update/.test(step.detail) && /--home/.test(step.detail)));
+  assert.ok(ROUTE.some(step => /workbench-layout\.mjs migrate/.test(step.detail)));
+  assert.ok(ROUTE.every(step => !/sets `provenance\.source`/.test(step.detail)));
+});

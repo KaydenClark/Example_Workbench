@@ -1,6 +1,6 @@
 # Example Workbench - Agent Operating System
 
-> Generated from LLM Workbench v3.1.2.
+> Generated from LLM Workbench v3.2.0.
 
 This always-loaded file owns how agents work. Ordinary entry follows
 `AGENTS.md` -> `RUNBOOK.md` -> `LEXICON.md`. Read the Runbook's entry procedure
@@ -46,6 +46,24 @@ manufacturing authority. Diagnostics block only by their registered effect:
 work, `claim` refuses a slice blocker, and `attention` findings stay visible
 without blocking.
 
+## Traverse, Don't Search
+
+Start from the ordinary entry route and follow the smallest relevant links to
+the owning controls, assigned spec, Wiki context, and referenced source or
+tests. Use the Lexicon's Context Map routes; do not begin ordinary orientation
+with a broad repository or history search. This reduces rediscovery and keeps
+the source owner visible.
+
+When a route is missing, stale, or insufficient, use a bounded search to find
+the owner. Search within the selected source area as needed for implementation,
+debugging, or verification; explicit search and navigation audits remain valid.
+Repair a missing or stale durable link in its existing owner when in scope;
+otherwise report the gap. Keep accepted unfinished obligations reachable in their existing assigned owner
+or an explicitly authorized successor; preserve completed evidence. A finding
+does not itself authorize new work. Link new durable context from its relevant router
+and back to its sources so the next agent can traverse the same path. Links
+are navigation, never instruction authority or permission to expand scope.
+
 ## Assigned Work And Stances
 
 Work autonomously within the assigned task and established authority. Investigate
@@ -69,7 +87,7 @@ silently discard it. Verification and safety still apply to the work they check.
 Cold continuation uses existing owners: the Contract, assigned packet and linked
 context, exact achieved output or commit, current state, named verification,
 and next executable action or blocker. Update those owners as work proceeds;
-promote a checkpoint only when session reasoning is material. No universal
+reconcile material session reasoning into its named durable owner. No universal
 handoff artifact is required. A read-only setup check may return only in chat.
 
 ## Read Scope
@@ -81,10 +99,10 @@ Stop and surface committed secrets, credentials, or tokens.
 
 ## Edit Scope
 
-- Writable: ``tour.mjs`, `tests/``, root controls, and the `workbench/` support
+- Writable: `tour.mjs and tests/`, root controls, and the `workbench/` support
   lanes (`workbench/tools/` only through the explicit Workbench update)
-- Forbidden: ``workbench/tools/` (managed runtime; changes only through an explicit update), `.git/`, anything outside this repository`
-- Review required: ``git push`, any change to the seven root controls, any change to `workbench/manifest.json``
+- Forbidden: `workbench/tools/ except through explicit managed update; anything outside this repository unless the user names it`
+- Review required: `git push and root controls or manifest changes; final immutable review before integration`
 
 Keep `templates/` generic when this project ships templates. Spec paths are
 stable; never move them between status folders.
@@ -117,7 +135,9 @@ preview URL, or one-command demo.
 
 ```bash
 node tests/tour.test.mjs
-node --check tour.mjs && node tests/tour.test.mjs
+node --check tour.mjs
+node tests/tour.test.mjs
+node workbench/tools/workbench-layout.mjs validate --project .
 node workbench/tools/spec-workbench.mjs doctor
 ```
 
@@ -143,6 +163,14 @@ Documentation is part of done; the implementing agent is documentation owner.
 Use `Docs checked; no update needed` with a reason when appropriate. The final response proof states what changed, why, risks, and verification. Append spec
 evidence; never duplicate completed proof in the Taskboard.
 
+A citation into a file that changes must say which tree it reads at. Every merge
+moves line numbers, so a bare `path:line` written against a branch tip points at
+unrelated content once that branch lands. Either anchor the citation with
+`git show <sha>:path`, which is absolute, or declare the spec's anchors once
+near the top as `**Citation anchors.** pre=`<sha>` post=`<sha>`` and read bare
+citations at `pre` in the pre-change sections and at `post` in the rest.
+Evidence rows read at the commit each row names and are never re-anchored.
+
 ## Safety And Change Control
 
 - Preserve unrelated dirty work.
@@ -153,7 +181,7 @@ evidence; never duplicate completed proof in the Taskboard.
 
 ## Git Rules
 
-- Branch per spec/ticket from `main`; never commit to protected
+- Branch per spec/ticket from `integration`; never commit to protected
   branches.
 - Default PR target: `integration`; owner-only final merge:
   `integration into main`.
@@ -196,14 +224,45 @@ removed only with owner approval.
 
 ## Session Records And Checkpoints
 
-Live grilling notepads and handoffs live untracked in the manifest-declared
-`workbench/sessions/grilling/` and `workbench/sessions/handoffs/` collections
-and are never evidence. A record becomes durable only through a deliberate,
-privacy-checked promotion into the tracked `workbench/sessions/checkpoints/`
-collection (`node workbench/tools/sessions.mjs checkpoint --from PATH --topic slug`);
-durable references target that promoted copy. A promotion that hits
-secret-like content, an absolute home path, or an email address stops with the
-line number and writes nothing.
+Create or resume a local JSON notepad when meaningful objective work produces
+context whose loss would impair continuation or a focused handoff. Trivial
+conversation needs none. Preserve source fidelity, uncertainty, and corrections;
+maintain a compact current view and an append-oriented work record. Templates
+are examples, not a universal checklist. Notes neither authorize work nor prove
+claims. On resume obey the current Contract and verify relevant live state.
+Save important context promptly as work proceeds, before token exhaustion or
+an owner pressing Stop can interrupt the conversation. Do not defer capture to
+closeout or rely on a final write after Stop. This obligation covers saved local
+context for conversation continuation, not computer crashes or device loss;
+an interruption can still preempt an unsaved write.
+
+New notepads use JSON, including when older workflow examples say Markdown.
+The shared runtime is `workbench/tools/notepads.mjs`; its interchange schema
+and reusable examples live in the manifest-declared `notepad-templates`
+collection. The `notepad` skill owns judgment. New live records use typed
+folders in the `notepads` collection; handoffs use `handoffs`. Preserve legacy
+Markdown and JSON paths. Live
+notes and handoffs stay untracked in project Git; explicitly configured private
+synchronization may transport selected live collections under the accepted
+continuity contract. Local operation remains independent of transport. Do not record secrets,
+credentials, authentication/recovery material, raw private financial, medical,
+or personal data, or unsafe tool output; retain only safe recovery references.
+
+Promote only supported claims, under existing authorization, directly into their
+proper durable owners. Cite those owners, never an ignored live path as durable
+evidence. Retain unresolved material in the live notes. Once reconciliation into
+durable owners leaves no important information or active handoff that still
+depends on the record, normal cleanup may flush or delete it. A retained note
+may instead be trimmed of promoted material, preserving any context and
+correction links still needed by its remaining work. No routine archive is
+required. No autonomous task or handoff creation follows.
+
+Existing privacy-checked checkpoints and their citations are frozen history.
+The legacy `sessions.mjs checkpoint` command refuses new copies without writing.
+Reconcile selected claims into their durable owners with `sessions.mjs promote`;
+retain local notes for unresolved context. Operational receipts and backups live
+in the separate ignored `sessions/recovery/` collection, outside note discovery.
+A preserved historical copy is not blanket promotion of its claims.
 
 ## Long Session Control
 

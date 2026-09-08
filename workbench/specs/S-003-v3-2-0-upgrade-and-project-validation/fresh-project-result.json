@@ -1,0 +1,107 @@
+{
+  "templateSource": {
+    "commit": "b17a460f0c68aba6cd66439a6584bd1c0c3ac9c4",
+    "release": "v3.2.0",
+    "requiredChecks": 42,
+    "integrationContainment": "c6e476c1913e4f6dccc7868c687ff8f97ad592c7",
+    "consumedLaneEquivalence": "All template, runtime and core bytes identical in final reviewed563a6e6; only producer host probe/test changed"
+  },
+  "foundingPrompt": {
+    "prompt": "Build Queue Summary, a dependency-free Node CLI that reads a JSON array of tasks and reports counts by todo, doing and done; reject unknown statuses and malformed input with a nonzero exit. Include a useful sample, tests, filled Workbench controls and a saved objective with a correction and next action.",
+    "label": "assistant-selected rehearsal",
+    "target": "/private/tmp/v32-final-genesis/project",
+    "constraints": "Dependency-free Node CLI; local bare remote only; isolated core; no source, Example, personal catalog or host settings edits.",
+    "questions": "No blocking question; file input and compact JSON output are reversible choices."
+  },
+  "foundingPromptAttribution": "assistant-selected bounded rehearsal",
+  "roomId": "WB-1rzToM0B4ZMmRlaP2o6vTn",
+  "generationCommit": "80af009669ed506c42fc12371c321b262176eeab",
+  "implementationCommit": "7db9e72d73f0130c5d4d34574444eeab80ede94c",
+  "nativeRecoveryCommit": "36abf1c880444359841b9788c403d6bc4f8da2e9",
+  "recovery": "Local bare origin codex/rehearsal confirms recovery commit; main/integration retain generation baseline",
+  "verification": {
+    "genesisReadiness": "PASS before claim at generation commit; not asserted after task progress",
+    "red": 15,
+    "green": 16,
+    "demo": {
+      "todo": 2,
+      "doing": 1,
+      "done": 1
+    },
+    "managedRuntimeFiles": 15,
+    "isolatedCoreSkills": 20,
+    "nativeContext": "Codex CLI0.144.3 ephemeral workspace-write on Darwin25.5 arm64; exact model unreported",
+    "nativeCompletedCommandBatches": 12,
+    "nativeNonzeroBatches": 4,
+    "nativeResults": [
+      {
+        "command": "empty-array CLI probe",
+        "exit": 0,
+        "stdout": "{\"todo\":0,\"doing\":0,\"done\":0}\n",
+        "stderr": ""
+      },
+      {
+        "command": "mixed-array CLI probe",
+        "exit": 0,
+        "stdout": "{\"todo\":2,\"doing\":1,\"done\":1}\n",
+        "stderr": ""
+      },
+      {
+        "command": "invalid-status CLI probe",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Error: Task 2 must have status todo, doing or done.\n"
+      },
+      {
+        "command": "node --test test/queue-summary.test.mjs",
+        "result": "15 passed, 0 failed"
+      },
+      {
+        "command": "node --test",
+        "result": "16 passed, 0 failed"
+      },
+      {
+        "command": "node workbench/tools/spec-workbench.mjs doctor --home ../core-home",
+        "result": "passed after render"
+      },
+      {
+        "command": "git diff --check",
+        "result": "passed"
+      }
+    ],
+    "parentReadback": "16 tests, sample, doctor and source/tests unchanged independently confirmed; original finding/correction preserved",
+    "noteRevisionBefore": 6,
+    "noteRevisionAfter": 8,
+    "noteSha256": "a54aaed2f77fbdc32ed8f77adca35da8136a0400d1cbcd9155f9d6eef8672057",
+    "nativeEventSha256": "06e043c3dd5cb9c35c81026cea6b1db4c628ad167d93a928eac6d3844db62409"
+  },
+  "launcherEvidence": "App/version, environment assignments and invocation flags are parent-observed tool-call facts; not all are reconstructable from native event JSON. No host permissions/settings were weakened.",
+  "occurrences": [
+    {
+      "cause": "Initial native launcher could not initialize app state in the outer filesystem sandbox.",
+      "correction": "Authorized outer launch retried while retaining native workspace-write; no credentials/settings edits.",
+      "impact": "Initial invocation exit1 produced no project mutation."
+    },
+    {
+      "cause": "Native agent guessed shortened notepad paths, a positional ticket argument and unsupported --help options.",
+      "correction": "Recovered public CLI usage and used actual project-relative note path and --agent claim.",
+      "impact": "Three nonzero command batches; subsequent correction/topic read and claim succeed."
+    },
+    {
+      "cause": "Claim changed generated task state before render.",
+      "correction": "Rendered then repeated doctor successfully.",
+      "impact": "One nonzero batch ended in render-drift despite passing useful tests; no global PASS inferred from that batch."
+    },
+    {
+      "cause": "Example clean clone omitted empty recovery directory.",
+      "correction": "Added tracked empty .gitkeep; recovery content remains ignored.",
+      "impact": "Fresh-clone tour initially failed; fixed before integration review."
+    }
+  ],
+  "limitations": [
+    "One useful local native trial; no improved agent reliability claim.",
+    "Explicit installed skill path invocation, not automatic discovery proof.",
+    "No Windows, native Claude or cross-device/private-service claim from this project.",
+    "No Example or upstream main publication; generated project integration is outside this bounded rehearsal."
+  ]
+}

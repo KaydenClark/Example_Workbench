@@ -1,6 +1,6 @@
 # Example Workbench - Hot Taskboard
 
-> Generated from LLM Workbench v3.1.2.
+> Generated from LLM Workbench v3.2.0.
 
 **Current focus:** A newcomer can learn what a workbench is by running one command, and the room proves its own account is still true.
 **Owner:** Kayden Clark (executive); assigned agent (execution)
@@ -15,6 +15,7 @@ Commands live in `RUNBOOK.md`.
 <!-- hot-specs:start -->
 | Spec | Current slice | Owner | Blocker | Latest meaningful event | Next gate |
 |---|---|---|---|---|---|
+| [S-003](workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md) | TK-004: Review merge and read back actual Example integration (in-progress) | codex | TK-003 | TK-004 reconciled the final reviewed upstream 16c8278 source and its configured-host contract. | Push and independently review the repaired immutable candidate before integration. |
 | [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | Acceptance / owner gate | Kayden Clark | none | TK-003 unblocked by owner direction and closed; the room is published and clonable. | None; every slice is closed and the capability is published. |
 <!-- hot-specs:end -->
 

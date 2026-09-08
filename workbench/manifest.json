@@ -1,12 +1,19 @@
 {
   "schemaVersion": 2,
-  "workbenchVersion": "v3.1.2",
+  "workbenchVersion": "v3.2.0",
   "provenance": {
     "lifecycle": "genesis",
     "source": {
       "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
       "release": "v3.1.2",
       "commit": "18ffc0d295722e8437a13399b3a1b67369248314"
+    },
+    "layout": {
+      "source": {
+        "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
+        "release": "v3.2.0",
+        "commit": "563a6e69657a6fe2594e86bda523cb60567342b7"
+      }
     }
   },
   "git": {
@@ -28,7 +35,10 @@
     "archive": "workbench/wiki/archive",
     "grilling": "workbench/sessions/grilling",
     "handoffs": "workbench/sessions/handoffs",
-    "checkpoints": "workbench/sessions/checkpoints"
+    "checkpoints": "workbench/sessions/checkpoints",
+    "notepads": "workbench/sessions/notepads",
+    "notepad-templates": "workbench/sessions/notepads/templates",
+    "recovery": "workbench/sessions/recovery"
   },
   "wiki": {
     "profile": "project"
@@ -47,6 +57,10 @@
       "to-tickets",
       "tracer-bullet",
       "update-harness",
+      "carry",
+      "notepad",
+      "save",
+      "promote",
       "builder",
       "auditor",
       "reviewer",
@@ -58,5 +72,6 @@
     ],
     "normalSetup": "presence-only",
     "updates": "explicit-only"
-  }
+  },
+  "workbenchId": "WB-1RX8E0KgeMDxKV6Z3l9AEC"
 }

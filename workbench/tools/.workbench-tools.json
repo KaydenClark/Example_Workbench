@@ -2,23 +2,42 @@
   "schemaVersion": 1,
   "source": {
     "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
-    "release": "v3.1.2",
-    "commit": "18ffc0d295722e8437a13399b3a1b67369248314",
+    "release": "v3.2.0",
+    "commit": "563a6e69657a6fe2594e86bda523cb60567342b7",
     "dirty": false
   },
   "installedAt": "2026-09-06",
   "files": {
-    "adr.mjs": "aa1bb3847360609ecb539e48b57c7aa2d9252b51a547f5c24803e62e4b686062",
-    "diagnostics.mjs": "bf9e0f47f4b0242fa496d37e4a0535ec674fd045dee19356814a8ed97426e0a2",
+    "adr.mjs": "d50e08f4271a0ce2f90e273b757f7ade0878c1fb98ee56d99b56eb3f0deb4cce",
+    "diagnostics.mjs": "2cdc651b7f0d3efd6f5854a4c9e37a572f6d5e286d9b89cac8a2898285626d2d",
     "markdown-table.mjs": "acca5cb04cecb0044c74aaa38f42d6f0e4e6addb26b45a744d14ca0b74487e6b",
     "privacy.mjs": "8731047bc626b7b7a539b04c674aac2ac19452e7103cebd53ccf336c32a3ad8b",
-    "sessions.mjs": "26df16acbff46166c79eef17d09d35ba63888d2da4ba5c466e234a93d442e9d7",
-    "spec-packet.mjs": "8dbe28d865a3bbeab8e01548b85ed2e01286c83fcd7c403fd85f636cc4c7f7e6",
-    "spec-workbench.mjs": "5de7b261a0b26b8f97c426082862954356758197ed0f6742161ab1d482b0dd44",
+    "sessions.mjs": "5c772381d16cd94aee41ab855e54261761d6d6d3200dc9fb064325e2aaea6e45",
+    "spec-packet.mjs": "5d2295418a25fcd0c739942404cd804d197f8ef0c9d238522757ea4bb62f97be",
+    "spec-workbench.mjs": "0ca59ae16c47c50fab744ed93682e81a45b6b7d269924459c5d9aa4936d22db6",
     "template-placeholders.mjs": "3e99032e2ded860f43d76cd3526c5223107f04fb6421f247283b2d02a32b7f65",
-    "wiki.mjs": "d33640f7d818899e5e2aa806dfcf96485f614e0ba1ec18f1897abc5cdcd0d3f3",
-    "workbench-layout.mjs": "4ac96740ab97fa5e0493e092fac7fef069732c2b46c70bd55ff933f993d9404a",
-    "workbench-paths.mjs": "514b06293efabf9a9a57ccd174b17ed024bfce698f075d6b33d0de584c4bdb82"
+    "wiki.mjs": "8c3b62b2a70315df49c3cd43dcbf760a81374cba42414a935b666460be157fa0",
+    "workbench-layout.mjs": "e9a2ff6a99beb0950d14a4fff10a3e53d6c40b1d80b1957ccd10ab46c711a2ec",
+    "workbench-paths.mjs": "993d921998dfb9daf58adbefe0240038969e8224a735ba9eced6faa993a26b53",
+    "notepads.mjs": "660acf2130b0129fa3c637bef55bb39e43d7a3b6506e90725f2af881a55bc27d",
+    "session-transport.mjs": "17172dcb489a2fa571551a605f3130fd20d6bc2a17d8cba8811ef39a8c2c5416",
+    "visible-ids.mjs": "b07501e993bd49572b233947cb5f8a606b21c343a986ce1bab1480237b08db42",
+    "skill-inspection.mjs": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc"
   },
-  "backups": []
+  "backups": [
+    {
+      "path": "/private/tmp/v32-example-home/.workbench-tools-backup-P1WP0q",
+      "files": [
+        "adr.mjs",
+        "diagnostics.mjs",
+        "sessions.mjs",
+        "spec-packet.mjs",
+        "spec-workbench.mjs",
+        "wiki.mjs",
+        "workbench-layout.mjs",
+        "workbench-paths.mjs"
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-08"
 }
