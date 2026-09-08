@@ -1,0 +1,67 @@
+{
+  "upstream": {
+    "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
+    "release": "v3.2.0",
+    "commit": "563a6e69657a6fe2594e86bda523cb60567342b7",
+    "dirty": false
+  },
+  "upstreamIntegration": "c6e476c1913e4f6dccc7868c687ff8f97ad592c7",
+  "upstreamPR": 80,
+  "requiredChecks": 42,
+  "independentReview": "PASS exact563a6e6",
+  "workbenchId": "WB-1RX8E0KgeMDxKV6Z3l9AEC",
+  "historicalGenesisSource": {
+    "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
+    "release": "v3.1.2",
+    "commit": "18ffc0d295722e8437a13399b3a1b67369248314"
+  },
+  "managedFiles": {
+    "adr.mjs": "d50e08f4271a0ce2f90e273b757f7ade0878c1fb98ee56d99b56eb3f0deb4cce",
+    "diagnostics.mjs": "2cdc651b7f0d3efd6f5854a4c9e37a572f6d5e286d9b89cac8a2898285626d2d",
+    "markdown-table.mjs": "acca5cb04cecb0044c74aaa38f42d6f0e4e6addb26b45a744d14ca0b74487e6b",
+    "privacy.mjs": "8731047bc626b7b7a539b04c674aac2ac19452e7103cebd53ccf336c32a3ad8b",
+    "sessions.mjs": "5c772381d16cd94aee41ab855e54261761d6d6d3200dc9fb064325e2aaea6e45",
+    "spec-packet.mjs": "5d2295418a25fcd0c739942404cd804d197f8ef0c9d238522757ea4bb62f97be",
+    "spec-workbench.mjs": "0ca59ae16c47c50fab744ed93682e81a45b6b7d269924459c5d9aa4936d22db6",
+    "template-placeholders.mjs": "3e99032e2ded860f43d76cd3526c5223107f04fb6421f247283b2d02a32b7f65",
+    "wiki.mjs": "8c3b62b2a70315df49c3cd43dcbf760a81374cba42414a935b666460be157fa0",
+    "workbench-layout.mjs": "e9a2ff6a99beb0950d14a4fff10a3e53d6c40b1d80b1957ccd10ab46c711a2ec",
+    "workbench-paths.mjs": "993d921998dfb9daf58adbefe0240038969e8224a735ba9eced6faa993a26b53",
+    "notepads.mjs": "660acf2130b0129fa3c637bef55bb39e43d7a3b6506e90725f2af881a55bc27d",
+    "session-transport.mjs": "17172dcb489a2fa571551a605f3130fd20d6bc2a17d8cba8811ef39a8c2c5416",
+    "visible-ids.mjs": "b07501e993bd49572b233947cb5f8a606b21c343a986ce1bab1480237b08db42",
+    "skill-inspection.mjs": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc"
+  },
+  "coreSkills": [
+    "adoption",
+    "checkpoint",
+    "code-review",
+    "genesis",
+    "grilling",
+    "implement",
+    "make-it-so",
+    "to-docs",
+    "to-spec",
+    "to-tickets",
+    "tracer-bullet",
+    "update-harness",
+    "carry",
+    "notepad",
+    "save",
+    "promote",
+    "builder",
+    "auditor",
+    "reviewer",
+    "reconciler"
+  ],
+  "coreScope": "isolated verification home; personal catalog unchanged",
+  "tests": "15 tour tests, syntax, layout and doctor pass",
+  "controlFidelity": "AGENTS has zero dropped or changed template lines; two additions are extra full-verification commands",
+  "preservation": "Historical genesis provenance, version replay rows, product purpose and Wiki routing retained; only supported managed update changes runtime",
+  "recovery": "Managed runtime backup retained in isolated verification home; first attempt refused missing home before writes, core setup created home and explicit retry succeeded",
+  "limitations": [
+    "Historical-source versus installed-version provenance attention is expected and preserved.",
+    "Private transport remains optional; Example does not depend on a private repository.",
+    "No Windows, native discovery or rollout readiness claim."
+  ]
+}

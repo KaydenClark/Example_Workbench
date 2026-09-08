@@ -7,12 +7,12 @@ provenance:
   - LLM Workbench template wiki
 source_paths:
   - workbench/wiki/design-concepts
-last_verified: 2026-09-06
+last_verified: 2026-09-08
 ---
 
 # Design Concepts
 
-> Generated from LLM Workbench v3.1.2.
+> Generated from LLM Workbench v3.2.0.
 
 This collection holds Design Concept articles: complete, navlinked,
 encyclopedic explanations of one durable, reusable, cross-cutting design model

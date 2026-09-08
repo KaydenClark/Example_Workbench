@@ -8,8 +8,8 @@
 **Updated:** 2026-09-08
 **Catalog description:** Upgrade the reference room to v3.2.0 and prove a useful fresh project before reviewed integration.
 **Blockers:** final-upstream-v3.2.0-candidate
-**Latest event:** TK-002 claimed by codex.
-**Next gate:** Close TK-002 with verification and documentation proof.
+**Latest event:** TK-003 claimed by codex.
+**Next gate:** Close TK-003 with verification and documentation proof.
 
 ## Outcome
 
@@ -78,8 +78,8 @@ Example mechanical success never waives that release gate.
 | Ticket | Slice | Status | Blockers | Proof |
 |---|---|---|---|---|
 | TK-001 | Preserve refreshed baseline and pin the tested v3.2.0 source | done | none | Refreshed Example baseline12 tests and layout pass; upstream563a6e6 full42/42 and independent PASS, merged PR80 integrationc6e476c exact reviewed tree |
-| TK-002 | Upgrade managed installation and reconcile the tour and controls | in-progress | TK-001 | pending |
-| TK-003 | Generate and customize a useful independent project with saved-note continuation | ready | TK-002 | pending |
+| TK-002 | Upgrade managed installation and reconcile the tour and controls | done | TK-001 | New tour/route regressions RED then15GREEN; exact15 runtime hashes and20 isolated core markers match563a6e6; syntax/layout/doctor pass; AGENTS fidelity zero dropped/changed |
+| TK-003 | Generate and customize a useful independent project with saved-note continuation | in-progress | TK-002 | pending |
 | TK-004 | Review merge and read back actual Example integration | ready | TK-003 | pending |
 
 ### TK-001 - Source and baseline
@@ -150,6 +150,7 @@ VERSION_HISTORY.md and S-002 historical result. Generic material stays upstream.
 |---|---|---|---|---|---|
 | 2026-09-08 | spec | Refreshed Example before planning; exact branch created from integration | Clean main/integration fast-forwarded to fetched tips; 12 tour tests pass; doctor zero blockers and 32 informational findings | This spec records endpoint and preserved replay work | Final upstream candidate, upgrade and complete acceptance pending |
 | 2026-09-08 | TK-001 | Ticket closed | Refreshed Example baseline12 tests and layout pass; upstream563a6e6 full42/42 and independent PASS, merged PR80 integrationc6e476c exact reviewed tree | Pinned source final v3.2.0; original Example main/integration and version history retained | Explicit upgrade, useful project continuation and Example reviewed integration |
+| 2026-09-08 | TK-002 | Ticket closed | New tour/route regressions RED then15GREEN; exact15 runtime hashes and20 isolated core markers match563a6e6; syntax/layout/doctor pass; AGENTS fidelity zero dropped/changed | Root controls, Wiki, tour and current-version history appendix reconciled; original genesis provenance and historical replay retained; installation-result.json | Fresh generation receipt/native continuation and independent Example integration |
 
 ## Completion Result
 

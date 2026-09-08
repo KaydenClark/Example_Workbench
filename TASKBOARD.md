@@ -1,6 +1,6 @@
 # Example Workbench - Hot Taskboard
 
-> Generated from LLM Workbench v3.1.2.
+> Generated from LLM Workbench v3.2.0.
 
 **Current focus:** A newcomer can learn what a workbench is by running one command, and the room proves its own account is still true.
 **Owner:** Kayden Clark (executive); assigned agent (execution)
@@ -15,7 +15,7 @@ Commands live in `RUNBOOK.md`.
 <!-- hot-specs:start -->
 | Spec | Current slice | Owner | Blocker | Latest meaningful event | Next gate |
 |---|---|---|---|---|---|
-| [S-003](workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md) | TK-002: Upgrade managed installation and reconcile the tour and controls (in-progress) | codex | TK-001 | TK-002 claimed by codex. | Close TK-002 with verification and documentation proof. |
+| [S-003](workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md) | TK-003: Generate and customize a useful independent project with saved-note continuation (in-progress) | codex | TK-002 | TK-003 claimed by codex. | Close TK-003 with verification and documentation proof. |
 | [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | Acceptance / owner gate | Kayden Clark | none | TK-003 unblocked by owner direction and closed; the room is published and clonable. | None; every slice is closed and the capability is published. |
 <!-- hot-specs:end -->
 
