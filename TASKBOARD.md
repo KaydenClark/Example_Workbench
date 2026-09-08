@@ -15,7 +15,7 @@ Commands live in `RUNBOOK.md`.
 <!-- hot-specs:start -->
 | Spec | Current slice | Owner | Blocker | Latest meaningful event | Next gate |
 |---|---|---|---|---|---|
-| [S-003](workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md) | TK-001: Preserve refreshed baseline and pin the tested v3.2.0 source (ready) | codex | final-upstream-v3.2.0-candidate | Refreshed remote state and preserved version-history replay on the exact v3.2.0 branch. | Verify baseline and the clean pinned upstream release source. |
+| [S-003](workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md) | TK-002: Upgrade managed installation and reconcile the tour and controls (in-progress) | codex | TK-001 | TK-002 claimed by codex. | Close TK-002 with verification and documentation proof. |
 | [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | Acceptance / owner gate | Kayden Clark | none | TK-003 unblocked by owner direction and closed; the room is published and clonable. | None; every slice is closed and the capability is published. |
 <!-- hot-specs:end -->
 

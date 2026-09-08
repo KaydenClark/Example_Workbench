@@ -8,8 +8,8 @@
 **Updated:** 2026-09-08
 **Catalog description:** Upgrade the reference room to v3.2.0 and prove a useful fresh project before reviewed integration.
 **Blockers:** final-upstream-v3.2.0-candidate
-**Latest event:** Refreshed remote state and preserved version-history replay on the exact v3.2.0 branch.
-**Next gate:** Verify baseline and the clean pinned upstream release source.
+**Latest event:** TK-002 claimed by codex.
+**Next gate:** Close TK-002 with verification and documentation proof.
 
 ## Outcome
 
@@ -77,8 +77,8 @@ Example mechanical success never waives that release gate.
 
 | Ticket | Slice | Status | Blockers | Proof |
 |---|---|---|---|---|
-| TK-001 | Preserve refreshed baseline and pin the tested v3.2.0 source | ready | none | pending |
-| TK-002 | Upgrade managed installation and reconcile the tour and controls | ready | TK-001 | pending |
+| TK-001 | Preserve refreshed baseline and pin the tested v3.2.0 source | done | none | Refreshed Example baseline12 tests and layout pass; upstream563a6e6 full42/42 and independent PASS, merged PR80 integrationc6e476c exact reviewed tree |
+| TK-002 | Upgrade managed installation and reconcile the tour and controls | in-progress | TK-001 | pending |
 | TK-003 | Generate and customize a useful independent project with saved-note continuation | ready | TK-002 | pending |
 | TK-004 | Review merge and read back actual Example integration | ready | TK-003 | pending |
 
@@ -149,6 +149,7 @@ VERSION_HISTORY.md and S-002 historical result. Generic material stays upstream.
 | Date | Ticket | Event | Verification | Docs | Remaining gap |
 |---|---|---|---|---|---|
 | 2026-09-08 | spec | Refreshed Example before planning; exact branch created from integration | Clean main/integration fast-forwarded to fetched tips; 12 tour tests pass; doctor zero blockers and 32 informational findings | This spec records endpoint and preserved replay work | Final upstream candidate, upgrade and complete acceptance pending |
+| 2026-09-08 | TK-001 | Ticket closed | Refreshed Example baseline12 tests and layout pass; upstream563a6e6 full42/42 and independent PASS, merged PR80 integrationc6e476c exact reviewed tree | Pinned source final v3.2.0; original Example main/integration and version history retained | Explicit upgrade, useful project continuation and Example reviewed integration |
 
 ## Completion Result
 
