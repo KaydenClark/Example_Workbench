@@ -138,6 +138,13 @@ test('the Blueprint distinguishes product data from Workbench support state', ()
   assert.match(blueprint, /tracked and ignored support state/i);
 });
 
+test('configured-host guidance pins the expected producer identity before execution', () => {
+  const runbook = fs.readFileSync(path.join(root, 'RUNBOOK.md'), 'utf8');
+  assert.match(runbook, /`sourceCommit` \(the expected full 40-character producer commit\)/);
+  assert.match(runbook, /`sourceRepository` \(the expected producer `origin` URL\)/);
+  assert.match(runbook, /clean manifest, managed-tool, and ADR inputs/);
+});
+
 test('the v3.2 room has a stable identity distinct from its artifact identifiers', () => {
   assert.equal(manifest.workbenchVersion, 'v3.2.0');
   assert.match(manifest.workbenchId, /^WB-[0-9A-Za-z]{22}$/);

@@ -2,18 +2,27 @@
   "upstream": {
     "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
     "release": "v3.2.0",
-    "commit": "563a6e69657a6fe2594e86bda523cb60567342b7",
+    "commit": "16c8278cf97bac325fd3616f2dfaab7979b6596b",
     "dirty": false
   },
-  "upstreamIntegration": "c6e476c1913e4f6dccc7868c687ff8f97ad592c7",
-  "upstreamPR": 80,
+  "upstreamIntegration": "5ceef145881d9420e70d6178a3c17e8e11e26c69",
+  "upstreamPR": 81,
+  "supersededUpstream": {
+    "commit": "563a6e69657a6fe2594e86bda523cb60567342b7",
+    "pullRequest": 80,
+    "review": "FAIL after merge; configured-host accepted an unverified producer root"
+  },
   "requiredChecks": 42,
-  "independentReview": "PASS exact563a6e6",
+  "independentReview": "PASS exact16c8278 corrective candidate before PR81",
   "workbenchId": "WB-1RX8E0KgeMDxKV6Z3l9AEC",
   "historicalGenesisSource": {
     "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
     "release": "v3.1.2",
     "commit": "18ffc0d295722e8437a13399b3a1b67369248314"
+  },
+  "installedReceiptSource": {
+    "commit": "563a6e69657a6fe2594e86bda523cb60567342b7",
+    "disposition": "Retained because final16c8278 changes no managed runtime or skill bytes; exact file hashes below match the final source and the release-side verifier reports no update available."
   },
   "managedFiles": {
     "adr.mjs": "d50e08f4271a0ce2f90e273b757f7ade0878c1fb98ee56d99b56eb3f0deb4cce",
@@ -55,7 +64,7 @@
     "reconciler"
   ],
   "coreScope": "isolated verification home; personal catalog unchanged",
-  "tests": "15 tour tests, syntax, layout and doctor pass",
+  "tests": "17 tour tests, syntax, layout and doctor pass",
   "controlFidelity": "AGENTS has zero dropped or changed template lines; two additions are extra full-verification commands",
   "preservation": "Historical genesis provenance, version replay rows, product purpose and Wiki routing retained; only supported managed update changes runtime",
   "recovery": "Managed runtime backup retained in isolated verification home; first attempt refused missing home before writes, core setup created home and explicit retry succeeded",

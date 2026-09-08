@@ -8,7 +8,7 @@
 **Updated:** 2026-09-08
 **Catalog description:** Upgrade the reference room to v3.2.0 and prove a useful fresh project before reviewed integration.
 **Blockers:** final-upstream-v3.2.0-candidate
-**Latest event:** TK-004 review found and repaired stale Blueprint data/storage guidance.
+**Latest event:** TK-004 reconciled the final reviewed upstream 16c8278 source and its configured-host contract.
 **Next gate:** Push and independently review the repaired immutable candidate before integration.
 
 ## Outcome
@@ -153,6 +153,7 @@ VERSION_HISTORY.md and S-002 historical result. Generic material stays upstream.
 | 2026-09-08 | TK-002 | Ticket closed | New tour/route regressions RED then15GREEN; exact15 runtime hashes and20 isolated core markers match563a6e6; syntax/layout/doctor pass; AGENTS fidelity zero dropped/changed | Root controls, Wiki, tour and current-version history appendix reconciled; original genesis provenance and historical replay retained; installation-result.json | Fresh generation receipt/native continuation and independent Example integration |
 | 2026-09-08 | TK-003 | Ticket closed | New b17 v3.2 Genesis readiness80af beforeclaim;15RED16GREEN; native context recovered correction and saved note6to8; parent16 tests/source preservation and local remote36abf1c confirmed | fresh-project-result.json names exact sources, evidence levels, every observed failed batch and correction; no cross-device or reliability inference | Independent immutable Example review, integration and actual merged readback |
 | 2026-09-08 | TK-004 | Separate-context review rejected 39c6f203998d442b2fdc1411c9969b71a6dd642c because Blueprint still claimed the repository was the only state with nothing to seed, migrate or back up | Existing15 checks and generated-project evidence passed, but the stale cross-cutting claim contradicted v3.2 support state. New assertion reproduced RED; Blueprint now distinguishes no application data from tracked and ignored Workbench support state and all16 tests plus syntax/layout/doctor are GREEN | BLUEPRINT data/storage invariant corrected and guarded by the tour suite | Push repaired candidate and obtain a fresh exact-head review before PR and integration |
+| 2026-09-08 | TK-004 | Reconciled Example from the upstream precursor merged by PR80 to the final reviewed corrective source 16c8278 merged by PR81 | Upstream diff changes no managed runtime or skill bytes, so the installed 563a6e6 receipt remains truthful and all recorded hashes match final source; release verifier reports no update available. Configured-host guidance regression demonstrated RED, final template wording applied, and all17 tests plus syntax/layout/doctor are GREEN | RUNBOOK now requires expected sourceCommit/sourceRepository and clean producer inputs; installation-result.json preserves the failed precursor and names final source/integration | Commit, push and fresh independent review of the complete Example head before integration |
 
 ## Completion Result
 
