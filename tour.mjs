@@ -122,7 +122,7 @@ export const PLACES = [
     zone: 'The support root',
     lane: 'sessions',
     path: 'workbench/sessions',
-    owns: 'Session records: live working notes, handoffs between contexts, and promoted checkpoints.',
+    owns: 'Session records: local JSON working notes and handoffs, frozen historical checkpoints, and ignored recovery material.',
     why: 'Most session text is scratch, and some of it contains things that must never be committed. This lane exists so that durability is a deliberate act rather than the default.',
   },
   {
@@ -143,8 +143,29 @@ export const PLACES = [
     zone: 'The support root',
     collection: 'checkpoints',
     path: 'workbench/sessions/checkpoints',
-    owns: 'The one durable session collection: records promoted deliberately, after a privacy check.',
-    why: 'Promotion refuses secret-like content, absolute home paths, and email addresses, and names the offending line rather than writing a redacted copy. That gate is the whole reason session records are safe to have at all.',
+    owns: 'Frozen historical checkpoint records retained with their original evidence boundaries.',
+    why: 'New supported claims go directly to their durable owner after privacy and validity checks. Existing checkpoints remain historical; new checkpoint copies are retired.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'notepads',
+    path: 'workbench/sessions/notepads',
+    owns: 'Local JSON objective notes, original findings, corrections and the next executable action.',
+    why: 'Unfinished reasoning needs recoverable context without becoming project authority. Live notes stay ignored; selected supported claims belong in their durable owner.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'notepad-templates',
+    path: 'workbench/sessions/notepads/templates',
+    owns: 'Tracked generic JSON examples and the shared notepad schema.',
+    why: 'Examples explain the interchange shape without publishing live notes. They are deliberately distinct from the ignored work and handoff records beside them.',
+  },
+  {
+    zone: 'The support root',
+    collection: 'recovery',
+    path: 'workbench/sessions/recovery',
+    owns: 'Ignored operational backups and optional private transport configuration.',
+    why: 'A rollback needs original bytes and a checkable boundary. Recovery material stays local and does not become a permanent published handoff archive.',
   },
   {
     zone: 'The support root',
@@ -206,12 +227,16 @@ export const ROUTE = [
     detail: 'List `workbench/tools/` and compare it against the receipt. A file the managed runtime does not ship makes `next` and `claim` refuse with exit 1 after the update, and work selection stops until it is moved out.',
   },
   {
-    step: 'Update the managed runtime',
-    detail: 'From a clean release checkout: `workbench-tools.mjs update --project PATH --explicit-update`. It backs up the old lane and rewrites the receipt.',
+    step: 'Migrate supported layout additions',
+    detail: 'From the clean release checkout: `workbench-layout.mjs migrate --project PATH --version vX.Y.Z`. This preserves existing content and adds declared notepad/recovery collections and a stable room identity when missing.',
   },
   {
-    step: 'Re-record the source',
-    detail: 'From the same checkout: `workbench-layout.mjs record-source --project PATH --version vX.Y.Z`. This sets `provenance.source`, not the room’s own version stamp.',
+    step: 'Update the managed runtime',
+    detail: 'From a clean release checkout: `workbench-tools.mjs update --project PATH --home EXISTING_HOME --explicit-update`. The existing home owns the backup. It backs up the old lane and rewrites the receipt.',
+  },
+  {
+    step: 'Preserve historical source identity',
+    detail: 'Keep the original genesis/adoption `provenance.source`. The tools receipt and layout provenance name the new installed components; a version update does not change where this room began.',
   },
   {
     step: 'Stamp the room’s version by hand',

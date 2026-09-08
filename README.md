@@ -1,6 +1,6 @@
 # Example Workbench
 
-> Generated from LLM Workbench v3.1.2. See `RUNBOOK.md` ->
+> Generated from LLM Workbench v3.2.0. See `RUNBOOK.md` ->
 > Upgrading The Harness.
 
 The smallest complete LLM Workbench room, whose product is an explanation of
@@ -58,7 +58,7 @@ before changing anything:
 - [`workbench/docs/VERSION_HISTORY.md`](workbench/docs/VERSION_HISTORY.md) -
   how the harness got here. This repository's history replays every LLM
   Workbench generation as one commit and one `version/` branch each, from the
-  three-file GAME_PLAN room to this v3.1.2 room, so any generation can be
+  three-file GAME_PLAN room through the v3.1.2 baseline, so any generation can be
   checked out, run, and diffed against its neighbours.
 
 If this project was bootstrapped from a single founding prompt, the one-time
@@ -104,3 +104,9 @@ See [`TASKBOARD.md`](TASKBOARD.md) for active execution state and
 
 Same license as the LLM Workbench harness it was generated from. This room is
 meant to be copied, read, and discarded.
+
+The current room runs Workbench **v3.2.0**. Run `node tour.mjs` for the
+updated notepad, recovery and frozen-history map. Its verified upgrade and
+independent project-generation evidence belong to
+[S-003](workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md).
+Historical replay branches retain their original versions.

@@ -289,3 +289,17 @@ for the one-time v2 to v3 migration, and `workbench-tools.mjs update
 - v2.2 has no branch, for the reason given above. Nothing in this replay is
   older than the harness's first commit or newer than its `integration` tip
   on 2026-09-06.
+
+## v3.2.0 reference update (2026-09-08)
+
+The replay table and historical descriptions above retain the original v3.1.2
+baseline. The current `v3.2.0` branch applies the independently reviewed upstream
+source `563a6e69657a6fe2594e86bda523cb60567342b7`, contained in LLM_Workbench
+integration by PR80. It adds the current notepad/recovery and identity layout,
+frozen checkpoint history, direct promotion, twenty-core-skill policy and optional
+private transport runtime. The tour and filled controls explain these changes.
+
+[S-003](../specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md) owns installed
+verification, fresh-project proof and the separate Example integration result.
+Original genesis provenance remains v3.1.2; installed component receipts name
+v3.2.0. This update does not rewrite the historical replay branches.

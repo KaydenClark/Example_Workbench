@@ -7,12 +7,12 @@ provenance:
   - LLM Workbench template wiki
 source_paths:
   - workbench/wiki
-last_verified: 2026-09-06
+last_verified: 2026-09-08
 ---
 
 # Example Workbench Wiki Agent Instructions
 
-> Generated from LLM Workbench v3.1.2.
+> Generated from LLM Workbench v3.2.0.
 
 This lane is the durable, human-editable knowledge base for this project. The
 root `AGENTS.md` governs how agents work; this file only bounds wiki
