@@ -4119,10 +4119,10 @@
       "status": "compared",
       "counts": {
         "filled": 34,
-        "unchanged": 905,
-        "dropped": 82,
-        "changed": 4,
-        "added": 124
+        "unchanged": 889,
+        "dropped": 96,
+        "changed": 6,
+        "added": 54
       },
       "lines": [
         {
@@ -9156,12 +9156,26 @@
           "trivial": true
         },
         {
+          "kind": "added",
+          "roomLine": 616,
+          "room": "The static evaluator and stochastic trial framework are producer tools in the",
+          "trivial": false,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
+        },
+        {
           "kind": "unchanged",
           "templateLine": 617,
           "template": "### Evaluation Design",
           "roomLine": 590,
           "room": "### Evaluation Design",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 617,
+          "room": "pinned LLM_Workbench checkout; they are not installed in this room. Follow that",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
@@ -9172,6 +9186,13 @@
           "trivial": true
         },
         {
+          "kind": "added",
+          "roomLine": 618,
+          "room": "checkout's Runbook for those commands and name the target room explicitly.",
+          "trivial": false,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
+        },
+        {
           "kind": "unchanged",
           "templateLine": 619,
           "template": "Use controlled conditions:",
@@ -9180,12 +9201,26 @@
           "trivial": false
         },
         {
+          "kind": "added",
+          "roomLine": 619,
+          "room": "Room-local acceptance uses `node tests/tour.test.mjs`, `node --check tour.mjs`,",
+          "trivial": false,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
+        },
+        {
           "kind": "unchanged",
           "templateLine": 620,
           "template": "",
           "roomLine": 593,
           "room": "",
           "trivial": true
+        },
+        {
+          "kind": "added",
+          "roomLine": 620,
+          "room": "managed layout validation and spec doctor, as listed in Verification above.",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
@@ -9340,6 +9375,13 @@
           "trivial": false
         },
         {
+          "kind": "added",
+          "roomLine": 639,
+          "room": "persistent state is the files in the repository.",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
+        },
+        {
           "kind": "unchanged",
           "templateLine": 640,
           "template": "",
@@ -9364,121 +9406,101 @@
           "trivial": true
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 643,
           "template": "For this template repo, the static evaluator checks control-surface coverage:",
-          "roomLine": 616,
-          "room": "For this template repo, the static evaluator checks control-surface coverage:",
-          "trivial": false
-        },
-        {
-          "kind": "unchanged",
-          "templateLine": 644,
-          "template": "",
-          "roomLine": 617,
-          "room": "",
-          "trivial": true
-        },
-        {
-          "kind": "unchanged",
-          "templateLine": 645,
-          "template": "```bash",
-          "roomLine": 618,
-          "room": "```bash",
-          "trivial": false
-        },
-        {
-          "kind": "unchanged",
-          "templateLine": 646,
-          "template": "node tools/test-evaluate-workbench.mjs",
-          "roomLine": 619,
-          "room": "node tools/test-evaluate-workbench.mjs",
-          "trivial": false
-        },
-        {
-          "kind": "unchanged",
-          "templateLine": 647,
-          "template": "node tools/evaluate-workbench.mjs --path . --include-controls",
-          "roomLine": 620,
-          "room": "node tools/evaluate-workbench.mjs --path . --include-controls",
-          "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 647,
-          "room": "persistent state is the files in the repository.",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
+          "templateLine": 644,
+          "template": "",
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
+        },
+        {
+          "kind": "dropped",
+          "templateLine": 645,
+          "template": "```bash",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
+        },
+        {
+          "kind": "dropped",
+          "templateLine": 646,
+          "template": "node tools/test-evaluate-workbench.mjs",
+          "trivial": false,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
+        },
+        {
+          "kind": "dropped",
+          "templateLine": 647,
+          "template": "node tools/evaluate-workbench.mjs --path . --include-controls",
+          "trivial": false,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
+        },
+        {
+          "kind": "dropped",
           "templateLine": 648,
           "template": "```",
-          "roomLine": 621,
-          "room": "```",
-          "trivial": true
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 649,
           "template": "",
-          "roomLine": 622,
-          "room": "",
-          "trivial": true
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 650,
           "template": "The runnable trial framework lives in `evals/`:",
-          "roomLine": 623,
-          "room": "The runnable trial framework lives in `evals/`:",
-          "trivial": false
+          "trivial": false,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 651,
           "template": "",
-          "roomLine": 624,
-          "room": "",
-          "trivial": true
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 652,
           "template": "```bash",
-          "roomLine": 625,
-          "room": "```bash",
-          "trivial": false
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 653,
           "template": "python3 evals/results/_make_selftest.py",
-          "roomLine": 626,
-          "room": "python3 evals/results/_make_selftest.py",
-          "trivial": false
+          "trivial": false,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 654,
           "template": "python3 evals/score.py evals/results/_pipeline_selftest.jsonl --baseline c0_none",
-          "roomLine": 627,
-          "room": "python3 evals/score.py evals/results/_pipeline_selftest.jsonl --baseline c0_none",
-          "trivial": false
+          "trivial": false,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 655,
           "template": "```",
-          "roomLine": 628,
-          "room": "```",
-          "trivial": true
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 656,
           "template": "",
-          "roomLine": 629,
+          "roomLine": 621,
           "room": "",
           "trivial": true
         },
@@ -9486,7 +9508,7 @@
           "kind": "unchanged",
           "templateLine": 657,
           "template": "Real comparison runs may spend API budget. Size the run first and record the",
-          "roomLine": 630,
+          "roomLine": 622,
           "room": "Real comparison runs may spend API budget. Size the run first and record the",
           "trivial": false
         },
@@ -9494,23 +9516,37 @@
           "kind": "unchanged",
           "templateLine": 658,
           "template": "model, conditions, task suite, trial count, and result path before making claims.",
-          "roomLine": 631,
+          "roomLine": 623,
           "room": "model, conditions, task suite, trial count, and result path before making claims.",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 658,
+          "room": "Expected result: a clean working tree, a branch based on `integration`, and a PR",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 659,
           "template": "",
-          "roomLine": 632,
+          "roomLine": 624,
           "room": "",
           "trivial": true
+        },
+        {
+          "kind": "added",
+          "roomLine": 659,
+          "room": "whose diff contains only the slice it claims.",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 660,
           "template": "### Harness Feedback Loop",
-          "roomLine": 633,
+          "roomLine": 625,
           "room": "### Harness Feedback Loop",
           "trivial": false
         },
@@ -9518,31 +9554,35 @@
           "kind": "unchanged",
           "templateLine": 661,
           "template": "",
-          "roomLine": 634,
+          "roomLine": 626,
           "room": "",
           "trivial": true
         },
         {
-          "kind": "unchanged",
+          "kind": "changed",
           "templateLine": 662,
           "template": "This project's `WORKBENCH_FEEDBACK.md` is the return channel to the upstream",
-          "roomLine": 635,
-          "room": "This project's `WORKBENCH_FEEDBACK.md` is the return channel to the upstream",
-          "trivial": false
+          "roomLine": 627,
+          "room": "The manifest feedback lane (`workbench/feedback/`) is the return channel to the",
+          "trivial": false,
+          "similarity": 0.5,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
         },
         {
-          "kind": "unchanged",
+          "kind": "changed",
           "templateLine": 663,
           "template": "harness. Lessons logged there feed harness changes, which must clear the same",
-          "roomLine": 636,
-          "room": "harness. Lessons logged there feed harness changes, which must clear the same",
-          "trivial": false
+          "roomLine": 628,
+          "room": "upstream harness. Use its `REPORT_FORMAT.md`; lessons logged there feed harness changes, which must clear the same",
+          "trivial": false,
+          "similarity": 0.828,
+          "disposition": "Producer evaluation commands are explicitly upstream-only; room checks use installed runtime and tour. Feedback uses manifest feedback lane REPORT_FORMAT.md. Duplicate section removed after independent review."
         },
         {
           "kind": "unchanged",
           "templateLine": 664,
           "template": "bar as any other \"better\" claim: a proposed template change is `c3_candidate`",
-          "roomLine": 637,
+          "roomLine": 629,
           "room": "bar as any other \"better\" claim: a proposed template change is `c3_candidate`",
           "trivial": false
         },
@@ -9550,7 +9590,7 @@
           "kind": "unchanged",
           "templateLine": 665,
           "template": "above, tested against the current docs on the same task suite before it ships.",
-          "roomLine": 638,
+          "roomLine": 630,
           "room": "above, tested against the current docs on the same task suite before it ships.",
           "trivial": false
         },
@@ -9558,37 +9598,23 @@
           "kind": "unchanged",
           "templateLine": 666,
           "template": "Feedback flows out; validated improvements flow back in as a harness upgrade",
-          "roomLine": 639,
+          "roomLine": 631,
           "room": "Feedback flows out; validated improvements flow back in as a harness upgrade",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 666,
-          "room": "Expected result: a clean working tree, a branch based on `integration`, and a PR",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 667,
           "template": "(Upgrading The Harness, above). Taste alone never closes the loop; evidence does.",
-          "roomLine": 640,
+          "roomLine": 632,
           "room": "(Upgrading The Harness, above). Taste alone never closes the loop; evidence does.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 667,
-          "room": "whose diff contains only the slice it claims.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 668,
           "template": "",
-          "roomLine": 641,
+          "roomLine": 633,
           "room": "",
           "trivial": true
         },
@@ -9596,7 +9622,7 @@
           "kind": "unchanged",
           "templateLine": 669,
           "template": "## Data Operations",
-          "roomLine": 642,
+          "roomLine": 634,
           "room": "## Data Operations",
           "trivial": false
         },
@@ -9604,7 +9630,7 @@
           "kind": "unchanged",
           "templateLine": 670,
           "template": "",
-          "roomLine": 643,
+          "roomLine": 635,
           "room": "",
           "trivial": true
         },
@@ -9657,7 +9683,7 @@
           "placeholder": [
             "[SEED_OR_IMPORT_COMMAND]"
           ],
-          "roomLine": 644,
+          "roomLine": 636,
           "room": "The reference has no application data or application database migrations.",
           "trivial": false
         },
@@ -9703,7 +9729,7 @@
           "placeholder": [
             "[MIGRATION_COMMAND]"
           ],
-          "roomLine": 645,
+          "roomLine": 637,
           "room": "Workbench support state has declared seeding, migration and recovery operations;",
           "trivial": false
         },
@@ -9729,11 +9755,25 @@
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
+          "kind": "added",
+          "roomLine": 686,
+          "room": "Expected result: `integration` contains the reviewed commit, the merged branch is",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
+        },
+        {
           "kind": "dropped",
           "templateLine": 687,
           "template": "",
           "trivial": true,
           "disposition": "Formatting only; no claim removed."
+        },
+        {
+          "kind": "added",
+          "roomLine": 687,
+          "room": "deleted locally and remotely, and no unmerged work was force-deleted.",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "dropped",
@@ -9749,7 +9789,7 @@
           "placeholder": [
             "[BACKUP_OR_RESTORE_COMMAND]"
           ],
-          "roomLine": 646,
+          "roomLine": 638,
           "room": "use the matched managed-runtime procedures above. Its application-level",
           "trivial": false
         },
@@ -9792,26 +9832,12 @@
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
-          "kind": "added",
-          "roomLine": 694,
-          "room": "Expected result: `integration` contains the reviewed commit, the merged branch is",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
           "kind": "dropped",
           "templateLine": 695,
           "template": "- [what it must never modify]",
           "placeholder": [
             "[what it must never modify]"
           ],
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 695,
-          "room": "deleted locally and remotely, and no unmerged work was force-deleted.",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -9829,7 +9855,7 @@
           "kind": "unchanged",
           "templateLine": 697,
           "template": "",
-          "roomLine": 648,
+          "roomLine": 640,
           "room": "",
           "trivial": true
         },
@@ -9837,7 +9863,7 @@
           "kind": "unchanged",
           "templateLine": 698,
           "template": "## Deployment Or Startup",
-          "roomLine": 649,
+          "roomLine": 641,
           "room": "## Deployment Or Startup",
           "trivial": false
         },
@@ -9845,7 +9871,7 @@
           "kind": "unchanged",
           "templateLine": 699,
           "template": "",
-          "roomLine": 650,
+          "roomLine": 642,
           "room": "",
           "trivial": true
         },
@@ -9898,7 +9924,7 @@
           "placeholder": [
             "[START_OR_RESTART_COMMAND]"
           ],
-          "roomLine": 651,
+          "roomLine": 643,
           "room": "None. There is nothing to deploy and no long-running process. The room is read",
           "trivial": false
         },
@@ -9944,7 +9970,7 @@
           "placeholder": [
             "[STOP_COMMAND]"
           ],
-          "roomLine": 652,
+          "roomLine": 644,
           "room": "where it sits and run with `node tour.mjs`.",
           "trivial": false
         },
@@ -10035,7 +10061,7 @@
           "kind": "unchanged",
           "templateLine": 724,
           "template": "",
-          "roomLine": 653,
+          "roomLine": 645,
           "room": "",
           "trivial": true
         },
@@ -10043,7 +10069,7 @@
           "kind": "unchanged",
           "templateLine": 725,
           "template": "## Version-Control Procedures",
-          "roomLine": 654,
+          "roomLine": 646,
           "room": "## Version-Control Procedures",
           "trivial": false
         },
@@ -10051,7 +10077,7 @@
           "kind": "unchanged",
           "templateLine": 726,
           "template": "",
-          "roomLine": 655,
+          "roomLine": 647,
           "room": "",
           "trivial": true
         },
@@ -10059,7 +10085,7 @@
           "kind": "unchanged",
           "templateLine": 727,
           "template": "Git authority and policy live in `AGENTS.md` -> Git Rules. Keep executable",
-          "roomLine": 656,
+          "roomLine": 648,
           "room": "Git authority and policy live in `AGENTS.md` -> Git Rules. Keep executable",
           "trivial": false
         },
@@ -10067,7 +10093,7 @@
           "kind": "unchanged",
           "templateLine": 728,
           "template": "commands and expected results here:",
-          "roomLine": 657,
+          "roomLine": 649,
           "room": "commands and expected results here:",
           "trivial": false
         },
@@ -10075,7 +10101,7 @@
           "kind": "unchanged",
           "templateLine": 729,
           "template": "",
-          "roomLine": 658,
+          "roomLine": 650,
           "room": "",
           "trivial": true
         },
@@ -10083,7 +10109,7 @@
           "kind": "unchanged",
           "templateLine": 730,
           "template": "```bash",
-          "roomLine": 659,
+          "roomLine": 651,
           "room": "```bash",
           "trivial": false
         },
@@ -10094,7 +10120,7 @@
           "placeholder": [
             "[STATUS_COMMAND]"
           ],
-          "roomLine": 660,
+          "roomLine": 652,
           "room": "git status --short --branch",
           "trivial": false
         },
@@ -10105,7 +10131,7 @@
           "placeholder": [
             "[CREATE_TASK_BRANCH_COMMAND]"
           ],
-          "roomLine": 661,
+          "roomLine": 653,
           "room": "git switch -c claude/s001-<slug> integration",
           "trivial": false
         },
@@ -10116,7 +10142,7 @@
           "placeholder": [
             "[DIFF_CHECK_COMMAND]"
           ],
-          "roomLine": 662,
+          "roomLine": 654,
           "room": "git diff --check && git diff integration...HEAD --stat",
           "trivial": false
         },
@@ -10127,7 +10153,7 @@
           "placeholder": [
             "[CREATE_PR_COMMAND]"
           ],
-          "roomLine": 663,
+          "roomLine": 655,
           "room": "gh pr create --base integration --head claude/s001-<slug>",
           "trivial": false
         },
@@ -10135,7 +10161,7 @@
           "kind": "unchanged",
           "templateLine": 735,
           "template": "```",
-          "roomLine": 664,
+          "roomLine": 656,
           "room": "```",
           "trivial": true
         },
@@ -10143,7 +10169,7 @@
           "kind": "unchanged",
           "templateLine": 736,
           "template": "",
-          "roomLine": 665,
+          "roomLine": 657,
           "room": "",
           "trivial": true
         },
@@ -10161,7 +10187,7 @@
           "kind": "unchanged",
           "templateLine": 738,
           "template": "",
-          "roomLine": 668,
+          "roomLine": 660,
           "room": "",
           "trivial": true
         },
@@ -10169,7 +10195,7 @@
           "kind": "unchanged",
           "templateLine": 739,
           "template": "Closeout, once the integration review has passed. A pushed branch is",
-          "roomLine": 669,
+          "roomLine": 661,
           "room": "Closeout, once the integration review has passed. A pushed branch is",
           "trivial": false
         },
@@ -10177,7 +10203,7 @@
           "kind": "unchanged",
           "templateLine": 740,
           "template": "recoverable, not delivered; finish the merge and clean up after yourself:",
-          "roomLine": 670,
+          "roomLine": 662,
           "room": "recoverable, not delivered; finish the merge and clean up after yourself:",
           "trivial": false
         },
@@ -10185,7 +10211,7 @@
           "kind": "unchanged",
           "templateLine": 741,
           "template": "",
-          "roomLine": 671,
+          "roomLine": 663,
           "room": "",
           "trivial": true
         },
@@ -10193,7 +10219,7 @@
           "kind": "unchanged",
           "templateLine": 742,
           "template": "Run merge and containment verification as a fail-fast sequence. Pin the reviewed",
-          "roomLine": 672,
+          "roomLine": 664,
           "room": "Run merge and containment verification as a fail-fast sequence. Pin the reviewed",
           "trivial": false
         },
@@ -10201,7 +10227,7 @@
           "kind": "unchanged",
           "templateLine": 743,
           "template": "commit and reject a changed candidate. Merge must not delete branches before",
-          "roomLine": 673,
+          "roomLine": 665,
           "room": "commit and reject a changed candidate. Merge must not delete branches before",
           "trivial": false
         },
@@ -10209,7 +10235,7 @@
           "kind": "unchanged",
           "templateLine": 744,
           "template": "containment is verified. A linked worktree holding the target must not block",
-          "roomLine": 674,
+          "roomLine": 666,
           "room": "containment is verified. A linked worktree holding the target must not block",
           "trivial": false
         },
@@ -10217,7 +10243,7 @@
           "kind": "unchanged",
           "templateLine": 745,
           "template": "verification. Only run cleanup when the owner has not deferred it; verify each",
-          "roomLine": 675,
+          "roomLine": 667,
           "room": "verification. Only run cleanup when the owner has not deferred it; verify each",
           "trivial": false
         },
@@ -10225,7 +10251,7 @@
           "kind": "unchanged",
           "templateLine": 746,
           "template": "local and remote tip is contained, tolerate absent branches, and use an atomic",
-          "roomLine": 676,
+          "roomLine": 668,
           "room": "local and remote tip is contained, tolerate absent branches, and use an atomic",
           "trivial": false
         },
@@ -10233,7 +10259,7 @@
           "kind": "unchanged",
           "templateLine": 747,
           "template": "expected-tip guard on remote deletion so concurrent pushes are preserved.",
-          "roomLine": 677,
+          "roomLine": 669,
           "room": "expected-tip guard on remote deletion so concurrent pushes are preserved.",
           "trivial": false
         },
@@ -10241,7 +10267,7 @@
           "kind": "unchanged",
           "templateLine": 748,
           "template": "",
-          "roomLine": 678,
+          "roomLine": 670,
           "room": "",
           "trivial": true
         },
@@ -10249,7 +10275,7 @@
           "kind": "unchanged",
           "templateLine": 749,
           "template": "```bash",
-          "roomLine": 679,
+          "roomLine": 671,
           "room": "```bash",
           "trivial": false
         },
@@ -10257,7 +10283,7 @@
           "kind": "unchanged",
           "templateLine": 750,
           "template": "(",
-          "roomLine": 680,
+          "roomLine": 672,
           "room": "(",
           "trivial": true
         },
@@ -10265,7 +10291,7 @@
           "kind": "unchanged",
           "templateLine": 751,
           "template": "set -eu",
-          "roomLine": 681,
+          "roomLine": 673,
           "room": "set -eu",
           "trivial": false
         },
@@ -10276,7 +10302,7 @@
           "placeholder": [
             "[MERGE_PR_COMMAND]"
           ],
-          "roomLine": 682,
+          "roomLine": 674,
           "room": "gh pr merge <number> --merge",
           "trivial": false
         },
@@ -10287,7 +10313,7 @@
           "placeholder": [
             "[VERIFY_INTEGRATION_CONTAINS_WORK_COMMAND]"
           ],
-          "roomLine": 683,
+          "roomLine": 675,
           "room": "git fetch origin && git merge-base --is-ancestor <reviewed-sha> origin/integration && echo contained",
           "trivial": false
         },
@@ -10295,7 +10321,7 @@
           "kind": "unchanged",
           "templateLine": 754,
           "template": ")",
-          "roomLine": 684,
+          "roomLine": 676,
           "room": ")",
           "trivial": true
         },
@@ -10303,7 +10329,7 @@
           "kind": "unchanged",
           "templateLine": 755,
           "template": "```",
-          "roomLine": 685,
+          "roomLine": 677,
           "room": "```",
           "trivial": true
         },
@@ -10311,7 +10337,7 @@
           "kind": "unchanged",
           "templateLine": 756,
           "template": "",
-          "roomLine": 686,
+          "roomLine": 678,
           "room": "",
           "trivial": true
         },
@@ -10319,7 +10345,7 @@
           "kind": "unchanged",
           "templateLine": 757,
           "template": "After successful verification, if cleanup is authorized:",
-          "roomLine": 687,
+          "roomLine": 679,
           "room": "After successful verification, if cleanup is authorized:",
           "trivial": false
         },
@@ -10327,7 +10353,7 @@
           "kind": "unchanged",
           "templateLine": 758,
           "template": "",
-          "roomLine": 688,
+          "roomLine": 680,
           "room": "",
           "trivial": true
         },
@@ -10335,7 +10361,7 @@
           "kind": "unchanged",
           "templateLine": 759,
           "template": "```bash",
-          "roomLine": 689,
+          "roomLine": 681,
           "room": "```bash",
           "trivial": false
         },
@@ -10346,7 +10372,7 @@
           "placeholder": [
             "[DELETE_MERGED_BRANCH_COMMAND]"
           ],
-          "roomLine": 690,
+          "roomLine": 682,
           "room": "git branch -d claude/s001-<slug> && git push origin --delete claude/s001-<slug>",
           "trivial": false
         },
@@ -10354,7 +10380,7 @@
           "kind": "unchanged",
           "templateLine": 761,
           "template": "git worktree prune",
-          "roomLine": 691,
+          "roomLine": 683,
           "room": "git worktree prune",
           "trivial": false
         },
@@ -10362,7 +10388,7 @@
           "kind": "unchanged",
           "templateLine": 762,
           "template": "```",
-          "roomLine": 692,
+          "roomLine": 684,
           "room": "```",
           "trivial": true
         },
@@ -10370,7 +10396,7 @@
           "kind": "unchanged",
           "templateLine": 763,
           "template": "",
-          "roomLine": 693,
+          "roomLine": 685,
           "room": "",
           "trivial": true
         },
@@ -10388,7 +10414,7 @@
           "kind": "unchanged",
           "templateLine": 765,
           "template": "",
-          "roomLine": 696,
+          "roomLine": 688,
           "room": "",
           "trivial": true
         },
@@ -10396,7 +10422,7 @@
           "kind": "unchanged",
           "templateLine": 766,
           "template": "When cleanup is owner-deferred, the declared integration branch contains the",
-          "roomLine": 697,
+          "roomLine": 689,
           "room": "When cleanup is owner-deferred, the declared integration branch contains the",
           "trivial": false
         },
@@ -10404,7 +10430,7 @@
           "kind": "unchanged",
           "templateLine": 767,
           "template": "reviewed work and the branches remain available for later cleanup. Disposable",
-          "roomLine": 698,
+          "roomLine": 690,
           "room": "reviewed work and the branches remain available for later cleanup. Disposable",
           "trivial": false
         },
@@ -10412,7 +10438,7 @@
           "kind": "unchanged",
           "templateLine": 768,
           "template": "review clones and linked worktrees live outside the canonical checkout, under",
-          "roomLine": 699,
+          "roomLine": 691,
           "room": "review clones and linked worktrees live outside the canonical checkout, under",
           "trivial": false
         },
@@ -10420,7 +10446,7 @@
           "kind": "unchanged",
           "templateLine": 769,
           "template": "the host temporary directory; `git worktree prune` drops the registrations of",
-          "roomLine": 700,
+          "roomLine": 692,
           "room": "the host temporary directory; `git worktree prune` drops the registrations of",
           "trivial": false
         },
@@ -10428,7 +10454,7 @@
           "kind": "unchanged",
           "templateLine": 770,
           "template": "removed ones, and a finished review checkout is removed once its review is",
-          "roomLine": 701,
+          "roomLine": 693,
           "room": "removed ones, and a finished review checkout is removed once its review is",
           "trivial": false
         },
@@ -10436,7 +10462,7 @@
           "kind": "unchanged",
           "templateLine": 771,
           "template": "recorded. None is a durable owner.",
-          "roomLine": 702,
+          "roomLine": 694,
           "room": "recorded. None is a durable owner.",
           "trivial": false
         },
@@ -10444,7 +10470,7 @@
           "kind": "unchanged",
           "templateLine": 772,
           "template": "",
-          "roomLine": 703,
+          "roomLine": 695,
           "room": "",
           "trivial": true
         },
@@ -10452,7 +10478,7 @@
           "kind": "unchanged",
           "templateLine": 773,
           "template": "## Upgrading The Harness",
-          "roomLine": 704,
+          "roomLine": 696,
           "room": "## Upgrading The Harness",
           "trivial": false
         },
@@ -10460,7 +10486,7 @@
           "kind": "unchanged",
           "templateLine": 774,
           "template": "",
-          "roomLine": 705,
+          "roomLine": 697,
           "room": "",
           "trivial": true
         },
@@ -10468,7 +10494,7 @@
           "kind": "unchanged",
           "templateLine": 775,
           "template": "These control docs were generated from a specific LLM Workbench version, recorded",
-          "roomLine": 706,
+          "roomLine": 698,
           "room": "These control docs were generated from a specific LLM Workbench version, recorded",
           "trivial": false
         },
@@ -10479,7 +10505,7 @@
           "placeholder": [
             "[HARNESS_VERSION]"
           ],
-          "roomLine": 707,
+          "roomLine": 699,
           "room": "in the `Generated from LLM Workbench v3.2.0` stamp at the top of each",
           "trivial": false
         },
@@ -10487,7 +10513,7 @@
           "kind": "unchanged",
           "templateLine": 777,
           "template": "doc. That stamp lets you tell when the project is running an older harness than",
-          "roomLine": 708,
+          "roomLine": 700,
           "room": "doc. That stamp lets you tell when the project is running an older harness than",
           "trivial": false
         },
@@ -10495,7 +10521,7 @@
           "kind": "unchanged",
           "templateLine": 778,
           "template": "the current one.",
-          "roomLine": 709,
+          "roomLine": 701,
           "room": "the current one.",
           "trivial": false
         },
@@ -10503,7 +10529,7 @@
           "kind": "unchanged",
           "templateLine": 779,
           "template": "",
-          "roomLine": 710,
+          "roomLine": 702,
           "room": "",
           "trivial": true
         },
@@ -10511,7 +10537,7 @@
           "kind": "unchanged",
           "templateLine": 780,
           "template": "To upgrade:",
-          "roomLine": 711,
+          "roomLine": 703,
           "room": "To upgrade:",
           "trivial": false
         },
@@ -10519,7 +10545,7 @@
           "kind": "unchanged",
           "templateLine": 781,
           "template": "",
-          "roomLine": 712,
+          "roomLine": 704,
           "room": "",
           "trivial": true
         },
@@ -10527,7 +10553,7 @@
           "kind": "unchanged",
           "templateLine": 782,
           "template": "1. Check the clean LLM Workbench release checkout's releases/changelog for what changed since",
-          "roomLine": 713,
+          "roomLine": 705,
           "room": "1. Check the clean LLM Workbench release checkout's releases/changelog for what changed since",
           "trivial": false
         },
@@ -10538,7 +10564,7 @@
           "placeholder": [
             "[HARNESS_VERSION]"
           ],
-          "roomLine": 714,
+          "roomLine": 706,
           "room": "   `v3.2.0`.",
           "trivial": false
         },
@@ -10546,7 +10572,7 @@
           "kind": "unchanged",
           "templateLine": 784,
           "template": "2. Re-copy only the changed template sections; keep this project's filled-in",
-          "roomLine": 715,
+          "roomLine": 707,
           "room": "2. Re-copy only the changed template sections; keep this project's filled-in",
           "trivial": false
         },
@@ -10557,7 +10583,7 @@
           "placeholder": [
             "[BRACKETED]"
           ],
-          "roomLine": 716,
+          "roomLine": 708,
           "room": "   specifics. Never let `[BRACKETED]` placeholders leak back into filled docs.",
           "trivial": false
         },
@@ -10565,7 +10591,7 @@
           "kind": "unchanged",
           "templateLine": 786,
           "template": "3. Update managed runtime tools only with that checkout's",
-          "roomLine": 717,
+          "roomLine": 709,
           "room": "3. Update managed runtime tools only with that checkout's",
           "trivial": false
         },
@@ -10573,7 +10599,7 @@
           "kind": "unchanged",
           "templateLine": 787,
           "template": "   `node tools/workbench-tools.mjs update --project PATH --home HOME --explicit-update`;",
-          "roomLine": 718,
+          "roomLine": 710,
           "room": "   `node tools/workbench-tools.mjs update --project PATH --home HOME --explicit-update`;",
           "trivial": false
         },
@@ -10581,7 +10607,7 @@
           "kind": "unchanged",
           "templateLine": 788,
           "template": "   keep its receipt and backup as the component recovery point.",
-          "roomLine": 719,
+          "roomLine": 711,
           "room": "   keep its receipt and backup as the component recovery point.",
           "trivial": false
         },
@@ -10589,7 +10615,7 @@
           "kind": "unchanged",
           "templateLine": 789,
           "template": "4. Update each doc's version stamp to the new version. Do not rewrite the room",
-          "roomLine": 720,
+          "roomLine": 712,
           "room": "4. Update each doc's version stamp to the new version. Do not rewrite the room",
           "trivial": false
         },
@@ -10597,7 +10623,7 @@
           "kind": "unchanged",
           "templateLine": 790,
           "template": "   manifest's historical adoption source to impersonate the newly installed",
-          "roomLine": 721,
+          "roomLine": 713,
           "room": "   manifest's historical adoption source to impersonate the newly installed",
           "trivial": false
         },
@@ -10605,7 +10631,7 @@
           "kind": "unchanged",
           "templateLine": 791,
           "template": "   component generation.",
-          "roomLine": 722,
+          "roomLine": 714,
           "room": "   component generation.",
           "trivial": false
         },
@@ -10613,7 +10639,7 @@
           "kind": "unchanged",
           "templateLine": 792,
           "template": "5. Re-run the full verification suite and record the upgrade in its owning spec.",
-          "roomLine": 723,
+          "roomLine": 715,
           "room": "5. Re-run the full verification suite and record the upgrade in its owning spec.",
           "trivial": false
         },
@@ -10621,7 +10647,7 @@
           "kind": "unchanged",
           "templateLine": 793,
           "template": "",
-          "roomLine": 724,
+          "roomLine": 716,
           "room": "",
           "trivial": true
         },
@@ -10629,7 +10655,7 @@
           "kind": "unchanged",
           "templateLine": 794,
           "template": "The runtime tools in `workbench/tools/` are Workbench-managed: their receipt",
-          "roomLine": 725,
+          "roomLine": 717,
           "room": "The runtime tools in `workbench/tools/` are Workbench-managed: their receipt",
           "trivial": false
         },
@@ -10637,7 +10663,7 @@
           "kind": "unchanged",
           "templateLine": 795,
           "template": "(`.workbench-tools.json`) records the exact source release, commit, and file",
-          "roomLine": 726,
+          "roomLine": 718,
           "room": "(`.workbench-tools.json`) records the exact source release, commit, and file",
           "trivial": false
         },
@@ -10645,7 +10671,7 @@
           "kind": "unchanged",
           "templateLine": 796,
           "template": "hashes. Verify them with `node /PATH/TO/LLM_WORKBENCH/tools/workbench-tools.mjs verify --project .`",
-          "roomLine": 727,
+          "roomLine": 719,
           "room": "hashes. Verify them with `node /PATH/TO/LLM_WORKBENCH/tools/workbench-tools.mjs verify --project .`",
           "trivial": false
         },
@@ -10653,7 +10679,7 @@
           "kind": "unchanged",
           "templateLine": 797,
           "template": "and replace them only through `update --explicit-update`, which backs up the",
-          "roomLine": 728,
+          "roomLine": 720,
           "room": "and replace them only through `update --explicit-update`, which backs up the",
           "trivial": false
         },
@@ -10661,7 +10687,7 @@
           "kind": "unchanged",
           "templateLine": 798,
           "template": "previous files and records a rollback path. Never hand-edit a managed tool.",
-          "roomLine": 729,
+          "roomLine": 721,
           "room": "previous files and records a rollback path. Never hand-edit a managed tool.",
           "trivial": false
         },
@@ -10669,7 +10695,7 @@
           "kind": "unchanged",
           "templateLine": 799,
           "template": "",
-          "roomLine": 730,
+          "roomLine": 722,
           "room": "",
           "trivial": true
         },
@@ -10677,7 +10703,7 @@
           "kind": "unchanged",
           "templateLine": 800,
           "template": "This project's own `node workbench/tools/spec-workbench.mjs doctor` runs the",
-          "roomLine": 731,
+          "roomLine": 723,
           "room": "This project's own `node workbench/tools/spec-workbench.mjs doctor` runs the",
           "trivial": false
         },
@@ -10685,7 +10711,7 @@
           "kind": "unchanged",
           "templateLine": 801,
           "template": "same receipt hash check from the tools this project carries, so a hand-edited",
-          "roomLine": 732,
+          "roomLine": 724,
           "room": "same receipt hash check from the tools this project carries, so a hand-edited",
           "trivial": false
         },
@@ -10693,39 +10719,67 @@
           "kind": "unchanged",
           "templateLine": 802,
           "template": "managed tool fails the check here with no release checkout present. It fails at",
-          "roomLine": 733,
+          "roomLine": 725,
           "room": "managed tool fails the check here with no release checkout present. It fails at",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 802,
+          "room": "| `every lane the manifest declares is explained` fails | A lane or collection was added to `workbench/manifest.json` and never described | `node tests/tour.test.mjs` | Add the place to `PLACES` in `tour.mjs`, with what it owns and why |",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 803,
           "template": "the `all` effect, which also makes `next` and `claim` refuse until the runtime",
-          "roomLine": 734,
+          "roomLine": 726,
           "room": "the `all` effect, which also makes `next` and `claim` refuse until the runtime",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 803,
+          "room": "| `the tools lane holds only what the receipt accounts for` fails | A file was added to `workbench/tools/`, which the managed runtime does not ship | `ls workbench/tools/` | Move it out of the lane. Leaving it there makes `next` and `claim` refuse with exit 1 |",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 804,
           "template": "is repaired. The check runs only when `workbench/tools/` carries a receipt; a",
-          "roomLine": 735,
+          "roomLine": 727,
           "room": "is repaired. The check runs only when `workbench/tools/` carries a receipt; a",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 804,
+          "room": "| `doctor` reports `unverified-provenance` | The manifest's recorded source release no longer matches its version stamp | `node workbench/tools/spec-workbench.mjs doctor` | Re-stamp with `workbench-layout.mjs record-source` from a clean release checkout |",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 805,
           "template": "receipt that cannot be read, records no file hashes, names a file outside that",
-          "roomLine": 736,
+          "roomLine": 728,
           "room": "receipt that cannot be read, records no file hashes, names a file outside that",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 805,
+          "room": "| `validate` reports `upgrade-required` | The manifest is schema 1 (a v3.0 five-lane room) | `node workbench/tools/workbench-layout.mjs validate --project .` | Run `workbench-layout.mjs migrate --project .` once |",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 806,
           "template": "lane, or does not account for every managed tool is reported as",
-          "roomLine": 737,
+          "roomLine": 729,
           "room": "lane, or does not account for every managed tool is reported as",
           "trivial": false
         },
@@ -10733,7 +10787,7 @@
           "kind": "unchanged",
           "templateLine": 807,
           "template": "`tools-receipt-missing` rather than switching the check off. That last one",
-          "roomLine": 738,
+          "roomLine": 730,
           "room": "`tools-receipt-missing` rather than switching the check off. That last one",
           "trivial": false
         },
@@ -10741,7 +10795,7 @@
           "kind": "unchanged",
           "templateLine": 808,
           "template": "matters because the drift report names the file it found: deleting that key",
-          "roomLine": 739,
+          "roomLine": 731,
           "room": "matters because the drift report names the file it found: deleting that key",
           "trivial": false
         },
@@ -10749,7 +10803,7 @@
           "kind": "unchanged",
           "templateLine": 809,
           "template": "would otherwise switch the check off for exactly the hand-edited tool. The",
-          "roomLine": 740,
+          "roomLine": 732,
           "room": "would otherwise switch the check off for exactly the hand-edited tool. The",
           "trivial": false
         },
@@ -10757,67 +10811,39 @@
           "kind": "unchanged",
           "templateLine": 810,
           "template": "authoritative list of what is managed ships inside the installed tools",
-          "roomLine": 741,
+          "roomLine": 733,
           "room": "authoritative list of what is managed ships inside the installed tools",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 810,
-          "room": "| `every lane the manifest declares is explained` fails | A lane or collection was added to `workbench/manifest.json` and never described | `node tests/tour.test.mjs` | Add the place to `PLACES` in `tour.mjs`, with what it owns and why |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 811,
           "template": "themselves, so a receipt is checked against that list and not against whatever",
-          "roomLine": 742,
+          "roomLine": 734,
           "room": "themselves, so a receipt is checked against that list and not against whatever",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 811,
-          "room": "| `the tools lane holds only what the receipt accounts for` fails | A file was added to `workbench/tools/`, which the managed runtime does not ship | `ls workbench/tools/` | Move it out of the lane. Leaving it there makes `next` and `claim` refuse with exit 1 |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 812,
           "template": "the lane happens to hold - a managed tool deleted along with its key is still",
-          "roomLine": 743,
+          "roomLine": 735,
           "room": "the lane happens to hold - a managed tool deleted along with its key is still",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 812,
-          "room": "| `doctor` reports `unverified-provenance` | The manifest's recorded source release no longer matches its version stamp | `node workbench/tools/spec-workbench.mjs doctor` | Re-stamp with `workbench-layout.mjs record-source` from a clean release checkout |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 813,
           "template": "named. Dotted entries are skipped.",
-          "roomLine": 744,
+          "roomLine": 736,
           "room": "named. Dotted entries are skipped.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 813,
-          "room": "| `validate` reports `upgrade-required` | The manifest is schema 1 (a v3.0 five-lane room) | `node workbench/tools/workbench-layout.mjs validate --project .` | Run `workbench-layout.mjs migrate --project .` once |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 814,
           "template": "",
-          "roomLine": 745,
+          "roomLine": 737,
           "room": "",
           "trivial": true
         },
@@ -10825,7 +10851,7 @@
           "kind": "unchanged",
           "templateLine": 815,
           "template": "The two coverage conditions have different repairs. A managed tool the receipt",
-          "roomLine": 746,
+          "roomLine": 738,
           "room": "The two coverage conditions have different repairs. A managed tool the receipt",
           "trivial": false
         },
@@ -10833,7 +10859,7 @@
           "kind": "unchanged",
           "templateLine": 816,
           "template": "does not account for is refreshed with `update --explicit-update` from the",
-          "roomLine": 747,
+          "roomLine": 739,
           "room": "does not account for is refreshed with `update --explicit-update` from the",
           "trivial": false
         },
@@ -10841,7 +10867,7 @@
           "kind": "unchanged",
           "templateLine": 817,
           "template": "release checkout, which rewrites the lost key and restores a deleted managed",
-          "roomLine": 748,
+          "roomLine": 740,
           "room": "release checkout, which rewrites the lost key and restores a deleted managed",
           "trivial": false
         },
@@ -10849,7 +10875,7 @@
           "kind": "unchanged",
           "templateLine": 818,
           "template": "file. A file the managed runtime does not include has to be moved out of the",
-          "roomLine": 749,
+          "roomLine": 741,
           "room": "file. A file the managed runtime does not include has to be moved out of the",
           "trivial": false
         },
@@ -10857,7 +10883,7 @@
           "kind": "unchanged",
           "templateLine": 819,
           "template": "lane instead: `update` cannot adopt it and reports `current`, and `install`",
-          "roomLine": 750,
+          "roomLine": 742,
           "room": "lane instead: `update` cannot adopt it and reports `current`, and `install`",
           "trivial": false
         },
@@ -10865,7 +10891,7 @@
           "kind": "unchanged",
           "templateLine": 820,
           "template": "refuses a lane that already carries a receipt.",
-          "roomLine": 751,
+          "roomLine": 743,
           "room": "refuses a lane that already carries a receipt.",
           "trivial": false
         },
@@ -10873,7 +10899,7 @@
           "kind": "unchanged",
           "templateLine": 821,
           "template": "",
-          "roomLine": 752,
+          "roomLine": 744,
           "room": "",
           "trivial": true
         },
@@ -10881,7 +10907,7 @@
           "kind": "unchanged",
           "templateLine": 822,
           "template": "Without a release checkout `doctor` cannot say whether the receipt went stale",
-          "roomLine": 753,
+          "roomLine": 745,
           "room": "Without a release checkout `doctor` cannot say whether the receipt went stale",
           "trivial": false
         },
@@ -10889,7 +10915,7 @@
           "kind": "unchanged",
           "templateLine": 823,
           "template": "or the bytes were changed - it reports every drifted file as",
-          "roomLine": 754,
+          "roomLine": 746,
           "room": "or the bytes were changed - it reports every drifted file as",
           "trivial": false
         },
@@ -10897,7 +10923,7 @@
           "kind": "unchanged",
           "templateLine": 824,
           "template": "`source-unavailable` - so run `verify` from the release checkout to classify",
-          "roomLine": 755,
+          "roomLine": 747,
           "room": "`source-unavailable` - so run `verify` from the release checkout to classify",
           "trivial": false
         },
@@ -10905,7 +10931,7 @@
           "kind": "unchanged",
           "templateLine": 825,
           "template": "it. A deleted receipt is the readiness gate's finding, not this check's. A",
-          "roomLine": 756,
+          "roomLine": 748,
           "room": "it. A deleted receipt is the readiness gate's finding, not this check's. A",
           "trivial": false
         },
@@ -10913,7 +10939,7 @@
           "kind": "unchanged",
           "templateLine": 826,
           "template": "deleted managed tool that another managed tool imports stops `doctor` from",
-          "roomLine": 757,
+          "roomLine": 749,
           "room": "deleted managed tool that another managed tool imports stops `doctor` from",
           "trivial": false
         },
@@ -10921,7 +10947,7 @@
           "kind": "unchanged",
           "templateLine": 827,
           "template": "loading at all, so what appears is a loader stack trace rather than a finding.",
-          "roomLine": 758,
+          "roomLine": 750,
           "room": "loading at all, so what appears is a loader stack trace rather than a finding.",
           "trivial": false
         },
@@ -10929,7 +10955,7 @@
           "kind": "unchanged",
           "templateLine": 828,
           "template": "",
-          "roomLine": 759,
+          "roomLine": 751,
           "room": "",
           "trivial": true
         },
@@ -10937,7 +10963,7 @@
           "kind": "unchanged",
           "templateLine": 829,
           "template": "The source checkout must have a concrete `origin` and 40-character `HEAD`, and",
-          "roomLine": 760,
+          "roomLine": 752,
           "room": "The source checkout must have a concrete `origin` and 40-character `HEAD`, and",
           "trivial": false
         },
@@ -10945,7 +10971,7 @@
           "kind": "unchanged",
           "templateLine": 830,
           "template": "its managed source lane must be clean; otherwise install/update refuses before",
-          "roomLine": 761,
+          "roomLine": 753,
           "room": "its managed source lane must be clean; otherwise install/update refuses before",
           "trivial": false
         },
@@ -10953,7 +10979,7 @@
           "kind": "unchanged",
           "templateLine": 831,
           "template": "creating a receipt or backup.",
-          "roomLine": 762,
+          "roomLine": 754,
           "room": "creating a receipt or backup.",
           "trivial": false
         },
@@ -10961,7 +10987,7 @@
           "kind": "unchanged",
           "templateLine": 832,
           "template": "",
-          "roomLine": 763,
+          "roomLine": 755,
           "room": "",
           "trivial": true
         },
@@ -10969,7 +10995,7 @@
           "kind": "unchanged",
           "templateLine": 833,
           "template": "Managed-tool updates and rollbacks reject symlinked lane ancestors, linked or",
-          "roomLine": 764,
+          "roomLine": 756,
           "room": "Managed-tool updates and rollbacks reject symlinked lane ancestors, linked or",
           "trivial": false
         },
@@ -10977,7 +11003,7 @@
           "kind": "unchanged",
           "templateLine": 834,
           "template": "nonregular managed files, and unsafe backup entries before copying or creating",
-          "roomLine": 765,
+          "roomLine": 757,
           "room": "nonregular managed files, and unsafe backup entries before copying or creating",
           "trivial": false
         },
@@ -10985,7 +11011,7 @@
           "kind": "unchanged",
           "templateLine": 835,
           "template": "backups. Resolve the path collision while preserving its target, then retry the",
-          "roomLine": 766,
+          "roomLine": 758,
           "room": "backups. Resolve the path collision while preserving its target, then retry the",
           "trivial": false
         },
@@ -10993,7 +11019,7 @@
           "kind": "unchanged",
           "templateLine": 836,
           "template": "explicit operation. Ordinary drift in a regular managed file still receives a",
-          "roomLine": 767,
+          "roomLine": 759,
           "room": "explicit operation. Ordinary drift in a regular managed file still receives a",
           "trivial": false
         },
@@ -11001,7 +11027,7 @@
           "kind": "unchanged",
           "templateLine": 837,
           "template": "backup and can be restored.",
-          "roomLine": 768,
+          "roomLine": 760,
           "room": "backup and can be restored.",
           "trivial": false
         },
@@ -11009,7 +11035,7 @@
           "kind": "unchanged",
           "templateLine": 838,
           "template": "",
-          "roomLine": 769,
+          "roomLine": 761,
           "room": "",
           "trivial": true
         },
@@ -11017,7 +11043,7 @@
           "kind": "unchanged",
           "templateLine": 839,
           "template": "Layout initialization and schema migration preserve existing session ignore",
-          "roomLine": 770,
+          "roomLine": 762,
           "room": "Layout initialization and schema migration preserve existing session ignore",
           "trivial": false
         },
@@ -11025,7 +11051,7 @@
           "kind": "unchanged",
           "templateLine": 840,
           "template": "rules and reject linked destination paths before writes. ADR creation, register",
-          "roomLine": 771,
+          "roomLine": 763,
           "room": "rules and reject linked destination paths before writes. ADR creation, register",
           "trivial": false
         },
@@ -11033,7 +11059,7 @@
           "kind": "unchanged",
           "templateLine": 841,
           "template": "rendering and direct owner promotion also reject unsafe destination chains and",
-          "roomLine": 772,
+          "roomLine": 764,
           "room": "rendering and direct owner promotion also reject unsafe destination chains and",
           "trivial": false
         },
@@ -11041,7 +11067,7 @@
           "kind": "unchanged",
           "templateLine": 842,
           "template": "use private temporary files; direct promotion refuses a `--from` source",
-          "roomLine": 773,
+          "roomLine": 765,
           "room": "use private temporary files; direct promotion refuses a `--from` source",
           "trivial": false
         },
@@ -11049,7 +11075,7 @@
           "kind": "unchanged",
           "templateLine": 843,
           "template": "outside the repository root, or one reached through a symbolic link, with",
-          "roomLine": 774,
+          "roomLine": 766,
           "room": "outside the repository root, or one reached through a symbolic link, with",
           "trivial": false
         },
@@ -11057,7 +11083,7 @@
           "kind": "unchanged",
           "templateLine": 844,
           "template": "`invalid-note` and writes nothing. Legacy Wiki adoption moves existing",
-          "roomLine": 775,
+          "roomLine": 767,
           "room": "`invalid-note` and writes nothing. Legacy Wiki adoption moves existing",
           "trivial": false
         },
@@ -11065,7 +11091,7 @@
           "kind": "unchanged",
           "templateLine": 845,
           "template": "knowledge before seeding only the missing contract files.",
-          "roomLine": 776,
+          "roomLine": 768,
           "room": "knowledge before seeding only the missing contract files.",
           "trivial": false
         },
@@ -11073,7 +11099,7 @@
           "kind": "unchanged",
           "templateLine": 846,
           "template": "",
-          "roomLine": 777,
+          "roomLine": 769,
           "room": "",
           "trivial": true
         },
@@ -11081,7 +11107,7 @@
           "kind": "unchanged",
           "templateLine": 847,
           "template": "Treat a harness upgrade like any other change: smallest correct diff, verified,",
-          "roomLine": 778,
+          "roomLine": 770,
           "room": "Treat a harness upgrade like any other change: smallest correct diff, verified,",
           "trivial": false
         },
@@ -11089,7 +11115,7 @@
           "kind": "unchanged",
           "templateLine": 848,
           "template": "with proof. If a downstream lesson should flow *back* to the harness, capture it",
-          "roomLine": 779,
+          "roomLine": 771,
           "room": "with proof. If a downstream lesson should flow *back* to the harness, capture it",
           "trivial": false
         },
@@ -11097,7 +11123,7 @@
           "kind": "unchanged",
           "templateLine": 849,
           "template": "per the project's `WORKBENCH_FEEDBACK` convention.",
-          "roomLine": 780,
+          "roomLine": 772,
           "room": "per the project's `WORKBENCH_FEEDBACK` convention.",
           "trivial": false
         },
@@ -11105,7 +11131,7 @@
           "kind": "unchanged",
           "templateLine": 850,
           "template": "",
-          "roomLine": 781,
+          "roomLine": 773,
           "room": "",
           "trivial": true
         },
@@ -11113,7 +11139,7 @@
           "kind": "unchanged",
           "templateLine": 851,
           "template": "## Manual Harness Feedback Reports",
-          "roomLine": 782,
+          "roomLine": 774,
           "room": "## Manual Harness Feedback Reports",
           "trivial": false
         },
@@ -11121,7 +11147,7 @@
           "kind": "unchanged",
           "templateLine": 852,
           "template": "",
-          "roomLine": 783,
+          "roomLine": 775,
           "room": "",
           "trivial": true
         },
@@ -11129,7 +11155,7 @@
           "kind": "unchanged",
           "templateLine": 853,
           "template": "Run this workflow after a setup-only Round One check succeeds. It assesses the",
-          "roomLine": 784,
+          "roomLine": 776,
           "room": "Run this workflow after a setup-only Round One check succeeds. It assesses the",
           "trivial": false
         },
@@ -11137,7 +11163,7 @@
           "kind": "unchanged",
           "templateLine": 854,
           "template": "assigned target; it never authorizes a repair or invokes automated repair.",
-          "roomLine": 785,
+          "roomLine": 777,
           "room": "assigned target; it never authorizes a repair or invokes automated repair.",
           "trivial": false
         },
@@ -11145,7 +11171,7 @@
           "kind": "unchanged",
           "templateLine": 855,
           "template": "",
-          "roomLine": 786,
+          "roomLine": 778,
           "room": "",
           "trivial": true
         },
@@ -11153,7 +11179,7 @@
           "kind": "unchanged",
           "templateLine": 856,
           "template": "1. Resolve `lanes.feedback`, `lanes.specs` and the relevant collections through",
-          "roomLine": 787,
+          "roomLine": 779,
           "room": "1. Resolve `lanes.feedback`, `lanes.specs` and the relevant collections through",
           "trivial": false
         },
@@ -11161,7 +11187,7 @@
           "kind": "unchanged",
           "templateLine": 857,
           "template": "   `workbench/manifest.json`. Pin the target revision and the assigned question.",
-          "roomLine": 788,
+          "roomLine": 780,
           "room": "   `workbench/manifest.json`. Pin the target revision and the assigned question.",
           "trivial": false
         },
@@ -11169,7 +11195,7 @@
           "kind": "unchanged",
           "templateLine": 858,
           "template": "2. Inspect only relevant controls, source and named proof. Test consequential",
-          "roomLine": 789,
+          "roomLine": 781,
           "room": "2. Inspect only relevant controls, source and named proof. Test consequential",
           "trivial": false
         },
@@ -11177,7 +11203,7 @@
           "kind": "unchanged",
           "templateLine": 859,
           "template": "   claims, distinguish observation from inference, and disclose evidence limits.",
-          "roomLine": 790,
+          "roomLine": 782,
           "room": "   claims, distinguish observation from inference, and disclose evidence limits.",
           "trivial": false
         },
@@ -11185,7 +11211,7 @@
           "kind": "unchanged",
           "templateLine": 860,
           "template": "3. Write `REPORT-topic-date.md` in the declared feedback lane using its",
-          "roomLine": 791,
+          "roomLine": 783,
           "room": "3. Write `REPORT-topic-date.md` in the declared feedback lane using its",
           "trivial": false
         },
@@ -11193,7 +11219,7 @@
           "kind": "unchanged",
           "templateLine": 861,
           "template": "   `REPORT_FORMAT.md`. Include Target And Scope, Evidence And Limitations,",
-          "roomLine": 792,
+          "roomLine": 784,
           "room": "   `REPORT_FORMAT.md`. Include Target And Scope, Evidence And Limitations,",
           "trivial": false
         },
@@ -11201,7 +11227,7 @@
           "kind": "unchanged",
           "templateLine": 862,
           "template": "   Findings, Challenged Or Rejected Findings, Next Action And Open Questions,",
-          "roomLine": 793,
+          "roomLine": 785,
           "room": "   Findings, Challenged Or Rejected Findings, Next Action And Open Questions,",
           "trivial": false
         },
@@ -11209,7 +11235,7 @@
           "kind": "unchanged",
           "templateLine": 863,
           "template": "   and Review Boundary. No findings is valid. Reports never live loose or in",
-          "roomLine": 794,
+          "roomLine": 786,
           "room": "   and Review Boundary. No findings is valid. Reports never live loose or in",
           "trivial": false
         },
@@ -11217,7 +11243,7 @@
           "kind": "unchanged",
           "templateLine": 864,
           "template": "   the Wiki. If the format is absent in an older installation, these sections",
-          "roomLine": 795,
+          "roomLine": 787,
           "room": "   the Wiki. If the format is absent in an older installation, these sections",
           "trivial": false
         },
@@ -11225,7 +11251,7 @@
           "kind": "unchanged",
           "templateLine": 865,
           "template": "   are sufficient; explicit upgrades may copy it from the source templates.",
-          "roomLine": 796,
+          "roomLine": 788,
           "room": "   are sufficient; explicit upgrades may copy it from the source templates.",
           "trivial": false
         },
@@ -11233,7 +11259,7 @@
           "kind": "unchanged",
           "templateLine": 866,
           "template": "4. Put accepted follow-up work in its existing linked spec; proposed repairs",
-          "roomLine": 797,
+          "roomLine": 789,
           "room": "4. Put accepted follow-up work in its existing linked spec; proposed repairs",
           "trivial": false
         },
@@ -11241,7 +11267,7 @@
           "kind": "unchanged",
           "templateLine": 867,
           "template": "   remain pending owner authorization. A report is not a work assignment.",
-          "roomLine": 798,
+          "roomLine": 790,
           "room": "   remain pending owner authorization. A report is not a work assignment.",
           "trivial": false
         },
@@ -11249,7 +11275,7 @@
           "kind": "unchanged",
           "templateLine": 868,
           "template": "5. At a meaningful continuation boundary, a fresh session should find the report,",
-          "roomLine": 799,
+          "roomLine": 791,
           "room": "5. At a meaningful continuation boundary, a fresh session should find the report,",
           "trivial": false
         },
@@ -11257,7 +11283,7 @@
           "kind": "unchanged",
           "templateLine": 869,
           "template": "   its linked spec, and the next executable action or owner gate using repository",
-          "roomLine": 800,
+          "roomLine": 792,
           "room": "   its linked spec, and the next executable action or owner gate using repository",
           "trivial": false
         },
@@ -11265,7 +11291,7 @@
           "kind": "unchanged",
           "templateLine": 870,
           "template": "   state only. No universal handoff or new self-created task is required.",
-          "roomLine": 801,
+          "roomLine": 793,
           "room": "   state only. No universal handoff or new self-created task is required.",
           "trivial": false
         },
@@ -11273,7 +11299,7 @@
           "kind": "unchanged",
           "templateLine": 871,
           "template": "6. Before integration, the candidate's separate-context review challenges the",
-          "roomLine": 802,
+          "roomLine": 794,
           "room": "6. Before integration, the candidate's separate-context review challenges the",
           "trivial": false
         },
@@ -11281,7 +11307,7 @@
           "kind": "unchanged",
           "templateLine": 872,
           "template": "   report's consequential claims and recommendations along with the change.",
-          "roomLine": 803,
+          "roomLine": 795,
           "room": "   report's consequential claims and recommendations along with the change.",
           "trivial": false
         },
@@ -11289,7 +11315,7 @@
           "kind": "unchanged",
           "templateLine": 873,
           "template": "",
-          "roomLine": 804,
+          "roomLine": 796,
           "room": "",
           "trivial": true
         },
@@ -11297,7 +11323,7 @@
           "kind": "unchanged",
           "templateLine": 874,
           "template": "## Troubleshooting",
-          "roomLine": 805,
+          "roomLine": 797,
           "room": "## Troubleshooting",
           "trivial": false
         },
@@ -11305,7 +11331,7 @@
           "kind": "unchanged",
           "templateLine": 875,
           "template": "",
-          "roomLine": 806,
+          "roomLine": 798,
           "room": "",
           "trivial": true
         },
@@ -11313,7 +11339,7 @@
           "kind": "unchanged",
           "templateLine": 876,
           "template": "| Symptom | Likely cause | Check | Fix |",
-          "roomLine": 807,
+          "roomLine": 799,
           "room": "| Symptom | Likely cause | Check | Fix |",
           "trivial": false
         },
@@ -11321,7 +11347,7 @@
           "kind": "unchanged",
           "templateLine": 877,
           "template": "|---|---|---|---|",
-          "roomLine": 808,
+          "roomLine": 800,
           "room": "|---|---|---|---|",
           "trivial": true
         },
@@ -11335,7 +11361,7 @@
             "[command/check]",
             "[fix]"
           ],
-          "roomLine": 809,
+          "roomLine": 801,
           "room": "| `node tour.mjs` prints nothing | Node older than v20 (no top-level ESM support in the shipped form) | `node --version` | Install Node 20+ |",
           "trivial": false
         },
@@ -11343,7 +11369,7 @@
           "kind": "unchanged",
           "templateLine": 879,
           "template": "",
-          "roomLine": 814,
+          "roomLine": 806,
           "room": "",
           "trivial": true
         },
@@ -11351,7 +11377,7 @@
           "kind": "unchanged",
           "templateLine": 880,
           "template": "## Recovery And Rollback",
-          "roomLine": 815,
+          "roomLine": 807,
           "room": "## Recovery And Rollback",
           "trivial": false
         },
@@ -11359,7 +11385,7 @@
           "kind": "unchanged",
           "templateLine": 881,
           "template": "",
-          "roomLine": 816,
+          "roomLine": 808,
           "room": "",
           "trivial": true
         },
@@ -11367,7 +11393,7 @@
           "kind": "unchanged",
           "templateLine": 882,
           "template": "If a change fails:",
-          "roomLine": 817,
+          "roomLine": 809,
           "room": "If a change fails:",
           "trivial": false
         },
@@ -11375,7 +11401,7 @@
           "kind": "unchanged",
           "templateLine": 883,
           "template": "",
-          "roomLine": 818,
+          "roomLine": 810,
           "room": "",
           "trivial": true
         },
@@ -11383,7 +11409,7 @@
           "kind": "unchanged",
           "templateLine": 884,
           "template": "1. Identify the touched files and failing command.",
-          "roomLine": 819,
+          "roomLine": 811,
           "room": "1. Identify the touched files and failing command.",
           "trivial": false
         },
@@ -11391,7 +11417,7 @@
           "kind": "unchanged",
           "templateLine": 885,
           "template": "2. Revert only the smallest change needed, preserving user work.",
-          "roomLine": 820,
+          "roomLine": 812,
           "room": "2. Revert only the smallest change needed, preserving user work.",
           "trivial": false
         },
@@ -11399,7 +11425,7 @@
           "kind": "unchanged",
           "templateLine": 886,
           "template": "3. Rerun the failing verification command.",
-          "roomLine": 821,
+          "roomLine": 813,
           "room": "3. Rerun the failing verification command.",
           "trivial": false
         },
@@ -11407,7 +11433,7 @@
           "kind": "unchanged",
           "templateLine": 887,
           "template": "4. Update the owning spec with the result and remaining gap, then render.",
-          "roomLine": 822,
+          "roomLine": 814,
           "room": "4. Update the owning spec with the result and remaining gap, then render.",
           "trivial": false
         },
@@ -11415,7 +11441,7 @@
           "kind": "unchanged",
           "templateLine": 888,
           "template": "",
-          "roomLine": 823,
+          "roomLine": 815,
           "room": "",
           "trivial": true
         },
@@ -11423,7 +11449,7 @@
           "kind": "unchanged",
           "templateLine": 889,
           "template": "Do not delete data, reset databases, rewrite history, or rotate secrets unless",
-          "roomLine": 824,
+          "roomLine": 816,
           "room": "Do not delete data, reset databases, rewrite history, or rotate secrets unless",
           "trivial": false
         },
@@ -11431,7 +11457,7 @@
           "kind": "unchanged",
           "templateLine": 890,
           "template": "the user explicitly approves that action.",
-          "roomLine": 825,
+          "roomLine": 817,
           "room": "the user explicitly approves that action.",
           "trivial": false
         },
@@ -11439,7 +11465,7 @@
           "kind": "unchanged",
           "templateLine": 891,
           "template": "",
-          "roomLine": 826,
+          "roomLine": 818,
           "room": "",
           "trivial": true
         },
@@ -11447,7 +11473,7 @@
           "kind": "unchanged",
           "templateLine": 892,
           "template": "## Operational Proof",
-          "roomLine": 827,
+          "roomLine": 819,
           "room": "## Operational Proof",
           "trivial": false
         },
@@ -11455,7 +11481,7 @@
           "kind": "unchanged",
           "templateLine": 893,
           "template": "",
-          "roomLine": 828,
+          "roomLine": 820,
           "room": "",
           "trivial": true
         },
@@ -11463,7 +11489,7 @@
           "kind": "unchanged",
           "templateLine": 894,
           "template": "If a command changed durable project state, append evidence to the owning spec.",
-          "roomLine": 829,
+          "roomLine": 821,
           "room": "If a command changed durable project state, append evidence to the owning spec.",
           "trivial": false
         },
@@ -11471,7 +11497,7 @@
           "kind": "unchanged",
           "templateLine": 895,
           "template": "For routine read-only runs, a final response note is enough.",
-          "roomLine": 830,
+          "roomLine": 822,
           "room": "For routine read-only runs, a final response note is enough.",
           "trivial": false
         },
@@ -11479,7 +11505,7 @@
           "kind": "unchanged",
           "templateLine": 896,
           "template": "",
-          "roomLine": 831,
+          "roomLine": 823,
           "room": "",
           "trivial": true
         },
@@ -11487,7 +11513,7 @@
           "kind": "unchanged",
           "templateLine": 897,
           "template": "## Evidence And Continuation Practices",
-          "roomLine": 832,
+          "roomLine": 824,
           "room": "## Evidence And Continuation Practices",
           "trivial": false
         },
@@ -11495,7 +11521,7 @@
           "kind": "unchanged",
           "templateLine": 898,
           "template": "",
-          "roomLine": 833,
+          "roomLine": 825,
           "room": "",
           "trivial": true
         },
@@ -11503,7 +11529,7 @@
           "kind": "unchanged",
           "templateLine": 899,
           "template": "Size a ticket so a fresh context can recover its inputs, exercise one useful",
-          "roomLine": 834,
+          "roomLine": 826,
           "room": "Size a ticket so a fresh context can recover its inputs, exercise one useful",
           "trivial": false
         },
@@ -11511,7 +11537,7 @@
           "kind": "unchanged",
           "templateLine": 900,
           "template": "behavior at its public seam and finish named verification. There is no accepted",
-          "roomLine": 835,
+          "roomLine": 827,
           "room": "behavior at its public seam and finish named verification. There is no accepted",
           "trivial": false
         },
@@ -11519,7 +11545,7 @@
           "kind": "unchanged",
           "templateLine": 901,
           "template": "universal byte or token threshold. Unknown consequential product choices belong",
-          "roomLine": 836,
+          "roomLine": 828,
           "room": "universal byte or token threshold. Unknown consequential product choices belong",
           "trivial": false
         },
@@ -11527,7 +11553,7 @@
           "kind": "unchanged",
           "templateLine": 902,
           "template": "in a decision slice of the already assigned spec before dependent implementation;",
-          "roomLine": 837,
+          "roomLine": 829,
           "room": "in a decision slice of the already assigned spec before dependent implementation;",
           "trivial": false
         },
@@ -11535,7 +11561,7 @@
           "kind": "unchanged",
           "templateLine": 903,
           "template": "this does not authorize creating a task from an unassigned finding.",
-          "roomLine": 838,
+          "roomLine": 830,
           "room": "this does not authorize creating a task from an unassigned finding.",
           "trivial": false
         },
@@ -11543,7 +11569,7 @@
           "kind": "unchanged",
           "templateLine": 904,
           "template": "",
-          "roomLine": 839,
+          "roomLine": 831,
           "room": "",
           "trivial": true
         },
@@ -11551,7 +11577,7 @@
           "kind": "unchanged",
           "templateLine": 905,
           "template": "Saving context or authoring a requested handoff does not terminate a session.",
-          "roomLine": 840,
+          "roomLine": 832,
           "room": "Saving context or authoring a requested handoff does not terminate a session.",
           "trivial": false
         },
@@ -11559,7 +11585,7 @@
           "kind": "unchanged",
           "templateLine": 906,
           "template": "Continue to the authorized endpoint. Preserve the complete original question",
-          "roomLine": 841,
+          "roomLine": 833,
           "room": "Continue to the authorized endpoint. Preserve the complete original question",
           "trivial": false
         },
@@ -11567,7 +11593,7 @@
           "kind": "unchanged",
           "templateLine": 907,
           "template": "inventory and stable IDs/statuses/corrections; a compact view routes to retained",
-          "roomLine": 842,
+          "roomLine": 834,
           "room": "inventory and stable IDs/statuses/corrections; a compact view routes to retained",
           "trivial": false
         },
@@ -11575,7 +11601,7 @@
           "kind": "unchanged",
           "templateLine": 908,
           "template": "sources rather than replacing them. Multiple objective-linked notes are allowed,",
-          "roomLine": 843,
+          "roomLine": 835,
           "room": "sources rather than replacing them. Multiple objective-linked notes are allowed,",
           "trivial": false
         },
@@ -11583,7 +11609,7 @@
           "kind": "unchanged",
           "templateLine": 909,
           "template": "with an unambiguous active resume route. Stale migrated discovery paths belong",
-          "roomLine": 844,
+          "roomLine": 836,
           "room": "with an unambiguous active resume route. Stale migrated discovery paths belong",
           "trivial": false
         },
@@ -11591,7 +11617,7 @@
           "kind": "unchanged",
           "templateLine": 910,
           "template": "in the existing ownership/migration assignment.",
-          "roomLine": 845,
+          "roomLine": 837,
           "room": "in the existing ownership/migration assignment.",
           "trivial": false
         },
@@ -11599,7 +11625,7 @@
           "kind": "unchanged",
           "templateLine": 911,
           "template": "",
-          "roomLine": 846,
+          "roomLine": 838,
           "room": "",
           "trivial": true
         },
@@ -11607,7 +11633,7 @@
           "kind": "unchanged",
           "templateLine": 912,
           "template": "When partitioning evidence, preserve previously published rows byte-for-byte and",
-          "roomLine": 847,
+          "roomLine": 839,
           "room": "When partitioning evidence, preserve previously published rows byte-for-byte and",
           "trivial": false
         },
@@ -11615,7 +11641,7 @@
           "kind": "unchanged",
           "templateLine": 913,
           "template": "link successor work from its owner; do not rewrite an old result to match newer",
-          "roomLine": 848,
+          "roomLine": 840,
           "room": "link successor work from its owner; do not rewrite an old result to match newer",
           "trivial": false
         },
@@ -11623,7 +11649,7 @@
           "kind": "unchanged",
           "templateLine": 914,
           "template": "truth. Name which immutable tree each claim reads. A generated projection names",
-          "roomLine": 849,
+          "roomLine": 841,
           "room": "truth. Name which immutable tree each claim reads. A generated projection names",
           "trivial": false
         },
@@ -11631,7 +11657,7 @@
           "kind": "unchanged",
           "templateLine": 915,
           "template": "its sources and freshness limits; no cached observer service is implied.",
-          "roomLine": 850,
+          "roomLine": 842,
           "room": "its sources and freshness limits; no cached observer service is implied.",
           "trivial": false
         },
@@ -11639,7 +11665,7 @@
           "kind": "unchanged",
           "templateLine": 916,
           "template": "",
-          "roomLine": 851,
+          "roomLine": 843,
           "room": "",
           "trivial": true
         },
@@ -11647,7 +11673,7 @@
           "kind": "unchanged",
           "templateLine": 917,
           "template": "The claim-age diagnostic compares UTC calendar date stamps and reports a claim",
-          "roomLine": 852,
+          "roomLine": 844,
           "room": "The claim-age diagnostic compares UTC calendar date stamps and reports a claim",
           "trivial": false
         },
@@ -11655,7 +11681,7 @@
           "kind": "unchanged",
           "templateLine": 918,
           "template": "older than one calendar day (strictly greater than 86,400,000 milliseconds).",
-          "roomLine": 853,
+          "roomLine": 845,
           "room": "older than one calendar day (strictly greater than 86,400,000 milliseconds).",
           "trivial": false
         },
@@ -11663,7 +11689,7 @@
           "kind": "unchanged",
           "templateLine": 919,
           "template": "The old prose saying working day was inaccurate. Historical GPT_OS local-day",
-          "roomLine": 854,
+          "roomLine": 846,
           "room": "The old prose saying working day was inaccurate. Historical GPT_OS local-day",
           "trivial": false
         },
@@ -11671,7 +11697,7 @@
           "kind": "unchanged",
           "templateLine": 920,
           "template": "Preflight and ref-deduplication rules remain scoped historical requirements,",
-          "roomLine": 855,
+          "roomLine": 847,
           "room": "Preflight and ref-deduplication rules remain scoped historical requirements,",
           "trivial": false
         },
@@ -11679,7 +11705,7 @@
           "kind": "unchanged",
           "templateLine": 921,
           "template": "not an automatically imported Workbench algorithm.",
-          "roomLine": 856,
+          "roomLine": 848,
           "room": "not an automatically imported Workbench algorithm.",
           "trivial": false
         },
@@ -11687,7 +11713,7 @@
           "kind": "unchanged",
           "templateLine": 922,
           "template": "",
-          "roomLine": 857,
+          "roomLine": 849,
           "room": "",
           "trivial": true
         },
@@ -11695,7 +11721,7 @@
           "kind": "unchanged",
           "templateLine": 923,
           "template": "Author small ADRs for independently changing consequential decisions with real",
-          "roomLine": 858,
+          "roomLine": 850,
           "room": "Author small ADRs for independently changing consequential decisions with real",
           "trivial": false
         },
@@ -11703,7 +11729,7 @@
           "kind": "unchanged",
           "templateLine": 924,
           "template": "alternatives or reversal cost. Binding rules stay in current owners. A semantic",
-          "roomLine": 859,
+          "roomLine": 851,
           "room": "alternatives or reversal cost. Binding rules stay in current owners. A semantic",
           "trivial": false
         },
@@ -11711,7 +11737,7 @@
           "kind": "unchanged",
           "templateLine": 925,
           "template": "review checks agreement; text presence alone cannot establish fidelity.",
-          "roomLine": 860,
+          "roomLine": 852,
           "room": "review checks agreement; text presence alone cannot establish fidelity.",
           "trivial": false
         },
@@ -11719,7 +11745,7 @@
           "kind": "unchanged",
           "templateLine": 926,
           "template": "Portable record parsing treats LF, CRLF and CR as syntax variations; read-only",
-          "roomLine": 861,
+          "roomLine": 853,
           "room": "Portable record parsing treats LF, CRLF and CR as syntax variations; read-only",
           "trivial": false
         },
@@ -11727,7 +11753,7 @@
           "kind": "unchanged",
           "templateLine": 927,
           "template": "validation never normalizes files as a side effect.",
-          "roomLine": 862,
+          "roomLine": 854,
           "room": "validation never normalizes files as a side effect.",
           "trivial": false
         },
@@ -11735,78 +11761,134 @@
           "kind": "unchanged",
           "templateLine": 928,
           "template": "",
-          "roomLine": 863,
+          "roomLine": 855,
           "room": "",
           "trivial": true
+        },
+        {
+          "kind": "added",
+          "roomLine": 928,
+          "room": "Keep an empty tracked `.gitkeep` in required empty collections, including",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 929,
           "template": "Keep setup human-readable and staged through the documented Genesis, adoption",
-          "roomLine": 864,
+          "roomLine": 856,
           "room": "Keep setup human-readable and staged through the documented Genesis, adoption",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 929,
+          "room": "`workbench/sessions/recovery/`, so a clean Git clone contains the tour paths.",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 930,
           "template": "and explicit-upgrade routes. Verify every consumed source lane before mutation,",
-          "roomLine": 865,
+          "roomLine": 857,
           "room": "and explicit-upgrade routes. Verify every consumed source lane before mutation,",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 930,
+          "room": "Recovery contents remain ignored; the marker contains no operational data.",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 931,
           "template": "then installed behavior in the actual room. Project-owned schemas/templates and",
-          "roomLine": 866,
+          "roomLine": 858,
           "room": "then installed behavior in the actual room. Project-owned schemas/templates and",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 931,
+          "room": "",
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 932,
           "template": "promoted Wiki knowledge travel in project Git; optional private session transport",
-          "roomLine": 867,
+          "roomLine": 859,
           "room": "promoted Wiki knowledge travel in project Git; optional private session transport",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 932,
+          "room": "## Template Ownership",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 933,
           "template": "handles live working context separately. A clean upstream test is not downstream",
-          "roomLine": 868,
+          "roomLine": 860,
           "room": "handles live working context separately. A clean upstream test is not downstream",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 933,
+          "room": "",
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 934,
           "template": "acceptance. Recheck actual destination refs and preserve unknown remote state.",
-          "roomLine": 869,
+          "roomLine": 861,
           "room": "acceptance. Recheck actual destination refs and preserve unknown remote state.",
           "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 934,
+          "room": "This installed reference is the Workbench Template. Its repository name and",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 935,
           "template": "",
-          "roomLine": 870,
+          "roomLine": 862,
           "room": "",
           "trivial": true
+        },
+        {
+          "kind": "added",
+          "roomLine": 935,
+          "room": "historical genesis/proof records remain unchanged. The optional tour explains",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 936,
           "template": "When an assigned evidence record needs partitioning, first pin the source commit",
-          "roomLine": 871,
+          "roomLine": 863,
           "room": "When an assigned evidence record needs partitioning, first pin the source commit",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 936,
-          "room": "Keep an empty tracked `.gitkeep` in required empty collections, including",
+          "room": "the manifest; the manifest owns paths, root controls own operation and stable",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -11814,14 +11896,14 @@
           "kind": "unchanged",
           "templateLine": 937,
           "template": "and preserve the original published file. Keep each distinct introduction and",
-          "roomLine": 872,
+          "roomLine": 864,
           "room": "and preserve the original published file. Keep each distinct introduction and",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 937,
-          "room": "`workbench/sessions/recovery/`, so a clean Git clone contains the tour paths.",
+          "room": "specs own scoped work. Actual project personalization remains a separate task.",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -11829,74 +11911,74 @@
           "kind": "unchanged",
           "templateLine": 938,
           "template": "its provenance with the material it introduces; never merge those boundaries",
-          "roomLine": 873,
+          "roomLine": 865,
           "room": "its provenance with the material it introduces; never merge those boundaries",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 938,
-          "room": "Recovery contents remain ignored; the marker contains no operational data.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
+          "room": "",
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 939,
           "template": "into a new narrative. In the existing owning spec, record each successor part's",
-          "roomLine": 874,
+          "roomLine": 866,
           "room": "into a new narrative. In the existing owning spec, record each successor part's",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 939,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
+          "room": "## Handoff Retention",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 940,
           "template": "stable path, source range or entry IDs, count and content hash, plus total source",
-          "roomLine": 875,
+          "roomLine": 867,
           "room": "stable path, source range or entry IDs, count and content hash, plus total source",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 940,
-          "room": "## Template Ownership",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "unchanged",
-          "templateLine": 941,
-          "template": "and resulting counts. Verify that the parts account for all selected material",
-          "roomLine": 876,
-          "room": "and resulting counts. Verify that the parts account for all selected material",
-          "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 941,
           "room": "",
           "trivial": true,
           "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
+          "templateLine": 941,
+          "template": "and resulting counts. Verify that the parts account for all selected material",
+          "roomLine": 868,
+          "room": "and resulting counts. Verify that the parts account for all selected material",
+          "trivial": false
+        },
+        {
+          "kind": "added",
+          "roomLine": 941,
+          "room": "An owner-requested handoff is separately authored as a Markdown file in",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
+        },
+        {
+          "kind": "unchanged",
           "templateLine": 942,
           "template": "exactly once, with exclusions explicitly named, and read back their bytes against",
-          "roomLine": 877,
+          "roomLine": 869,
           "room": "exactly once, with exclusions explicitly named, and read back their bytes against",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 942,
-          "room": "This installed reference is the Workbench Template. Its repository name and",
+          "room": "`sessions/handoffs/`, using the installed `handoff` skill and its bundled `assets/HANDOFF.md` as the copy-ready shape.",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -11904,14 +11986,14 @@
           "kind": "unchanged",
           "templateLine": 943,
           "template": "the pinned source. Append a route from the existing owner to the parts; leave",
-          "roomLine": 878,
+          "roomLine": 870,
           "room": "the pinned source. Append a route from the existing owner to the parts; leave",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 943,
-          "room": "historical genesis/proof records remain unchanged. The optional tour explains",
+          "room": "It names the retained source, when any, in prose and must carry enough context",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -11919,14 +12001,14 @@
           "kind": "unchanged",
           "templateLine": 944,
           "template": "published rows and prior citations intact. No automatic size cap or routine",
-          "roomLine": 879,
+          "roomLine": 871,
           "room": "published rows and prior citations intact. No automatic size cap or routine",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 944,
-          "room": "the manifest; the manifest owns paths, root controls own operation and stable",
+          "room": "for a receiver without local access. Before trimming or deleting source context,",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -11934,14 +12016,14 @@
           "kind": "unchanged",
           "templateLine": 945,
           "template": "partition is required. Never weaken validators or discard evidence to fit a cap.",
-          "roomLine": 880,
+          "roomLine": 872,
           "room": "partition is required. Never weaken validators or discard evidence to fit a cap.",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 945,
-          "room": "specs own scoped work. Actual project personalization remains a separate task.",
+          "room": "the author verifies that the receiver's needed material is durable or otherwise",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -11949,29 +12031,29 @@
           "kind": "unchanged",
           "templateLine": 946,
           "template": "",
-          "roomLine": 881,
+          "roomLine": 873,
           "room": "",
           "trivial": true
         },
         {
           "kind": "added",
           "roomLine": 946,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
+          "room": "retained; Markdown handoffs are intentionally readable rather than tool-managed",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 947,
           "template": "",
-          "roomLine": 882,
+          "roomLine": 874,
           "room": "",
           "trivial": true
         },
         {
           "kind": "added",
           "roomLine": 947,
-          "room": "## Handoff Retention",
+          "room": "JSON records. Existing JSON handoffs remain legacy local sources and are not",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -11979,44 +12061,44 @@
           "kind": "unchanged",
           "templateLine": 948,
           "template": "### Workbench connection identity",
-          "roomLine": 883,
+          "roomLine": 875,
           "room": "### Workbench connection identity",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 948,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
+          "room": "newly created.",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 949,
           "template": "",
-          "roomLine": 884,
+          "roomLine": 876,
           "room": "",
           "trivial": true
         },
         {
           "kind": "added",
           "roomLine": 949,
-          "room": "An owner-requested handoff is separately authored as a Markdown file in",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
+          "room": "",
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 950,
           "template": "`workbench/manifest.json` stores `workbenchId`, a `WB-` identifier containing",
-          "roomLine": 885,
+          "roomLine": 877,
           "room": "`workbench/manifest.json` stores `workbenchId`, a `WB-` identifier containing",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 950,
-          "room": "`sessions/handoffs/`, using the installed `handoff` skill and its bundled `assets/HANDOFF.md` as the copy-ready shape.",
+          "room": "For a legacy JSON retaining destination, reconcile it before releasing retention: set its status to",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -12024,14 +12106,14 @@
           "kind": "unchanged",
           "templateLine": 951,
           "template": "128 random bits encoded in the shared base-62 alphabet. New Genesis/adoption",
-          "roomLine": 886,
+          "roomLine": 878,
           "room": "128 random bits encoded in the shared base-62 alphabet. New Genesis/adoption",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 951,
-          "room": "It names the retained source, when any, in prose and must carry enough context",
+          "room": "`RECONCILED`, clear unresolved items with `--unresolved \"\"`, and clear its next",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -12039,14 +12121,14 @@
           "kind": "unchanged",
           "templateLine": 952,
           "template": "initialization assigns a new identity. Clone, worktree, rename, relocation and",
-          "roomLine": 887,
+          "roomLine": 879,
           "room": "initialization assigns a new identity. Clone, worktree, rename, relocation and",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 952,
-          "room": "for a receiver without local access. Before trimming or deleting source context,",
+          "room": "action with `--next-action \"\"`. Source cleanup remains a separate decision.",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -12054,14 +12136,14 @@
           "kind": "unchanged",
           "templateLine": 953,
           "template": "maintenance preserve the manifest's identity; visible artifact IDs retain their",
-          "roomLine": 888,
+          "roomLine": 880,
           "room": "maintenance preserve the manifest's identity; visible artifact IDs retain their",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 953,
-          "room": "the author verifies that the receiver's needed material is durable or otherwise",
+          "room": "Whole `delete` requires the source to be reconciled with no entries, unresolved",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -12069,14 +12151,14 @@
           "kind": "unchanged",
           "templateLine": 954,
           "template": "existing room scope. No path, credential or remote configuration enters this",
-          "roomLine": 889,
+          "roomLine": 881,
           "room": "existing room scope. No path, credential or remote configuration enters this",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 954,
-          "room": "retained; Markdown handoffs are intentionally readable rather than tool-managed",
+          "room": "items, next action, or active declared retainer. Unreadable live records block",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -12084,14 +12166,14 @@
           "kind": "unchanged",
           "templateLine": 955,
           "template": "field. Global uniqueness is probabilistic; transport must check its selected",
-          "roomLine": 890,
+          "roomLine": 882,
           "room": "field. Global uniqueness is probabilistic; transport must check its selected",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 955,
-          "room": "JSON records. Existing JSON handoffs remain legacy local sources and are not",
+          "room": "cleanup with named paths because retention cannot be established; repair or",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -12099,14 +12181,14 @@
           "kind": "unchanged",
           "templateLine": 956,
           "template": "namespace inventory before association.",
-          "roomLine": 891,
+          "roomLine": 883,
           "room": "namespace inventory before association.",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 956,
-          "room": "newly created.",
+          "room": "reconcile them without discarding their source bytes. This does not block other",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -12114,29 +12196,29 @@
           "kind": "unchanged",
           "templateLine": 957,
           "template": "",
-          "roomLine": 892,
+          "roomLine": 884,
           "room": "",
           "trivial": true
         },
         {
           "kind": "added",
           "roomLine": 957,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
+          "room": "work or grant the tool authority to choose what is important. Writes and cleanup",
+          "trivial": false,
+          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 958,
           "template": "For an existing room without the field, explicitly assign it once:",
-          "roomLine": 893,
+          "roomLine": 885,
           "room": "For an existing room without the field, explicitly assign it once:",
           "trivial": false
         },
         {
           "kind": "added",
           "roomLine": 958,
-          "room": "For a legacy JSON retaining destination, reconcile it before releasing retention: set its status to",
+          "room": "assume one writer per note; revision checks are not simultaneous-writer locks.",
           "trivial": false,
           "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
@@ -12144,1123 +12226,541 @@
           "kind": "unchanged",
           "templateLine": 959,
           "template": "",
-          "roomLine": 894,
+          "roomLine": 886,
           "room": "",
           "trivial": true
         },
         {
           "kind": "added",
           "roomLine": 959,
-          "room": "`RECONCILED`, clear unresolved items with `--unresolved \"\"`, and clear its next",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
+          "room": "",
+          "trivial": true,
+          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 960,
           "template": "```bash",
-          "roomLine": 895,
+          "roomLine": 887,
           "room": "```bash",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 960,
-          "room": "action with `--next-action \"\"`. Source cleanup remains a separate decision.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 961,
           "template": "node workbench/tools/workbench-layout.mjs identify --project .",
-          "roomLine": 896,
+          "roomLine": 888,
           "room": "node workbench/tools/workbench-layout.mjs identify --project .",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 961,
-          "room": "Whole `delete` requires the source to be reconciled with no entries, unresolved",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 962,
           "template": "```",
-          "roomLine": 897,
+          "roomLine": 889,
           "room": "```",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 962,
-          "room": "items, next action, or active declared retainer. Unreadable live records block",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 963,
           "template": "",
-          "roomLine": 898,
+          "roomLine": 890,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 963,
-          "room": "cleanup with named paths because retention cannot be established; repair or",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 964,
           "template": "Commit that manifest before cloning the legacy room. Repeated assignment reads",
-          "roomLine": 899,
+          "roomLine": 891,
           "room": "Commit that manifest before cloning the legacy room. Repeated assignment reads",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 964,
-          "room": "reconcile them without discarding their source bytes. This does not block other",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 965,
           "template": "back the existing value without rewriting it. Read-only validation never assigns",
-          "roomLine": 900,
+          "roomLine": 892,
           "room": "back the existing value without rewriting it. Read-only validation never assigns",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 965,
-          "room": "work or grant the tool authority to choose what is important. Writes and cleanup",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 966,
           "template": "identity; ordinary legacy local work remains available without transport.",
-          "roomLine": 901,
+          "roomLine": 893,
           "room": "identity; ordinary legacy local work remains available without transport.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 966,
-          "room": "assume one writer per note; revision checks are not simultaneous-writer locks.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 967,
           "template": "Migration assigns missing identity and preserves existing valid identity.",
-          "roomLine": 902,
+          "roomLine": 894,
           "room": "Migration assigns missing identity and preserves existing valid identity.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 967,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 968,
           "template": "Malformed identity is refused, never silently regenerated. Independent projects",
-          "roomLine": 903,
+          "roomLine": 895,
           "room": "Malformed identity is refused, never silently regenerated. Independent projects",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 968,
-          "room": "### Benchmark-Driven Improvement",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 969,
           "template": "use fresh initialization rather than copying another project's manifest.",
-          "roomLine": 904,
+          "roomLine": 896,
           "room": "use fresh initialization rather than copying another project's manifest.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 969,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 970,
           "template": "",
-          "roomLine": 905,
+          "roomLine": 897,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 970,
-          "room": "Before changing agent rules, control docs, evaluation criteria, or the working",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 971,
           "template": "Local assignment uses an exclusive `workbench/.identity.lock`. A busy result",
-          "roomLine": 906,
+          "roomLine": 898,
           "room": "Local assignment uses an exclusive `workbench/.identity.lock`. A busy result",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 971,
-          "room": "process, capture the available guardrail or benchmark baseline. Put the intended",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 972,
           "template": "preserves the existing writer's lock; after interruption, verify that writer is",
-          "roomLine": 907,
+          "roomLine": 899,
           "room": "preserves the existing writer's lock; after interruption, verify that writer is",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 972,
-          "room": "score movement or outcome hypothesis in the owning spec, then record the",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 973,
           "template": "inactive before deliberately removing its stale lock. This is local writer",
-          "roomLine": 908,
+          "roomLine": 900,
           "room": "inactive before deliberately removing its stale lock. This is local writer",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 973,
-          "room": "before/after score and remaining recommendations after the change.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 974,
           "template": "serialization, not a cross-clone transaction or a crash-recovery claim.",
-          "roomLine": 909,
+          "roomLine": 901,
           "room": "serialization, not a cross-clone transaction or a crash-recovery claim.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 974,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 975,
           "template": "",
-          "roomLine": 910,
+          "roomLine": 902,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 975,
-          "room": "Use 100/100 as a deliberately hard north star, not the release gate. Regression",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 976,
           "template": "### Configured-host capability checks",
-          "roomLine": 911,
+          "roomLine": 903,
           "room": "### Configured-host capability checks",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 976,
-          "room": "checks are the minimum ship gate. Never weaken a criterion to manufacture",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 977,
           "template": "",
-          "roomLine": 912,
+          "roomLine": 904,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 977,
-          "room": "progress, and do not treat a static coverage score as outcome evidence. If this",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 978,
           "template": "The minimum is writable declared lanes (relative, home-relative and absolute),",
-          "roomLine": 913,
+          "roomLine": 905,
           "room": "The minimum is writable declared lanes (relative, home-relative and absolute),",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 978,
-          "room": "project has no executable benchmark yet, add one or state that the change cannot",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 979,
           "template": "native skill discovery and invocation, Node execution of managed tools, the",
-          "roomLine": 914,
+          "roomLine": 906,
           "room": "native skill discovery and invocation, Node execution of managed tools, the",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 979,
-          "room": "yet be called better.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 980,
           "template": "selected directory adapter, and checkout record syntax. Evidence is scoped to",
-          "roomLine": 915,
+          "roomLine": 907,
           "room": "selected directory adapter, and checkout record syntax. Evidence is scoped to",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 980,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 981,
           "template": "the actual host/application/configuration. Missing capabilities affect dependent",
-          "roomLine": 916,
+          "roomLine": 908,
           "room": "the actual host/application/configuration. Missing capabilities affect dependent",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 981,
-          "room": "### Claims To Test",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 982,
           "template": "operations only; unavailable checks stay unverified. Capability does not prove",
-          "roomLine": 917,
+          "roomLine": 909,
           "room": "operations only; unavailable checks stay unverified. Capability does not prove",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 982,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 983,
           "template": "enforcement or agent reliability. Remote transport is optional.",
-          "roomLine": 918,
+          "roomLine": 910,
           "room": "enforcement or agent reliability. Remote transport is optional.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 983,
-          "room": "The harness or process is only worth calling better when it can support at least",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 984,
           "template": "",
-          "roomLine": 919,
+          "roomLine": 911,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 984,
-          "room": "one of these claims:",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 985,
           "template": "From the pinned producer checkout, run `node tools/configured-host.mjs --probe",
-          "roomLine": 920,
+          "roomLine": 912,
           "room": "From the pinned producer checkout, run `node tools/configured-host.mjs --probe",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 985,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 986,
           "template": "CONFIG.json`. The explicitly supplied JSON names `root` (producer checkout),",
-          "roomLine": 921,
+          "roomLine": 913,
           "room": "CONFIG.json`. The explicitly supplied JSON names `root` (producer checkout),",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 986,
-          "room": "1. Better than no project instructions.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 987,
           "template": "`sourceCommit` (the expected full 40-character producer commit),",
-          "roomLine": 922,
+          "roomLine": 914,
           "room": "`sourceCommit` (the expected full 40-character producer commit),",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 987,
-          "room": "2. Better than a representative generic instruction file.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 988,
           "template": "`sourceRepository` (the expected producer `origin` URL),",
-          "roomLine": 923,
+          "roomLine": 915,
           "room": "`sourceRepository` (the expected producer `origin` URL),",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 988,
-          "room": "3. Better than the prior version on the same task suite.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 989,
           "template": "`cwd` (authorized temporary adapter location), `home`, nonempty `lanes` (existing",
-          "roomLine": 924,
+          "roomLine": 916,
           "room": "`cwd` (authorized temporary adapter location), `home`, nonempty `lanes` (existing",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 989,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 990,
           "template": "writable directories), `skill` (a declared SKILL.md path), and optional `node`",
-          "roomLine": 925,
+          "roomLine": 917,
           "room": "writable directories), `skill` (a declared SKILL.md path), and optional `node`",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 990,
-          "room": "### Evaluation Design",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 991,
           "template": "(runtime executable). The command creates and removes private temporary probes",
-          "roomLine": 926,
+          "roomLine": 918,
           "room": "(runtime executable). The command creates and removes private temporary probes",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 991,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 992,
           "template": "only in those locations. Before executing managed doctor, it verifies that",
-          "roomLine": 927,
+          "roomLine": 919,
           "room": "only in those locations. Before executing managed doctor, it verifies that",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 992,
-          "room": "Use controlled conditions:",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 993,
           "template": "`root` is the named Git checkout root at the expected commit and origin, with",
-          "roomLine": 928,
+          "roomLine": 920,
           "room": "`root` is the named Git checkout root at the expected commit and origin, with",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 993,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 994,
           "template": "clean manifest, managed-tool, and ADR inputs. It executes managed doctor and parses actual ADRs;",
-          "roomLine": 929,
+          "roomLine": 921,
           "room": "clean manifest, managed-tool, and ADR inputs. It executes managed doctor and parses actual ADRs;",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 994,
-          "room": "| Condition | What the agent gets | Purpose |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 995,
           "template": "line-ending variants are structural evidence. Its exit code fails on a failed",
-          "roomLine": 930,
+          "roomLine": 922,
           "room": "line-ending variants are structural evidence. Its exit code fails on a failed",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 995,
-          "room": "|---|---|---|",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 996,
           "template": "operation; zero may include unverified checks and is not blanket compatibility.",
-          "roomLine": 931,
+          "roomLine": 923,
           "room": "operation; zero may include unverified checks and is not blanket compatibility.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 996,
-          "room": "| `c0_none` | no project instructions | baseline |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 997,
           "template": "Native discovery/invocation always needs a separate provider trace. Record the",
-          "roomLine": 932,
+          "roomLine": 924,
           "room": "Native discovery/invocation always needs a separate provider trace. Record the",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 997,
-          "room": "| `c1_generic` | a generic `AGENTS.md` / `CLAUDE.md` style file | common alternative |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 998,
           "template": "provider, model if reported, configuration, OS, exact source and operations;",
-          "roomLine": 933,
+          "roomLine": 925,
           "room": "provider, model if reported, configuration, OS, exact source and operations;",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 998,
-          "room": "| `c2_current` | current project or template docs | current candidate |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 999,
           "template": "explicit skill-path invocation alone does not prove automatic discovery.",
-          "roomLine": 934,
+          "roomLine": 926,
           "room": "explicit skill-path invocation alone does not prove automatic discovery.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 999,
-          "room": "| `c3_candidate` | proposed branch or changed docs | improvement test |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1000,
           "template": "",
-          "roomLine": 935,
+          "roomLine": 927,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 1000,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1001,
-          "room": "Score task outcomes, not how good the docs feel. Useful dimensions:",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1001,
           "template": "## Independent Review Boundaries",
-          "roomLine": 1043,
+          "roomLine": 960,
           "room": "## Independent Review Boundaries",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1002,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1002,
           "template": "",
-          "roomLine": 1044,
+          "roomLine": 961,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 1003,
-          "room": "| Dimension | What it measures |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1003,
           "template": "Task/integration review uses a fresh context and immutable candidate, comparison",
-          "roomLine": 1045,
+          "roomLine": 962,
           "room": "Task/integration review uses a fresh context and immutable candidate, comparison",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1004,
-          "room": "|---|---|",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1004,
           "template": "base, expected integration tip and named verification. Inspect scope, behavior,",
-          "roomLine": 1046,
+          "roomLine": 963,
           "room": "base, expected integration tip and named verification. Inspect scope, behavior,",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1005,
-          "room": "| Correctness | hidden or independent acceptance check passes |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1005,
           "template": "recovery, documentation, installed identities and consequential report claims.",
-          "roomLine": 1047,
+          "roomLine": 964,
           "room": "recovery, documentation, installed identities and consequential report claims.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1006,
-          "room": "| Scope adherence | changed files stay inside the task allowlist |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1006,
           "template": "If the target changes, compare and review the resulting candidate as required",
-          "roomLine": 1048,
+          "roomLine": 965,
           "room": "If the target changes, compare and review the resulting candidate as required",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1007,
-          "room": "| Verification honesty | final claims match independently rerun checks |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1007,
           "template": "before combining branches; a prior PASS is not approval of changed content.",
-          "roomLine": 1049,
+          "roomLine": 966,
           "room": "before combining branches; a prior PASS is not approval of changed content.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1008,
-          "room": "| Docs upkeep | stale docs were updated or explicitly marked unchanged |",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1008,
           "template": "",
-          "roomLine": 1050,
+          "roomLine": 967,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 1009,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1009,
           "template": "Whole-Workbench main-readiness review is separately requested, review-only work.",
-          "roomLine": 1051,
+          "roomLine": 968,
           "room": "Whole-Workbench main-readiness review is separately requested, review-only work.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1010,
-          "room": "Run multiple trials per condition when using stochastic agents. Report effect",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1010,
           "template": "It checks the combined product for drift, open gates, coherent skill composition,",
-          "roomLine": 1052,
+          "roomLine": 969,
           "room": "It checks the combined product for drift, open gates, coherent skill composition,",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1011,
-          "room": "size and confidence interval when possible. Do not claim broad proof from one",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1011,
           "template": "installed acceptance and semantic ownership. For the Blueprint, require all",
-          "roomLine": 1053,
+          "roomLine": 970,
           "room": "installed acceptance and semantic ownership. For the Blueprint, require all",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1012,
-          "room": "run.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1012,
           "template": "applicable destination sections, no status/version/evidence/catalog material,",
-          "roomLine": 1054,
+          "roomLine": 971,
           "room": "applicable destination sections, no status/version/evidence/catalog material,",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1013,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1013,
           "template": "only materially relevant active ADR links, lossless removed-claim disposition,",
-          "roomLine": 1055,
+          "roomLine": 972,
           "room": "only materially relevant active ADR links, lossless removed-claim disposition,",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1014,
-          "room": "### Workbench Evaluation Commands",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1014,
           "template": "and root/template agreement. Record an explicit semantic pass/fail verdict;",
-          "roomLine": 1056,
+          "roomLine": 973,
           "room": "and root/template agreement. Record an explicit semantic pass/fail verdict;",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1015,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1015,
           "template": "structure and link checks alone are insufficient. Only the owner approves/merges main.",
-          "roomLine": 1057,
+          "roomLine": 974,
           "room": "structure and link checks alone are insufficient. Only the owner approves/merges main.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1016,
-          "room": "For this template repo, the static evaluator checks control-surface coverage:",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1016,
           "template": "",
-          "roomLine": 1058,
+          "roomLine": 975,
           "room": "",
           "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 1017,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1017,
           "template": "For incident claims inspect original call/result pairs, including failed,",
-          "roomLine": 1059,
+          "roomLine": 976,
           "room": "For incident claims inspect original call/result pairs, including failed,",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1018,
-          "room": "```bash",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1018,
           "template": "rejected and interrupted calls. Record coverage and missing/truncated evidence.",
-          "roomLine": 1060,
+          "roomLine": 977,
           "room": "rejected and interrupted calls. Record coverage and missing/truncated evidence.",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1019,
-          "room": "node tools/test-evaluate-workbench.mjs",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1019,
           "template": "Distinguish not attempted, rejected before execution, executed and failed,",
-          "roomLine": 1061,
+          "roomLine": 978,
           "room": "Distinguish not attempted, rejected before execution, executed and failed,",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1020,
-          "room": "node tools/evaluate-workbench.mjs --path . --include-controls",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1020,
           "template": "local success and remote acceptance with read-back. A summary's omission is",
-          "roomLine": 1062,
+          "roomLine": 979,
           "room": "local success and remote acceptance with read-back. A summary's omission is",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1021,
-          "room": "```",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1021,
           "template": "not proof of non-occurrence. Behavioral acceptance separately records actual",
-          "roomLine": 1063,
+          "roomLine": 980,
           "room": "not proof of non-occurrence. Behavioral acceptance separately records actual",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1022,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1022,
           "template": "provider/version/model, prompt, source/installed hashes and observed skill use;",
-          "roomLine": 1064,
+          "roomLine": 981,
           "room": "provider/version/model, prompt, source/installed hashes and observed skill use;",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1023,
-          "room": "The runnable trial framework lives in `evals/`:",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
         },
         {
           "kind": "unchanged",
           "templateLine": 1023,
           "template": "explicit-path fixtures do not establish ordinary-prompt discovery. Unavailable",
-          "roomLine": 1065,
+          "roomLine": 982,
           "room": "explicit-path fixtures do not establish ordinary-prompt discovery. Unavailable",
           "trivial": false
-        },
-        {
-          "kind": "added",
-          "roomLine": 1024,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
         },
         {
           "kind": "unchanged",
           "templateLine": 1024,
           "template": "checks remain unverified. Repeated controlled trials are needed for reliability.",
-          "roomLine": 1066,
+          "roomLine": 983,
           "room": "checks remain unverified. Repeated controlled trials are needed for reliability.",
           "trivial": false
         },
         {
-          "kind": "added",
-          "roomLine": 1025,
-          "room": "```bash",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 1025,
           "template": "",
-          "roomLine": 1067,
-          "room": "",
-          "trivial": true
-        },
-        {
-          "kind": "added",
-          "roomLine": 1026,
-          "room": "python3 evals/results/_make_selftest.py",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1027,
-          "room": "python3 evals/score.py evals/results/_pipeline_selftest.jsonl --baseline c0_none",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1028,
-          "room": "```",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1029,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1030,
-          "room": "Real comparison runs may spend API budget. Size the run first and record the",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1031,
-          "room": "model, conditions, task suite, trial count, and result path before making claims.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1032,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1033,
-          "room": "### Harness Feedback Loop",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1034,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1035,
-          "room": "This project's `WORKBENCH_FEEDBACK.md` is the return channel to the upstream",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1036,
-          "room": "harness. Lessons logged there feed harness changes, which must clear the same",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1037,
-          "room": "bar as any other \"better\" claim: a proposed template change is `c3_candidate`",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1038,
-          "room": "above, tested against the current docs on the same task suite before it ships.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1039,
-          "room": "Feedback flows out; validated improvements flow back in as a harness upgrade",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1040,
-          "room": "(Upgrading The Harness, above). Taste alone never closes the loop; evidence does.",
-          "trivial": false,
-          "disposition": "Installed-room procedure or explicitly inapplicable application/service scaffold; full matching handoff retention and independent review clauses retained at named sections. Commands and support-state claims verified separately."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1041,
-          "room": "",
-          "trivial": true,
-          "disposition": "Formatting only; no claim removed."
-        },
-        {
-          "kind": "added",
-          "roomLine": 1042,
-          "room": "",
           "trivial": true,
           "disposition": "Formatting only; no claim removed."
         }
@@ -13272,11 +12772,11 @@
       "optional": false,
       "status": "compared",
       "counts": {
-        "filled": 7,
-        "unchanged": 24,
-        "dropped": 1,
-        "changed": 1,
-        "added": 2
+        "filled": 6,
+        "unchanged": 23,
+        "dropped": 4,
+        "changed": 0,
+        "added": 4
       },
       "lines": [
         {
@@ -13287,7 +12787,7 @@
             "[PROJECT_NAME]"
           ],
           "roomLine": 1,
-          "room": "# Example Workbench - Hot Taskboard",
+          "room": "# Workbench Template - Hot Taskboard",
           "trivial": false
         },
         {
@@ -13325,7 +12825,7 @@
             "[current useful outcome]"
           ],
           "roomLine": 5,
-          "room": "**Current focus:** A newcomer can learn what a workbench is by running one command, and the room proves its own account is still true.",
+          "room": "**Current focus:** Verify and integrate the repaired copyable Workbench Template.",
           "trivial": false
         },
         {
@@ -13347,7 +12847,7 @@
             "[YYYY-MM-DD]"
           ],
           "roomLine": 7,
-          "room": "**Last updated:** 2026-09-06",
+          "room": "**Last updated:** 2026-09-09",
           "trivial": false
         },
         {
@@ -13445,21 +12945,21 @@
             "[S-001]"
           ],
           "trivial": false,
-          "disposition": "Generated current room spec projection; no historical spec record removed."
+          "disposition": "Current Template focus and generated active specs; completed catalog route preserved. Settled publication decision remains in S-001 and prior source history, removed from live decisions."
         },
         {
           "kind": "added",
           "roomLine": 18,
           "room": "| [S-00A](workbench/specs/S-00A-workbench-template-reformation/SPEC.md) | TK-00A: Reconcile the Template and prove reviewed installed integration (in-progress) | codex | none | TK-00A claimed by codex. | Close TK-00A with verification and documentation proof. |",
           "trivial": false,
-          "disposition": "Generated current room spec projection; no historical spec record removed."
+          "disposition": "Current Template focus and generated active specs; completed catalog route preserved. Settled publication decision remains in S-001 and prior source history, removed from live decisions."
         },
         {
           "kind": "added",
           "roomLine": 19,
           "room": "| [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | Acceptance / owner gate | Kayden Clark | none | TK-003 unblocked by owner direction and closed; the room is published and clonable. | None; every slice is closed and the capability is published. |",
           "trivial": false,
-          "disposition": "Generated current room spec projection; no historical spec record removed."
+          "disposition": "Current Template focus and generated active specs; completed catalog route preserved. Settled publication decision remains in S-001 and prior source history, removed from live decisions."
         },
         {
           "kind": "unchanged",
@@ -13494,14 +12994,12 @@
           "trivial": false
         },
         {
-          "kind": "changed",
+          "kind": "unchanged",
           "templateLine": 23,
           "template": "spec linked from the manifest specs lane `CATALOG.md`.",
           "roomLine": 24,
-          "room": "spec linked from `BLUEPRINT.md`.",
-          "trivial": false,
-          "similarity": 0.571,
-          "disposition": "Generated current room spec projection; no historical spec record removed."
+          "room": "spec linked from the manifest specs lane `CATALOG.md`.",
+          "trivial": false
         },
         {
           "kind": "unchanged",
@@ -13560,23 +13058,28 @@
           "trivial": true
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 31,
           "template": "| Spec | Decision | Options | Recommendation | Cost / impact | Owner | Next gate |",
-          "roomLine": 32,
-          "room": "| Spec | Decision | Options | Recommendation | Cost / impact | Owner | Next gate |",
-          "trivial": false
+          "trivial": false,
+          "disposition": "Current Template focus and generated active specs; completed catalog route preserved. Settled publication decision remains in S-001 and prior source history, removed from live decisions."
         },
         {
-          "kind": "unchanged",
+          "kind": "dropped",
           "templateLine": 32,
           "template": "|---|---|---|---|---|---|---|",
-          "roomLine": 33,
-          "room": "|---|---|---|---|---|---|---|",
-          "trivial": true
+          "trivial": true,
+          "disposition": "Current Template focus and generated active specs; completed catalog route preserved. Settled publication decision remains in S-001 and prior source history, removed from live decisions."
         },
         {
-          "kind": "filled",
+          "kind": "added",
+          "roomLine": 32,
+          "room": "No current owner decision. The publication decision is settled in S-001; its",
+          "trivial": false,
+          "disposition": "Current Template focus and generated active specs; completed catalog route preserved. Settled publication decision remains in S-001 and prior source history, removed from live decisions."
+        },
+        {
+          "kind": "dropped",
           "templateLine": 33,
           "template": "| [S-###] | [product tradeoff] | [A / B] | [choice + why] | [cost/risk] | [owner] | [decision gate] |",
           "placeholder": [
@@ -13588,9 +13091,15 @@
             "[owner]",
             "[product tradeoff]"
           ],
-          "roomLine": 34,
-          "room": "| [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | Does this room get a remote of its own? | A: publish as its own repository, so it can be cloned and used as a stable rehearsal target / B: keep it local, copied by hand when needed | A - a room that exists on one machine cannot demonstrate that a room survives the machine, and cloning is how anyone else would ever get it | A costs one new repository and its upkeep; B costs nothing now and leaves TK-003 blocked indefinitely | Kayden Clark | Owner says publish or not; TK-003 unblocks either way |",
-          "trivial": false
+          "trivial": false,
+          "disposition": "Current Template focus and generated active specs; completed catalog route preserved. Settled publication decision remains in S-001 and prior source history, removed from live decisions."
+        },
+        {
+          "kind": "added",
+          "roomLine": 33,
+          "room": "historical evidence remains in the stable spec.",
+          "trivial": false,
+          "disposition": "Current Template focus and generated active specs; completed catalog route preserved. Settled publication decision remains in S-001 and prior source history, removed from live decisions."
         }
       ]
     },
