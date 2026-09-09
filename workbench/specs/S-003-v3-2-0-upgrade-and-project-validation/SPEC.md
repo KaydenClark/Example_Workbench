@@ -1,15 +1,15 @@
 # S-003 - v3.2.0 Upgrade And Project Validation
 
 **Spec ID:** S-003
-**Status:** active
+**Status:** complete
 **Priority:** 1
 **Owner:** codex
 **Stance:** Builder
 **Updated:** 2026-09-08
 **Catalog description:** Upgrade the reference room to v3.2.0 and prove a useful fresh project before reviewed integration.
-**Blockers:** final-upstream-v3.2.0-candidate
-**Latest event:** TK-004 reconciled the final reviewed upstream 16c8278 source and its configured-host contract.
-**Next gate:** Push and independently review the repaired immutable candidate before integration.
+**Blockers:** none
+**Latest event:** Spec completed and removed from the hot board.
+**Next gate:** none
 
 ## Outcome
 
@@ -24,12 +24,14 @@ hand-copied tree or upstream suite cannot prove reusable project generation.
 
 ## Current Verified State
 
-Remote integration bf8a2fa5d7b7403fda07e3c8573db1d8348fe3f4 and main
-06ac42f913be8bc615d2821dee448843e567afcb were fetched 2026-09-08. Clean local
-branches were fast-forwarded without dropping the new version-history work.
-The candidate branch starts at integration. Manifest remains v3.1.2; 12 tour
-tests pass and doctor exits 0 with 32 unknown-skill-generation observations.
-No v3.2.0 upgrade has occurred. Upstream release owner is LLM_Workbench S-050.
+Remote integration c848ca87289ba02d4b2a7bd9e671982c943deb9e contains the
+independently reviewed Example candidate 8c97556ebc755c19757a981fa170941d3ec9872f
+with zero tree delta. The retained remote branch `v3.2.0` names that candidate.
+A fresh integration clone passed all 17 tour tests twice, syntax, layout and
+doctor with zero blockers. The installed managed runtime remains truthfully
+receipted from 563a6e6 because the final upstream correction at 16c8278 changes
+only configured-host source validation and documentation; the release verifier
+reports no managed update available. Upstream release owner remains S-050.
 
 ## Desired Behavior
 
@@ -80,7 +82,7 @@ Example mechanical success never waives that release gate.
 | TK-001 | Preserve refreshed baseline and pin the tested v3.2.0 source | done | none | Refreshed Example baseline12 tests and layout pass; upstream563a6e6 full42/42 and independent PASS, merged PR80 integrationc6e476c exact reviewed tree |
 | TK-002 | Upgrade managed installation and reconcile the tour and controls | done | TK-001 | New tour/route regressions RED then15GREEN; exact15 runtime hashes and20 isolated core markers match563a6e6; syntax/layout/doctor pass; AGENTS fidelity zero dropped/changed |
 | TK-003 | Generate and customize a useful independent project with saved-note continuation | done | TK-002 | New b17 v3.2 Genesis readiness80af beforeclaim;15RED16GREEN; native context recovered correction and saved note6to8; parent16 tests/source preservation and local remote36abf1c confirmed |
-| TK-004 | Review merge and read back actual Example integration | in-progress | TK-003 | pending |
+| TK-004 | Review merge and read back actual Example integration | done | TK-003 | 8c97556 final exact-head review PASS; PR3 merged as integrationc848ca8; remote containment zero tree delta; fresh integration clone passed17 tests twice, syntax, layout and doctor |
 
 ### TK-001 - Source and baseline
 
@@ -121,12 +123,12 @@ and test resulting checkout; preserve branch and send receipts to upstream S-050
 
 ## Acceptance Criteria
 
-- [ ] Clean exact upstream v3.2.0 source and complete preflight are recorded.
-- [ ] Example preservation, installed identity, control fidelity, tour and full checks pass.
-- [ ] Fresh independent project generation, useful task and actual note continuation pass.
-- [ ] New-room versus same-room identity and no developer/personal-store dependencies are proven.
-- [ ] Immutable Example candidate passes independent review and is remotely contained in integration.
-- [ ] Actual merged result is read back and final receipts reach upstream S-050.
+- [x] Clean exact upstream v3.2.0 source and complete preflight are recorded.
+- [x] Example preservation, installed identity, control fidelity, tour and full checks pass.
+- [x] Fresh independent project generation, useful task and actual note continuation pass.
+- [x] New-room versus same-room identity and no developer/personal-store dependencies are proven.
+- [x] Immutable Example candidate passes independent review and is remotely contained in integration.
+- [x] Actual merged result is read back and final receipts reach upstream S-050.
 
 ## Testing Seams
 
@@ -154,15 +156,24 @@ VERSION_HISTORY.md and S-002 historical result. Generic material stays upstream.
 | 2026-09-08 | TK-003 | Ticket closed | New b17 v3.2 Genesis readiness80af beforeclaim;15RED16GREEN; native context recovered correction and saved note6to8; parent16 tests/source preservation and local remote36abf1c confirmed | fresh-project-result.json names exact sources, evidence levels, every observed failed batch and correction; no cross-device or reliability inference | Independent immutable Example review, integration and actual merged readback |
 | 2026-09-08 | TK-004 | Separate-context review rejected 39c6f203998d442b2fdc1411c9969b71a6dd642c because Blueprint still claimed the repository was the only state with nothing to seed, migrate or back up | Existing15 checks and generated-project evidence passed, but the stale cross-cutting claim contradicted v3.2 support state. New assertion reproduced RED; Blueprint now distinguishes no application data from tracked and ignored Workbench support state and all16 tests plus syntax/layout/doctor are GREEN | BLUEPRINT data/storage invariant corrected and guarded by the tour suite | Push repaired candidate and obtain a fresh exact-head review before PR and integration |
 | 2026-09-08 | TK-004 | Reconciled Example from the upstream precursor merged by PR80 to the final reviewed corrective source 16c8278 merged by PR81 | Upstream diff changes no managed runtime or skill bytes, so the installed 563a6e6 receipt remains truthful and all recorded hashes match final source; release verifier reports no update available. Configured-host guidance regression demonstrated RED, final template wording applied, and all17 tests plus syntax/layout/doctor are GREEN | RUNBOOK now requires expected sourceCommit/sourceRepository and clean producer inputs; installation-result.json preserves the failed precursor and names final source/integration | Commit, push and fresh independent review of the complete Example head before integration |
+| 2026-09-08 | TK-004 | Ticket closed | 8c97556 final exact-head review PASS; PR3 merged as integrationc848ca8; remote containment zero tree delta; fresh integration clone passed17 tests twice, syntax, layout and doctor | BLUEPRINT and RUNBOOK corrected; installation-result.json names final upstream16c8278/PR81 and preserves the failed precursor and installed-receipt provenance | none within Example; upstream S052 retains external Mac/Windows Claude/Codex private-transport evidence |
+| 2026-09-08 | spec | Spec completed | Acceptance gates satisfied | Documentation impact recorded above | none |
 
 ## Completion Result
 
-Pending; no v3.2.0 readiness claim.
+Complete for the Example-owned boundary. The final upstream source and retained
+installed receipt are reconciled, the independent generated project and saved
+objective continuation passed, the exact Example candidate passed separate
+review, PR #3 merged it into `integration`, and a fresh clone of the actual
+merged result repeated the 17-test, syntax, layout and doctor checks. This proves
+the Example workflow only; it does not supply S-052's external cross-device
+private-transport evidence or authorize active-room rollout.
 
 ## Remaining Limitations Or Follow-Up Specs
 
-Upstream S-050 is the release owner. Zero routine coordination hand-backs; no
-additional rollout is assigned.
+Upstream S-050 is the release owner. Its S-052 external Mac/Windows,
+Claude/Codex and private-transport gate remains outside this Example boundary.
+Zero routine coordination hand-backs; no additional rollout is assigned.
 
 ## Supersession
 
