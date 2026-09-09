@@ -1,9 +1,10 @@
-# Example Workbench - Runbook
+# Workbench Template - Runbook
 
 > Generated from LLM Workbench v3.2.0. See Upgrading The Harness
 > below.
 
 **Last reviewed:** 2026-09-08
+**Blueprint reviewed:** 2026-09-09
 **Runtime owner:** Kayden Clark (owner); any agent may run every command here.
 **Environment:** local only
 
@@ -26,6 +27,30 @@ self-created task, or other delivered prose artifact. Internal JSON capture
 follows the meaningful-work rule and is reconciled at closeout; it does not
 turn a chat-only setup check into a reporting assignment. Round One precedes
 feedback testing.
+
+### Behavior Selection
+
+After resolving the requested scope, compose the smallest behavior already
+authorized by ordinary language; do not wait for a second skill invocation.
+
+| User intent | Behavior and endpoint |
+|---|---|
+| Decide or stress-test an idea | `grilling` with `notepad`; save answers/corrections before continuing |
+| Preserve or resume meaningful work | `notepad`; verify live state and returned revision |
+| Reconcile agreed claims | `promote` with `to-docs` and `save`; no implied implementation |
+| Write specifications only | `to-spec` and needed `to-tickets`; stop at the specified endpoint |
+| Deliver assigned work | `carry` with `implement`, verification, independent integration review and `save` |
+| Prepare another agent's continuation | core `handoff`; readable Markdown with inherited scope |
+| Review a candidate or readiness | `code-review`; report only, no implementation or main merge |
+
+Every helper inherits the caller's narrower endpoint. Mention is not invocation
+and invocation is not new authority. Optional routers and historical extension
+skills are not prerequisites. For meaningful work, create/resume a JSON note,
+read its revision, verify Actuality and correct stale state before dependent
+work. Confirm successful append/current results after material changes and
+validate/read back before voluntary pause or handoff. Runtime revision, privacy
+and dependency checks enforce those operations; host-native interception of
+arbitrary agent actions is not claimed.
 
 ## Prerequisites
 
@@ -161,7 +186,10 @@ gate fails closed on the same two conditions. When that branch resolves and
 the spec `next` would select is already complete there, `doctor` reports
 `complete-on-integration` (attention) without hiding the work. Decision records live in
 `workbench/docs/adr/`; an accepted record names the control that carries its
-rule in `canonicalized_in`, and `register` derives `REGISTER.md`.
+operational owners in `canonicalized_in`. Active accepted decision claims are
+architectural Canon. `register` derives active `REGISTER.md` and complete
+`HISTORY.md`; supersession uses one whole-record `superseded_by` filename and
+deprecation requires `deprecation_reason`. Historical bodies remain unchanged.
 
 `permission-scope-drift` is reported when `.claude/settings.json` exists and
 withholds a manifest-declared authorship lane (no covering `Edit` `allow` rule,
@@ -223,8 +251,9 @@ node workbench/tools/notepads.mjs allocate --prefix N --objective OBJECTIVE_KEY 
 node workbench/tools/notepads.mjs read --id N-001 --view current
 ```
 
-Choose the artifact type prefix explicitly (for example N for objective notes,
-H for handoffs); it is the prefix in the visible ID, not another identity field.
+Choose the artifact type prefix explicitly (for example N for objective notes);
+it is the prefix in the visible ID, not another identity field. Markdown
+handoffs do not use the JSON-notepad ID allocator.
 Allocation uses alphabet `0-9 A-Z a-z`, starts at one with minimum width three,
 and grows without truncation. It chooses the first unoccupied label; identifiers
 do not encode chronology. Legacy numeric labels reserve their existing text and
@@ -247,9 +276,11 @@ cleanup. Durable spec/ticket/ADR behavior is described above.
 New notepads are JSON. `workbench/tools/notepads.mjs` owns structural checks
 and updates. A new layout declares `sessions/notepads/`: bare names create
 `notepads/work/NAME.json`; explicit project-relative paths select another local
-type folder. Handoffs use the declared `handoffs` collection. The tracked
-`notepad-templates` subcollection carries `notepad.schema.json` and work,
-grilling and handoff examples; live-note commands refuse that subcollection.
+type folder. Handoffs are authored as Markdown (`.md`) in the declared
+`handoffs` collection; they are readable continuation instructions, not JSON
+notepads and not `notepads.mjs` records. The tracked `notepad-templates`
+subcollection carries `notepad.schema.json` plus work and grilling JSON examples;
+the portable Markdown handoff shape is bundled as `assets/HANDOFF.md` in the installed `handoff` skill; producer source also exposes `templates/HANDOFF.md`.
 The schema describes new `notepad-1` interchange, while the runtime additionally
 checks unique entry IDs, links and revision safety. Legacy `scope-1` reading and
 migration remain supported without moving or regenerating source history.
@@ -307,9 +338,11 @@ a reader; it never grants authority or verifies a claim.
 3. After interruption, load relevant context and verify current controls and
    actual project state. File availability alone proves neither freshness nor
    successful recovery. Preserve significant work while it is underway.
-4. For an owner-requested handoff, author a destination-specific compaction from
-   the selected material. Include needed corrections and dependencies. Carry
-   the selected content when the destination cannot read the local note.
+4. For an owner-requested handoff, author a destination-specific Markdown
+   compaction from the selected material in `sessions/handoffs/`. State the job,
+   verified facts, exact resume action, boundaries, and source paths in plain
+   language. Include needed corrections and dependencies. Carry the selected
+   content when the destination cannot read the local note.
 5. Before cleanup, verify that promoted material is present in its durable
    owner and that retained work can still be understood and resumed. Trim only
    reconciled material from a retained note; preserve unresolved context,
@@ -580,27 +613,19 @@ run.
 
 ### Workbench Evaluation Commands
 
-For this template repo, the static evaluator checks control-surface coverage:
-
-```bash
-node tools/test-evaluate-workbench.mjs
-node tools/evaluate-workbench.mjs --path . --include-controls
-```
-
-The runnable trial framework lives in `evals/`:
-
-```bash
-python3 evals/results/_make_selftest.py
-python3 evals/score.py evals/results/_pipeline_selftest.jsonl --baseline c0_none
-```
+The static evaluator and stochastic trial framework are producer tools in the
+pinned LLM_Workbench checkout; they are not installed in this room. Follow that
+checkout's Runbook for those commands and name the target room explicitly.
+Room-local acceptance uses `node tests/tour.test.mjs`, `node --check tour.mjs`,
+managed layout validation and spec doctor, as listed in Verification above.
 
 Real comparison runs may spend API budget. Size the run first and record the
 model, conditions, task suite, trial count, and result path before making claims.
 
 ### Harness Feedback Loop
 
-This project's `WORKBENCH_FEEDBACK.md` is the return channel to the upstream
-harness. Lessons logged there feed harness changes, which must clear the same
+The manifest feedback lane (`workbench/feedback/`) is the return channel to the
+upstream harness. Use its `REPORT_FORMAT.md`; lessons logged there feed harness changes, which must clear the same
 bar as any other "better" claim: a proposed template change is `c3_candidate`
 above, tested against the current docs on the same task suite before it ships.
 Feedback flows out; validated improvements flow back in as a harness upgrade
@@ -608,7 +633,9 @@ Feedback flows out; validated improvements flow back in as a harness upgrade
 
 ## Data Operations
 
-None. The room has no seed data, migrations, imports, or databases. Its only
+The reference has no application data or application database migrations.
+Workbench support state has declared seeding, migration and recovery operations;
+use the matched managed-runtime procedures above. Its application-level
 persistent state is the files in the repository.
 
 ## Deployment Or Startup
@@ -901,3 +928,56 @@ explicit skill-path invocation alone does not prove automatic discovery.
 Keep an empty tracked `.gitkeep` in required empty collections, including
 `workbench/sessions/recovery/`, so a clean Git clone contains the tour paths.
 Recovery contents remain ignored; the marker contains no operational data.
+
+## Template Ownership
+
+This installed reference is the Workbench Template. Its repository name and
+historical genesis/proof records remain unchanged. The optional tour explains
+the manifest; the manifest owns paths, root controls own operation and stable
+specs own scoped work. Actual project personalization remains a separate task.
+
+## Handoff Retention
+
+An owner-requested handoff is separately authored as a Markdown file in
+`sessions/handoffs/`, using the installed `handoff` skill and its bundled `assets/HANDOFF.md` as the copy-ready shape.
+It names the retained source, when any, in prose and must carry enough context
+for a receiver without local access. Before trimming or deleting source context,
+the author verifies that the receiver's needed material is durable or otherwise
+retained; Markdown handoffs are intentionally readable rather than tool-managed
+JSON records. Existing JSON handoffs remain legacy local sources and are not
+newly created.
+
+For a legacy JSON retaining destination, reconcile it before releasing retention: set its status to
+`RECONCILED`, clear unresolved items with `--unresolved ""`, and clear its next
+action with `--next-action ""`. Source cleanup remains a separate decision.
+Whole `delete` requires the source to be reconciled with no entries, unresolved
+items, next action, or active declared retainer. Unreadable live records block
+cleanup with named paths because retention cannot be established; repair or
+reconcile them without discarding their source bytes. This does not block other
+work or grant the tool authority to choose what is important. Writes and cleanup
+assume one writer per note; revision checks are not simultaneous-writer locks.
+
+## Independent Review Boundaries
+
+Task/integration review uses a fresh context and immutable candidate, comparison
+base, expected integration tip and named verification. Inspect scope, behavior,
+recovery, documentation, installed identities and consequential report claims.
+If the target changes, compare and review the resulting candidate as required
+before combining branches; a prior PASS is not approval of changed content.
+
+Whole-Workbench main-readiness review is separately requested, review-only work.
+It checks the combined product for drift, open gates, coherent skill composition,
+installed acceptance and semantic ownership. For the Blueprint, require all
+applicable destination sections, no status/version/evidence/catalog material,
+only materially relevant active ADR links, lossless removed-claim disposition,
+and root/template agreement. Record an explicit semantic pass/fail verdict;
+structure and link checks alone are insufficient. Only the owner approves/merges main.
+
+For incident claims inspect original call/result pairs, including failed,
+rejected and interrupted calls. Record coverage and missing/truncated evidence.
+Distinguish not attempted, rejected before execution, executed and failed,
+local success and remote acceptance with read-back. A summary's omission is
+not proof of non-occurrence. Behavioral acceptance separately records actual
+provider/version/model, prompt, source/installed hashes and observed skill use;
+explicit-path fixtures do not establish ordinary-prompt discovery. Unavailable
+checks remain unverified. Repeated controlled trials are needed for reliability.

@@ -61,6 +61,7 @@
       "notepad",
       "save",
       "promote",
+      "handoff",
       "builder",
       "auditor",
       "reviewer",
@@ -73,5 +74,6 @@
     "normalSetup": "presence-only",
     "updates": "explicit-only"
   },
-  "workbenchId": "WB-1RX8E0KgeMDxKV6Z3l9AEC"
+  "workbenchId": "WB-1RX8E0KgeMDxKV6Z3l9AEC",
+  "name": "Workbench Template"
 }
