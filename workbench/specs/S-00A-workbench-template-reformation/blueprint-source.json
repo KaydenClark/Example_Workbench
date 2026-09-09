@@ -1,0 +1,258 @@
+{
+  "sourceCommit": "1cf050f",
+  "sourcePath": "BLUEPRINT.md",
+  "claims": [
+    {
+      "id": "B-001",
+      "text": "# Example Workbench - Blueprint\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-002",
+      "text": "> Generated from LLM Workbench v3.2.0.\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-003",
+      "text": "**Last reviewed:** 2026-09-08\n**Status:** active\n**Source root:** the repository root (this room is the whole project)\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-004",
+      "text": "## Product Map\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-005",
+      "text": "The Example Workbench is the smallest complete room: a working LLM Workbench\ninstallation whose product is an explanation of what a room is. It serves two\nreaders. Someone meeting the harness for the first time can run one command and\nsee every part of a room named, with what it owns and why it is kept apart from\neverything else. Someone maintaining the harness gets a real target to test\ngenesis and upgrade against, instead of rehearsing on a repository that carries\nactual work. The problem it solves is that a structure documented only in\ntemplates is a claim nobody has checked; here the documentation is executable\nand fails when the room drifts from it.\n\n",
+      "disposition": "adapt-reference-role",
+      "owner": "BLUEPRINT.md",
+      "reason": "Retain readable installed structure, optional one-command orientation and a small real reference; replace fictional-application primacy and unsupported every-claim/costless-loss guarantees with explicit tested boundaries."
+    },
+    {
+      "id": "B-006",
+      "text": "Core promise:\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-007",
+      "text": "> Run `node tour.mjs` and you will know what every directory in a workbench is\n> for, and why. Run `node tests/tour.test.mjs` and you will know the answer is\n> still true.\n\n",
+      "disposition": "adapt-reference-role",
+      "owner": "BLUEPRINT.md",
+      "reason": "Retain readable installed structure, optional one-command orientation and a small real reference; replace fictional-application primacy and unsupported every-claim/costless-loss guarantees with explicit tested boundaries."
+    },
+    {
+      "id": "B-008",
+      "text": "## Goals And Pillars\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-009",
+      "text": "- **Explanation that cannot rot:** every claim the room makes about its own\n  layout is asserted by a test. Documentation that can go stale silently is not\n  documentation, it is a rumour with formatting.\n- **Smallest complete room:** the room stays as small as it can be while still\n  being a genuine installation \u2014 real manifest, real lanes, real installed\n  runtime, real spec. A simplified imitation would teach the wrong shape.\n- **A safe rehearsal target:** genesis and upgrade get exercised here, on a room\n  whose loss would cost nothing, before they are pointed at a room that matters.\n\n",
+      "disposition": "adapt-reference-role",
+      "owner": "BLUEPRINT.md",
+      "reason": "Retain readable installed structure, optional one-command orientation and a small real reference; replace fictional-application primacy and unsupported every-claim/costless-loss guarantees with explicit tested boundaries."
+    },
+    {
+      "id": "B-010",
+      "text": "## Cross-Cutting Architecture And Invariants\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-011",
+      "text": "| Layer / concern | Choice | Invariant / source |\n|---|---|---|\n| Runtime | Node.js 20+ | No dependencies, ever. A room that needs an install step cannot be the first thing a newcomer runs. |\n| Product surface | CLI (`node tour.mjs`) | One command, no arguments, output that fits a terminal. |\n| Application data/storage | none | The reference product has no application data. The Workbench still has tracked and ignored support state: seeded documents and schema examples are tracked; live notes and recovery receipts are ignored; supported lifecycle operations may seed, migrate, back up, or synchronize only that scoped state. |\n| Testing | `node:test` (built in) | Matches the upstream harness suites, and adds nothing to install. |\n| Deployment/runtime | none \u2014 the room is read and run in place | Nothing to deploy means nothing that can be stale in production. |\n\n",
+      "disposition": "retain-destination",
+      "owner": "BLUEPRINT.md",
+      "reason": "Retain dependency-free Node20/node:test orientation, no application data, scoped support state and local read/run lifecycle."
+    },
+    {
+      "id": "B-012",
+      "text": "Rules that span multiple capabilities:\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-013",
+      "text": "- **The tour is the single source of truth for what goes where.** Prose in any\n  other file explains a part; only `tour.mjs` enumerates all of them, and only\n  it is checked against the manifest.\n- **Every lane and collection the manifest declares must be explained.** Adding\n  one without describing it is a test failure, not a documentation debt.\n- **The room holds no secrets and acquires none.** It exists to be copied,\n  read, and thrown away, so nothing in it may ever be sensitive.\n- **`workbench/tools/` changes only through an explicit update.** The room does\n  not hand-edit its own managed runtime; that is what makes its receipt mean\n  something.\n\n",
+      "disposition": "reconcile-path-authority",
+      "owner": "BLUEPRINT.md",
+      "reason": "Manifest owns paths; tour remains a complete tested explanation, not competing authority. Preserve lane coverage, no-secrets and explicit managed-update constraints."
+    },
+    {
+      "id": "B-014",
+      "text": "Source and tests say what is implemented; this file and the assigned spec say\nwhat is accepted (`AGENTS.md` -> State Resolution). Put capability-specific\nrequirements and decisions in its stable spec, not here. Consequential\narchitectural decisions with real alternatives get a record in\n`workbench/docs/adr/`; the rule they establish still lives in the owning\ncontrol, because the Workbench Contract is the set of claims those controls\nand the assigned spec carry, not a file.\nPut accepted project-wide definitions in `LEXICON.md`; the Blueprint helps\nparticipants recover the design concept but is not itself the design concept or\nthe project glossary.\n\n",
+      "disposition": "relocate-with-explicit-supersession",
+      "owner": "AGENTS.md",
+      "reason": "State resolution and scoped owners remain. The former mandatory ADR-rule duplication is expressly replaced by active ADR decision Canon in the root control and local ADR0001."
+    },
+    {
+      "id": "B-015",
+      "text": "## Objective Continuity\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-016",
+      "text": "Meaningful objective work preserves working context in local JSON notepads.\nThe current view and ordered work record support continuation and scoped\nhandoffs; shared schema/tooling must preserve sources and corrections without\nmaking notes authoritative. Save important context while work proceeds so it\ncan support continuation after token exhaustion or Stop; computer-crash,\ndevice-loss, and cross-machine recovery are outside this guarantee. Reconcile\nimportant material into durable owners before trimming it from a retained note\nor deleting a fully reconciled record; preserve unfinished context.\nRecord implemented support and remaining gaps in the assigned capability spec;\naccepting this direction does not prove automatic capture or recovery.\n\n",
+      "disposition": "relocate-continuity",
+      "owner": "AGENTS.md",
+      "reason": "Local proactive JSON capture, correction fidelity, no post-Stop guarantee and dependency-aware cleanup remain in Session Records And Checkpoints."
+    },
+    {
+      "id": "B-017",
+      "text": "## Non-Goals\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-018",
+      "text": "- **Not a template.** `templates/` upstream stays generic and bracketed; this\n  room is deliberately filled. Copying it wholesale gives you this room's\n  content, not a blank one.\n- **Not a tutorial for building software.** It explains the shape of a room,\n  not how to design a product inside one.\n- **Not a test harness for the upstream tools.** Those have their own suites.\n  This room is a rehearsal target, not a replacement for them.\n\n",
+      "disposition": "explicit-role-replacement",
+      "owner": "BLUEPRINT.md",
+      "reason": "The owner supersedes Not-a-template; retain no universal design tutorial and no replacement for upstream tests. Copying still needs explicit adaptation; no automated personalization proof follows."
+    },
+    {
+      "id": "B-019",
+      "text": "## Spec Catalog\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-020",
+      "text": "The generated catalog links every durable capability record, including completed\nhistory. Human-authored product prose stays outside the markers.\n\n",
+      "disposition": "relocate-catalog",
+      "owner": "workbench/specs/CATALOG.md",
+      "reason": "Complete stable capability inventory moves to the Lexicon-routed generated catalog; historical source rows are preserved here verbatim."
+    },
+    {
+      "id": "B-021",
+      "text": "<!-- spec-catalog:start -->\n| Spec | Description | Status |\n|---|---|---|\n| [S-001 - Self-Explaining Room](workbench/specs/S-001-self-explaining-room/SPEC.md) | A room that prints an accurate, test-checked account of what a workbench is and why each part is where it is. | active |\n| [S-002 - Version History Replay](workbench/specs/S-002-version-history-replay/SPEC.md) | The repository's history replays every LLM Workbench generation as one commit and one branch each, so the contract's progression can be read, diffed, and backed out of. | complete |\n| [S-003 - v3.2.0 Upgrade And Project Validation](workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md) | Upgrade the reference room to v3.2.0 and prove a useful fresh project before reviewed integration. | complete |\n<!-- spec-catalog:end -->\n\n",
+      "disposition": "relocate-catalog",
+      "owner": "workbench/specs/CATALOG.md",
+      "reason": "Complete stable capability inventory moves to the Lexicon-routed generated catalog; historical source rows are preserved here verbatim."
+    },
+    {
+      "id": "B-022",
+      "text": "## Cross-Cutting Health\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-023",
+      "text": "- `node tests/tour.test.mjs` passes;\n- `node workbench/tools/workbench-layout.mjs validate --project .` passes when relevant;\n- the primary workflow succeeds end to end;\n- secrets and private data stay out of committed output;\n- spec doctor/render checks report no lifecycle, link, or projection drift.\n\n",
+      "disposition": "relocate-verification",
+      "owner": "RUNBOOK.md",
+      "reason": "Current room checks, safe output and truthful interface proof belong in operating verification; historical passing claims stay in completed specs."
+    },
+    {
+      "id": "B-024",
+      "text": "## Workbench Entry And Delivery Boundaries\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-025",
+      "text": "### Core Navigation Contract\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-026",
+      "text": "**Traverse, don't search** is a core Workbench feature. The Context Map connects\nshared meanings, controls, assigned specs, Wiki context, and referenced\nsource/evidence through existing owners. Enter through\n[Lexicon Task Routing](LEXICON.md#task-routing); new durable context must be\nreachable from its relevant entry route and link back to its sources.\n[AGENTS.md](AGENTS.md#traverse-dont-search) owns the behavior and bounded search\nfallback. Ordinary portable links provide this structure; a visual graph or\nretrieval index is a source-derived view, not a second truth store. Foundry,\nObsidian, and a recall service are not prerequisites. Link coverage and any\nautomated traversal capability require their own verification.\n\n",
+      "disposition": "relocate-routing",
+      "owner": "LEXICON.md",
+      "reason": "Context Map routes owners; AGENTS owns Traverse behavior and bounded fallback; no graph or recall-service dependency is introduced."
+    },
+    {
+      "id": "B-027",
+      "text": "### Entry And Delivery\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-028",
+      "text": "The seven-control Contract enters through AGENTS -> RUNBOOK -> LEXICON, then\nassigned work and task-relevant owners. This Blueprint loads for architecture\nand cross-cutting direction. SPEC and TASK assign portable stances; stances\nchange method without transferring authority or spawning agents. Independent\nreview is required before branches combine at integration. Required steps need\nimmediate delivery value; uncertain practices remain optional and reviewable.\nA setup-only Round One proof reports in chat before feedback-report testing.\n\n",
+      "disposition": "relocate-operation",
+      "owner": "AGENTS.md",
+      "reason": "Seven-control entry, assigned stances, useful steps, scoped independent integration review and preserved outcomes remain operational Contract."
+    },
+    {
+      "id": "B-029",
+      "text": "\n## Accepted Continuity And Distribution Direction\n\n",
+      "disposition": "preserve-source-structure",
+      "owner": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "reason": "Prior headings, release metadata and source framing are preserved with the pinned original; they do not belong in destination prose."
+    },
+    {
+      "id": "B-030",
+      "text": "The Workbench's continuity promise spans maintained controls, specs, Wiki,\nsource, verified achieved state and objective notes. A fresh capable agent must\nrecover authorized work from those owners; notes preserve unfinished reasoning.\nA real useful continuation demonstrates that workflow. Only repeated controlled,\nheld-out, condition-blind trials with uncertainty support improved agent-outcome\nclaims; static checks and a single demonstration do not. Preserve criteria and\nfailed results. Interface acceptance applies to the product's actual interface.\n\n",
+      "disposition": "relocate-accepted-decision",
+      "owner": "workbench/docs/adr/0001-template-ownership-and-continuity.md",
+      "reason": "Exact accepted paragraph is preserved verbatim under Decision; implementation/environment limits remain explicit."
+    },
+    {
+      "id": "B-031",
+      "text": "The portable runtime stays Node/JavaScript; Python retains evaluation and existing\nappend-only checks. Both languages deserialize JSON; no intrinsic Python JSON\npenalty is asserted. Skills compose reusable independent behavior within inherited\nscope. Mention, routing, invocation and authorization are distinct; a helper\ncannot enlarge its caller's authority. Read-only names the target, while permitted\nlocal working capture remains within the assignment.\n\n",
+      "disposition": "relocate-accepted-decision",
+      "owner": "workbench/docs/adr/0001-template-ownership-and-continuity.md",
+      "reason": "Exact accepted paragraph is preserved verbatim under Decision; implementation/environment limits remain explicit."
+    },
+    {
+      "id": "B-032",
+      "text": "Core skills are exclusively upstream-owned and sufficient without a personal\ncatalog, including reconciled save/promote/notepad. Optional personal/shared\nskills and room-local source remain distinct ownership scopes. One selected\nglobal core release carries a tested room compatibility range. The global\n.agents/skills root holds managed ignored/excluded core installation alongside\noptional personal source; Claude discovery adapts the same source. One source\nper skill and one discovery entry per application; no third .codex/skills catalog.\nNormal setup preserves existing names; explicit replacement backs up differences.\nRoom-local promotion into a personal catalog remains owner-directed.\n\n",
+      "disposition": "relocate-accepted-decision",
+      "owner": "workbench/docs/adr/0001-template-ownership-and-continuity.md",
+      "reason": "Exact accepted paragraph is preserved verbatim under Decision; implementation/environment limits remain explicit."
+    },
+    {
+      "id": "B-033",
+      "text": "Optional private workbench_sessions Git transport is the accepted cross-device\ndirection. Stable Workbench identity survives clone/worktree/rename; independent\ninstantiation receives a new identity, separate from artifact IDs. Selected live\nnotes/grilling/handoffs map under workbenches/<WBID>/sessions/; schemas/templates\nand promoted knowledge stay in project Git. Live records remain ignored there,\nnon-authoritative, and privacy bounded. Fetch before resume; meaningful saves\nand device switching require explicit push/remote acknowledgment, with offline\npending status and last confirmed revision. Serialize sync, preserve conflicts,\nand never silently overwrite or force push. Git history retention is accepted;\ntransport does not move unpushed code or running processes. Local use is independent.\nActual Mac/Windows Claude/Codex round-trip proof is required for that claim.\n\n",
+      "disposition": "relocate-accepted-decision",
+      "owner": "workbench/docs/adr/0001-template-ownership-and-continuity.md",
+      "reason": "Exact accepted paragraph is preserved verbatim under Decision; implementation/environment limits remain explicit."
+    },
+    {
+      "id": "B-034",
+      "text": "Promotion writes selected, privacy/validity-checked material directly to its named\ndurable owner, verifies read-back and faithful reconciliation, then permits scoped\nsource cleanup. Preserve unfinished/correction/transfer dependencies. Existing\ncheckpoints remain frozen history; new copy creation is retired. Operational\nrecovery uses the ignored `sessions/recovery/` collection; legacy rollback remains usable. No new permanent\nhandoff store substitutes for checkpoints. Capability checks cannot replace\nsemantic judgment or authorization.\n\n",
+      "disposition": "relocate-accepted-decision",
+      "owner": "workbench/docs/adr/0001-template-ownership-and-continuity.md",
+      "reason": "Exact accepted paragraph is preserved verbatim under Decision; implementation/environment limits remain explicit."
+    },
+    {
+      "id": "B-035",
+      "text": "Genesis, adoption and explicit upgrade have different allowed effects and\npreservation contracts. Verify all consumed source lanes before mutation.\nSeparate release, historical adoption, installed manifest, tool/skill bytes,\nexecuting runtime and downstream acceptance identities. Verify the actual remote\nref and object; inaccessible remote state remains unknown. Control divergence is\nvisible and deliberate against a matched template generation; fidelity stays a\nreport. A recorded unavailable baseline is distinct from measured red and never\nwaives release acceptance; use the existing closed baseline policy.\n\n",
+      "disposition": "relocate-accepted-decision",
+      "owner": "workbench/docs/adr/0001-template-ownership-and-continuity.md",
+      "reason": "Exact accepted paragraph is preserved verbatim under Decision; implementation/environment limits remain explicit."
+    },
+    {
+      "id": "B-036",
+      "text": "Supported-host claims require a small agreed operational floor checked in the\nactual configured environment. Agree requirements before choosing schema,\ndiagnostics or tests. Missing capabilities affect dependent work only; unavailable\nchecks stay unverified. Capability, actual enforcement and model reliability need\nseparate evidence. New native enforcement hooks are outside core; discovery and\nevaluation adapters are distinct. Enforcement needs a running mechanism with\nsupporting evidence, whether host-owned or Workbench-owned.\n",
+      "disposition": "relocate-accepted-decision",
+      "owner": "workbench/docs/adr/0001-template-ownership-and-continuity.md",
+      "reason": "Exact accepted paragraph is preserved verbatim under Decision; implementation/environment limits remain explicit."
+    }
+  ]
+}

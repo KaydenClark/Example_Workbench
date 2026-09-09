@@ -1,0 +1,86 @@
+{
+  "scope": "Reviewed explicit Template update only; future personalization/Genesis unproved",
+  "referenceCommit": "6e024ec0e697814a9b1c8d8f3d47d04664e6a501",
+  "runtimeReceiptSource": {
+    "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
+    "release": "v3.2.0",
+    "commit": "64397ad757b3a3a9bd535497e2c7912a58cd0497",
+    "dirty": false
+  },
+  "runtimeMatchesReference": true,
+  "files": [
+    {
+      "file": "adr.mjs",
+      "sha256": "80e7e3dc7c84098dedd910125eed8d346afdbf1c8aa7dd886647eec70e47fe77"
+    },
+    {
+      "file": "diagnostics.mjs",
+      "sha256": "2cdc651b7f0d3efd6f5854a4c9e37a572f6d5e286d9b89cac8a2898285626d2d"
+    },
+    {
+      "file": "markdown-table.mjs",
+      "sha256": "acca5cb04cecb0044c74aaa38f42d6f0e4e6addb26b45a744d14ca0b74487e6b"
+    },
+    {
+      "file": "privacy.mjs",
+      "sha256": "8731047bc626b7b7a539b04c674aac2ac19452e7103cebd53ccf336c32a3ad8b"
+    },
+    {
+      "file": "sessions.mjs",
+      "sha256": "5c772381d16cd94aee41ab855e54261761d6d6d3200dc9fb064325e2aaea6e45"
+    },
+    {
+      "file": "spec-packet.mjs",
+      "sha256": "5d2295418a25fcd0c739942404cd804d197f8ef0c9d238522757ea4bb62f97be"
+    },
+    {
+      "file": "spec-workbench.mjs",
+      "sha256": "ad91569d8f09a663e2a638bb72aede437b6a5febfed8beb2d866af68f40dcf41"
+    },
+    {
+      "file": "template-placeholders.mjs",
+      "sha256": "a36e3b6eaae84df9705b518ace10ec34111aadbe5ed5015de458cbfceb592050"
+    },
+    {
+      "file": "wiki.mjs",
+      "sha256": "8c3b62b2a70315df49c3cd43dcbf760a81374cba42414a935b666460be157fa0"
+    },
+    {
+      "file": "workbench-layout.mjs",
+      "sha256": "02e8a2d9bd535bb622afae431806b1b152595af7bb05adf42d32eaffb1f601ca"
+    },
+    {
+      "file": "workbench-paths.mjs",
+      "sha256": "993d921998dfb9daf58adbefe0240038969e8224a735ba9eced6faa993a26b53"
+    },
+    {
+      "file": "notepads.mjs",
+      "sha256": "92d63ee0d2a6a76edb01de6c72abd851224e6b0ac2e69fb0048b7ff59be34877"
+    },
+    {
+      "file": "session-transport.mjs",
+      "sha256": "17172dcb489a2fa571551a605f3130fd20d6bc2a17d8cba8811ef39a8c2c5416"
+    },
+    {
+      "file": "visible-ids.mjs",
+      "sha256": "b07501e993bd49572b233947cb5f8a606b21c343a986ce1bab1480237b08db42"
+    },
+    {
+      "file": "skill-inspection.mjs",
+      "sha256": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc"
+    }
+  ],
+  "roomIdentityPreserved": true,
+  "historicalGenesisSourcePreserved": true,
+  "oldBlueprintSourceCommit": "1cf050f",
+  "preexistingDirtyCompletionPreservedCommit": "1cf050f",
+  "tests": {
+    "tour": "19/19",
+    "syntax": "pass",
+    "layout": "valid",
+    "doctor": "zero blockers; historical provenance attention retained"
+  },
+  "review": "pending immutable candidate",
+  "integration": "pending",
+  "nativeEnvironmentLimits": "See upstream S051 safe installed/native receipt; no Claude/Windows/private transport pass inferred from Template checks"
+}

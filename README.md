@@ -1,32 +1,26 @@
-# Example Workbench
+# Workbench Template
 
-> Generated from LLM Workbench v3.2.0. See `RUNBOOK.md` ->
-> Upgrading The Harness.
+> Generated from LLM Workbench v3.2.0.
 
-The smallest complete LLM Workbench room, whose product is an explanation of
-what a room is - for anyone meeting the harness for the first time, and for
-anyone who needs a safe target to rehearse a genesis or an upgrade against.
+A copyable reference installation of LLM Workbench. It provides a legible
+starting structure and an installed target for reviewed harness updates.
+Example_Workbench remains the repository name; Workbench Template is its role.
 
 ```bash
-node tour.mjs               # what every part of a room is for, and why
-node tour.mjs --lifecycle   # how this room came to exist, and how it upgrades
-node tests/tour.test.mjs    # proof that both answers still match this room
+node tour.mjs
+node tour.mjs --lifecycle
+node tests/tour.test.mjs
 ```
 
-The structure of a room is documented upstream in `templates/`, which is
-generic and bracketed by design: you see the shape of the answer, never a
-filled example, and nothing checks that the templates still describe what the
-tools actually produce. This room is that filled example. It was created by the
-real genesis path, so it cannot describe a shape the tools do not produce, and
-every claim it makes about its own layout is asserted by a test - add a lane to
-`workbench/manifest.json` without describing it and the suite goes red.
+The tour is an optional orientation aid. A future project needs its own product
+intent, controls and verification; this update does not demonstrate automated
+personalization or a fresh-project Genesis workflow. Historical specs and version
+replay are retained as reference history, not new project assignments. Live
+notes, handoffs and recovery data must stay out of copies.
 
-One boundary worth naming up front, because it is the part people get wrong:
-everything the harness manages lives under `workbench/`, declared by a manifest
-rather than assumed by path. A root `tools/` directory, if a project has one,
-belongs to the application and is never touched by the harness. The room you
-are reading has no application `tools/` at all - its product is `tour.mjs` at
-the root.
+The manifest declares every managed support path. Application code belongs to
+the project that adopts the structure; the harness runtime remains under
+workbench/tools and changes only through an explicit managed update.
 
 ## How This Project Is Run
 
@@ -35,8 +29,8 @@ before changing anything:
 
 - [`AGENTS.md`](AGENTS.md) - how agents behave here: authority order, read/edit
   scope, the task-selection loop, documentation ownership, and proof rules.
-- [`BLUEPRINT.md`](BLUEPRINT.md) - compact product map, cross-cutting
-  architecture/invariants, non-goals, and spec catalog.
+- [`BLUEPRINT.md`](BLUEPRINT.md) - desired product destination, integrated design, constraints and lifecycle. The
+  complete capability catalog is linked from the Lexicon.
 - [`LEXICON.md`](LEXICON.md) - accepted project-wide terms and definitions;
   consult it when shared language could be ambiguous.
 - [`TASKBOARD.md`](TASKBOARD.md) - active spec projection: current slice, owner,
@@ -98,7 +92,7 @@ accepted on product truth, not passing tests alone.
 ## Project Status
 
 See [`TASKBOARD.md`](TASKBOARD.md) for active execution state and
-[`BLUEPRINT.md`](BLUEPRINT.md) for the durable spec catalog.
+[`workbench/specs/CATALOG.md`](workbench/specs/CATALOG.md) for the complete durable spec catalog.
 
 ## License
 

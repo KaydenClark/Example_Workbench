@@ -3,23 +3,23 @@
   "source": {
     "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
     "release": "v3.2.0",
-    "commit": "563a6e69657a6fe2594e86bda523cb60567342b7",
+    "commit": "64397ad757b3a3a9bd535497e2c7912a58cd0497",
     "dirty": false
   },
   "installedAt": "2026-09-06",
   "files": {
-    "adr.mjs": "d50e08f4271a0ce2f90e273b757f7ade0878c1fb98ee56d99b56eb3f0deb4cce",
+    "adr.mjs": "80e7e3dc7c84098dedd910125eed8d346afdbf1c8aa7dd886647eec70e47fe77",
     "diagnostics.mjs": "2cdc651b7f0d3efd6f5854a4c9e37a572f6d5e286d9b89cac8a2898285626d2d",
     "markdown-table.mjs": "acca5cb04cecb0044c74aaa38f42d6f0e4e6addb26b45a744d14ca0b74487e6b",
     "privacy.mjs": "8731047bc626b7b7a539b04c674aac2ac19452e7103cebd53ccf336c32a3ad8b",
     "sessions.mjs": "5c772381d16cd94aee41ab855e54261761d6d6d3200dc9fb064325e2aaea6e45",
     "spec-packet.mjs": "5d2295418a25fcd0c739942404cd804d197f8ef0c9d238522757ea4bb62f97be",
-    "spec-workbench.mjs": "0ca59ae16c47c50fab744ed93682e81a45b6b7d269924459c5d9aa4936d22db6",
-    "template-placeholders.mjs": "3e99032e2ded860f43d76cd3526c5223107f04fb6421f247283b2d02a32b7f65",
+    "spec-workbench.mjs": "ad91569d8f09a663e2a638bb72aede437b6a5febfed8beb2d866af68f40dcf41",
+    "template-placeholders.mjs": "a36e3b6eaae84df9705b518ace10ec34111aadbe5ed5015de458cbfceb592050",
     "wiki.mjs": "8c3b62b2a70315df49c3cd43dcbf760a81374cba42414a935b666460be157fa0",
-    "workbench-layout.mjs": "e9a2ff6a99beb0950d14a4fff10a3e53d6c40b1d80b1957ccd10ab46c711a2ec",
+    "workbench-layout.mjs": "02e8a2d9bd535bb622afae431806b1b152595af7bb05adf42d32eaffb1f601ca",
     "workbench-paths.mjs": "993d921998dfb9daf58adbefe0240038969e8224a735ba9eced6faa993a26b53",
-    "notepads.mjs": "660acf2130b0129fa3c637bef55bb39e43d7a3b6506e90725f2af881a55bc27d",
+    "notepads.mjs": "92d63ee0d2a6a76edb01de6c72abd851224e6b0ac2e69fb0048b7ff59be34877",
     "session-transport.mjs": "17172dcb489a2fa571551a605f3130fd20d6bc2a17d8cba8811ef39a8c2c5416",
     "visible-ids.mjs": "b07501e993bd49572b233947cb5f8a606b21c343a986ce1bab1480237b08db42",
     "skill-inspection.mjs": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc"
@@ -37,7 +37,17 @@
         "workbench-layout.mjs",
         "workbench-paths.mjs"
       ]
+    },
+    {
+      "path": "/private/tmp/v32-template-runtime-recovery/.workbench-tools-backup-qMy6Cv",
+      "files": [
+        "adr.mjs",
+        "notepads.mjs",
+        "spec-workbench.mjs",
+        "template-placeholders.mjs",
+        "workbench-layout.mjs"
+      ]
     }
   ],
-  "updatedAt": "2026-09-08"
+  "updatedAt": "2026-09-09"
 }

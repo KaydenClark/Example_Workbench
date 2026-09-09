@@ -15,6 +15,7 @@ Commands live in `RUNBOOK.md`.
 <!-- hot-specs:start -->
 | Spec | Current slice | Owner | Blocker | Latest meaningful event | Next gate |
 |---|---|---|---|---|---|
+| [S-00A](workbench/specs/S-00A-workbench-template-reformation/SPEC.md) | TK-00A: Reconcile the Template and prove reviewed installed integration (in-progress) | codex | none | TK-00A claimed by codex. | Close TK-00A with verification and documentation proof. |
 | [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | Acceptance / owner gate | Kayden Clark | none | TK-003 unblocked by owner direction and closed; the room is published and clonable. | None; every slice is closed and the capability is published. |
 <!-- hot-specs:end -->
 
