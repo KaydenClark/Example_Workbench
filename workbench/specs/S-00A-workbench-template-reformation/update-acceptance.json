@@ -80,7 +80,21 @@
     "layout": "valid",
     "doctor": "zero blockers; historical provenance attention retained"
   },
-  "review": "pending immutable candidate",
-  "integration": "pending",
+  "review": {
+    "verdict": "PASS",
+    "candidate": "d14553c29c7812cb192c5c104dd4f719a8d181a0",
+    "base": "c848ca87289ba02d4b2a7bd9e671982c943deb9e",
+    "context": "fresh independent review_template_final",
+    "earlierVerdict": "9bfc4a5 CHANGES REQUIRED; Taskboard and duplicated evaluator corrected"
+  },
+  "integration": {
+    "pr": "https://github.com/KaydenClark/Example_Workbench/pull/5",
+    "commit": "df6335922832e93466bd32e9c0cbe577baa668c2",
+    "reviewedCandidateContained": true,
+    "treeDifference": false,
+    "releaseBranchRetained": true,
+    "freshRemoteClone": "19 tests, syntax, layout, doctor pass; checkout clean",
+    "mainMerged": false
+  },
   "nativeEnvironmentLimits": "See upstream S051 safe installed/native receipt; no Claude/Windows/private transport pass inferred from Template checks"
 }

@@ -1,15 +1,15 @@
 # S-00A - Workbench Template Reformation
 
 **Spec ID:** S-00A
-**Status:** active
+**Status:** complete
 **Priority:** 1
 **Owner:** codex
 **Stance:** Builder
 **Updated:** 2026-09-09
 **Catalog description:** Recast the existing reference as a copyable Workbench Template and verify the repaired v3.2.0 installation.
 **Blockers:** none
-**Latest event:** TK-00A claimed by codex.
-**Next gate:** Close TK-00A with verification and documentation proof.
+**Latest event:** Spec completed and removed from the hot board.
+**Next gate:** none
 
 > **Citation anchors.** pre=`1cf050f3452d1d9976fe6af96a38e90e48d8a325` post=`1cf050f3452d1d9976fe6af96a38e90e48d8a325`.
 
@@ -67,7 +67,7 @@ candidate review and actual read-back; local success alone cannot close them.
 
 | Ticket | Slice | Status | Blockers | Proof |
 |---|---|---|---|---|
-| TK-00A | Reconcile the Template and prove reviewed installed integration | in-progress | none | Red/green room checks, full verification, source/control disposition, independent review and remote containment |
+| TK-00A | Reconcile the Template and prove reviewed installed integration | done | none | Independent PASS d14553c;PR5 integrationdf63359 contains exact reviewed candidate,zero tree delta;fresh clone19tests/syntax/layout/doctor pass;15runtime hashes verified |
 
 ### TK-00A - Reconcile the Template and prove reviewed installed integration
 
@@ -80,13 +80,13 @@ candidate independently before integration and read the actual remote back.
 
 ## Acceptance Criteria
 
-- [ ] Product orientation and eight-section Blueprint express the Template role.
-- [ ] Every removed Blueprint claim has a disposition with original text/lineage.
-- [ ] JSON working notes, Markdown handoffs and active ADR/spec catalog routing agree.
-- [ ] Historical provenance, room identity, completed evidence and deliberate differences survive.
-- [ ] Exact installed runtime hashes, full room checks and independent review pass.
-- [ ] Reviewed candidate is contained by remote integration; v3.2.0 is retained.
-- [ ] Receipt distinguishes Template update from unavailable native environments and future personalization.
+- [x] Product orientation and eight-section Blueprint express the Template role.
+- [x] Every removed Blueprint claim has a disposition with original text/lineage.
+- [x] JSON working notes, Markdown handoffs and active ADR/spec catalog routing agree.
+- [x] Historical provenance, room identity, completed evidence and deliberate differences survive.
+- [x] Exact installed runtime hashes, full room checks and independent review pass.
+- [x] Reviewed candidate is contained by remote integration; v3.2.0 is retained.
+- [x] Receipt distinguishes Template update from unavailable native environments and future personalization.
 
 ## Testing Seams
 
@@ -132,10 +132,18 @@ upstream S-00B/S-050 receipts. S-001/S-002/S-003 evidence remains historical.
 | 2026-09-09 | TK-00A | Reconciled Template role, root owners, optional tour and explicit managed runtime from reviewed source64397ad; matched final reference6e024ec | New orientation test RED then18GREEN; exact prior Blueprint/relocated-decision checks19GREEN; syntax/layout/doctor pass;15 runtime files match; original room ID and genesis identity preserved | Complete source disposition, local active ADR, line-level fidelity and update receipt retain original sources and explicit limits | Immutable review and live integration containment pending |
 
 | 2026-09-09 | TK-00A | Independent review of9bfc4a5 returned CHANGES REQUIRED despite19 passing tests | Stale Taskboard catalog/current decision and duplicated producer-only evaluation instructions reproduced | Corrected live routing/state; removed duplicate, qualified upstream evaluator and routed feedback to manifest owner; original records preserved | Exact repaired-candidate review and integration pending |
+| 2026-09-09 | TK-00A | Ticket closed | Independent PASS d14553c;PR5 integrationdf63359 contains exact reviewed candidate,zero tree delta;fresh clone19tests/syntax/layout/doctor pass;15runtime hashes verified | Root controls,tour,complete source/fidelity disposition and installed acceptance receipt updated;historical owners preserved | none for Template update;future personalization and unavailable native/cross-device gates remain upstream |
+| 2026-09-09 | spec | Spec completed | Acceptance gates satisfied | Documentation impact recorded above | none |
 
 ## Completion Result
 
-Pending.
+The exact independently reviewed d14553c candidate is delivered through PR5 to
+remote integration df6335922832e93466bd32e9c0cbe577baa668c2 with no tree difference.
+A fresh remote clone passes all19 room tests, syntax, layout and doctor; only
+historical genesis provenance attention remains. All15 runtime hashes match the
+named upstream source. The v3.2.0 branch remains retained and main is untouched.
+This closes only the named Template update, with future personalization and
+unavailable native/cross-device environments explicitly excluded.
 
 ## Remaining Limitations Or Follow-Up Specs
 
