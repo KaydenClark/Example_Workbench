@@ -1,4 +1,4 @@
-# Example Workbench - Agent Operating System
+# Workbench Template - Agent Operating System
 
 > Generated from LLM Workbench v3.2.0.
 
@@ -45,6 +45,12 @@ manufacturing authority. Diagnostics block only by their registered effect:
 `doctor` fails on `all` and `selection` findings, `next` excludes blocked
 work, `claim` refuses a slice blocker, and `attention` findings stay visible
 without blocking.
+
+Accepted active ADR decision claims are architectural Canon, without enlarging
+instruction authority. Rationale and historical alternatives remain evidence.
+Follow active decisions through the Lexicon; superseded/deprecated records stay
+reachable as history. The Blueprint describes the desired finished product;
+it carries no current status, release chronology or generated capability catalog.
 
 ## Traverse, Don't Search
 
@@ -157,7 +163,7 @@ Documentation is part of done; the implementing agent is documentation owner.
 | requirements, acceptance, decisions, evidence, completion | assigned `SPEC.md` |
 | commands and troubleshooting | `RUNBOOK.md` |
 | public usage | `README.md` |
-| decision rationale, alternatives, supersession | `workbench/docs/adr/` (rule binds only where `canonicalized_in` points) |
+| active architectural decisions, rationale, alternatives, supersession | `workbench/docs/adr/` (`canonicalized_in` names operational owners) |
 | durable room memory, design-concept articles, and routing to them | `workbench/wiki/` (`MEMORY.md` router, `SCHEMA.md` rules) |
 
 Use `Docs checked; no update needed` with a reason when appropriate. The final response proof states what changed, why, risks, and verification. Append spec
@@ -236,12 +242,15 @@ closeout or rely on a final write after Stop. This obligation covers saved local
 context for conversation continuation, not computer crashes or device loss;
 an interruption can still preempt an unsaved write.
 
-New notepads use JSON, including when older workflow examples say Markdown.
+Notepads, including grilling records, use JSON, including when older workflow
+examples say Markdown. Handoffs are separate human-readable Markdown (`.md`)
+files: they give a receiving agent or a new chat plain-language instructions
+for continuing one objective. Do not serialize a handoff as a JSON notepad.
 The shared runtime is `workbench/tools/notepads.mjs`; its interchange schema
 and reusable examples live in the manifest-declared `notepad-templates`
 collection. The `notepad` skill owns judgment. New live records use typed
-folders in the `notepads` collection; handoffs use `handoffs`. Preserve legacy
-Markdown and JSON paths. Live
+folders in the `notepads` collection; Markdown handoffs use `handoffs`.
+Preserve legacy Markdown and JSON paths, but create no new JSON handoffs. Live
 notes and handoffs stay untracked in project Git; explicitly configured private
 synchronization may transport selected live collections under the accepted
 continuity contract. Local operation remains independent of transport. Do not record secrets,

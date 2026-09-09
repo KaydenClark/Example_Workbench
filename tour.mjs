@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// The Example Workbench's one-command demo: print the annotated map of a room.
+// The Workbench Template's optional orientation demo: print the annotated map of a room.
 //
 // Every entry below names a real path in this room and says what truth it owns
 // and why that truth is kept apart from every other. `tests/tour.test.mjs`
@@ -29,7 +29,7 @@ export const PLACES = [
   {
     zone: 'Root controls',
     path: 'BLUEPRINT.md',
-    owns: 'What the project is, its cross-cutting architecture and invariants, and the catalog of capability specs.',
+    owns: 'The desired finished product: destination, people, outcomes, experience, design, constraints, lifecycle and non-goals.',
     why: 'Product direction changes far more slowly than task state. Keeping it separate means a spec can complete, or a ticket be abandoned, without editing the description of the product.',
   },
   {
@@ -87,7 +87,7 @@ export const PLACES = [
     zone: 'The support root',
     collection: 'adr',
     path: 'workbench/docs/adr',
-    owns: 'Architecture decision records: the rationale, the alternatives considered, and what supersedes what.',
+    owns: 'Accepted active architectural decisions, rationale, alternatives and supersession, with retired records accessible through history.',
     why: 'A decision and the code implementing it have different lifetimes. The ADR keeps the argument after the code changes, and records what was rejected so it is not re-litigated every time someone new arrives.',
   },
   {
@@ -122,7 +122,7 @@ export const PLACES = [
     zone: 'The support root',
     lane: 'sessions',
     path: 'workbench/sessions',
-    owns: 'Session records: local JSON working notes and handoffs, frozen historical checkpoints, and ignored recovery material.',
+    owns: 'Session records: local JSON working notes, readable Markdown handoffs, frozen historical checkpoints and ignored recovery material.',
     why: 'Most session text is scratch, and some of it contains things that must never be committed. This lane exists so that durability is a deliberate act rather than the default.',
   },
   {
@@ -136,7 +136,7 @@ export const PLACES = [
     zone: 'The support root',
     collection: 'handoffs',
     path: 'workbench/sessions/handoffs',
-    owns: 'Compactions written so another context can continue the work. Untracked.',
+    owns: 'Readable Markdown instructions for a requested, scope-preserving transfer to another context. Untracked.',
     why: 'A handoff is addressed to the next session, not to the repository. It goes stale within hours, so committing it would publish something that is wrong by the time anyone reads it.',
   },
   {
@@ -186,7 +186,7 @@ export const PLACES = [
     zone: 'The product',
     path: 'tour.mjs',
     owns: 'This room’s one-command demo: the map you are reading.',
-    why: 'Every room owes a demo artifact checkable in under a minute. This room’s product is its own explanation, so the demo is the explanation printing itself.',
+    why: 'This optional orientation demonstrates the installed structure in under a minute. Future projects choose their own product and demo rather than inheriting a fictional Example application.',
   },
   {
     zone: 'The product',
@@ -259,7 +259,7 @@ const ZONE_BLURBS = {
 
 function render(manifest) {
   const lines = [];
-  const name = manifest.name || 'Example Workbench';
+  const name = manifest.name || 'Workbench Template';
   lines.push('');
   lines.push(`  ${name} — what a workbench is, and why each part is where it is`);
   lines.push(`  harness ${manifest.workbenchVersion}  ·  schema ${manifest.schemaVersion}  ·  provenance ${manifest.provenance.lifecycle}`);

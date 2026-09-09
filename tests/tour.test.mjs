@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 import { PLACES, ROOM_ROOT, ROUTE, lifecycle, readManifest } from '../tour.mjs';
@@ -156,4 +157,30 @@ test('the maintenance route preserves historical provenance and names a backup h
   assert.ok(ROUTE.some(step => /workbench-tools\.mjs update/.test(step.detail) && /--home/.test(step.detail)));
   assert.ok(ROUTE.some(step => /workbench-layout\.mjs migrate/.test(step.detail)));
   assert.ok(ROUTE.every(step => !/sets `provenance\.source`/.test(step.detail)));
+});
+
+test('the reference presents a destination-only copyable Template and current owners', () => {
+  const blueprint=fs.readFileSync(path.join(root,'BLUEPRINT.md'),'utf8');
+  const readme=fs.readFileSync(path.join(root,'README.md'),'utf8');
+  assert.match(readme,/^# Workbench Template/m);
+  assert.match(blueprint,/copyable reference installation/i);
+  assert.deepEqual([...blueprint.matchAll(/^## (.+)$/gm)].map(x=>x[1]),['Product Destination','People And Problems Served','Promised Outcomes','Desired Experience And Behavior','Integrated System Design','Cross-Cutting Qualities And Constraints','Desired Lifecycle','Non-Goals']);
+  assert.doesNotMatch(blueprint,/spec-catalog|Last reviewed|Harness version|Not a template/);
+  assert.doesNotMatch(PLACES.find(p=>p.path==='BLUEPRINT.md').owns,/catalog/);
+  assert.match(PLACES.find(p=>p.collection==='handoffs').owns,/Markdown/);
+  assert.match(PLACES.find(p=>p.collection==='adr').owns,/active.*decisions/i);
+});
+
+
+test('the Blueprint disposition preserves its exact source and relocated decisions', () => {
+  const inventory=JSON.parse(fs.readFileSync(path.join(root,'workbench/specs/S-00A-workbench-template-reformation/blueprint-source.json')));
+  const original=execFileSync('git',['show',inventory.sourceCommit+':'+inventory.sourcePath],{cwd:root,encoding:'utf8'});
+  assert.equal(inventory.claims.map(c=>c.text).join(''),original);
+  for (const claim of inventory.claims) {
+    assert.ok(fs.existsSync(path.join(root,claim.owner)),claim.id);
+    if(claim.disposition==='relocate-accepted-decision') assert.ok(fs.readFileSync(path.join(root,claim.owner),'utf8').includes(claim.text),claim.id);
+  }
+  const runbook=fs.readFileSync(path.join(root,'RUNBOOK.md'),'utf8');
+  assert.match(runbook,/Workbench support state has declared seeding/);
+  assert.match(runbook,/## Independent Review Boundaries/);
 });
