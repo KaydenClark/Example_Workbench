@@ -1,6 +1,6 @@
 # Workbench Template - Hot Taskboard
 
-> Generated from LLM Workbench v3.2.0.
+> Generated from LLM Workbench v3.2.1.
 
 **Current focus:** Verify and integrate the repaired copyable Workbench Template.
 **Owner:** Kayden Clark (executive); assigned agent (execution)

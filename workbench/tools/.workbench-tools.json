@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "source": {
     "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
-    "release": "v3.2.0",
-    "commit": "64397ad757b3a3a9bd535497e2c7912a58cd0497",
+    "release": "v3.2.1",
+    "commit": "385218a85a32588a8893be3885ae3bfe5218df69",
     "dirty": false
   },
   "installedAt": "2026-09-06",
@@ -17,12 +17,13 @@
     "spec-workbench.mjs": "ad91569d8f09a663e2a638bb72aede437b6a5febfed8beb2d866af68f40dcf41",
     "template-placeholders.mjs": "a36e3b6eaae84df9705b518ace10ec34111aadbe5ed5015de458cbfceb592050",
     "wiki.mjs": "8c3b62b2a70315df49c3cd43dcbf760a81374cba42414a935b666460be157fa0",
-    "workbench-layout.mjs": "02e8a2d9bd535bb622afae431806b1b152595af7bb05adf42d32eaffb1f601ca",
+    "workbench-layout.mjs": "8f0ace0d0218ce9e4b1aeb47dc1b4b91ad0873f0a26105250b4553062696958a",
     "workbench-paths.mjs": "993d921998dfb9daf58adbefe0240038969e8224a735ba9eced6faa993a26b53",
     "notepads.mjs": "92d63ee0d2a6a76edb01de6c72abd851224e6b0ac2e69fb0048b7ff59be34877",
     "session-transport.mjs": "17172dcb489a2fa571551a605f3130fd20d6bc2a17d8cba8811ef39a8c2c5416",
     "visible-ids.mjs": "b07501e993bd49572b233947cb5f8a606b21c343a986ce1bab1480237b08db42",
-    "skill-inspection.mjs": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc"
+    "skill-inspection.mjs": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc",
+    "project-evidence.mjs": "a9f8270816b23c4c1ae41e991963b05855fa9d231d0c98d57ea8da542d2b746b"
   },
   "backups": [
     {
@@ -47,7 +48,13 @@
         "template-placeholders.mjs",
         "workbench-layout.mjs"
       ]
+    },
+    {
+      "path": "/private/tmp/workbench-template-v321-recovery/.workbench-tools-backup-7EODiu",
+      "files": [
+        "workbench-layout.mjs"
+      ]
     }
   ],
-  "updatedAt": "2026-09-09"
+  "updatedAt": "2026-09-10"
 }

@@ -1,0 +1,489 @@
+{
+  "base": "40100037562f1327f17afcba4cd6ff784321e35e",
+  "source": "385218a85a32588a8893be3885ae3bfe5218df69",
+  "inventory_scope": "Every tracked baseline path; new upgrade spec, proof and project-evidence.mjs are additions. Projection/spec closeout may subsequently append state.",
+  "identity_preserved": true,
+  "historical_provenance_preserved": true,
+  "files": [
+    {
+      "file": ".claude/README.md",
+      "before": "8c11ca42639fe70ec3a586b138e416c2ba621995b7018ac466891f3057f1e2c5",
+      "after": "8c11ca42639fe70ec3a586b138e416c2ba621995b7018ac466891f3057f1e2c5",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": ".claude/settings.json",
+      "before": "da406ea165bdc87675b1c09651b3c480f873cfb9c283a7cf886b4e14038b78bc",
+      "after": "da406ea165bdc87675b1c09651b3c480f873cfb9c283a7cf886b4e14038b78bc",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": ".gitignore",
+      "before": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97",
+      "after": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "AGENTS.md",
+      "before": "b8d78fc314c6a996b72613e72ebfd68ea5536485ac72b6db7b2bdb5129aad36f",
+      "after": "d8ac5265548a62a0d0c8ba6458fb18f9539dec4e536b40a45d91a0c06599571a",
+      "decision": "Port: current version stamps, repository identity or upgrade usage; preserve project-specific rules"
+    },
+    {
+      "file": "BLUEPRINT.md",
+      "before": "f1346f0cccddbac2d4fd266afadefed429449e7af8c25656b6719e4957f999bf",
+      "after": "f1346f0cccddbac2d4fd266afadefed429449e7af8c25656b6719e4957f999bf",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "CLAUDE.md",
+      "before": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+      "after": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "LEXICON.md",
+      "before": "9518f7c8394b899c62731cd48c4f91686175670a27d16b9a0771aa689b5b3231",
+      "after": "cc30c1147a40ba985fa8e493aa3b867ee076906d3dd1ded0c3f4494d53fc624c",
+      "decision": "Port: current version stamps, repository identity or upgrade usage; preserve project-specific rules"
+    },
+    {
+      "file": "README.md",
+      "before": "ca80e7b317e0bd627d96d38fe0795cded29a980351128605437cd4d5b934f698",
+      "after": "c57c392a01c8e8b91b7de9fc4906050bc82fd5ff2e03f2d0bc46a00cb3bc9a9c",
+      "decision": "Port: current version stamps, repository identity or upgrade usage; preserve project-specific rules"
+    },
+    {
+      "file": "RUNBOOK.md",
+      "before": "34b56106f03b3b172624713e50c43c0699e066ae7ac24909f6e5d33a1d446573",
+      "after": "57856a139a9a1551d0f849b7a6aaa91ee3a33881189897bb0705d303d2a04018",
+      "decision": "Port: current version stamps, repository identity or upgrade usage; preserve project-specific rules"
+    },
+    {
+      "file": "TASKBOARD.md",
+      "before": "e91daa31d59b3e93217803d60704f977011667f427f28798cdd41fe25e814aa0",
+      "after": "079fb051c17a9d39606c2486fc7e2c9d2377688bb2a692cdad179959602ec2ab",
+      "decision": "Port: generated projection includes assigned upgrade"
+    },
+    {
+      "file": "tests/tour.test.mjs",
+      "before": "7dd3e0669790b7761b269528d14b330aac569f8b173ed737056cb4e3f04a37e6",
+      "after": "ea01898226472d94331ed0fff46435702cc769ff87167149b2a7969ffc69d1f1",
+      "decision": "Port: new installed CLI and version consistency regression; release expectation updated"
+    },
+    {
+      "file": "tour.mjs",
+      "before": "12e866853ea673a878df38c1a5b7b9140daa3e163ce8ce2d66577bebde1ee53f",
+      "after": "12e866853ea673a878df38c1a5b7b9140daa3e163ce8ce2d66577bebde1ee53f",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/.workbench-seed.json",
+      "before": "3c544728d8090b3712a9991dfc6d7d6a16cdf63e900708bbfc3f919ecf0fb6e6",
+      "after": "85b1ad2d29ce7cdd5047a2ff58f854b76e5b414e7c9e74e3a214c0c3019c9815",
+      "decision": "Port: source seeder refreshed verified generation metadata"
+    },
+    {
+      "file": "workbench/docs/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/docs/VERSION_HISTORY.md",
+      "before": "a7ce4ce9ff1000bde738f13c2f088e80f3e4490c56224245f41938172c4c1a46",
+      "after": "a7ce4ce9ff1000bde738f13c2f088e80f3e4490c56224245f41938172c4c1a46",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/docs/adr/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/docs/adr/0001-template-ownership-and-continuity.md",
+      "before": "455e7f8415ef38895b87b3a0afb1e473c6b60f2aa21e79e7569eeb12b0bf2429",
+      "after": "455e7f8415ef38895b87b3a0afb1e473c6b60f2aa21e79e7569eeb12b0bf2429",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/docs/adr/HISTORY.md",
+      "before": "a40776a78a94da4d9061bb529bc8a207bcc2dcbef50cb757a1a8bfc8b4f71c99",
+      "after": "a40776a78a94da4d9061bb529bc8a207bcc2dcbef50cb757a1a8bfc8b4f71c99",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/docs/adr/REGISTER.md",
+      "before": "5e8cabb6f27a9e4d295480ce667d45b5689501e8aa32bc85b84f93be619fad61",
+      "after": "5e8cabb6f27a9e4d295480ce667d45b5689501e8aa32bc85b84f93be619fad61",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/feedback/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/feedback/REPORT_FORMAT.md",
+      "before": "31680ad3a127299de1efc6a3795037bf20f36ca2f7153dd070c077fc956c2d39",
+      "after": "31680ad3a127299de1efc6a3795037bf20f36ca2f7153dd070c077fc956c2d39",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/feedback/WORKBENCH_FEEDBACK.md",
+      "before": "51db912c297efb5b1b716e2de7fc8c94b4d53734f34fe1e0a90d30804ef7cbcd",
+      "after": "51db912c297efb5b1b716e2de7fc8c94b4d53734f34fe1e0a90d30804ef7cbcd",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/manifest.json",
+      "before": "edeb36f9563cb9c5d1cf966afc8de112a3881bb39f535aafabe06f8d5452832a",
+      "after": "6ef73031216c302f97f64d1bd4762a339cdd1a2f0ac7a2f43a6e43598a7f127c",
+      "decision": "Port: workbenchVersion only; room identity and original provenance retained"
+    },
+    {
+      "file": "workbench/sessions/.gitignore",
+      "before": "b22ec04b90a3b40c7921dfbc480abb06e0d5f1f70979d8e0487f8ef4e644f10e",
+      "after": "b22ec04b90a3b40c7921dfbc480abb06e0d5f1f70979d8e0487f8ef4e644f10e",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/checkpoints/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/grilling/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/handoffs/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/notepads/templates/grilling.example.json",
+      "before": "4856b43d2f939a131172e24f455fca457b17508da505d56c89312d58906a2458",
+      "after": "4856b43d2f939a131172e24f455fca457b17508da505d56c89312d58906a2458",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/notepads/templates/handoff.example.json",
+      "before": "4923c44076344979732fc87ca4aadde82b3bf98914003e7e298084c67f67d1b7",
+      "after": "4923c44076344979732fc87ca4aadde82b3bf98914003e7e298084c67f67d1b7",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/notepads/templates/notepad.schema.json",
+      "before": "2bdc47d139314642bc4b90e8e2d2e2a5e24cc4d258aaa90ec4d126def2be00c0",
+      "after": "2bdc47d139314642bc4b90e8e2d2e2a5e24cc4d258aaa90ec4d126def2be00c0",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/notepads/templates/work.example.json",
+      "before": "7608eb9e6879fb564041011f6c09756de696b01a1292a48c2cee9e32c6b82376",
+      "after": "7608eb9e6879fb564041011f6c09756de696b01a1292a48c2cee9e32c6b82376",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/sessions/recovery/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/CATALOG.md",
+      "before": "54433894117f2ac5b60704d70f8291b78e8ee6cbd4373eb2d5665a77726db9ca",
+      "after": "71b2087c63f55c83a607142b564c50238c87ee1646153a7b2039d18c3bb04cdd",
+      "decision": "Port: generated projection includes assigned upgrade"
+    },
+    {
+      "file": "workbench/specs/S-001-self-explaining-room/SPEC.md",
+      "before": "ae6ecf54660154bfacb1277bd1a16cabde6abe38d51ac52b8c5df6a443205c13",
+      "after": "ae6ecf54660154bfacb1277bd1a16cabde6abe38d51ac52b8c5df6a443205c13",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/S-002-version-history-replay/SPEC.md",
+      "before": "1770df4c81d24351005706068beb4b6ef360a75e53f013ded90508a459222392",
+      "after": "1770df4c81d24351005706068beb4b6ef360a75e53f013ded90508a459222392",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md",
+      "before": "32ac4322050f5de321590a9cd240069865b08226fcb27f8de3a987c790323e71",
+      "after": "32ac4322050f5de321590a9cd240069865b08226fcb27f8de3a987c790323e71",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/fresh-project-result.json",
+      "before": "44b0711b664303115f8c58c45316ddae9c0411f7cb5a38b9fd9301641f928370",
+      "after": "44b0711b664303115f8c58c45316ddae9c0411f7cb5a38b9fd9301641f928370",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/installation-result.json",
+      "before": "67d29760d59d720cb20dfce366ed0c2c2e0e5038e0286166c64fc8913f43b09c",
+      "after": "67d29760d59d720cb20dfce366ed0c2c2e0e5038e0286166c64fc8913f43b09c",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/S-00A-workbench-template-reformation/SPEC.md",
+      "before": "9499fcf3b4ae9bcf3a7897c585e81db88e53ec78e7684890d38030138859dd2c",
+      "after": "9499fcf3b4ae9bcf3a7897c585e81db88e53ec78e7684890d38030138859dd2c",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/S-00A-workbench-template-reformation/blueprint-source.json",
+      "before": "716737f5888942f6a0d42ecc5f7b2e4e89bda8de31832273a74d128d2e0831e4",
+      "after": "716737f5888942f6a0d42ecc5f7b2e4e89bda8de31832273a74d128d2e0831e4",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/S-00A-workbench-template-reformation/control-fidelity.json",
+      "before": "715df61dd1162efa49dd8394473413dbc6317d31e9442c16177a3114e2dd9eed",
+      "after": "715df61dd1162efa49dd8394473413dbc6317d31e9442c16177a3114e2dd9eed",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/specs/S-00A-workbench-template-reformation/update-acceptance.json",
+      "before": "cfa2ce94f8f66bffb678a4e44d2647b7c9df954e1233b3d1e69fbe07efb59a5c",
+      "after": "cfa2ce94f8f66bffb678a4e44d2647b7c9df954e1233b3d1e69fbe07efb59a5c",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/.workbench-tools.json",
+      "before": "f0b429531575e1c4f5d63a428d1f47e6aace0f6591562c820141c8d18c96fcfc",
+      "after": "7cd54d7ddec1a228200f0987c3064de72a70b50ef0e58f23db03a4e2a5f32da0",
+      "decision": "Port: managed v3.2.1 update and receipt"
+    },
+    {
+      "file": "workbench/tools/adr.mjs",
+      "before": "80e7e3dc7c84098dedd910125eed8d346afdbf1c8aa7dd886647eec70e47fe77",
+      "after": "80e7e3dc7c84098dedd910125eed8d346afdbf1c8aa7dd886647eec70e47fe77",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/diagnostics.mjs",
+      "before": "2cdc651b7f0d3efd6f5854a4c9e37a572f6d5e286d9b89cac8a2898285626d2d",
+      "after": "2cdc651b7f0d3efd6f5854a4c9e37a572f6d5e286d9b89cac8a2898285626d2d",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/markdown-table.mjs",
+      "before": "acca5cb04cecb0044c74aaa38f42d6f0e4e6addb26b45a744d14ca0b74487e6b",
+      "after": "acca5cb04cecb0044c74aaa38f42d6f0e4e6addb26b45a744d14ca0b74487e6b",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/notepads.mjs",
+      "before": "92d63ee0d2a6a76edb01de6c72abd851224e6b0ac2e69fb0048b7ff59be34877",
+      "after": "92d63ee0d2a6a76edb01de6c72abd851224e6b0ac2e69fb0048b7ff59be34877",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/privacy.mjs",
+      "before": "8731047bc626b7b7a539b04c674aac2ac19452e7103cebd53ccf336c32a3ad8b",
+      "after": "8731047bc626b7b7a539b04c674aac2ac19452e7103cebd53ccf336c32a3ad8b",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/session-transport.mjs",
+      "before": "17172dcb489a2fa571551a605f3130fd20d6bc2a17d8cba8811ef39a8c2c5416",
+      "after": "17172dcb489a2fa571551a605f3130fd20d6bc2a17d8cba8811ef39a8c2c5416",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/sessions.mjs",
+      "before": "5c772381d16cd94aee41ab855e54261761d6d6d3200dc9fb064325e2aaea6e45",
+      "after": "5c772381d16cd94aee41ab855e54261761d6d6d3200dc9fb064325e2aaea6e45",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/skill-inspection.mjs",
+      "before": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc",
+      "after": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/spec-packet.mjs",
+      "before": "5d2295418a25fcd0c739942404cd804d197f8ef0c9d238522757ea4bb62f97be",
+      "after": "5d2295418a25fcd0c739942404cd804d197f8ef0c9d238522757ea4bb62f97be",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/spec-workbench.mjs",
+      "before": "ad91569d8f09a663e2a638bb72aede437b6a5febfed8beb2d866af68f40dcf41",
+      "after": "ad91569d8f09a663e2a638bb72aede437b6a5febfed8beb2d866af68f40dcf41",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/template-placeholders.mjs",
+      "before": "a36e3b6eaae84df9705b518ace10ec34111aadbe5ed5015de458cbfceb592050",
+      "after": "a36e3b6eaae84df9705b518ace10ec34111aadbe5ed5015de458cbfceb592050",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/visible-ids.mjs",
+      "before": "b07501e993bd49572b233947cb5f8a606b21c343a986ce1bab1480237b08db42",
+      "after": "b07501e993bd49572b233947cb5f8a606b21c343a986ce1bab1480237b08db42",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/wiki.mjs",
+      "before": "8c3b62b2a70315df49c3cd43dcbf760a81374cba42414a935b666460be157fa0",
+      "after": "8c3b62b2a70315df49c3cd43dcbf760a81374cba42414a935b666460be157fa0",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/tools/workbench-layout.mjs",
+      "before": "02e8a2d9bd535bb622afae431806b1b152595af7bb05adf42d32eaffb1f601ca",
+      "after": "8f0ace0d0218ce9e4b1aeb47dc1b4b91ad0873f0a26105250b4553062696958a",
+      "decision": "Port: managed v3.2.1 update and receipt"
+    },
+    {
+      "file": "workbench/tools/workbench-paths.mjs",
+      "before": "993d921998dfb9daf58adbefe0240038969e8224a735ba9eced6faa993a26b53",
+      "after": "993d921998dfb9daf58adbefe0240038969e8224a735ba9eced6faa993a26b53",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/wiki/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/wiki/AGENTS.md",
+      "before": "8ecc4bf4df36fa9bdf7c387b9d28bdeae3bef8610e18b5e48ee2d3d1591745ea",
+      "after": "be891296a8e4f819391d01eb0be9454762fff2506e271e442059cd3e53e96ca1",
+      "decision": "Port: current version stamps, repository identity or upgrade usage; preserve project-specific rules"
+    },
+    {
+      "file": "workbench/wiki/MEMORY.md",
+      "before": "11966676296d6a869d0e90afe3604034ed1647b74fc80e6cfa359ecdb5c7d78b",
+      "after": "ec20bbe63bb5fa2f6ba601a3e7e447dbdeca158a8a7515fd14570473ea655c0e",
+      "decision": "Port: current version stamps, repository identity or upgrade usage; preserve project-specific rules"
+    },
+    {
+      "file": "workbench/wiki/SCHEMA.md",
+      "before": "4b6f462e8e70095883de7490d38a71b2bac32825bf468acb103cef946b25a143",
+      "after": "361f70eb17a8ce2d555732e6f927835a5d3f7274268d8416c9dd99ca1d19a2cd",
+      "decision": "Port: current version stamps, repository identity or upgrade usage; preserve project-specific rules"
+    },
+    {
+      "file": "workbench/wiki/archive/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/wiki/design-concepts/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    },
+    {
+      "file": "workbench/wiki/design-concepts/README.md",
+      "before": "4a7f0190568558f6be7bd7dbebcc7091fc469fb02f7c5bbbaf474877fe63638e",
+      "after": "af33705be8c1d320fe43074c716c1b26429aaf18d3c4ffe5bf7695702bfd0507",
+      "decision": "Port: current version stamps, repository identity or upgrade usage; preserve project-specific rules"
+    },
+    {
+      "file": "workbench/wiki/guidebooks/.gitkeep",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decision": "Keep: preserved byte-for-byte"
+    }
+  ],
+  "managed_files": [
+    {
+      "file": "adr.mjs",
+      "sha256": "80e7e3dc7c84098dedd910125eed8d346afdbf1c8aa7dd886647eec70e47fe77"
+    },
+    {
+      "file": "diagnostics.mjs",
+      "sha256": "2cdc651b7f0d3efd6f5854a4c9e37a572f6d5e286d9b89cac8a2898285626d2d"
+    },
+    {
+      "file": "markdown-table.mjs",
+      "sha256": "acca5cb04cecb0044c74aaa38f42d6f0e4e6addb26b45a744d14ca0b74487e6b"
+    },
+    {
+      "file": "privacy.mjs",
+      "sha256": "8731047bc626b7b7a539b04c674aac2ac19452e7103cebd53ccf336c32a3ad8b"
+    },
+    {
+      "file": "sessions.mjs",
+      "sha256": "5c772381d16cd94aee41ab855e54261761d6d6d3200dc9fb064325e2aaea6e45"
+    },
+    {
+      "file": "spec-packet.mjs",
+      "sha256": "5d2295418a25fcd0c739942404cd804d197f8ef0c9d238522757ea4bb62f97be"
+    },
+    {
+      "file": "spec-workbench.mjs",
+      "sha256": "ad91569d8f09a663e2a638bb72aede437b6a5febfed8beb2d866af68f40dcf41"
+    },
+    {
+      "file": "template-placeholders.mjs",
+      "sha256": "a36e3b6eaae84df9705b518ace10ec34111aadbe5ed5015de458cbfceb592050"
+    },
+    {
+      "file": "wiki.mjs",
+      "sha256": "8c3b62b2a70315df49c3cd43dcbf760a81374cba42414a935b666460be157fa0"
+    },
+    {
+      "file": "workbench-layout.mjs",
+      "sha256": "8f0ace0d0218ce9e4b1aeb47dc1b4b91ad0873f0a26105250b4553062696958a"
+    },
+    {
+      "file": "workbench-paths.mjs",
+      "sha256": "993d921998dfb9daf58adbefe0240038969e8224a735ba9eced6faa993a26b53"
+    },
+    {
+      "file": "notepads.mjs",
+      "sha256": "92d63ee0d2a6a76edb01de6c72abd851224e6b0ac2e69fb0048b7ff59be34877"
+    },
+    {
+      "file": "session-transport.mjs",
+      "sha256": "17172dcb489a2fa571551a605f3130fd20d6bc2a17d8cba8811ef39a8c2c5416"
+    },
+    {
+      "file": "visible-ids.mjs",
+      "sha256": "b07501e993bd49572b233947cb5f8a606b21c343a986ce1bab1480237b08db42"
+    },
+    {
+      "file": "skill-inspection.mjs",
+      "sha256": "8c7638c23cfb06d611ede31fc84d4da3ef6965c83bf7c663c3f1b3a612ea6bfc"
+    },
+    {
+      "file": "project-evidence.mjs",
+      "sha256": "a9f8270816b23c4c1ae41e991963b05855fa9d231d0c98d57ea8da542d2b746b"
+    }
+  ]
+}

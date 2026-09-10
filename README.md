@@ -1,10 +1,10 @@
 # Workbench Template
 
-> Generated from LLM Workbench v3.2.0.
+> Generated from LLM Workbench v3.2.1.
 
 A copyable reference installation of LLM Workbench. It provides a legible
 starting structure and an installed target for reviewed harness updates.
-Example_Workbench remains the repository name; Workbench Template is its role.
+The repository is Workbench_Template (formerly Example_Workbench).
 
 ```bash
 node tour.mjs
@@ -99,8 +99,14 @@ See [`TASKBOARD.md`](TASKBOARD.md) for active execution state and
 Same license as the LLM Workbench harness it was generated from. This room is
 meant to be copied, read, and discarded.
 
-The current room runs Workbench **v3.2.0**. Run `node tour.mjs` for the
+The current room runs Workbench **v3.2.1**. Run `node tour.mjs` for the
 updated notepad, recovery and frozen-history map. Its verified upgrade and
 independent project-generation evidence belong to
 [S-003](workbench/specs/S-003-v3-2-0-upgrade-and-project-validation/SPEC.md).
 Historical replay branches retain their original versions.
+
+
+The installed harness is v3.2.1. This repository is the reference used to test
+Workbench updates; [upgrade acceptance](RUNBOOK.md#reference-upgrade-acceptance)
+is required for each new version. [S-00B](workbench/specs/S-00B-v3-2-1-harness-upgrade/SPEC.md)
+records this update's source, preservation and verification.

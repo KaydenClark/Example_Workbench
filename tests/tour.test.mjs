@@ -6,6 +6,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
+import os from 'node:os';
+import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
@@ -147,7 +149,7 @@ test('configured-host guidance pins the expected producer identity before execut
 });
 
 test('the v3.2 room has a stable identity distinct from its artifact identifiers', () => {
-  assert.equal(manifest.workbenchVersion, 'v3.2.0');
+  assert.equal(manifest.workbenchVersion, 'v3.2.1');
   assert.match(manifest.workbenchId, /^WB-[0-9A-Za-z]{22}$/);
   assert.ok(manifest.collections['notepad-templates'].startsWith(manifest.collections.notepads + '/'));
 });
@@ -183,4 +185,43 @@ test('the Blueprint disposition preserves its exact source and relocated decisio
   const runbook=fs.readFileSync(path.join(root,'RUNBOOK.md'),'utf8');
   assert.match(runbook,/Workbench support state has declared seeding/);
   assert.match(runbook,/## Independent Review Boundaries/);
+});
+
+
+test('version-bearing root controls match the installed room version', () => {
+  for (const file of ['AGENTS.md', 'LEXICON.md', 'RUNBOOK.md', 'TASKBOARD.md', 'README.md']) {
+    const text = fs.readFileSync(path.join(root, file), 'utf8');
+    assert.ok(text.includes(`Generated from LLM Workbench ${manifest.workbenchVersion}`), file);
+  }
+});
+
+test('the installed evidence command prepares a source-linked open question', () => {
+  const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'template-installed-evidence-'));
+  try {
+    fs.mkdirSync(path.join(scratch, 'workbench'), { recursive: true });
+    fs.writeFileSync(path.join(scratch, 'workbench/manifest.json'), JSON.stringify(manifest));
+    const source = fs.readFileSync(path.join(root, 'README.md'));
+    fs.writeFileSync(path.join(scratch, 'README.md'), source);
+    const request = {
+      schema_version: 'project-evidence-request-1',
+      project: { name: 'Template verification' },
+      objective: { key: 'template-verification', title: 'Template verification', focus: 'Check installed evidence preparation.' },
+      evidence: [{ id: 'E1', source: 'README.md', kind: 'fact', statement: 'The README describes the reference room.' }],
+      questions: [{ id: 'Q1', question: 'What should this room become?', recommendation: 'Keep the reference purpose until the owner decides.', evidence: ['E1'] }]
+    };
+    const input = path.join(scratch, 'request.json');
+    fs.writeFileSync(input, JSON.stringify(request));
+    const output = JSON.parse(execFileSync(process.execPath, [
+      path.join(root, manifest.lanes.tools, 'project-evidence.mjs'), 'prepare',
+      '--project-root', scratch, '--input', input, '--note', 'installed-smoke'
+    ], { encoding: 'utf8' }));
+    assert.equal(output.status, 'prepared');
+    const note = JSON.parse(fs.readFileSync(path.join(scratch, output.note), 'utf8'));
+    assert.equal(note.current.questions[0].status, 'open');
+    assert.equal(note.current.evidence.items[0].source.sha256, crypto.createHash('sha256').update(source).digest('hex'));
+    assert.deepEqual(note.entries, [], 'preparation must not invent owner decisions');
+    assert.deepEqual(fs.readFileSync(path.join(scratch, 'README.md')), source);
+  } finally {
+    fs.rmSync(scratch, { recursive: true, force: true });
+  }
 });

@@ -1,6 +1,6 @@
 # Workbench Template - Agent Operating System
 
-> Generated from LLM Workbench v3.2.0.
+> Generated from LLM Workbench v3.2.1.
 
 This always-loaded file owns how agents work. Ordinary entry follows
 `AGENTS.md` -> `RUNBOOK.md` -> `LEXICON.md`. Read the Runbook's entry procedure
