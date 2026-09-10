@@ -15,7 +15,6 @@ Commands live in `RUNBOOK.md`.
 <!-- hot-specs:start -->
 | Spec | Current slice | Owner | Blocker | Latest meaningful event | Next gate |
 |---|---|---|---|---|---|
-| [S-00B](workbench/specs/S-00B-v3-2-1-harness-upgrade/SPEC.md) | TK-001: Deliver the named upgrade and its acceptance record (in-progress) | codex | none | TK-001 claimed by codex. | Close TK-001 with verification and documentation proof. |
 | [S-001](workbench/specs/S-001-self-explaining-room/SPEC.md) | Acceptance / owner gate | Kayden Clark | none | TK-003 unblocked by owner direction and closed; the room is published and clonable. | None; every slice is closed and the capability is published. |
 <!-- hot-specs:end -->
 

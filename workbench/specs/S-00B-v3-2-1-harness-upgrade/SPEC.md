@@ -1,15 +1,15 @@
 # S-00B - v3.2.1 Harness Upgrade
 
 **Spec ID:** S-00B
-**Status:** active
+**Status:** complete
 **Priority:** 1
 **Owner:** codex
 **Stance:** Builder
 **Updated:** 2026-09-10
 **Catalog description:** Upgrade Workbench_Template from v3.2.0 to the exact reviewed v3.2.1 source through the public managed update route, preserving the existing room and proving the installed result.
 **Blockers:** none
-**Latest event:** TK-001 claimed by codex.
-**Next gate:** Close TK-001 with verification and documentation proof.
+**Latest event:** Spec completed and removed from the hot board.
+**Next gate:** none
 
 ## Outcome
 
@@ -62,7 +62,7 @@ capability limits, not a reason to skip the Template update.
 
 | Ticket | Slice | Status | Blockers | Proof |
 |---|---|---|---|---|
-| TK-001 | Deliver the named upgrade and its acceptance record | in-progress | none | pending |
+| TK-001 | Deliver the named upgrade and its acceptance record | done | none | Independent PASS8ff9dfe; PR8 integration7125c8f exact containment; fresh remote clone21tests/syntax/layout/doctor and16 runtime hashes pass |
 
 ### TK-001 - Deliver the named upgrade and its acceptance record
 
@@ -74,10 +74,10 @@ independent review before integration.
 
 ## Acceptance Criteria
 
-- [ ] Installed runtime receipt and every managed file match pinned v3.2.1 source 385218a; control stamps and manifest agree.
-- [ ] Room identity, historical genesis/layout provenance, completed specs, ADR and product tour bytes survive; all intentional document changes have an owning decision.
-- [ ] Full room suite, installed project-evidence CLI smoke, layout, doctor and source byte comparison pass; recovery limits and complete file inventory are recorded.
-- [ ] Independent review and remote integration containment pass, followed by full verification from a fresh remote clone.
+- [x] Installed runtime receipt and every managed file match pinned v3.2.1 source 385218a; control stamps and manifest agree.
+- [x] Room identity, historical genesis/layout provenance, completed specs, ADR and product tour bytes survive; all intentional document changes have an owning decision.
+- [x] Full room suite, installed project-evidence CLI smoke, layout, doctor and source byte comparison pass; recovery limits and complete file inventory are recorded.
+- [x] Independent review and remote integration containment pass, followed by full verification from a fresh remote clone.
 
 ## Testing Seams
 
@@ -140,9 +140,21 @@ Version-bearing root controls, current Wiki stamps, managed seed records and thi
 
 | 2026-09-10 | TK-001 | Installed pinned v3.2.1 through managed update after a component recovery rehearsal | Added CLI regression failed on missing project-evidence; after update21/21 tests pass, syntax/layout and exact16 receipt/source hashes pass; all existing product/history bytes preserved | Current stamps, repository name and upgrade procedure reconciled; complete preservation and fidelity inventories attached | Independent review, integration containment and fresh remote clone pending |
 
+| 2026-09-10 | TK-001 | Separate-context reviewer PASS on8ff9dfe against4010003; PR8 delivered integration7125c8f | Reviewer verified69 baseline inventory entries and16 managed hashes; post-merge ancestry and identical tree confirmed; fresh remote clone21tests/syntax/layout/doctor and exact runtime verify pass | This closeout records the actual delivered result and remaining global-skill limits | Main promotion remains owner-only; zero owner coordination hand-backs during execution |
+| 2026-09-10 | TK-001 | Ticket closed | Independent PASS8ff9dfe; PR8 integration7125c8f exact containment; fresh remote clone21tests/syntax/layout/doctor and16 runtime hashes pass | Stamps, upgrade procedure, complete preservation/fidelity and delivered result recorded | none for installed update; main and personal skills remain separate |
+| 2026-09-10 | spec | Spec completed | Acceptance gates satisfied | Documentation impact recorded above | none |
+
 ## Completion Result
 
-Pending.
+Reviewed candidate8ff9dfe77b37ad0a4e97db1635a5b3c8b91fea11 was merged by
+[PR8](https://github.com/KaydenClark/Workbench_Template/pull/8) into remote
+integration7125c8f5b9d5517b9f1f8ff309bcd6c80d3c446a with identical tree and
+verified ancestry. A fresh clone from that remote passes21/21 tests, syntax,
+layout and doctor; source verification confirms all16 exact managed hashes and
+no available runtime update. This closes the installed v3.2.1 upgrade only.
+Main remains at e4e1985e4bcd8072a8c78cb3828abc3be9d2cc10. Personal global
+skills remain unchanged; their declared incompatibility is visible as attention.
+
 
 ## Remaining Limitations Or Follow-Up Specs
 
