@@ -1,6 +1,6 @@
 # Workbench Template - Runbook
 
-> Generated from LLM Workbench v3.2.0. See Upgrading The Harness
+> Generated from LLM Workbench v3.2.1. See Upgrading The Harness
 > below.
 
 **Last reviewed:** 2026-09-08
@@ -696,17 +696,20 @@ recorded. None is a durable owner.
 ## Upgrading The Harness
 
 These control docs were generated from a specific LLM Workbench version, recorded
-in the `Generated from LLM Workbench v3.2.0` stamp at the top of each
+in the `Generated from LLM Workbench v3.2.1` stamp at the top of each
 doc. That stamp lets you tell when the project is running an older harness than
 the current one.
 
 To upgrade:
 
 1. Check the clean LLM Workbench release checkout's releases/changelog for what changed since
-   `v3.2.0`.
+   `v3.2.1`.
 2. Re-copy only the changed template sections; keep this project's filled-in
    specifics. Never let `[BRACKETED]` placeholders leak back into filled docs.
-3. Update managed runtime tools only with that checkout's
+3. For this existing v3 room, use the pinned source layout migration for any
+   additive collections and reconcile `workbenchVersion` to the new version;
+   a `current` layout result alone does not advance that stamp. Preserve
+   historical genesis and layout provenance. Update managed runtime tools only with that checkout's
    `node tools/workbench-tools.mjs update --project PATH --home HOME --explicit-update`;
    keep its receipt and backup as the component recovery point.
 4. Update each doc's version stamp to the new version. Do not rewrite the room
@@ -981,3 +984,21 @@ not proof of non-occurrence. Behavioral acceptance separately records actual
 provider/version/model, prompt, source/installed hashes and observed skill use;
 explicit-path fixtures do not establish ordinary-prompt discovery. Unavailable
 checks remain unverified. Repeated controlled trials are needed for reliability.
+
+
+## Reference Upgrade Acceptance
+
+This repository is [Workbench_Template](https://github.com/KaydenClark/Workbench_Template),
+formerly Example_Workbench. It is the installed reference used to test every
+LLM Workbench version update. Upgrade completion requires the full room suite,
+matching manifest/control/runtime versions, exact managed-byte verification,
+preservation inventory and recovery evidence, followed by independent review,
+remote integration containment and checks in a fresh remote clone. The producer
+release gate consumes the owning upgrade spec's proof. Main remains owner-only.
+
+The v3.2.1 runtime also provides `workbench/tools/project-evidence.mjs prepare`.
+Its request names source evidence and open questions; it creates a local grilling
+note without inventing owner decisions. The full tour test suite exercises the
+installed command in a disposable room and verifies the source hash. Fresh-room
+Genesis derivation remains a producer command; this installation does not ship
+`tools/genesis-from-decisions.mjs`.

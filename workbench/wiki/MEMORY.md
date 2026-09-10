@@ -12,7 +12,7 @@ last_verified: 2026-09-08
 
 # Example Workbench Memory
 
-> Generated from LLM Workbench v3.2.0. This is the room brain: the
+> Generated from LLM Workbench v3.2.1. This is the room brain: the
 > canonical, human-editable memory router for this project, kept at
 > `workbench/wiki/MEMORY.md`. Start here and follow the smallest relevant
 > link instead of browsing folders or searching.

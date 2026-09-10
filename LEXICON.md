@@ -1,6 +1,6 @@
 # Workbench Template - Lexicon
 
-> Generated from LLM Workbench v3.2.0.
+> Generated from LLM Workbench v3.2.1.
 
 **Last reviewed:** 2026-09-08
 **Status:** [active / partial / stale]
